@@ -1,0 +1,7 @@
+.navbar-container.hovered {
+  background: linear-gradient(to bottom, #1a1a1a, #2b2a28);
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
