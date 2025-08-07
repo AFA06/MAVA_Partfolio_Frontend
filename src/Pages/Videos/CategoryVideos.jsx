@@ -1,3 +1,5 @@
+// src/pages/CategoryVideos.jsx
+
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -5,7 +7,7 @@ import { Lock, PlayCircle, Menu } from "lucide-react";
 import { hasPurchased } from "../../utils/purchase"; // Ensure correct path
 
 const CategoryVideos = () => {
-  const { category } = useParams();
+  const { category } = useParams(); // This is the slug (e.g., "figma")
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [userHasAccess, setUserHasAccess] = useState(false);
@@ -14,22 +16,30 @@ const CategoryVideos = () => {
   );
   const [toast, setToast] = useState(null);
 
+  const userEmail =
+    typeof window !== "undefined" ? localStorage.getItem("userEmail") : null;
+
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const res = await axios.get(`/api/videos?category=${category}`);
+        const res = await axios.get(`/api/videos/category/${category}`, {
+          params: {
+            email: userEmail || "",
+          },
+        });
         const vids = res.data.videos || [];
         setVideos(vids);
+
         const previewOrFirst = vids.find((v) => v.isPreview) || vids[0];
         setSelectedVideo(previewOrFirst);
       } catch (err) {
-        console.error("Failed to load videos", err);
+        console.error("❌ Failed to load videos", err);
       }
     };
 
     fetchVideos();
 
-    const access = hasPurchased(category);
+    const access = hasPurchased(category); // Check access from localStorage or context
     setUserHasAccess(access);
   }, [category]);
 
@@ -80,11 +90,17 @@ const CategoryVideos = () => {
                   <Lock className="text-red-400 w-5 h-5 mt-1" />
                 )}
                 <div>
-                  <p className="font-medium text-sm">{idx + 1}. {vid.title}</p>
-                  <p className="text-xs text-gray-400">{vid.instructor || "Unknown"}</p>
+                  <p className="font-medium text-sm">
+                    {idx + 1}. {vid.title}
+                  </p>
+                  <p className="text-xs text-gray-400">
+                    {vid.instructor || "Unknown"}
+                  </p>
                 </div>
               </div>
-              <span className="text-xs text-gray-400">{formatPrice(vid.price)}</span>
+              <span className="text-xs text-gray-400">
+                {formatPrice(vid.price)}
+              </span>
             </div>
           ))}
         </div>
