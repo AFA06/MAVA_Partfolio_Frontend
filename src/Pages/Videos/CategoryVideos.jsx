@@ -41,7 +41,7 @@ const CategoryVideos = () => {
 
     const access = hasPurchased(category); // Check access from localStorage or context
     setUserHasAccess(access);
-  }, [category]);
+  }, [category, userEmail]);  // <-- Added userEmail here
 
   const handleVideoClick = (video) => {
     if (userHasAccess || video.isPreview) {
