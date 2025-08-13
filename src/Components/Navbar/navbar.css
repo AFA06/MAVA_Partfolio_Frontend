@@ -1,7 +1,20 @@
-.navbar-container.hovered {
-  background: linear-gradient(to bottom, #1a1a1a, #2b2a28);
-  color: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+.navbar-container {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* Blur state */
+.navbar-blur {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* No blur when scrolled */
+.navbar-no-blur {
+  background: transparent;
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
 }

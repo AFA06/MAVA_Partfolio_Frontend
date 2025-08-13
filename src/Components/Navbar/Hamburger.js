@@ -1,62 +1,109 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// frontend/src/components/Hamburger.jsx
+import React, { useState, useEffect } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import navLinks from './NavLinks';
+import { useTranslation } from 'react-i18next';
 
 function Hamburger() {
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    setUser(storedUser);
+  }, []);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
 
   const handleLogout = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    setUser(null);
+    setIsOpen(false);
     navigate('/login');
   };
 
-  const menuOptions = [
-    { id: 1, label: 'Profile', action: () => alert('Profile clicked') },
-    { id: 2, label: 'Settings', action: () => alert('Settings clicked') },
-    { id: 3, label: 'Log Out', action: handleLogout },
-  ];
-
   return (
-    <div className="relative z-50">
+    <div className="relative z-50 lg:hidden">
+      {/* Hamburger button */}
       <button
         onClick={toggleMenu}
-        className="focus:outline-none p-2 rounded-md hover:bg-gray-200 transition"
+        className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
         aria-label="Toggle menu"
       >
         <svg
-          className="w-6 h-6 text-black"
+          className="w-6 h-6 text-white"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M4 6h16M4 12h16m-7 6h7"
-          />
+          {isOpen ? (
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          ) : (
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          )}
         </svg>
       </button>
 
+      {/* Mobile menu */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 border border-gray-200">
-          {menuOptions.map((option) => (
-            <button
-              key={option.id}
-              onClick={() => {
-                option.action();
-                setIsOpen(false);
-              }}
-              className="block w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-gray-100"
-            >
-              {option.label}
-            </button>
-          ))}
+        <div className="absolute right-0 top-full mt-2 w-56 bg-gray-900 text-white rounded-md shadow-lg overflow-hidden animate-slide-down">
+          {/* Navigation Links */}
+          <div className="flex flex-col">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.href}
+                to={link.href}
+                onClick={() => setIsOpen(false)}
+                className={({ isActive }) =>
+                  `block px-4 py-3 text-base font-semibold transition-colors ${
+                    isActive ? 'bg-yellow-600 text-white' : 'hover:bg-gray-700'
+                  }`
+                }
+              >
+                {t(link.label)}
+              </NavLink>
+            ))}
+          </div>
+
+          <hr className="border-gray-700" />
+
+          {/* Auth buttons */}
+          <div className="flex flex-col">
+            {!user ? (
+              <button
+                onClick={() => {
+                  navigate('/login');
+                  setIsOpen(false);
+                }}
+                className="px-4 py-3 text-left text-base hover:bg-gray-700 transition"
+              >
+                {t('login.signIn') || 'Login'}
+              </button>
+            ) : (
+              <>
+                <div className="px-4 py-3 border-b border-gray-700">{user.name}</div>
+                <button
+                  onClick={handleLogout}
+                  className="px-4 py-3 text-left text-red-400 hover:text-red-500 hover:bg-gray-700 transition"
+                >
+                  {t('logout') || 'Logout'}
+                </button>
+              </>
+            )}
+          </div>
         </div>
       )}
     </div>
