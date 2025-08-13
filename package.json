@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://AFA06.github.io/Arch_Website_Frontend",
   "dependencies": {
     "@csstools/normalize.css": "^12.1.1",
     "@hookform/resolvers": "^3.9.0",
@@ -47,7 +48,6 @@
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.3.0",
     "framer-motion": "^12.23.12",
-    "gh-pages": "^6.3.0",
     "i18next": "^25.2.1",
     "i18next-browser-languagedetector": "^8.2.0",
     "input-otp": "^1.2.4",
@@ -72,12 +72,15 @@
     "web-vitals": "^2.1.4",
     "zod": "^3.23.8"
   },
-  "scripts": {
-    "start": "cross-env PORT=3001 react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+ "scripts": {
+  "start": "cross-env PORT=3001 react-scripts start",
+  "build": "react-scripts build",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+},
+
   "proxy": "http://localhost:5050",
   "eslintConfig": {
     "extends": [
@@ -100,6 +103,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.21",
     "cross-env": "^7.0.3",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.10",
     "typescript": "^5.8.3"
