@@ -1,3 +1,4 @@
+// App.js
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
@@ -6,7 +7,6 @@ import Footer from './Components/Footer/Footer';
 import Homepage from './Components/Homepage/Homepage';
 import Portfolio from './Pages/Portfolio';
 import Blog from './Pages/Blog';
-import Suppliers from './Pages/Suppliers';
 import Vacancies from './Pages/Vacancies';
 import Login from './Components/Login_page/Login';
 import Signup from './Components/Login_page/Signup';
@@ -31,7 +31,6 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/suppliers" element={<Suppliers />} />
           <Route path="/vacancies" element={<Vacancies />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
@@ -39,7 +38,6 @@ function App() {
           <Route path="/videos/:category" element={<CategoryVideos />} />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          {/* 🚫 Removed /payment route since it's no longer used */}
         </Routes>
       </main>
 
