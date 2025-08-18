@@ -12,8 +12,11 @@ function Footer() {
   const { t } = useTranslation();
 
   return (
-    <footer className="bg-black text-gray-300 pt-16 pb-8 px-6 border-t border-gray-800">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+    <footer className="relative bg-black text-gray-300 pt-20 pb-8 px-6 border-t border-gray-900 overflow-hidden">
+      {/* 🔥 Animated Gradient Shimmer Line */}
+      <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-500 animate-shimmer"></div>
+
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
         {/* Brand / Studio Info */}
         <div>
           <h2 className="text-2xl font-bold text-gold mb-4">
@@ -66,44 +69,31 @@ function Footer() {
         <div>
           <h2 className="text-lg font-semibold mb-4 text-gold">Follow Us</h2>
           <div className="flex space-x-4">
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noreferrer"
-              className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-600 hover:border-gold hover:text-gold transition"
-            >
-              <FaInstagram />
-            </a>
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noreferrer"
-              className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-600 hover:border-gold hover:text-gold transition"
-            >
-              <FaFacebookF />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noreferrer"
-              className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-600 hover:border-gold hover:text-gold transition"
-            >
-              <FaLinkedinIn />
-            </a>
-            <a
-              href="https://t.me/"
-              target="_blank"
-              rel="noreferrer"
-              className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-600 hover:border-gold hover:text-gold transition"
-            >
-              <FaTelegramPlane />
-            </a>
+            {[
+              { href: "https://instagram.com", icon: <FaInstagram /> },
+              { href: "https://facebook.com", icon: <FaFacebookF /> },
+              { href: "https://linkedin.com", icon: <FaLinkedinIn /> },
+              { href: "https://t.me/", icon: <FaTelegramPlane /> },
+            ].map(({ href, icon }, idx) => (
+              <a
+                key={idx}
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-600 text-gray-400 hover:text-gold transition relative overflow-hidden group"
+              >
+                {/* Icon */}
+                <span className="relative z-10">{icon}</span>
+                {/* Neon shimmer border on hover */}
+                <span className="absolute inset-0 rounded-full border-2 border-transparent group-hover:border-gold group-hover:animate-shimmer-border"></span>
+              </a>
+            ))}
           </div>
         </div>
       </div>
 
       {/* Bottom Line */}
-      <div className="border-t border-gray-800 mt-12 pt-6 text-center text-sm text-gray-500">
+      <div className="border-t border-gray-800 mt-12 pt-6 text-center text-sm text-gray-500 relative z-10">
         <p className="mb-2">{t("footer.bottomLine")}</p>
         <p className="mb-2">{t("footer.orderCall")}</p>
         <p className="text-gray-600">
@@ -118,6 +108,26 @@ function Footer() {
           </a>
         </p>
       </div>
+
+      {/* Tailwind custom shimmer animations */}
+      <style>{`
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        .animate-shimmer {
+          background-size: 200% 100%;
+          animation: shimmer 6s linear infinite;
+        }
+        @keyframes shimmer-border {
+          0% { box-shadow: 0 0 5px rgba(255,215,0,0.3), 0 0 10px rgba(255,215,0,0.2); }
+          50% { box-shadow: 0 0 15px rgba(255,215,0,0.6), 0 0 30px rgba(255,215,0,0.3); }
+          100% { box-shadow: 0 0 5px rgba(255,215,0,0.3), 0 0 10px rgba(255,215,0,0.2); }
+        }
+        .animate-shimmer-border {
+          animation: shimmer-border 2s ease-in-out infinite;
+        }
+      `}</style>
     </footer>
   );
 }
