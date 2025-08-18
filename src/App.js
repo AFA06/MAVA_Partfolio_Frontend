@@ -12,7 +12,7 @@ import Login from './Components/Login_page/Login';
 import Signup from './Components/Login_page/Signup';
 import Videos from './Pages/Videos/Videos';
 import CategoryVideos from './Pages/Videos/CategoryVideos';
-import Reviews from './Components/Reviews/Reviews';
+import Reviews from './Pages/Reviews';
 import ForgotPassword from './Components/Login_page/ForgotPassword';
 
 import './App.css';
