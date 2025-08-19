@@ -65,6 +65,7 @@
     "recharts": "^3.1.0",
     "sanitize.css": "^13.0.0",
     "sonner": "^1.5.0",
+    "swiper": "^11.2.10",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.179.1",
@@ -72,15 +73,14 @@
     "web-vitals": "^2.1.4",
     "zod": "^3.23.8"
   },
- "scripts": {
-  "start": "cross-env PORT=3001 react-scripts start",
-  "build": "react-scripts build",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d build",
-  "test": "react-scripts test",
-  "eject": "react-scripts eject"
-},
-
+  "scripts": {
+    "start": "cross-env PORT=3001 react-scripts start",
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "proxy": "http://localhost:5050",
   "eslintConfig": {
     "extends": [
