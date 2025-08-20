@@ -1,4 +1,3 @@
-// frontend/src/Pages/Reviews.js
 import React, { useMemo, useRef } from "react";
 import { Star, Quote } from "lucide-react";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
@@ -10,10 +9,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 // --- Replace these with your own project assets if you have them ---
-const HERO_VIDEO = "/Assets/videos/6415705_TopShot_LawFirmOffice.mp4"; // put a video file here (muted b-roll, 10–20s)
-const HERO_FALLBACK =
-  "/images/hero1.jpg"; // fallback image
-
+const HERO_IMAGE = "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1650&q=80"; // Background image
 const bgFragments = [
   "/images/hero1.jpg",
   "/images/hero2.jpg",
@@ -109,14 +105,13 @@ const Reviews = () => {
     []
   );
 
-
   const starRow = (n) =>
     Array.from({ length: n }).map((_, i) => (
       <Star key={i} className="w-5 h-5 text-amber-400 fill-amber-400" />
     ));
 
   return (
-    <div className="min-h-screen bg-[#0b0d11] text-white relative overflow-hidden">
+    <div className="font-sans min-h-screen bg-black text-white relative overflow-hidden">
       {/* ---- GLOBAL DECOR / KEYFRAMES ---- */}
       <style>{`
         @keyframes grain {
@@ -129,18 +124,15 @@ const Reviews = () => {
         }
       `}</style>
 
-      {/* ---- HERO with video + parallax fragments ---- */}
-      <section className="relative h-[70vh] md:h-[80vh] w-full">
-        {/* Video bg */}
-        <div className="absolute inset-0 -z-20 overflow-hidden">
-          <img
-            className="w-full h-full object-cover"
-            src={HERO_FALLBACK}
-            alt="Hero background"
-          />
-          {/* vignette + color grade */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-[#0b0d11]"></div>
-        </div>
+      {/* ---- HERO with background image ---- */}
+      <section className="relative w-full h-[70vh] md:h-[80vh] flex items-center justify-center">
+        <div
+          className="absolute inset-0 bg-cover bg-center filter brightness-75"
+          style={{
+            backgroundImage: `url('${HERO_IMAGE}')`,
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/80"></div>
 
         {/* subtle film grain */}
         <div
@@ -196,7 +188,7 @@ const Reviews = () => {
         </div>
 
         {/* Hero copy */}
-        <div className="relative h-full flex items-center">
+        <div className="relative z-10 h-full flex items-center">
           <div className="max-w-7xl mx-auto px-6 w-full">
             <motion.h1
               initial={{ opacity: 0, y: 18 }}
