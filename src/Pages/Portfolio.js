@@ -80,15 +80,9 @@ const Portfolio = () => {
   }, []);
 
   return (
-    <div
-      className="w-full h-screen overflow-y-scroll bg-black text-white"
-      style={{
-        scrollSnapType: "y mandatory",
-        scrollBehavior: "smooth",
-      }}
-    >
+    <div className="w-full bg-black text-white overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative h-screen snap-start flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Crossfade Backgrounds */}
         {heroImages.map((img, i) => (
           <motion.div
@@ -127,7 +121,7 @@ const Portfolio = () => {
 
       {/* About Section */}
       <motion.section
-        className="h-screen snap-start flex items-center justify-center px-6 md:px-16"
+        className="min-h-screen flex items-center justify-center px-6 md:px-16"
         variants={fadeInUp}
         initial="hidden"
         whileInView="visible"
@@ -147,7 +141,7 @@ const Portfolio = () => {
 
       {/* Projects Grid */}
       <motion.section
-        className="h-screen snap-start flex flex-col justify-center px-6 md:px-16"
+        className="min-h-screen flex flex-col justify-center px-6 md:px-16"
         variants={fadeInUp}
         initial="hidden"
         whileInView="visible"
@@ -187,7 +181,7 @@ const Portfolio = () => {
 
       {/* Showcase Section */}
       <motion.section
-        className="relative h-screen snap-start flex items-center justify-center bg-cover bg-center"
+        className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
         style={{
           backgroundImage: `url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1950&q=80')`,
           transform: `translateY(${scrollY * 0.1}px)`,
