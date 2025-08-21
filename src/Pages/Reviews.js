@@ -1,20 +1,22 @@
-import React, { useMemo, useRef } from "react";
+import React, { useRef } from "react";
 import { Star, Quote } from "lucide-react";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import hero1 from "../assets/hero1.jpg";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-// --- Replace these with your own project assets if you have them ---
-const HERO_IMAGE = "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1650&q=80"; // Background image
+// --- Replace with your assets ---
+const HERO_IMAGE = hero1;
 const bgFragments = [
-  "/images/hero1.jpg",
-  "/images/hero2.jpg",
-  "/images/hero1.jpg", // you can repeat or add more images if you like
+  "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=800",
+  "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=800",
+  "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=800",
 ];
+
 const reviews = [
   {
     name: "Olivia Martinez",
@@ -48,22 +50,6 @@ const reviews = [
     rating: 4,
     image: "https://randomuser.me/api/portraits/men/45.jpg",
   },
-  {
-    name: "Emma White",
-    role: "Business Owner",
-    review:
-      "Brand, space, and experience became one story. Our clients mention the ambience in almost every meeting. That speaks for itself.",
-    rating: 5,
-    image: "https://randomuser.me/api/portraits/women/12.jpg",
-  },
-  {
-    name: "Liam Brown",
-    role: "Engineer",
-    review:
-      "Detailing is surgical. Tolerances held, interfaces clean, and the finish is impeccable. They care about the things most people never see.",
-    rating: 5,
-    image: "https://randomuser.me/api/portraits/men/28.jpg",
-  },
 ];
 
 function useParallaxTilt(intensity = 12) {
@@ -83,8 +69,8 @@ function useParallaxTilt(intensity = 12) {
 
   const onMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width; // 0..1
-    const py = (e.clientY - rect.top) / rect.height; // 0..1
+    const px = (e.clientX - rect.left) / rect.width;
+    const py = (e.clientY - rect.top) / rect.height;
     x.set(px);
     y.set(py);
   };
@@ -97,46 +83,27 @@ function useParallaxTilt(intensity = 12) {
 }
 
 const Reviews = () => {
-  const { rx, ry, onMouseMove, onMouseLeave } = useParallaxTilt(10);
-  const cardStyle = useMemo(
-    () => ({
-      transformStyle: "preserve-3d",
-    }),
-    []
-  );
-
-  const starRow = (n) =>
-    Array.from({ length: n }).map((_, i) => (
-      <Star key={i} className="w-5 h-5 text-amber-400 fill-amber-400" />
-    ));
+  const { rx, ry, onMouseMove, onMouseLeave } = useParallaxTilt(14);
 
   return (
     <div className="font-sans min-h-screen bg-black text-white relative overflow-hidden">
-      {/* ---- GLOBAL DECOR / KEYFRAMES ---- */}
       <style>{`
-        @keyframes grain {
-          0% { transform: translate(0,0) }
-          100% { transform: translate(-100%, -100%) }
-        }
-        @keyframes marquee {
-          0% { transform: translateX(0) }
-          100% { transform: translateX(-50%) }
-        }
+        @keyframes grain { 0%{transform:translate(0,0)}100%{transform:translate(-100%,-100%)}}
+        @keyframes marquee {0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+        @keyframes floaty {0%{transform:translateY(0)}50%{transform:translateY(-20px)}100%{transform:translateY(0)}}
       `}</style>
 
-      {/* ---- HERO with background image ---- */}
-      <section className="relative w-full h-[70vh] md:h-[80vh] flex items-center justify-center">
+      {/* ---- HERO ---- */}
+      <section className="relative w-full h-[80vh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center filter brightness-75"
-          style={{
-            backgroundImage: `url('${HERO_IMAGE}')`,
-          }}
+          style={{ backgroundImage: `url('${HERO_IMAGE}')` }}
         ></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/90"></div>
 
-        {/* subtle film grain */}
+        {/* Grain */}
         <div
-          className="pointer-events-none absolute inset-0 opacity-[0.08] -z-10"
+          className="pointer-events-none absolute inset-0 opacity-[0.07]"
           style={{
             backgroundImage:
               "url('https://grainy-gradients.vercel.app/noise.svg')",
@@ -145,166 +112,106 @@ const Reviews = () => {
           }}
         />
 
-        {/* floating image fragments with slow parallax */}
+        {/* Floating 3D fragments */}
         <div
-          className="absolute inset-0 -z-10"
+          className="absolute inset-0"
           style={{ perspective: 1200 }}
           onMouseMove={onMouseMove}
           onMouseLeave={onMouseLeave}
         >
           <motion.div
-            style={{
-              rotateX: rx,
-              rotateY: ry,
-              transformStyle: "preserve-3d",
-            }}
+            style={{ rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }}
             className="w-full h-full"
           >
-            <div className="absolute top-[12%] left-[6%] w-60 h-40 rounded-xl overflow-hidden border border-white/10 shadow-2xl"
-              style={{ transform: "translateZ(60px)" }}>
-              <img
-                src={bgFragments[0]}
-                alt=""
-                className="w-full h-full object-cover scale-110"
-              />
-            </div>
-            <div className="absolute bottom-[12%] left-[18%] w-44 h-28 rounded-xl overflow-hidden border border-white/10 shadow-2xl"
-              style={{ transform: "translateZ(90px)" }}>
-              <img
-                src={bgFragments[1]}
-                alt=""
-                className="w-full h-full object-cover scale-110"
-              />
-            </div>
-            <div className="absolute top-[16%] right-[10%] w-72 h-44 rounded-xl overflow-hidden border border-white/10 shadow-2xl"
-              style={{ transform: "translateZ(120px)" }}>
-              <img
-                src={bgFragments[2]}
-                alt=""
-                className="w-full h-full object-cover scale-110"
-              />
-            </div>
+            {bgFragments.map((src, i) => (
+              <div
+                key={i}
+                className="absolute rounded-xl overflow-hidden border border-white/10 shadow-2xl animate-floaty"
+                style={{
+                  top: `${15 + i * 20}%`,
+                  left: i % 2 === 0 ? `${5 + i * 10}%` : "auto",
+                  right: i % 2 !== 0 ? `${5 + i * 10}%` : "auto",
+                  width: `${180 + i * 40}px`,
+                  height: `${120 + i * 30}px`,
+                  transform: `translateZ(${80 + i * 30}px)`,
+                  animationDelay: `${i * 2}s`,
+                }}
+              >
+                <img src={src} alt="fragment" className="w-full h-full object-cover" />
+              </div>
+            ))}
           </motion.div>
         </div>
 
-        {/* Hero copy */}
+        {/* Hero text */}
         <div className="relative z-10 h-full flex items-center">
           <div className="max-w-7xl mx-auto px-6 w-full">
             <motion.h1
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-4xl md:text-6xl font-extrabold tracking-tight"
+              transition={{ duration: 0.8 }}
+              className="text-5xl md:text-7xl font-extrabold tracking-tight drop-shadow-lg"
             >
-              Architecture with <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-white to-amber-300">Presence</span>.
+              Architecture with
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-white to-amber-300 ml-2">
+                Presence
+              </span>
+              .
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="mt-5 max-w-2xl text-white/80"
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mt-6 max-w-2xl text-white/80 text-lg"
             >
               Spatial stories shaped by light, proportion, and material honesty.
-              Built to be lived in, remembered, and admired.
             </motion.p>
-
-            {/* trust bar */}
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mt-8 flex flex-wrap gap-4 text-sm text-white/70"
-            >
-              <div className="backdrop-blur-sm bg-white/10 border border-white/15 rounded-full px-4 py-2">
-                120+ completed projects
-              </div>
-              <div className="backdrop-blur-sm bg-white/10 border border-white/15 rounded-full px-4 py-2">
-                Avg. 4.9★ client rating
-              </div>
-              <div className="backdrop-blur-sm bg-white/10 border border-white/15 rounded-full px-4 py-2">
-                Global award mentions
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ---- LOGO MARQUEE (social proof) ---- */}
+      {/* ---- MARQUEE ---- */}
       <section className="relative py-10 border-y border-white/10 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent">
         <div className="overflow-hidden">
           <div
             className="flex items-center gap-16 whitespace-nowrap will-change-transform"
-            style={{ animation: "marquee 30s linear infinite" }}
+            style={{ animation: "marquee 28s linear infinite" }}
           >
-            {[
-              "ArchiDaily",
-              "Design Milk",
-              "Dezeen",
-              "Wallpaper*",
-              "Frame",
-              "Domus",
-              "Icon",
-            ].map((brand, i) => (
-              <span
-                key={i}
-                className="text-white/50 hover:text-white/80 transition-colors text-lg tracking-widest"
-              >
-                {brand}
-              </span>
-            ))}
-            {/* duplicate for seamless loop */}
-            {[
-              "ArchiDaily",
-              "Design Milk",
-              "Dezeen",
-              "Wallpaper*",
-              "Frame",
-              "Domus",
-              "Icon",
-            ].map((brand, i) => (
-              <span
-                key={`d-${i}`}
-                className="text-white/50 hover:text-white/80 transition-colors text-lg tracking-widest"
-              >
-                {brand}
-              </span>
-            ))}
+            {["ArchiDaily", "Design Milk", "Dezeen", "Wallpaper*", "Frame", "Domus"].map(
+              (brand, i) => (
+                <span
+                  key={i}
+                  className="text-white/50 hover:text-white/80 transition-colors text-xl tracking-widest drop-shadow"
+                >
+                  {brand}
+                </span>
+              )
+            )}
           </div>
         </div>
       </section>
 
-      {/* ---- REVIEWS TITLE ---- */}
-      <section className="text-center pt-16 pb-6 px-6">
+      {/* ---- REVIEWS ---- */}
+      <section className="text-center pt-20 pb-10 px-6">
         <motion.h2
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-bold"
+          className="text-4xl md:text-6xl font-bold mb-4"
         >
           What Our Clients Say
         </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="mt-3 text-white/70 max-w-2xl mx-auto"
-        >
-          Honest words from the people we design for—developers, homeowners, and
-          teams shaping the cities we love.
-        </motion.p>
+        <p className="text-white/70 max-w-2xl mx-auto text-lg">
+          Honest words from people we design for.
+        </p>
       </section>
 
-      {/* ---- REVIEWS CAROUSEL (3D cards) ---- */}
       <section className="max-w-7xl mx-auto px-6 pb-20">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={28}
           slidesPerView={1}
-          breakpoints={{
-            768: { slidesPerView: 2 },
-            1200: { slidesPerView: 3 },
-          }}
+          breakpoints={{ 768: { slidesPerView: 2 }, 1200: { slidesPerView: 3 } }}
           navigation
           pagination={{ clickable: true }}
           autoplay={{ delay: 5200, disableOnInteraction: false }}
@@ -320,32 +227,31 @@ const Reviews = () => {
 
       {/* ---- CTA ---- */}
       <section className="relative px-6 pb-24">
-        <div className="relative max-w-6xl mx-auto overflow-hidden rounded-3xl border border-white/10">
-          {/* gradient aura */}
-          <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_70%_20%,rgba(251,191,36,0.18),transparent_60%)]" />
+        <div className="relative max-w-6xl mx-auto overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+          <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_70%_20%,rgba(251,191,36,0.15),transparent_70%)] animate-pulse" />
           <div className="relative z-10 grid md:grid-cols-2">
             <div className="p-10 md:p-16">
               <h3 className="text-3xl md:text-4xl font-extrabold">
                 Let’s build something unforgettable.
               </h3>
-              <p className="mt-4 text-white/75">
-                From quick studies to full delivery, our studio partners with
-                you to craft work that performs—and moves people.
+              <p className="mt-4 text-white/75 text-lg">
+                From concept to delivery, our studio partners with you to craft
+                work that performs—and inspires.
               </p>
               <a
                 href="/contact"
-                className="mt-8 inline-block rounded-full bg-amber-400 text-black px-8 py-3 font-semibold hover:bg-amber-300 transition"
+                className="mt-8 inline-block rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-black px-10 py-3 font-semibold hover:scale-105 transition-transform shadow-lg"
               >
                 Start a Project
               </a>
             </div>
             <div className="relative min-h-[260px]">
               <img
-                src="https://images.unsplash.com/photo-1487956382158-bb926046304a?q=80&w=1600&auto=format&fit=crop"
-                alt=""
+                src="https://images.unsplash.com/photo-1487956382158-bb926046304a?q=80&w=1600"
+                alt="cta"
                 className="absolute inset-0 w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-l from-[#0b0d11] via-black/30 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-l from-black/70 to-transparent"></div>
             </div>
           </div>
         </div>
@@ -354,17 +260,17 @@ const Reviews = () => {
   );
 };
 
-/** 3D tilt card with glass surface */
+// ---- 3D Review Card ----
 function Card3D({ review }) {
   const ref = useRef(null);
   const tiltX = useMotionValue(0.5);
   const tiltY = useMotionValue(0.5);
 
-  const rx = useSpring(useTransform(tiltY, [0, 1], [10, -10]), {
+  const rx = useSpring(useTransform(tiltY, [0, 1], [12, -12]), {
     stiffness: 140,
     damping: 14,
   });
-  const ry = useSpring(useTransform(tiltX, [0, 1], [-10, 10]), {
+  const ry = useSpring(useTransform(tiltX, [0, 1], [-12, 12]), {
     stiffness: 140,
     damping: 14,
   });
@@ -386,26 +292,18 @@ function Card3D({ review }) {
       ref={ref}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
-      style={{
-        rotateX: rx,
-        rotateY: ry,
-        transformStyle: "preserve-3d",
-      }}
+      style={{ rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }}
       className="group h-full"
     >
       <div
-        className="relative h-full rounded-3xl border border-white/15 bg-white/5 backdrop-blur-md p-7 shadow-xl"
+        className="relative h-full rounded-3xl border border-white/15 bg-white/5 backdrop-blur-md p-7 shadow-xl hover:shadow-amber-500/20 transition-shadow"
         style={{ transform: "translateZ(30px)" }}
       >
-        {/* Accent glow that shifts with tilt */}
         <motion.div
-          style={{
-            left: glow,
-          }}
-          className="pointer-events-none absolute -top-10 w-[60%] h-[200%] -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(251,191,36,0.10),transparent)] opacity-0 group-hover:opacity-100 transition"
+          style={{ left: glow }}
+          className="pointer-events-none absolute -top-10 w-[60%] h-[200%] -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(251,191,36,0.15),transparent)] opacity-0 group-hover:opacity-100 transition"
         />
 
-        {/* Header */}
         <div className="flex items-center gap-4 mb-5">
           <img
             src={review.image}
@@ -419,17 +317,13 @@ function Card3D({ review }) {
           <Quote className="ml-auto w-5 h-5 text-amber-300/80" />
         </div>
 
-        {/* Stars */}
         <div className="flex gap-1 mb-3">
           {Array.from({ length: review.rating }).map((_, i) => (
             <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
           ))}
         </div>
 
-        {/* Review */}
-        <p className="text-white/85 leading-relaxed italic">
-          “{review.review}”
-        </p>
+        <p className="text-white/85 leading-relaxed italic">“{review.review}”</p>
       </div>
     </motion.div>
   );
