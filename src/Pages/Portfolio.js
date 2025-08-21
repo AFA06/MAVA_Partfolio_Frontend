@@ -91,30 +91,24 @@ const Portfolio = () => {
           />
         ))}
       </div>
-{/* Hero Section */}
-<section
-  className="relative h-[500px] flex items-center justify-center bg-cover bg-center"
-  style={{
-    backgroundImage: `url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1950&q=80')`,
-  }}
->
-  {/* Golden overlay instead of solid black */}
-  <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80"></div>
 
-  <div className="relative text-center z-10 max-w-3xl px-4">
-    <h1 className="hero-title text-5xl md:text-7xl font-serif font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-500 drop-shadow-xl">
-      {`Our Portfolio`.split('').map((char, i) => (
-        <span key={i} className="inline-block opacity-0">
-          {char}
-        </span>
-      ))}
-    </h1>
-    <div className="w-32 h-1 mx-auto mt-6 bg-gradient-to-r from-yellow-400 to-amber-600 rounded-full shadow-lg"></div>
-    <p className="mt-6 text-lg md:text-xl font-light text-gray-200 drop-shadow-lg">
-      Masterpieces of architecture — blending art and innovation.
-    </p>
-  </div>
-</section>
+      {/* Hero Section */}
+      <section className="relative h-[500px] flex items-center justify-center bg-gradient-to-r from-black via-gray-900 to-black">
+        <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+        <div className="relative text-center z-10 max-w-3xl">
+          <h1 className="hero-title text-5xl md:text-7xl font-serif font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-500 to-amber-600 drop-shadow-lg">
+            {`Our Portfolio`.split('').map((char, i) => (
+              <span key={i} className="inline-block opacity-0">
+                {char}
+              </span>
+            ))}
+          </h1>
+          <div className="w-32 h-1 mx-auto mt-6 bg-gradient-to-r from-yellow-400 to-amber-600 rounded-full shadow-lg"></div>
+          <p className="mt-6 text-lg md:text-xl font-light text-gray-300">
+            Masterpieces of architecture — blending art and innovation.
+          </p>
+        </div>
+      </section>
 
       {/* Portfolio Grid */}
       <section className="py-20 px-6 md:px-16 relative z-10">
