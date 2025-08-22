@@ -265,6 +265,7 @@ function Card3D({ review }) {
   });
   const glow = useTransform(tiltX, [0, 1], ["40%", "60%"]);
 
+  // ----- Desktop hover -----
   const handleMove = (e) => {
     const r = ref.current?.getBoundingClientRect();
     if (!r) return;
@@ -276,11 +277,28 @@ function Card3D({ review }) {
     tiltY.set(0.5);
   };
 
+  // ----- Mobile touch -----
+  const handleTouchMove = (e) => {
+    const r = ref.current?.getBoundingClientRect();
+    if (!r) return;
+    const touch = e.touches[0];
+    const px = (touch.clientX - r.left) / r.width;
+    const py = (touch.clientY - r.top) / r.height;
+    tiltX.set(px);
+    tiltY.set(py);
+  };
+  const handleTouchEnd = () => {
+    tiltX.set(0.5);
+    tiltY.set(0.5);
+  };
+
   return (
     <motion.div
       ref={ref}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
       style={{ rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }}
       className="group h-full"
     >
