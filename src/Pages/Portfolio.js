@@ -25,6 +25,27 @@ const projectsData = [
       "https://images.unsplash.com/photo-1599423300746-b62533397364?auto=format&fit=crop&w=1200&q=80",
     description: "Sustainable architecture integrated with nature.",
   },
+  {
+    id: 4,
+    name: "Glass Tower",
+    image:
+      "https://images.unsplash.com/photo-1529421308361-4b76c0b8d2f1?auto=format&fit=crop&w=1200&q=80",
+    description: "A futuristic glass skyscraper redefining urban skylines.",
+  },
+  {
+    id: 5,
+    name: "Luxury Resort",
+    image:
+      "https://images.unsplash.com/photo-1501117716987-c8e2a0f1e0f1?auto=format&fit=crop&w=1200&q=80",
+    description: "Seaside resort combining luxury with natural harmony.",
+  },
+  {
+    id: 6,
+    name: "Cultural Center",
+    image:
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80",
+    description: "A landmark cultural hub blending tradition and modernity.",
+  },
 ];
 
 const heroImages = [
@@ -76,7 +97,6 @@ const Portfolio = () => {
     <div className="w-full bg-black text-white overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Crossfade Backgrounds */}
         {heroImages.map((img, i) => (
           <motion.div
             key={i}
@@ -94,10 +114,8 @@ const Portfolio = () => {
           />
         ))}
 
-        {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/80 z-10"></div>
 
-        {/* Hero Text */}
         <div className="relative z-20 text-center px-4 max-w-4xl">
           <h1 className="hero-title text-5xl md:text-7xl font-serif font-bold tracking-wide text-yellow-300 drop-shadow-[0_5px_20px_rgba(255,215,0,0.9)]">
             {`Our Portfolio`.split("").map((char, i) => (
@@ -152,7 +170,7 @@ const Portfolio = () => {
               initial={{ opacity: 0, y: 70, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ delay: index * 0.2, duration: 0.8 }}
+              transition={{ delay: index * 0.15, duration: 0.8 }}
               className="relative rounded-3xl overflow-hidden bg-black/40 backdrop-blur-xl border border-yellow-500/20 shadow-xl hover:shadow-yellow-400/40 hover:scale-[1.07] transition-transform duration-700 cursor-pointer group"
               style={{
                 transform: `translateY(${scrollY * 0.05}px)`,
