@@ -102,39 +102,42 @@ const Portfolio = () => {
         ))}
 
         {/* Overlay */}
-        <div className="absolute inset-0 bg-black/70 z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/80 z-10"></div>
 
-        {/* Hero Text */}
-        <div className="relative z-20 text-center px-4 max-w-4xl">
-          <h1 className="hero-title text-5xl md:text-7xl font-serif font-bold tracking-wide text-yellow-300 drop-shadow-2xl">
-            {`Architecture That Inspires`.split("").map((char, i) => (
-              <span key={i} className="inline-block opacity-0">
-                {char}
-              </span>
-            ))}
-          </h1>
-          <p className="mt-6 text-lg md:text-xl font-light text-gray-100 drop-shadow-md">
-            Crafting timeless spaces where design meets innovation.
-          </p>
-        </div>
+       {/* Hero Text */}
+<div className="relative z-20 text-center px-4 max-w-4xl">
+  <h1 className="hero-title text-5xl md:text-7xl font-serif font-bold tracking-wide text-yellow-300 drop-shadow-[0_5px_20px_rgba(255,215,0,0.9)]">
+    {`Our Portfolio`.split("").map((char, i) => (
+      <span key={i} className="inline-block opacity-0">
+        {char}
+      </span>
+    ))}
+  </h1>
+  <p className="mt-6 text-lg md:text-xl font-light text-gray-100 drop-shadow-md">
+    Showcasing selected projects that highlight our creativity,
+    expertise, and design vision.
+  </p>
+</div>
+
       </section>
 
       {/* About Section */}
       <motion.section
-        className="min-h-screen flex items-center justify-center px-6 md:px-16"
+        className="min-h-[70vh] flex items-center justify-center px-6 md:px-16"
         variants={fadeInUp}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
       >
-        <div className="bg-gradient-to-br from-gray-900/70 to-black/60 backdrop-blur-xl border border-yellow-500/20 rounded-3xl shadow-2xl max-w-4xl text-center p-10">
-          <h2 className="text-3xl md:text-4xl font-serif text-yellow-400 mb-4">
+        <div className="bg-gradient-to-br from-gray-900/70 to-black/70 backdrop-blur-xl border border-yellow-500/30 rounded-3xl shadow-2xl max-w-5xl text-center p-12 hover:scale-[1.02] transition-transform duration-700">
+          <h2 className="text-4xl md:text-5xl font-serif text-yellow-400 mb-6">
             Our Philosophy
           </h2>
-          <p className="text-gray-300 leading-relaxed">
-            We believe architecture is more than structures — it’s about shaping
-            experiences, emotions, and cultural identity. Each design we create
-            balances luxury, functionality, and sustainability.
+          <p className="text-gray-300 leading-relaxed text-lg">
+            Each project in our portfolio reflects a balance of creativity,
+            precision, and innovation. We aim to design spaces that tell stories,
+            capture emotions, and embody functionality — all while maintaining
+            sustainability and elegance.
           </p>
         </div>
       </motion.section>
@@ -147,7 +150,7 @@ const Portfolio = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
       >
-        <h2 className="text-3xl md:text-4xl font-serif text-center text-yellow-400 mb-12">
+        <h2 className="text-4xl md:text-5xl font-serif text-center text-yellow-400 mb-16">
           Featured Projects
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
@@ -158,7 +161,7 @@ const Portfolio = () => {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: index * 0.2, duration: 0.8 }}
-              className="relative rounded-2xl overflow-hidden bg-black/40 backdrop-blur-xl border border-yellow-500/20 shadow-xl hover:shadow-yellow-400/40 hover:scale-[1.05] transition-transform duration-700 cursor-pointer group"
+              className="relative rounded-3xl overflow-hidden bg-black/40 backdrop-blur-xl border border-yellow-500/20 shadow-xl hover:shadow-yellow-400/40 hover:scale-[1.07] transition-transform duration-700 cursor-pointer group"
               style={{
                 transform: `translateY(${scrollY * 0.05}px)`,
               }}
@@ -166,13 +169,15 @@ const Portfolio = () => {
               <img
                 src={project.image}
                 alt={project.name}
-                className="w-full h-72 object-cover transform group-hover:scale-110 transition-transform duration-700"
+                className="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col justify-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col justify-end p-8">
                 <h3 className="text-2xl font-serif font-bold text-yellow-400 drop-shadow-md">
                   {project.name}
                 </h3>
-                <p className="mt-2 text-sm text-gray-300">{project.description}</p>
+                <p className="mt-2 text-sm text-gray-200">
+                  {project.description}
+                </p>
               </div>
             </motion.div>
           ))}
@@ -191,15 +196,23 @@ const Portfolio = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
       >
-        <div className="absolute inset-0 bg-black/70"></div>
+        <div className="absolute inset-0 bg-black/80"></div>
         <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-6">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-yellow-400 mb-4 drop-shadow-lg">
+          <h2 className="text-5xl md:text-6xl font-serif font-bold text-yellow-400 mb-6 drop-shadow-lg">
             Signature Project
           </h2>
-          <p className="max-w-2xl text-gray-200">
+          <p className="max-w-3xl text-gray-200 text-lg mb-8">
             A showcase of futuristic design fused with timeless elegance,
             redefining modern architectural landscapes.
           </p>
+          <motion.a
+            href="#projects"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            className="px-8 py-3 bg-yellow-400 text-black font-semibold rounded-full shadow-lg hover:bg-yellow-300 transition"
+          >
+            View More Projects
+          </motion.a>
         </div>
       </motion.section>
     </div>
