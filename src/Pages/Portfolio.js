@@ -2,6 +2,10 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { animate, stagger } from "animejs";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 
 const projectsData = [
   {
@@ -149,7 +153,7 @@ const Portfolio = () => {
         </div>
       </motion.section>
 
-      {/* Projects Grid */}
+      {/* Projects Section (Grid on desktop, Carousel on mobile) */}
       <motion.section
         className="min-h-screen flex flex-col justify-center px-4 sm:px-8 md:px-16 py-10"
         variants={fadeInUp}
@@ -160,7 +164,45 @@ const Portfolio = () => {
         <h2 className="text-2xl sm:text-3xl md:text-5xl font-serif text-center text-yellow-400 mb-10 sm:mb-12 md:mb-16">
           Featured Projects
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
+
+        {/* Mobile Carousel */}
+        <div className="block md:hidden">
+          <Swiper
+            modules={[Pagination]}
+            spaceBetween={20}
+            slidesPerView={1}
+            pagination={{ clickable: true }}
+          >
+            {projectsData.map((project, index) => (
+              <SwiperSlide key={project.id}>
+                <motion.div
+                  initial={{ opacity: 0, y: 70, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ delay: index * 0.15, duration: 0.8 }}
+                  className="relative rounded-2xl overflow-hidden bg-black/40 backdrop-blur-xl border border-yellow-500/20 shadow-xl hover:shadow-yellow-400/40 hover:scale-[1.05] transition-transform duration-700 cursor-pointer group"
+                >
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    className="w-full h-72 object-cover transform group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col justify-end p-6">
+                    <h3 className="text-xl font-serif font-bold text-yellow-400 drop-shadow-md">
+                      {project.name}
+                    </h3>
+                    <p className="mt-2 text-sm text-gray-200">
+                      {project.description}
+                    </p>
+                  </div>
+                </motion.div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* Desktop Grid */}
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
           {projectsData.map((project, index) => (
             <motion.div
               key={project.id}
@@ -168,23 +210,18 @@ const Portfolio = () => {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: index * 0.15, duration: 0.8 }}
-              className="relative rounded-2xl md:rounded-3xl overflow-hidden bg-black/40 backdrop-blur-xl border border-yellow-500/20 shadow-xl hover:shadow-yellow-400/40 hover:scale-[1.07] transition-transform duration-700 cursor-pointer group"
-              style={{
-                transform: `translateY(${scrollY * 0.05}px)`,
-              }}
+              className="relative rounded-2xl overflow-hidden bg-black/40 backdrop-blur-xl border border-yellow-500/20 shadow-xl hover:shadow-yellow-400/40 hover:scale-[1.07] transition-transform duration-700 cursor-pointer group"
             >
               <img
                 src={project.image}
                 alt={project.name}
-                className="w-full h-60 sm:h-72 md:h-80 object-cover transform group-hover:scale-110 transition-transform duration-700"
+                className="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col justify-end p-4 sm:p-6 md:p-8">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-serif font-bold text-yellow-400 drop-shadow-md">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col justify-end p-8">
+                <h3 className="text-2xl font-serif font-bold text-yellow-400 drop-shadow-md">
                   {project.name}
                 </h3>
-                <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-gray-200">
-                  {project.description}
-                </p>
+                <p className="mt-2 text-sm text-gray-200">{project.description}</p>
               </div>
             </motion.div>
           ))}
