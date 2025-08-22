@@ -12,11 +12,12 @@ function Footer() {
   const { t } = useTranslation();
 
   return (
-    <footer className="relative bg-black text-gray-300 pt-20 pb-8 px-6 border-t border-gray-900 overflow-hidden">
+    <footer className="relative bg-black text-gray-300 pt-16 pb-8 px-6 border-t border-gray-900 overflow-hidden">
       {/* 🔥 Animated Gradient Shimmer Line */}
       <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-500 animate-shimmer"></div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
+      {/* Grid wrapper */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-12 relative z-10 text-center md:text-left">
         {/* Brand / Studio Info */}
         <div>
           <h2 className="text-2xl font-bold text-gold mb-4">
@@ -68,7 +69,7 @@ function Footer() {
         {/* Social Media */}
         <div>
           <h2 className="text-lg font-semibold mb-4 text-gold">Follow Us</h2>
-          <div className="flex space-x-4">
+          <div className="flex flex-wrap justify-center md:justify-start gap-4">
             {[
               { href: "https://instagram.com", icon: <FaInstagram /> },
               { href: "https://facebook.com", icon: <FaFacebookF /> },
@@ -83,7 +84,7 @@ function Footer() {
                 className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-600 text-gray-400 hover:text-gold transition relative overflow-hidden group"
               >
                 {/* Icon */}
-                <span className="relative z-10">{icon}</span>
+                <span className="relative z-10 text-lg">{icon}</span>
                 {/* Neon shimmer border on hover */}
                 <span className="absolute inset-0 rounded-full border-2 border-transparent group-hover:border-gold group-hover:animate-shimmer-border"></span>
               </a>
