@@ -104,3 +104,39 @@
   }
 }
 
+/* ====== Mobile Menu ====== */
+.mobile-menu {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: slideDown 0.4s ease forwards;
+  border-top: 1px solid rgba(250, 204, 21, 0.2);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-menu .nav-link {
+  display: block;
+  padding: 0.75rem 0;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.mobile-menu .lang-btn {
+  display: inline-block;
+  margin: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #facc15;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
