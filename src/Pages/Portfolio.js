@@ -25,13 +25,6 @@ const projectsData = [
       "https://images.unsplash.com/photo-1599423300746-b62533397364?auto=format&fit=crop&w=1200&q=80",
     description: "Sustainable architecture integrated with nature.",
   },
-  {
-    id: 4,
-    name: "Luxury Office",
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-    description: "Modern office design for a creative workspace.",
-  },
 ];
 
 const heroImages = [
@@ -104,21 +97,20 @@ const Portfolio = () => {
         {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/80 z-10"></div>
 
-       {/* Hero Text */}
-<div className="relative z-20 text-center px-4 max-w-4xl">
-  <h1 className="hero-title text-5xl md:text-7xl font-serif font-bold tracking-wide text-yellow-300 drop-shadow-[0_5px_20px_rgba(255,215,0,0.9)]">
-    {`Our Portfolio`.split("").map((char, i) => (
-      <span key={i} className="inline-block opacity-0">
-        {char}
-      </span>
-    ))}
-  </h1>
-  <p className="mt-6 text-lg md:text-xl font-light text-gray-100 drop-shadow-md">
-    Showcasing selected projects that highlight our creativity,
-    expertise, and design vision.
-  </p>
-</div>
-
+        {/* Hero Text */}
+        <div className="relative z-20 text-center px-4 max-w-4xl">
+          <h1 className="hero-title text-5xl md:text-7xl font-serif font-bold tracking-wide text-yellow-300 drop-shadow-[0_5px_20px_rgba(255,215,0,0.9)]">
+            {`Our Portfolio`.split("").map((char, i) => (
+              <span key={i} className="inline-block opacity-0">
+                {char}
+              </span>
+            ))}
+          </h1>
+          <p className="mt-6 text-lg md:text-xl font-light text-gray-100 drop-shadow-md">
+            Showcasing selected projects that highlight our creativity,
+            expertise, and design vision.
+          </p>
+        </div>
       </section>
 
       {/* About Section */}
