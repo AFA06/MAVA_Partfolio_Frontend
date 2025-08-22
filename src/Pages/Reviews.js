@@ -94,27 +94,16 @@ const Reviews = () => {
       `}</style>
 
       {/* ---- HERO ---- */}
-      <section className="relative w-full h-[80vh] flex items-center justify-center overflow-hidden">
+      <section className="relative w-full h-[70vh] sm:h-[80vh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center filter brightness-75"
           style={{ backgroundImage: `url('${HERO_IMAGE}')` }}
         ></div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/90"></div>
 
-        {/* Grain */}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.07]"
-          style={{
-            backgroundImage:
-              "url('https://grainy-gradients.vercel.app/noise.svg')",
-            backgroundSize: "300px 300px",
-            animation: "grain 12s steps(10,end) infinite",
-          }}
-        />
-
         {/* Floating 3D fragments */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 hidden md:block"
           style={{ perspective: 1200 }}
           onMouseMove={onMouseMove}
           onMouseLeave={onMouseLeave}
@@ -131,8 +120,8 @@ const Reviews = () => {
                   top: `${15 + i * 20}%`,
                   left: i % 2 === 0 ? `${5 + i * 10}%` : "auto",
                   right: i % 2 !== 0 ? `${5 + i * 10}%` : "auto",
-                  width: `${180 + i * 40}px`,
-                  height: `${120 + i * 30}px`,
+                  width: `${140 + i * 30}px`,
+                  height: `${100 + i * 20}px`,
                   transform: `translateZ(${80 + i * 30}px)`,
                   animationDelay: `${i * 2}s`,
                 }}
@@ -145,15 +134,15 @@ const Reviews = () => {
 
         {/* Hero text */}
         <div className="relative z-10 h-full flex items-center">
-          <div className="max-w-7xl mx-auto px-6 w-full">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 w-full text-center sm:text-left">
             <motion.h1
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-5xl md:text-7xl font-extrabold tracking-tight drop-shadow-lg"
+              className="text-3xl sm:text-5xl md:text-7xl font-extrabold tracking-tight drop-shadow-lg"
             >
-              Architecture with
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-white to-amber-300 ml-2">
+              Architecture with{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-white to-amber-300">
                 Presence
               </span>
               .
@@ -162,7 +151,7 @@ const Reviews = () => {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="mt-6 max-w-2xl text-white/80 text-lg"
+              className="mt-4 sm:mt-6 max-w-xl text-white/80 text-base sm:text-lg md:text-xl mx-auto sm:mx-0"
             >
               Spatial stories shaped by light, proportion, and material honesty.
             </motion.p>
@@ -171,17 +160,17 @@ const Reviews = () => {
       </section>
 
       {/* ---- MARQUEE ---- */}
-      <section className="relative py-10 border-y border-white/10 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent">
+      <section className="relative py-6 sm:py-10 border-y border-white/10 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent">
         <div className="overflow-hidden">
           <div
-            className="flex items-center gap-16 whitespace-nowrap will-change-transform"
+            className="flex items-center gap-10 sm:gap-16 whitespace-nowrap will-change-transform"
             style={{ animation: "marquee 28s linear infinite" }}
           >
             {["ArchiDaily", "Design Milk", "Dezeen", "Wallpaper*", "Frame", "Domus"].map(
               (brand, i) => (
                 <span
                   key={i}
-                  className="text-white/50 hover:text-white/80 transition-colors text-xl tracking-widest drop-shadow"
+                  className="text-white/50 hover:text-white/80 transition-colors text-lg sm:text-xl tracking-widest drop-shadow"
                 >
                   {brand}
                 </span>
@@ -192,26 +181,26 @@ const Reviews = () => {
       </section>
 
       {/* ---- REVIEWS ---- */}
-      <section className="text-center pt-20 pb-10 px-6">
+      <section className="text-center pt-14 sm:pt-20 pb-8 sm:pb-10 px-4 sm:px-6">
         <motion.h2
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-6xl font-bold mb-4"
+          className="text-3xl sm:text-4xl md:text-6xl font-bold mb-3 sm:mb-4"
         >
           What Our Clients Say
         </motion.h2>
-        <p className="text-white/70 max-w-2xl mx-auto text-lg">
+        <p className="text-white/70 max-w-xl mx-auto text-base sm:text-lg">
           Honest words from people we design for.
         </p>
       </section>
 
-      <section className="max-w-7xl mx-auto px-6 pb-20">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-14 sm:pb-20">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={28}
+          spaceBetween={20}
           slidesPerView={1}
-          breakpoints={{ 768: { slidesPerView: 2 }, 1200: { slidesPerView: 3 } }}
+          breakpoints={{ 640: { slidesPerView: 1.2 }, 768: { slidesPerView: 2 }, 1200: { slidesPerView: 3 } }}
           navigation
           pagination={{ clickable: true }}
           autoplay={{ delay: 5200, disableOnInteraction: false }}
@@ -226,26 +215,26 @@ const Reviews = () => {
       </section>
 
       {/* ---- CTA ---- */}
-      <section className="relative px-6 pb-24">
-        <div className="relative max-w-6xl mx-auto overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+      <section className="relative px-4 sm:px-6 pb-20">
+        <div className="relative max-w-6xl mx-auto overflow-hidden rounded-2xl sm:rounded-3xl border border-white/10 shadow-2xl">
           <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_70%_20%,rgba(251,191,36,0.15),transparent_70%)] animate-pulse" />
-          <div className="relative z-10 grid md:grid-cols-2">
-            <div className="p-10 md:p-16">
-              <h3 className="text-3xl md:text-4xl font-extrabold">
+          <div className="relative z-10 grid grid-cols-1 md:grid-cols-2">
+            <div className="p-8 sm:p-10 md:p-16 text-center md:text-left">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold">
                 Let’s build something unforgettable.
               </h3>
-              <p className="mt-4 text-white/75 text-lg">
+              <p className="mt-3 sm:mt-4 text-white/75 text-base sm:text-lg">
                 From concept to delivery, our studio partners with you to craft
                 work that performs—and inspires.
               </p>
               <a
                 href="/contact"
-                className="mt-8 inline-block rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-black px-10 py-3 font-semibold hover:scale-105 transition-transform shadow-lg"
+                className="mt-6 sm:mt-8 inline-block rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-black px-8 sm:px-10 py-3 font-semibold hover:scale-105 transition-transform shadow-lg"
               >
                 Start a Project
               </a>
             </div>
-            <div className="relative min-h-[260px]">
+            <div className="relative min-h-[200px] sm:min-h-[260px]">
               <img
                 src="https://images.unsplash.com/photo-1487956382158-bb926046304a?q=80&w=1600"
                 alt="cta"
@@ -296,7 +285,7 @@ function Card3D({ review }) {
       className="group h-full"
     >
       <div
-        className="relative h-full rounded-3xl border border-white/15 bg-white/5 backdrop-blur-md p-7 shadow-xl hover:shadow-amber-500/20 transition-shadow"
+        className="relative h-full rounded-2xl sm:rounded-3xl border border-white/15 bg-white/5 backdrop-blur-md p-6 sm:p-7 shadow-xl hover:shadow-amber-500/20 transition-shadow"
         style={{ transform: "translateZ(30px)" }}
       >
         <motion.div
@@ -304,26 +293,28 @@ function Card3D({ review }) {
           className="pointer-events-none absolute -top-10 w-[60%] h-[200%] -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(251,191,36,0.15),transparent)] opacity-0 group-hover:opacity-100 transition"
         />
 
-        <div className="flex items-center gap-4 mb-5">
+        <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
           <img
             src={review.image}
             alt={review.name}
-            className="w-12 h-12 rounded-full object-cover border border-white/20"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border border-white/20"
           />
-          <div>
-            <div className="font-semibold">{review.name}</div>
+          <div className="text-left">
+            <div className="font-semibold text-sm sm:text-base">{review.name}</div>
             <div className="text-xs text-white/60">{review.role}</div>
           </div>
-          <Quote className="ml-auto w-5 h-5 text-amber-300/80" />
+          <Quote className="ml-auto w-4 h-4 sm:w-5 sm:h-5 text-amber-300/80" />
         </div>
 
         <div className="flex gap-1 mb-3">
           {Array.from({ length: review.rating }).map((_, i) => (
-            <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+            <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 fill-amber-400" />
           ))}
         </div>
 
-        <p className="text-white/85 leading-relaxed italic">“{review.review}”</p>
+        <p className="text-white/85 leading-relaxed italic text-sm sm:text-base">
+          “{review.review}”
+        </p>
       </div>
     </motion.div>
   );
