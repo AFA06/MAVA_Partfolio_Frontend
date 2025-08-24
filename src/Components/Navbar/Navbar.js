@@ -37,7 +37,7 @@ function Navbar() {
 
   return (
     <nav
-      id="navbar" // 👈 added so pages can calculate nav height dynamically
+      id="navbar"
       className={`navbar-container fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled ? "navbar-no-blur" : "navbar-blur"
       }`}
