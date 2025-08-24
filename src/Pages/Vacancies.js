@@ -6,7 +6,7 @@ function Vacancies() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 flex flex-col">
       {/* Hero Section */}
-      <section className="relative flex flex-col items-center justify-center text-center py-20 px-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white rounded-b-3xl shadow-lg">
+      <section className="relative flex flex-col items-center justify-center text-center pt-32 pb-20 px-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white shadow-lg">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
