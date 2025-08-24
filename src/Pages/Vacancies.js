@@ -1,12 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Briefcase, Bell } from "lucide-react";
 
 function Vacancies() {
+  const [navHeight, setNavHeight] = useState(0);
+
+  useEffect(() => {
+    const navbar = document.getElementById("navbar");
+    if (navbar) {
+      setNavHeight(navbar.getBoundingClientRect().height);
+    }
+
+    // Update height on window resize
+    const handleResize = () => {
+      if (navbar) {
+        setNavHeight(navbar.getBoundingClientRect().height);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 flex flex-col">
+    <div
+      className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 flex flex-col"
+      style={{ paddingTop: navHeight }}
+    >
       {/* Hero Section */}
-      <section className="relative flex flex-col items-center justify-center text-center pt-32 pb-20 px-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white shadow-lg">
+      <section className="relative flex flex-col items-center justify-center text-center pb-20 px-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white shadow-lg rounded-b-3xl">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
