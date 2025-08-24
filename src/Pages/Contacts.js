@@ -7,11 +7,11 @@ function Contacts() {
   const formRef = useRef(null);
 
   useEffect(() => {
-    const isMobile = window.innerWidth < 640; // mobile breakpoint
-    const fast = isMobile ? 600 : 1200;       // duration adjust
+    const isMobile = window.innerWidth < 640;
+    const fast = isMobile ? 600 : 1200;
     const medium = isMobile ? 400 : 800;
 
-    // Hero title animation
+    // Hero title fade-in + shimmer
     animate(".contact-title", {
       opacity: [0, 1],
       translateY: [-20, 0],
@@ -19,8 +19,19 @@ function Contacts() {
       easing: "easeOutExpo",
     });
 
-    // Contact cards
-    animate(".contact-card", {
+    const hero = document.querySelector(".contact-hero");
+    if (hero) {
+      animate(".contact-title", {
+        backgroundPositionX: ["-200%", "200%"],
+        duration: 3000,
+        loop: true,
+        easing: "linear",
+      });
+    }
+
+    // Contact cards fade-in + bounce
+    const cards = document.querySelectorAll(".contact-card");
+    animate(cards, {
       opacity: [0, 1],
       translateY: [30, 0],
       delay: stagger(isMobile ? 100 : 200),
@@ -28,7 +39,21 @@ function Contacts() {
       duration: medium,
     });
 
-    // Scroll reveals
+    const bounceCards = () => {
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100 && !card.classList.contains("bounced")) {
+          card.classList.add("bounced");
+          animate(card, {
+            translateY: [-10, 0, -5, 0],
+            duration: 1200,
+            easing: "easeOutElastic(1, .5)",
+          });
+        }
+      });
+    };
+
+    // Scroll reveal & form animation
     const sections = document.querySelectorAll(".reveal");
     const revealOnScroll = () => {
       sections.forEach((section) => {
@@ -41,8 +66,20 @@ function Contacts() {
             duration: fast,
             easing: "easeOutExpo",
           });
+
+          const inputs = section.querySelectorAll("input, textarea, button");
+          if (inputs.length > 0) {
+            animate(inputs, {
+              opacity: [0, 1],
+              translateY: [30, 0],
+              delay: stagger(100),
+              duration: fast,
+              easing: "easeOutExpo",
+            });
+          }
         }
       });
+      bounceCards();
     };
 
     window.addEventListener("scroll", revealOnScroll);
@@ -50,19 +87,57 @@ function Contacts() {
     return () => window.removeEventListener("scroll", revealOnScroll);
   }, []);
 
+  // Mouse move effect for floating dots
+  useEffect(() => {
+    const hero = document.querySelector(".contact-hero");
+    if (!hero) return;
+
+    const dots = hero.querySelectorAll(".floating-dot");
+
+    const moveDots = (e) => {
+      const { innerWidth, innerHeight } = window;
+      const xRatio = (e.clientX / innerWidth - 0.5) * 20; // horizontal shift
+      const yRatio = (e.clientY / innerHeight - 0.5) * 20; // vertical shift
+
+      dots.forEach((dot, i) => {
+        const offset = (i % 10) / 2; // small variation per dot
+        dot.style.transform = `translate(${xRatio * offset}px, ${yRatio * offset}px)`;
+      });
+    };
+
+    window.addEventListener("mousemove", moveDots);
+    return () => window.removeEventListener("mousemove", moveDots);
+  }, []);
+
   return (
     <div className="relative bg-gray-900 text-white overflow-hidden">
       {/* Hero Section */}
       <section
-        className="relative h-[40vh] sm:h-[50vh] flex items-center justify-center bg-cover bg-center"
+        className="contact-hero relative h-[40vh] sm:h-[50vh] flex items-center justify-center bg-cover bg-center overflow-hidden"
         style={{
           backgroundImage:
             "url('https://images.unsplash.com/photo-1505842465776-3d90f616310d?auto=format&fit=crop&w=2000&q=80')",
         }}
       >
+        {/* Floating Dots */}
+        <div className="absolute inset-0">
+          {[...Array(30)].map((_, i) => (
+            <span
+              key={i}
+              className="floating-dot absolute w-1.5 h-1.5 bg-yellow-400 rounded-full opacity-50 animate-float"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${5 + Math.random() * 10}s`,
+              }}
+            ></span>
+          ))}
+        </div>
+
         <div className="absolute inset-0 bg-black bg-opacity-60" />
         <div className="relative z-10 text-center px-4">
-          <h1 className="contact-title text-3xl sm:text-5xl md:text-6xl font-bold tracking-wide uppercase">
+          <h1 className="contact-title text-3xl sm:text-5xl md:text-6xl font-bold tracking-wide uppercase bg-gradient-to-r from-yellow-400 via-white to-yellow-400 bg-clip-text text-transparent animate-shimmer">
             Get in Touch
           </h1>
           <p className="mt-3 sm:mt-4 text-base sm:text-lg text-gray-300 max-w-xl mx-auto">
@@ -75,33 +150,23 @@ function Contacts() {
       {/* Contact Info */}
       <section className="px-4 sm:px-6 md:px-16 py-14 sm:py-20 max-w-7xl mx-auto reveal">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 text-center">
-          <div className="contact-card bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow">
-            <MapPin className="mx-auto h-8 w-8 sm:h-10 sm:w-10 text-yellow-400" />
-            <h3 className="mt-4 text-lg sm:text-xl font-semibold">Office Address</h3>
-            <p className="mt-2 text-sm sm:text-base text-gray-400">
-              Tashkent, Uzbekistan <br /> Samarkand Darvoza
-            </p>
-          </div>
+          {[
+            { icon: MapPin, title: "Office Address", text: "Tashkent, Uzbekistan\nSamarkand Darvoza" },
+            { icon: Phone, title: "Phone", text: "+998 90 123 45 67" },
+            { icon: Mail, title: "Email", text: "info@architecture.com" },
+            { icon: Clock, title: "Working Hours", text: "Mon - Sat\n9:00 AM - 7:00 PM" },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="contact-card bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow hover:scale-105 duration-500 cursor-pointer overflow-hidden relative group"
+            >
+              <item.icon className="mx-auto h-8 w-8 sm:h-10 sm:w-10 text-yellow-400 mb-3" />
+              <h3 className="text-lg sm:text-xl font-semibold">{item.title}</h3>
+              <p className="mt-2 text-sm sm:text-base text-gray-400 whitespace-pre-line">{item.text}</p>
 
-          <div className="contact-card bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow">
-            <Phone className="mx-auto h-8 w-8 sm:h-10 sm:w-10 text-yellow-400" />
-            <h3 className="mt-4 text-lg sm:text-xl font-semibold">Phone</h3>
-            <p className="mt-2 text-sm sm:text-base text-gray-400">+998 90 123 45 67</p>
-          </div>
-
-          <div className="contact-card bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow">
-            <Mail className="mx-auto h-8 w-8 sm:h-10 sm:w-10 text-yellow-400" />
-            <h3 className="mt-4 text-lg sm:text-xl font-semibold">Email</h3>
-            <p className="mt-2 text-sm sm:text-base text-gray-400">info@architecture.com</p>
-          </div>
-
-          <div className="contact-card bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow">
-            <Clock className="mx-auto h-8 w-8 sm:h-10 sm:w-10 text-yellow-400" />
-            <h3 className="mt-4 text-lg sm:text-xl font-semibold">Working Hours</h3>
-            <p className="mt-2 text-sm sm:text-base text-gray-400">
-              Mon - Sat <br /> 9:00 AM - 7:00 PM
-            </p>
-          </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/40 to-white/20 opacity-0 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none animate-shimmer-fast"></div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -152,6 +217,25 @@ function Contacts() {
           loading="lazy"
         ></iframe>
       </section>
+
+      {/* CSS */}
+      <style>
+        {`
+          @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+          }
+          .animate-shimmer { background-size: 200% auto; animation: shimmer 3s linear infinite; }
+          .animate-shimmer-fast { background-size: 200% auto; animation: shimmer 1.5s linear infinite; }
+
+          @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+          }
+          .animate-float { animation: float linear infinite; }
+        `}
+      </style>
     </div>
   );
 }
