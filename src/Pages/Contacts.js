@@ -49,6 +49,7 @@ export default function Contacts() {
   return (
     <div className="relative min-h-screen bg-gray-950 text-white font-sans overflow-hidden">
       <style>{`
+        /* === Base === */
         .hero-title { font-size: 3.5rem; font-weight: 900; letter-spacing: -1px; }
         .hero-sub { font-size: 1.15rem; color: #bbb; margin-top: 1rem; max-width: 650px; margin-left: auto; margin-right: auto; }
         .btn-primary { background: linear-gradient(90deg,#6366f1,#ec4899); padding: 0.9rem 2.2rem; border-radius: 9999px; font-weight: 600; transition: all 0.3s; }
@@ -58,27 +59,86 @@ export default function Contacts() {
         .input-field { width: 100%; padding: 1rem; border-radius: 1rem; border: 1px solid #333; background: #111; color: #fff; margin-bottom: 1rem; transition: all 0.3s; }
         .input-field:focus { outline: none; border-color: #6366f1; box-shadow: 0 0 15px rgba(99,102,241,0.5); }
         .textarea-field { min-height: 150px; resize: none; }
-        .floating-shape { position: absolute; border-radius: 50%; opacity: 0.15; filter: blur(60px); animation: float 10s infinite alternate ease-in-out; }
+
+        /* === Floating shapes === */
+        .floating-shape { position: absolute; border-radius: 50%; opacity: 0.12; filter: blur(60px); animation: float 10s infinite alternate ease-in-out; }
         .shape1 { width: 350px; height: 350px; top: -50px; left: -100px; background: #6366f1; }
         .shape2 { width: 300px; height: 300px; bottom: -80px; right: -100px; background: #ec4899; animation-delay: 3s; }
         .shape3 { width: 200px; height: 200px; top: 40%; left: 70%; background: #06b6d4; animation-delay: 5s; }
+
         @keyframes float { 0% { transform: translateY(0) translateX(0); } 100% { transform: translateY(-40px) translateX(40px); } }
-        @media (max-width: 768px) { .hero-title { font-size: 2.3rem; } .hero-sub { font-size: 1rem; } }
+
+        /* === Blueprint grid overlay === */
+        .blueprint-grid {
+          position: absolute;
+          inset: 0;
+          background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                            linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+          background-size: 50px 50px;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        /* === Rotating cube === */
+        .cube {
+          position: absolute;
+          width: 100px;
+          height: 100px;
+          top: 60%;
+          left: 15%;
+          transform-style: preserve-3d;
+          animation: spin 12s infinite linear;
+          opacity: 0.15;
+        }
+        .cube div {
+          position: absolute;
+          width: 100px;
+          height: 100px;
+          border: 2px solid #4fd1c5;
+          background: rgba(0,0,0,0.2);
+        }
+        .front  { transform: translateZ(50px); }
+        .back   { transform: rotateY(180deg) translateZ(50px); }
+        .right  { transform: rotateY(90deg) translateZ(50px); }
+        .left   { transform: rotateY(-90deg) translateZ(50px); }
+        .top    { transform: rotateX(90deg) translateZ(50px); }
+        .bottom { transform: rotateX(-90deg) translateZ(50px); }
+
+        @keyframes spin { from { transform: rotateX(0) rotateY(0); } to { transform: rotateX(360deg) rotateY(360deg); } }
+
+        @media (max-width: 768px) {
+          .hero-title { font-size: 2.3rem; }
+          .hero-sub { font-size: 1rem; }
+          .cube { display: none; } /* hide cube on mobile for performance */
+        }
       `}</style>
 
-      {/* BACKGROUND FLOATING SHAPES */}
+      {/* GRID OVERLAY */}
+      <div className="blueprint-grid"></div>
+
+      {/* FLOATING SHAPES */}
       <div className="floating-shape shape1"></div>
       <div className="floating-shape shape2"></div>
       <div className="floating-shape shape3"></div>
 
+      {/* ROTATING ARCHITECTURAL CUBE */}
+      <div className="cube z-0">
+        <div className="front"></div>
+        <div className="back"></div>
+        <div className="right"></div>
+        <div className="left"></div>
+        <div className="top"></div>
+        <div className="bottom"></div>
+      </div>
+
       {/* HERO */}
       <section ref={heroRef} className="py-28 text-center relative z-10">
         <h1 className="hero-line hero-title bg-gradient-to-r from-indigo-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
-          Let’s Shape Timeless Spaces
+          Designing Tomorrow’s Landmarks
         </h1>
         <p className="hero-line hero-sub">
-          Architecture is more than structures — it’s the art of shaping experiences.  
-          Connect with us to begin your journey from vision to reality.
+          Every line is a vision, every shape a possibility.  
+          Let’s build timeless architecture together.
         </p>
         <a href="#contact-form" className="mt-8 inline-block hero-line btn-primary">
           Start Your Project
