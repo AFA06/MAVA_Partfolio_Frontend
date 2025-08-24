@@ -1,87 +1,97 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Briefcase, Bell } from "lucide-react";
+import React, { useEffect, useRef } from "react";
+import { animate } from "animejs";
 import useNavbarHeight from "../hooks/useNavbarHeight";
 
 function Vacancies() {
-  const navHeight = useNavbarHeight();
+  const navbarHeight = useNavbarHeight();
+  const titleRef = useRef(null);
+  const cardRef = useRef(null);
+  const orbRefs = [useRef(null), useRef(null)];
+
+  useEffect(() => {
+    // Animate title
+    if (titleRef.current) {
+      animate(titleRef.current, {
+        opacity: [0, 1],
+        translateY: [-50, 0],
+        duration: 1200,
+        easing: "easeOutExpo",
+      });
+    }
+
+    // Animate card
+    if (cardRef.current) {
+      animate(cardRef.current, {
+        opacity: [0, 1],
+        scale: [0.9, 1],
+        delay: 400,
+        duration: 1200,
+        easing: "easeOutElastic(1, .6)",
+      });
+    }
+
+    // Floating orb animations (infinite loop)
+    orbRefs.forEach((ref, index) => {
+      if (ref.current) {
+        animate(
+          ref.current,
+          {
+            translateX: [0, index === 0 ? 40 : -40],
+            translateY: [0, index === 0 ? 30 : -30],
+            direction: "alternate",
+            loop: true,
+            duration: 6000,
+            easing: "easeInOutSine",
+          }
+        );
+      }
+    });
+  }, []);
 
   return (
     <div
-      className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 flex flex-col"
-      style={{ paddingTop: navHeight }}
+      className="relative w-full min-h-screen flex items-center justify-center px-6"
+      style={{
+        paddingTop: navbarHeight,
+        background:
+          "linear-gradient(135deg, #1a1c2e 0%, #0f0f1a 50%, #2b2d42 100%)",
+      }}
     >
-      {/* Hero Section */}
-      <section className="relative flex flex-col items-center justify-center text-center pb-20 px-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white shadow-lg rounded-b-3xl">
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="text-5xl md:text-6xl font-extrabold mb-4"
-        >
-          Join Our Team
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
-          className="text-lg md:text-xl max-w-2xl"
-        >
-          We’re always looking for passionate, talented individuals.  
-          No vacancies are open right now, but stay tuned!
-        </motion.p>
-      </section>
+      {/* Glow Orbs in Background */}
+      <div
+        ref={orbRefs[0]}
+        className="absolute top-20 left-10 w-40 h-40 bg-pink-500 rounded-full blur-3xl opacity-30"
+      ></div>
+      <div
+        ref={orbRefs[1]}
+        className="absolute bottom-20 right-10 w-52 h-52 bg-blue-500 rounded-full blur-3xl opacity-30"
+      ></div>
 
-      {/* No Vacancies Card */}
-      <div className="flex-grow flex items-center justify-center p-6">
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.7 }}
-          className="bg-white shadow-xl rounded-2xl p-10 max-w-lg text-center border"
+      <div className="relative z-10 max-w-3xl text-center">
+        <h1
+          ref={titleRef}
+          className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg mb-8"
         >
-          <Briefcase className="w-16 h-16 text-indigo-600 mx-auto mb-6" />
-          <h2 className="text-2xl font-bold mb-2">No Vacancies Right Now</h2>
-          <p className="text-gray-600">
-            We don’t have any openings at the moment. Please check back later or
-            subscribe to get notified when new opportunities arrive.
+          🚀 Join Our Team
+        </h1>
+
+        <div
+          ref={cardRef}
+          className="p-10 rounded-2xl shadow-2xl border border-white/20 bg-white/10 backdrop-blur-xl text-white"
+        >
+          <h2 className="text-2xl font-semibold mb-4">
+            Currently No Vacancies
+          </h2>
+          <p className="text-lg opacity-80 mb-6">
+            We don’t have open roles at the moment, but we’re always looking for
+            passionate and talented people.  
+            Stay tuned — new opportunities are coming soon!
           </p>
-        </motion.div>
-      </div>
-
-      {/* Subscribe Section */}
-      <section className="bg-white py-12 px-6 shadow-inner border-t">
-        <div className="max-w-3xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <Bell className="w-12 h-12 text-indigo-600 mx-auto mb-4" />
-            <h3 className="text-2xl font-bold mb-2">
-              Stay Updated on Future Openings
-            </h3>
-            <p className="text-gray-600 mb-6">
-              Drop your email below and we’ll notify you when new positions are
-              available.
-            </p>
-            <form className="flex flex-col md:flex-row items-center gap-3 justify-center">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="w-full md:w-2/3 px-4 py-3 rounded-xl border focus:ring-2 focus:ring-indigo-500 outline-none"
-              />
-              <button
-                type="submit"
-                className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-md transition"
-              >
-                Subscribe
-              </button>
-            </form>
-          </motion.div>
+          <button className="px-6 py-3 bg-gradient-to-r from-pink-500 to-yellow-400 text-black font-bold rounded-xl shadow-lg hover:scale-105 transition-transform">
+            Notify Me
+          </button>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
