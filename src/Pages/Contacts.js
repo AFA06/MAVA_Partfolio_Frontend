@@ -1,200 +1,160 @@
-// src/Pages/Contacts.jsx
-import React, { useRef, useEffect } from "react";
-import { animate, stagger } from "animejs";
+// src/Pages/Contacts.js
+import React, { useEffect, useRef } from "react";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { animate, stagger } from "animejs"; // ✅ anime.js v4
 
-export default function Contacts() {
-  const heroRef = useRef(null);
-  const cardsRef = useRef([]);
+function Contacts() {
+  const formRef = useRef(null);
 
   useEffect(() => {
-    // Animate hero text
-    if (heroRef.current) {
-      animate(heroRef.current.querySelectorAll(".hero-line"), {
-        translateY: [50, 0],
-        opacity: [0, 1],
-        duration: 900,
-        delay: stagger(120),
-        easing: "easeOutCubic",
-      });
-    }
-
-    // Animate info cards on scroll
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            animate(entry.target, {
-              translateY: [30, 0],
-              opacity: [0, 1],
-              duration: 700,
-              easing: "easeOutCubic",
-            });
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    cardsRef.current.forEach((el) => {
-      if (el) {
-        el.style.opacity = 0;
-        observer.observe(el);
-      }
+    // Fade in hero text
+    animate(".contact-title", {
+      opacity: [0, 1],
+      translateY: [-30, 0],
+      duration: 1200,
+      easing: "easeOutExpo",
     });
 
-    return () => observer.disconnect();
+    // Animate contact cards
+    animate(".contact-card", {
+      opacity: [0, 1],
+      translateY: [50, 0],
+      delay: stagger(200),
+      easing: "easeOutExpo",
+      duration: 1000,
+    });
+
+    // Scroll-based reveal
+    const sections = document.querySelectorAll(".reveal");
+    const revealOnScroll = () => {
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100 && !section.classList.contains("animated")) {
+          section.classList.add("animated");
+          animate(section, {
+            opacity: [0, 1],
+            translateY: [50, 0],
+            duration: 1200,
+            easing: "easeOutExpo",
+          });
+        }
+      });
+    };
+
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll();
+
+    return () => window.removeEventListener("scroll", revealOnScroll);
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-gray-950 text-white font-sans overflow-hidden">
-      <style>{`
-        /* === Base === */
-        .hero-title { font-size: 3.5rem; font-weight: 900; letter-spacing: -1px; }
-        .hero-sub { font-size: 1.15rem; color: #bbb; margin-top: 1rem; max-width: 650px; margin-left: auto; margin-right: auto; }
-        .btn-primary { background: linear-gradient(90deg,#6366f1,#ec4899); padding: 0.9rem 2.2rem; border-radius: 9999px; font-weight: 600; transition: all 0.3s; }
-        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 10px 25px rgba(236,72,153,0.45); }
-        .contact-card { background: rgba(30,30,40,0.95); border-radius: 1.25rem; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.35); transition: all 0.3s; backdrop-filter: blur(10px); }
-        .contact-card:hover { transform: translateY(-6px); box-shadow: 0 25px 50px rgba(99,102,241,0.4); }
-        .input-field { width: 100%; padding: 1rem; border-radius: 1rem; border: 1px solid #333; background: #111; color: #fff; margin-bottom: 1rem; transition: all 0.3s; }
-        .input-field:focus { outline: none; border-color: #6366f1; box-shadow: 0 0 15px rgba(99,102,241,0.5); }
-        .textarea-field { min-height: 150px; resize: none; }
-
-        /* === Floating shapes === */
-        .floating-shape { position: absolute; border-radius: 50%; opacity: 0.12; filter: blur(60px); animation: float 10s infinite alternate ease-in-out; }
-        .shape1 { width: 350px; height: 350px; top: -50px; left: -100px; background: #6366f1; }
-        .shape2 { width: 300px; height: 300px; bottom: -80px; right: -100px; background: #ec4899; animation-delay: 3s; }
-        .shape3 { width: 200px; height: 200px; top: 40%; left: 70%; background: #06b6d4; animation-delay: 5s; }
-
-        @keyframes float { 0% { transform: translateY(0) translateX(0); } 100% { transform: translateY(-40px) translateX(40px); } }
-
-        /* === Blueprint grid overlay === */
-        .blueprint-grid {
-          position: absolute;
-          inset: 0;
-          background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
-                            linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
-          background-size: 50px 50px;
-          pointer-events: none;
-          z-index: 0;
-        }
-
-        /* === Rotating cube === */
-        .cube {
-          position: absolute;
-          width: 100px;
-          height: 100px;
-          top: 60%;
-          left: 15%;
-          transform-style: preserve-3d;
-          animation: spin 12s infinite linear;
-          opacity: 0.15;
-        }
-        .cube div {
-          position: absolute;
-          width: 100px;
-          height: 100px;
-          border: 2px solid #4fd1c5;
-          background: rgba(0,0,0,0.2);
-        }
-        .front  { transform: translateZ(50px); }
-        .back   { transform: rotateY(180deg) translateZ(50px); }
-        .right  { transform: rotateY(90deg) translateZ(50px); }
-        .left   { transform: rotateY(-90deg) translateZ(50px); }
-        .top    { transform: rotateX(90deg) translateZ(50px); }
-        .bottom { transform: rotateX(-90deg) translateZ(50px); }
-
-        @keyframes spin { from { transform: rotateX(0) rotateY(0); } to { transform: rotateX(360deg) rotateY(360deg); } }
-
-        @media (max-width: 768px) {
-          .hero-title { font-size: 2.3rem; }
-          .hero-sub { font-size: 1rem; }
-          .cube { display: none; } /* hide cube on mobile for performance */
-        }
-      `}</style>
-
-      {/* GRID OVERLAY */}
-      <div className="blueprint-grid"></div>
-
-      {/* FLOATING SHAPES */}
-      <div className="floating-shape shape1"></div>
-      <div className="floating-shape shape2"></div>
-      <div className="floating-shape shape3"></div>
-
-      {/* ROTATING ARCHITECTURAL CUBE */}
-      <div className="cube z-0">
-        <div className="front"></div>
-        <div className="back"></div>
-        <div className="right"></div>
-        <div className="left"></div>
-        <div className="top"></div>
-        <div className="bottom"></div>
-      </div>
-
-      {/* HERO */}
-      <section ref={heroRef} className="py-28 text-center relative z-10">
-        <h1 className="hero-line hero-title bg-gradient-to-r from-indigo-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
-          Designing Tomorrow’s Landmarks
-        </h1>
-        <p className="hero-line hero-sub">
-          Every line is a vision, every shape a possibility.  
-          Let’s build timeless architecture together.
-        </p>
-        <a href="#contact-form" className="mt-8 inline-block hero-line btn-primary">
-          Start Your Project
-        </a>
+    <div className="relative bg-gray-900 text-white overflow-hidden">
+      {/* Hero Section */}
+      <section
+        className="relative h-[50vh] flex items-center justify-center bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1505842465776-3d90f616310d?auto=format&fit=crop&w=2000&q=80')",
+        }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-60" />
+        <div className="relative z-10 text-center">
+          <h1 className="contact-title text-5xl md:text-6xl font-bold tracking-wide uppercase">
+            Get in Touch
+          </h1>
+          <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
+            Let’s discuss your next architectural vision. We’re here to bring
+            concepts to life.
+          </p>
+        </div>
       </section>
 
-      {/* CONTACT FORM & INFO */}
-      <section id="contact-form" className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 relative z-10">
-        {/* FORM */}
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            alert("Message sent! (demo)");
-            e.target.reset();
-          }}
-          className="flex flex-col bg-gray-900/60 p-8 rounded-3xl shadow-lg backdrop-blur-xl border border-white/10"
-        >
-          <input className="input-field" type="text" placeholder="Your Name" required />
-          <input className="input-field" type="email" placeholder="Your Email" required />
-          <textarea className="input-field textarea-field" placeholder="Tell us about your project or vision..." required></textarea>
-          <button className="btn-primary mt-4 self-start">Send Message</button>
-        </form>
+      {/* Contact Info Section */}
+      <section className="px-6 md:px-16 py-20 max-w-7xl mx-auto reveal">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 text-center">
+          <div className="contact-card bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow">
+            <MapPin className="mx-auto h-10 w-10 text-yellow-400" />
+            <h3 className="mt-4 text-xl font-semibold">Office Address</h3>
+            <p className="mt-2 text-gray-400">
+              Tashkent, Uzbekistan
+              <br />
+              Samarkand Darvoza
+            </p>
+          </div>
 
-        {/* INFO CARDS */}
-        <div className="flex flex-col gap-6">
-          {[
-            { title: "Studio Email", content: "studio@designatelier.com" },
-            { title: "Phone", content: "+998 (90) 123-45-67" },
-            { title: "Studio Address", content: "Samarkand Darvoza, Tashkent, Uzbekistan" },
-          ].map((card, idx) => (
-            <div
-              key={idx}
-              ref={(el) => (cardsRef.current[idx] = el)}
-              className="contact-card"
+          <div className="contact-card bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow">
+            <Phone className="mx-auto h-10 w-10 text-yellow-400" />
+            <h3 className="mt-4 text-xl font-semibold">Phone</h3>
+            <p className="mt-2 text-gray-400">+998 90 123 45 67</p>
+          </div>
+
+          <div className="contact-card bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow">
+            <Mail className="mx-auto h-10 w-10 text-yellow-400" />
+            <h3 className="mt-4 text-xl font-semibold">Email</h3>
+            <p className="mt-2 text-gray-400">info@architecture.com</p>
+          </div>
+
+          <div className="contact-card bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow">
+            <Clock className="mx-auto h-10 w-10 text-yellow-400" />
+            <h3 className="mt-4 text-xl font-semibold">Working Hours</h3>
+            <p className="mt-2 text-gray-400">
+              Mon - Sat
+              <br />
+              9:00 AM - 7:00 PM
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form */}
+      <section className="bg-gray-800 py-20 px-6 md:px-16 reveal">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center uppercase tracking-wider">
+            Send Us a Message
+          </h2>
+          <form ref={formRef} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <input
+              type="text"
+              placeholder="Your Name"
+              className="p-4 rounded-xl bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-yellow-400 outline-none"
+            />
+            <input
+              type="email"
+              placeholder="Your Email"
+              className="p-4 rounded-xl bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-yellow-400 outline-none"
+            />
+            <input
+              type="text"
+              placeholder="Subject"
+              className="p-4 rounded-xl bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-yellow-400 outline-none md:col-span-2"
+            />
+            <textarea
+              placeholder="Your Message"
+              rows="6"
+              className="p-4 rounded-xl bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-yellow-400 outline-none md:col-span-2"
+            ></textarea>
+            <button
+              type="submit"
+              className="md:col-span-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-4 px-8 rounded-xl shadow-lg transition duration-300"
             >
-              <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
-              <p className="text-gray-300">{card.content}</p>
-            </div>
-          ))}
+              Send Message
+            </button>
+          </form>
         </div>
       </section>
 
-      {/* MAP */}
-      <section className="max-w-6xl mx-auto px-6 mb-20 relative z-10">
-        <div className="w-full h-80 rounded-3xl overflow-hidden shadow-xl border border-white/10">
-          <iframe
-            title="Our Office Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2994.90573330128!2d69.21626747642244!3d41.31115127130769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b9a1b1d12bf%3A0x8f5e4eaf0c1c45e2!2sSamarkand%20Darvoza%20Mall!5e0!3m2!1sen!2suz!4v1692965423361!5m2!1sen!2suz"
-            width="100%"
-            height="100%"
-            className="border-0"
-            allowFullScreen=""
-            loading="lazy"
-          ></iframe>
-        </div>
+      {/* Map Embed */}
+      <section className="h-[400px] reveal">
+        <iframe
+          title="Google Map"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.592480404966!2d69.2401!3d41.2995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b3b2bde39df%3A0x9d184f7a7d0c25b0!2sTashkent!5e0!3m2!1sen!2s!4v1673000000000!5m2!1sen!2s"
+          className="w-full h-full border-0"
+          allowFullScreen=""
+          loading="lazy"
+        ></iframe>
       </section>
     </div>
   );
 }
+
+export default Contacts;
