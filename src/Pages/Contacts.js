@@ -12,8 +12,8 @@ export default function Contacts() {
       animate(heroRef.current.querySelectorAll(".hero-line"), {
         translateY: [50, 0],
         opacity: [0, 1],
-        duration: 800,
-        delay: stagger(100),
+        duration: 900,
+        delay: stagger(120),
         easing: "easeOutCubic",
       });
     }
@@ -26,14 +26,14 @@ export default function Contacts() {
             animate(entry.target, {
               translateY: [30, 0],
               opacity: [0, 1],
-              duration: 600,
+              duration: 700,
               easing: "easeOutCubic",
             });
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.2 }
     );
 
     cardsRef.current.forEach((el) => {
@@ -47,35 +47,46 @@ export default function Contacts() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white font-sans">
+    <div className="relative min-h-screen bg-gray-950 text-white font-sans overflow-hidden">
       <style>{`
-        .hero-title { font-size: 3rem; font-weight: 900; letter-spacing: -0.5px; }
-        .hero-sub { font-size: 1.1rem; color: #aaa; margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .btn-primary { background: linear-gradient(90deg,#7c3aed,#ec4899); padding: 0.8rem 2rem; border-radius: 9999px; font-weight: 600; transition: all 0.3s; }
-        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(236,72,153,0.4); }
-        .contact-card { background: #1f1f2e; border-radius: 1.25rem; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: all 0.3s; }
-        .contact-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(236,72,153,0.3); }
+        .hero-title { font-size: 3.5rem; font-weight: 900; letter-spacing: -1px; }
+        .hero-sub { font-size: 1.15rem; color: #bbb; margin-top: 1rem; max-width: 650px; margin-left: auto; margin-right: auto; }
+        .btn-primary { background: linear-gradient(90deg,#6366f1,#ec4899); padding: 0.9rem 2.2rem; border-radius: 9999px; font-weight: 600; transition: all 0.3s; }
+        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 10px 25px rgba(236,72,153,0.45); }
+        .contact-card { background: rgba(30,30,40,0.95); border-radius: 1.25rem; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.35); transition: all 0.3s; backdrop-filter: blur(10px); }
+        .contact-card:hover { transform: translateY(-6px); box-shadow: 0 25px 50px rgba(99,102,241,0.4); }
         .input-field { width: 100%; padding: 1rem; border-radius: 1rem; border: 1px solid #333; background: #111; color: #fff; margin-bottom: 1rem; transition: all 0.3s; }
-        .input-field:focus { outline: none; border-color: #ec4899; box-shadow: 0 0 10px rgba(236,72,153,0.5); }
-        .textarea-field { min-height: 140px; resize: none; }
-        @media (max-width: 768px) { .hero-title { font-size: 2.2rem; } .hero-sub { font-size: 1rem; } }
+        .input-field:focus { outline: none; border-color: #6366f1; box-shadow: 0 0 15px rgba(99,102,241,0.5); }
+        .textarea-field { min-height: 150px; resize: none; }
+        .floating-shape { position: absolute; border-radius: 50%; opacity: 0.15; filter: blur(60px); animation: float 10s infinite alternate ease-in-out; }
+        .shape1 { width: 350px; height: 350px; top: -50px; left: -100px; background: #6366f1; }
+        .shape2 { width: 300px; height: 300px; bottom: -80px; right: -100px; background: #ec4899; animation-delay: 3s; }
+        .shape3 { width: 200px; height: 200px; top: 40%; left: 70%; background: #06b6d4; animation-delay: 5s; }
+        @keyframes float { 0% { transform: translateY(0) translateX(0); } 100% { transform: translateY(-40px) translateX(40px); } }
+        @media (max-width: 768px) { .hero-title { font-size: 2.3rem; } .hero-sub { font-size: 1rem; } }
       `}</style>
 
+      {/* BACKGROUND FLOATING SHAPES */}
+      <div className="floating-shape shape1"></div>
+      <div className="floating-shape shape2"></div>
+      <div className="floating-shape shape3"></div>
+
       {/* HERO */}
-      <section ref={heroRef} className="py-24 text-center relative overflow-hidden">
-        <h1 className="hero-line hero-title text-gradient bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-pink-500">
-          Let’s Build Something Amazing
+      <section ref={heroRef} className="py-28 text-center relative z-10">
+        <h1 className="hero-line hero-title bg-gradient-to-r from-indigo-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
+          Let’s Shape Timeless Spaces
         </h1>
         <p className="hero-line hero-sub">
-          Questions, ideas, or collaboration? Reach out and let's create something extraordinary together.
+          Architecture is more than structures — it’s the art of shaping experiences.  
+          Connect with us to begin your journey from vision to reality.
         </p>
         <a href="#contact-form" className="mt-8 inline-block hero-line btn-primary">
-          Contact Us
+          Start Your Project
         </a>
       </section>
 
       {/* CONTACT FORM & INFO */}
-      <section id="contact-form" className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12">
+      <section id="contact-form" className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 relative z-10">
         {/* FORM */}
         <form
           onSubmit={(e) => {
@@ -83,27 +94,27 @@ export default function Contacts() {
             alert("Message sent! (demo)");
             e.target.reset();
           }}
-          className="flex flex-col bg-gray-800 p-8 rounded-3xl shadow-lg"
+          className="flex flex-col bg-gray-900/60 p-8 rounded-3xl shadow-lg backdrop-blur-xl border border-white/10"
         >
           <input className="input-field" type="text" placeholder="Your Name" required />
           <input className="input-field" type="email" placeholder="Your Email" required />
-          <textarea className="input-field textarea-field" placeholder="Your Message" required></textarea>
+          <textarea className="input-field textarea-field" placeholder="Tell us about your project or vision..." required></textarea>
           <button className="btn-primary mt-4 self-start">Send Message</button>
         </form>
 
         {/* INFO CARDS */}
         <div className="flex flex-col gap-6">
           {[
-            { title: "Email", content: "contact@yourcompany.com" },
-            { title: "Phone", content: "+1 (555) 123-4567" },
-            { title: "Address", content: "123 Innovation Street, Earth" },
+            { title: "Studio Email", content: "studio@designatelier.com" },
+            { title: "Phone", content: "+998 (90) 123-45-67" },
+            { title: "Studio Address", content: "Samarkand Darvoza, Tashkent, Uzbekistan" },
           ].map((card, idx) => (
             <div
               key={idx}
               ref={(el) => (cardsRef.current[idx] = el)}
               className="contact-card"
             >
-              <h3 className="text-xl font-bold mb-2">{card.title}</h3>
+              <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
               <p className="text-gray-300">{card.content}</p>
             </div>
           ))}
@@ -111,11 +122,11 @@ export default function Contacts() {
       </section>
 
       {/* MAP */}
-      <section className="max-w-6xl mx-auto px-6 mb-16">
-        <div className="w-full h-72 rounded-3xl overflow-hidden shadow-lg border border-white/10">
+      <section className="max-w-6xl mx-auto px-6 mb-20 relative z-10">
+        <div className="w-full h-80 rounded-3xl overflow-hidden shadow-xl border border-white/10">
           <iframe
-            title="Company Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0198330727663!2d-122.41941528468128!3d37.77492977975916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064f22b0b47%3A0x37b8b2c8b9b3b92b!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1692965423361!5m2!1sen!2sus"
+            title="Our Office Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2994.90573330128!2d69.21626747642244!3d41.31115127130769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b9a1b1d12bf%3A0x8f5e4eaf0c1c45e2!2sSamarkand%20Darvoza%20Mall!5e0!3m2!1sen!2suz!4v1692965423361!5m2!1sen!2suz"
             width="100%"
             height="100%"
             className="border-0"
