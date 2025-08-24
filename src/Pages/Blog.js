@@ -39,22 +39,24 @@ export default function Blog() {
   const cardsRef = useRef([]);
   const heroRef = useRef(null);
 
-  // Parallax tilt for images
+  // Parallax tilt for images (disable on touch devices)
   function handlePointerMove(e, idx) {
+    if (window.innerWidth < 768) return; // subtle on mobile
     const el = cardsRef.current[idx];
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width; // 0..1
-    const py = (e.clientY - rect.top) / rect.height; // 0..1
-    const rotateY = (px - 0.5) * 10; // -5..5 deg
-    const rotateX = (0.5 - py) * 8; // -4..4 deg
+    const px = (e.clientX - rect.left) / rect.width;
+    const py = (e.clientY - rect.top) / rect.height;
+    const rotateY = (px - 0.5) * 8;
+    const rotateX = (0.5 - py) * 6;
     const img = el.querySelector(".card-image");
     const depth = el.querySelector(".card-deco");
-    el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`;
-    if (img) img.style.transform = `scale(1.08) translateZ(20px)`;
-    if (depth) depth.style.transform = `translate3d(${(px - 0.5) * 30}px, ${(py - 0.5) *
-      20}px, -10px)`;
+    el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    if (img) img.style.transform = `scale(1.05) translateZ(15px)`;
+    if (depth) depth.style.transform = `translate3d(${(px - 0.5) * 20}px, ${(py - 0.5) *
+      15}px, -5px)`;
   }
+
   function resetTilt(idx) {
     const el = cardsRef.current[idx];
     if (!el) return;
@@ -66,7 +68,6 @@ export default function Blog() {
   }
 
   useEffect(() => {
-    // Hero entrance
     if (heroRef.current) {
       animate(heroRef.current.querySelectorAll(".hero-line"), {
         translateY: [30, 0],
@@ -77,7 +78,6 @@ export default function Blog() {
       });
     }
 
-    // Scroll-triggered animations for cards
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -110,58 +110,43 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen text-white font-sans">
-      {/* Inline CSS */}
       <style>{`
         .hero-gradient {
           background: linear-gradient(120deg, rgba(79,70,229,0.12), rgba(139,92,246,0.09) 30%, rgba(236,72,153,0.05));
           position: relative;
           overflow: visible;
         }
-        @keyframes slow-rotate {
-          0% { transform: rotate(0deg) translateX(0); }
-          50% { transform: rotate(6deg) translateX(6px); }
-          100% { transform: rotate(0deg) translateX(0); }
-        }
-        .hero-orb {
-          position: absolute;
-          width: 420px;
-          height: 420px;
-          filter: blur(80px);
-          opacity: 0.28;
-          border-radius: 50%;
-          animation: slow-rotate 12s linear infinite;
-          pointer-events: none;
-          mix-blend-mode: screen;
-        }
-        .hero-orb.a { background: radial-gradient(circle at 30% 30%, #7c3aed, #4f46e5); top: -90px; left: -60px; }
-        .hero-orb.b { background: radial-gradient(circle at 70% 70%, #ec4899, #f97316); bottom: -90px; right: -60px; animation-duration: 14s; opacity: 0.18; }
+        @keyframes slow-rotate {0%{transform:rotate(0deg) translateX(0);}50%{transform:rotate(6deg) translateX(6px);}100%{transform:rotate(0deg) translateX(0);}}
+        .hero-orb {position:absolute;width:420px;height:420px;filter:blur(80px);opacity:0.28;border-radius:50%;animation:slow-rotate 12s linear infinite;pointer-events:none;mix-blend-mode: screen;}
+        .hero-orb.a {background:radial-gradient(circle at 30% 30%, #7c3aed, #4f46e5); top:-90px; left:-60px;}
+        .hero-orb.b {background:radial-gradient(circle at 70% 70%, #ec4899, #f97316); bottom:-90px; right:-60px; animation-duration: 14s; opacity:0.18;}
 
-        .card-deco {
-          transition: transform 0.6s cubic-bezier(.2,.9,.3,1);
-          position: absolute;
-          inset: 0;
-          pointer-events: none;
-        }
-
-        .preview {
-          transform: translateY(100%);
-          transition: transform 420ms cubic-bezier(.2,.9,.3,1);
-        }
-        .card:hover .preview {
-          transform: translateY(0%);
-        }
-
+        .card-deco {transition: transform 0.6s cubic-bezier(.2,.9,.3,1); position:absolute; inset:0; pointer-events:none;}
+        .preview {transform: translateY(100%); transition: transform 420ms cubic-bezier(.2,.9,.3,1);}
+        .card:hover .preview {transform: translateY(0%);}
         .btn-premium:active { transform: scale(0.98); }
         .card:hover { box-shadow: 0 20px 40px rgba(99,102,241,0.12), 0 6px 12px rgba(124,58,237,0.06); }
 
+        @media (max-width: 1024px) {
+          .hero-title { font-size: 4rem; }
+          .hero-sub { font-size: 1rem; }
+        }
         @media (max-width: 768px) {
-          .hero-title { font-size: 2.2rem; }
+          .hero-title { font-size: 2.5rem; }
           .hero-sub { font-size: 0.95rem; }
+          .card { transform: none !important; }
+          .card-image { transform: none !important; }
+        }
+        @media (max-width: 480px) {
+          .hero-title { font-size: 2.2rem; }
+          .hero-sub { font-size: 0.9rem; }
+          .grid { grid-template-columns: 1fr !important; }
+          .preview { font-size: 0.85rem; }
         }
       `}</style>
 
       {/* HERO */}
-      <header ref={heroRef} className="hero-gradient relative overflow-hidden py-28 px-6">
+      <header ref={heroRef} className="hero-gradient relative overflow-hidden py-20 px-6">
         <div className="hero-orb a" />
         <div className="hero-orb b" />
         <div className="max-w-6xl mx-auto text-center relative z-10">
@@ -175,7 +160,7 @@ export default function Blog() {
             Deep dives, lessons, and practical guides — curated to help you design, build,
             and ship better products.
           </p>
-          <div className="mt-8 flex items-center justify-center gap-4">
+          <div className="mt-8 flex items-center justify-center gap-4 flex-wrap">
             <a
               className="inline-flex items-center px-5 py-3 rounded-full text-sm font-medium btn-premium bg-gradient-to-r from-indigo-500 to-pink-500 shadow-lg hover:scale-105 transition-transform duration-300 focus:outline-none"
               href="#posts"
@@ -193,7 +178,7 @@ export default function Blog() {
       </header>
 
       {/* POSTS */}
-      <main className="max-w-7xl mx-auto px-6 -mt-12 pb-28" id="posts">
+      <main className="max-w-7xl mx-auto px-6 -mt-12 pb-28">
         <div className="grid md:grid-cols-3 gap-8">
           {blogPosts.map((post, idx) => (
             <article
@@ -211,7 +196,7 @@ export default function Blog() {
                   alt={post.title}
                 />
                 <div className="card-deco" aria-hidden="true" />
-                <div className="absolute top-4 left-4 flex gap-2 z-10">
+                <div className="absolute top-4 left-4 flex gap-2 z-10 flex-wrap">
                   {post.tags.map((t) => (
                     <span
                       key={t}
@@ -233,7 +218,7 @@ export default function Blog() {
                   {post.title}
                 </h3>
                 <p className="text-sm text-gray-300 mb-4 line-clamp-3">{post.description}</p>
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center justify-between gap-4 flex-wrap">
                   <a
                     className="text-sm inline-flex items-center gap-2 font-medium px-4 py-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 shadow hover:translate-y-[-2px] transition-transform duration-300"
                     href={`/blog/${post.id}`}
