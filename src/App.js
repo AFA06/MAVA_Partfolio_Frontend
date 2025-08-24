@@ -14,6 +14,7 @@ import Videos from './Pages/Videos/Videos';
 import CategoryVideos from './Pages/Videos/CategoryVideos';
 import Reviews from './Pages/Reviews';
 import ForgotPassword from './Components/Login_page/ForgotPassword';
+import About from './Pages/About';   // ✅ add this
 
 import './App.css';
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="/videos/:category" element={<CategoryVideos />} />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/about" element={<About />} /> {/* ✅ now works */}
         </Routes>
       </main>
 
