@@ -12,15 +12,16 @@ function Footer() {
   const { t } = useTranslation();
 
   return (
-    <footer className="relative bg-black text-gray-300 pt-16 pb-8 px-6 border-t border-gray-900 overflow-hidden">
+    <footer className="relative bg-gradient-to-b from-black via-gray-900 to-black text-gray-300 pt-16 pb-8 px-6 overflow-hidden">
       {/* 🔥 Animated Gradient Shimmer Line */}
       <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-500 animate-shimmer"></div>
 
       {/* Grid wrapper */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-12 relative z-10 text-center md:text-left">
+        
         {/* Brand / Studio Info */}
-        <div>
-          <h2 className="text-2xl font-bold text-gold mb-4">
+        <div className="fade-in">
+          <h2 className="text-2xl font-bold text-yellow-400 mb-4 drop-shadow-md">
             {t("footer.studioTitle")}
           </h2>
           <p className="text-gray-400 mb-3">{t("footer.studioName")}</p>
@@ -30,45 +31,45 @@ function Footer() {
         </div>
 
         {/* Navigation */}
-        <div>
-          <h2 className="text-lg font-semibold mb-4 text-gold">
+        <div className="fade-in">
+          <h2 className="text-lg font-semibold mb-4 text-yellow-400">
             {t("footer.navigation")}
           </h2>
           <ul className="space-y-2">
-            <li><a href="/portfolio" className="hover:text-gold transition">{t("footer.link1")}</a></li>
-            <li><a href="/about" className="hover:text-gold transition">{t("footer.link2")}</a></li>
-            <li><a href="/services" className="hover:text-gold transition">{t("footer.link3")}</a></li>
-            <li><a href="/blog" className="hover:text-gold transition">{t("footer.link4")}</a></li>
-            <li><a href="/contact" className="hover:text-gold transition">{t("footer.link5")}</a></li>
+            <li><a href="/portfolio" className="hover:text-yellow-400 transition">{t("footer.link1")}</a></li>
+            <li><a href="/about" className="hover:text-yellow-400 transition">{t("footer.link2")}</a></li>
+            <li><a href="/services" className="hover:text-yellow-400 transition">{t("footer.link3")}</a></li>
+            <li><a href="/blog" className="hover:text-yellow-400 transition">{t("footer.link4")}</a></li>
+            <li><a href="/contact" className="hover:text-yellow-400 transition">{t("footer.link5")}</a></li>
           </ul>
         </div>
 
         {/* Contact */}
-        <div>
-          <h2 className="text-lg font-semibold mb-4 text-gold">
+        <div className="fade-in">
+          <h2 className="text-lg font-semibold mb-4 text-yellow-400">
             {t("footer.contacts")}
           </h2>
           <p className="mb-2">
-            <a href="tel:+79647269665" className="hover:text-gold transition">
+            <a href="tel:+79647269665" className="hover:text-yellow-400 transition">
               {t("footer.phone")}
             </a>
           </p>
           <p className="mb-2">
-            <a href="mailto:hello@vproekte.com" className="hover:text-gold transition">
+            <a href="mailto:hello@vproekte.com" className="hover:text-yellow-400 transition">
               {t("footer.email")}
             </a>
           </p>
           <p className="mb-2">{t("footer.address")}</p>
           <p>
-            <a href="/map" className="hover:text-gold transition">
+            <a href="/map" className="hover:text-yellow-400 transition">
               {t("footer.map")}
             </a>
           </p>
         </div>
 
         {/* Social Media */}
-        <div>
-          <h2 className="text-lg font-semibold mb-4 text-gold">Follow Us</h2>
+        <div className="fade-in">
+          <h2 className="text-lg font-semibold mb-4 text-yellow-400">Follow Us</h2>
           <div className="flex flex-wrap justify-center md:justify-start gap-4">
             {[
               { href: "https://instagram.com", icon: <FaInstagram /> },
@@ -81,12 +82,10 @@ function Footer() {
                 href={href}
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-600 text-gray-400 hover:text-gold transition relative overflow-hidden group"
+                className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-600 text-gray-400 hover:text-yellow-400 hover:shadow-[0_0_15px_rgba(250,204,21,0.8)] transition relative overflow-hidden group"
               >
-                {/* Icon */}
                 <span className="relative z-10 text-lg">{icon}</span>
-                {/* Neon shimmer border on hover */}
-                <span className="absolute inset-0 rounded-full border-2 border-transparent group-hover:border-gold group-hover:animate-shimmer-border"></span>
+                <span className="absolute inset-0 rounded-full border-2 border-transparent group-hover:border-yellow-400 group-hover:animate-shimmer-border"></span>
               </a>
             ))}
           </div>
@@ -101,7 +100,7 @@ function Footer() {
           {t("footer.dev")}{" "}
           <a
             href="https://fedorovlab.ru"
-            className="hover:text-gold"
+            className="hover:text-yellow-400"
             target="_blank"
             rel="noreferrer"
           >
@@ -127,6 +126,17 @@ function Footer() {
         }
         .animate-shimmer-border {
           animation: shimmer-border 2s ease-in-out infinite;
+        }
+        .fade-in {
+          opacity: 0;
+          transform: translateY(10px);
+          animation: fadeInUp 1s ease forwards;
+        }
+        @keyframes fadeInUp {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
       `}</style>
     </footer>
