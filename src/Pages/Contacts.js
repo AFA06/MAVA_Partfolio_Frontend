@@ -7,31 +7,38 @@ function Contacts() {
   const formRef = useRef(null);
 
   useEffect(() => {
+    const isMobile = window.innerWidth < 640; // mobile breakpoint
+    const fast = isMobile ? 600 : 1200;       // duration adjust
+    const medium = isMobile ? 400 : 800;
+
+    // Hero title animation
     animate(".contact-title", {
       opacity: [0, 1],
-      translateY: [-30, 0],
-      duration: 1200,
+      translateY: [-20, 0],
+      duration: fast,
       easing: "easeOutExpo",
     });
 
+    // Contact cards
     animate(".contact-card", {
       opacity: [0, 1],
-      translateY: [50, 0],
-      delay: stagger(200),
+      translateY: [30, 0],
+      delay: stagger(isMobile ? 100 : 200),
       easing: "easeOutExpo",
-      duration: 1000,
+      duration: medium,
     });
 
+    // Scroll reveals
     const sections = document.querySelectorAll(".reveal");
     const revealOnScroll = () => {
       sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100 && !section.classList.contains("animated")) {
+        if (rect.top < window.innerHeight - 80 && !section.classList.contains("animated")) {
           section.classList.add("animated");
           animate(section, {
             opacity: [0, 1],
-            translateY: [50, 0],
-            duration: 1200,
+            translateY: [40, 0],
+            duration: fast,
             easing: "easeOutExpo",
           });
         }
