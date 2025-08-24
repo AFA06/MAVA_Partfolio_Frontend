@@ -39,9 +39,9 @@ export default function Blog() {
   const cardsRef = useRef([]);
   const heroRef = useRef(null);
 
-  // Parallax tilt for images (disable on touch devices)
+  // Parallax tilt for desktop only
   function handlePointerMove(e, idx) {
-    if (window.innerWidth < 768) return; // subtle on mobile
+    if (window.innerWidth < 768) return;
     const el = cardsRef.current[idx];
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -68,6 +68,7 @@ export default function Blog() {
   }
 
   useEffect(() => {
+    // Animate hero text on mobile and desktop
     if (heroRef.current) {
       animate(heroRef.current.querySelectorAll(".hero-line"), {
         translateY: [30, 0],
@@ -78,15 +79,16 @@ export default function Blog() {
       });
     }
 
+    // Scroll-triggered animations for cards (works smooth on mobile)
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const node = entry.target;
           if (entry.isIntersecting) {
             animate(node, {
-              translateY: [40, 0],
+              translateY: window.innerWidth < 768 ? [20, 0] : [40, 0],
               opacity: [0, 1],
-              duration: 900,
+              duration: 700,
               easing: "easeOutCubic",
               delay: node.dataset.index ? parseInt(node.dataset.index) * 120 : 0,
             });
@@ -94,7 +96,7 @@ export default function Blog() {
           }
         });
       },
-      { threshold: 0.18 }
+      { threshold: 0.15 }
     );
 
     cardsRef.current.forEach((c, i) => {
@@ -120,13 +122,13 @@ export default function Blog() {
         .hero-orb {position:absolute;width:420px;height:420px;filter:blur(80px);opacity:0.28;border-radius:50%;animation:slow-rotate 12s linear infinite;pointer-events:none;mix-blend-mode: screen;}
         .hero-orb.a {background:radial-gradient(circle at 30% 30%, #7c3aed, #4f46e5); top:-90px; left:-60px;}
         .hero-orb.b {background:radial-gradient(circle at 70% 70%, #ec4899, #f97316); bottom:-90px; right:-60px; animation-duration: 14s; opacity:0.18;}
-
         .card-deco {transition: transform 0.6s cubic-bezier(.2,.9,.3,1); position:absolute; inset:0; pointer-events:none;}
         .preview {transform: translateY(100%); transition: transform 420ms cubic-bezier(.2,.9,.3,1);}
         .card:hover .preview {transform: translateY(0%);}
         .btn-premium:active { transform: scale(0.98); }
         .card:hover { box-shadow: 0 20px 40px rgba(99,102,241,0.12), 0 6px 12px rgba(124,58,237,0.06); }
 
+        /* Responsive adjustments */
         @media (max-width: 1024px) {
           .hero-title { font-size: 4rem; }
           .hero-sub { font-size: 1rem; }
