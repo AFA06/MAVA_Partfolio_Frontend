@@ -1,4 +1,3 @@
-// src/hooks/useNavbarHeight.js
 import { useEffect, useState } from "react";
 
 export default function useNavbarHeight() {
@@ -6,15 +5,10 @@ export default function useNavbarHeight() {
 
   useEffect(() => {
     const navbar = document.getElementById("navbar");
-
-    if (navbar) {
-      setNavHeight(navbar.getBoundingClientRect().height);
-    }
+    if (navbar) setNavHeight(navbar.getBoundingClientRect().height);
 
     const handleResize = () => {
-      if (navbar) {
-        setNavHeight(navbar.getBoundingClientRect().height);
-      }
+      if (navbar) setNavHeight(navbar.getBoundingClientRect().height);
     };
 
     window.addEventListener("resize", handleResize);

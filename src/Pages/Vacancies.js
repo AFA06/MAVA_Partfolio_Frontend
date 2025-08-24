@@ -1,26 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Briefcase, Bell } from "lucide-react";
+import useNavbarHeight from "../hooks/useNavbarHeight";
 
 function Vacancies() {
-  const [navHeight, setNavHeight] = useState(0);
-
-  useEffect(() => {
-    const navbar = document.getElementById("navbar");
-    if (navbar) {
-      setNavHeight(navbar.getBoundingClientRect().height);
-    }
-
-    // Update height on window resize
-    const handleResize = () => {
-      if (navbar) {
-        setNavHeight(navbar.getBoundingClientRect().height);
-      }
-    };
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const navHeight = useNavbarHeight();
 
   return (
     <div
@@ -59,7 +43,8 @@ function Vacancies() {
           <Briefcase className="w-16 h-16 text-indigo-600 mx-auto mb-6" />
           <h2 className="text-2xl font-bold mb-2">No Vacancies Right Now</h2>
           <p className="text-gray-600">
-            We don’t have any openings at the moment. Please check back later or subscribe to get notified when new opportunities arrive.
+            We don’t have any openings at the moment. Please check back later or
+            subscribe to get notified when new opportunities arrive.
           </p>
         </motion.div>
       </div>
@@ -78,7 +63,8 @@ function Vacancies() {
               Stay Updated on Future Openings
             </h3>
             <p className="text-gray-600 mb-6">
-              Drop your email below and we’ll notify you when new positions are available.
+              Drop your email below and we’ll notify you when new positions are
+              available.
             </p>
             <form className="flex flex-col md:flex-row items-center gap-3 justify-center">
               <input
