@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "./static/css/main.d0956c16.css",
-    "main.js": "./static/js/main.67055be5.js",
-    "static/js/453.670e15c7.chunk.js": "./static/js/453.670e15c7.chunk.js",
-    "static/media/hero1.jpg": "./static/media/hero1.2b71141395ab13a81f2d.jpg",
-    "static/media/logo.jpg": "./static/media/logo.564387836666473ac00f.jpg",
-    "index.html": "./index.html",
-    "main.d0956c16.css.map": "./static/css/main.d0956c16.css.map",
-    "main.67055be5.js.map": "./static/js/main.67055be5.js.map",
-    "453.670e15c7.chunk.js.map": "./static/js/453.670e15c7.chunk.js.map"
+    "main.css": "/Arch_Website_Frontend/static/css/main.d0956c16.css",
+    "main.js": "/Arch_Website_Frontend/static/js/main.e2967d74.js",
+    "static/js/453.670e15c7.chunk.js": "/Arch_Website_Frontend/static/js/453.670e15c7.chunk.js",
+    "static/media/hero1.jpg": "/Arch_Website_Frontend/static/media/hero1.2b71141395ab13a81f2d.jpg",
+    "static/media/logo.jpg": "/Arch_Website_Frontend/static/media/logo.564387836666473ac00f.jpg",
+    "index.html": "/Arch_Website_Frontend/index.html",
+    "main.d0956c16.css.map": "/Arch_Website_Frontend/static/css/main.d0956c16.css.map",
+    "main.e2967d74.js.map": "/Arch_Website_Frontend/static/js/main.e2967d74.js.map",
+    "453.670e15c7.chunk.js.map": "/Arch_Website_Frontend/static/js/453.670e15c7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d0956c16.css",
-    "static/js/main.67055be5.js"
+    "static/js/main.e2967d74.js"
   ]
 }
