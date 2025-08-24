@@ -83,7 +83,6 @@ export default function Blog() {
         entries.forEach((entry) => {
           const node = entry.target;
           if (entry.isIntersecting) {
-            // animate in
             animate(node, {
               translateY: [40, 0],
               opacity: [0, 1],
@@ -109,14 +108,10 @@ export default function Blog() {
     return () => observer.disconnect();
   }, []);
 
-  // Button micro-effect (scale + glow on hover handled by CSS)
-  // If you want JS ripple on click you can add it here.
-
   return (
     <div className="min-h-screen text-white font-sans">
-      {/* Inline CSS for the page — add to global if you prefer */}
+      {/* Inline CSS */}
       <style>{`
-        /* Animated gradient background for hero */
         .hero-gradient {
           background: linear-gradient(120deg, rgba(79,70,229,0.12), rgba(139,92,246,0.09) 30%, rgba(236,72,153,0.05));
           position: relative;
@@ -141,7 +136,6 @@ export default function Blog() {
         .hero-orb.a { background: radial-gradient(circle at 30% 30%, #7c3aed, #4f46e5); top: -90px; left: -60px; }
         .hero-orb.b { background: radial-gradient(circle at 70% 70%, #ec4899, #f97316); bottom: -90px; right: -60px; animation-duration: 14s; opacity: 0.18; }
 
-        /* Glass card deco */
         .card-deco {
           transition: transform 0.6s cubic-bezier(.2,.9,.3,1);
           position: absolute;
@@ -149,7 +143,6 @@ export default function Blog() {
           pointer-events: none;
         }
 
-        /* Hover preview overlay */
         .preview {
           transform: translateY(100%);
           transition: transform 420ms cubic-bezier(.2,.9,.3,1);
@@ -158,17 +151,9 @@ export default function Blog() {
           transform: translateY(0%);
         }
 
-        /* Button ripple-ish scale handled by this */
-        .btn-premium:active {
-          transform: scale(0.98);
-        }
+        .btn-premium:active { transform: scale(0.98); }
+        .card:hover { box-shadow: 0 20px 40px rgba(99,102,241,0.12), 0 6px 12px rgba(124,58,237,0.06); }
 
-        /* Smooth shadow glow on hover */
-        .card:hover {
-          box-shadow: 0 20px 40px rgba(99,102,241,0.12), 0 6px 12px rgba(124,58,237,0.06);
-        }
-
-        /* small responsive */
         @media (max-width: 768px) {
           .hero-title { font-size: 2.2rem; }
           .hero-sub { font-size: 0.95rem; }
@@ -176,13 +161,9 @@ export default function Blog() {
       `}</style>
 
       {/* HERO */}
-      <header
-        ref={heroRef}
-        className="hero-gradient relative overflow-hidden py-28 px-6"
-        aria-hidden="false"
-      >
-        <div className="hero-orb a" aria-hidden="true" />
-        <div className="hero-orb b" aria-hidden="true" />
+      <header ref={heroRef} className="hero-gradient relative overflow-hidden py-28 px-6">
+        <div className="hero-orb a" />
+        <div className="hero-orb b" />
         <div className="max-w-6xl mx-auto text-center relative z-10">
           <h1 className="hero-line hero-title text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-pink-300">
@@ -194,7 +175,6 @@ export default function Blog() {
             Deep dives, lessons, and practical guides — curated to help you design, build,
             and ship better products.
           </p>
-
           <div className="mt-8 flex items-center justify-center gap-4">
             <a
               className="inline-flex items-center px-5 py-3 rounded-full text-sm font-medium btn-premium bg-gradient-to-r from-indigo-500 to-pink-500 shadow-lg hover:scale-105 transition-transform duration-300 focus:outline-none"
@@ -222,20 +202,15 @@ export default function Blog() {
               className="card relative rounded-2xl overflow-hidden border border-white/6 bg-gradient-to-b from-white/4 to-white/2 backdrop-blur-sm p-0 transition-all duration-500"
               onPointerMove={(e) => handlePointerMove(e, idx)}
               onPointerLeave={() => resetTilt(idx)}
-              role="article"
               aria-labelledby={`post-${post.id}-title`}
             >
-              {/* image area */}
               <div className="relative h-64">
                 <img
                   className="card-image w-full h-full object-cover transition-transform duration-700"
                   src={post.image}
                   alt={post.title}
                 />
-                {/* Decorative depth layer */}
                 <div className="card-deco" aria-hidden="true" />
-
-                {/* tags */}
                 <div className="absolute top-4 left-4 flex gap-2 z-10">
                   {post.tags.map((t) => (
                     <span
@@ -246,14 +221,10 @@ export default function Blog() {
                     </span>
                   ))}
                 </div>
-
-                {/* hover preview */}
                 <div className="absolute left-0 right-0 bottom-0 p-4 preview bg-gradient-to-t from-black/70 to-transparent text-gray-100">
                   <p className="text-sm line-clamp-3">{post.preview}</p>
                 </div>
               </div>
-
-              {/* content */}
               <div className="p-6">
                 <h3
                   id={`post-${post.id}-title`}
@@ -261,9 +232,7 @@ export default function Blog() {
                 >
                   {post.title}
                 </h3>
-                <p className="text-sm text-gray-300 mb-4 line-clamp-3">
-                  {post.description}
-                </p>
+                <p className="text-sm text-gray-300 mb-4 line-clamp-3">{post.description}</p>
                 <div className="flex items-center justify-between gap-4">
                   <a
                     className="text-sm inline-flex items-center gap-2 font-medium px-4 py-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 shadow hover:translate-y-[-2px] transition-transform duration-300"
@@ -280,7 +249,6 @@ export default function Blog() {
                       />
                     </svg>
                   </a>
-
                   <div className="text-xs text-gray-400">
                     <div>5 min read</div>
                   </div>
@@ -291,7 +259,7 @@ export default function Blog() {
         </div>
       </main>
 
-      {/* lightweight footer / subscribe */}
+      {/* SUBSCRIBE */}
       <section
         id="subscribe"
         className="max-w-4xl mx-auto px-6 py-14 rounded-2xl bg-gradient-to-r from-white/4 to-white/6 border border-white/6 text-center"
@@ -303,12 +271,10 @@ export default function Blog() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            // add subscribe action
             const el = e.currentTarget;
             const input = el.querySelector("input");
             if (input) {
               input.value = "";
-              // micro success animation
               animate(el, { scale: [1, 0.98, 1], duration: 300 });
               alert("Subscribed (demo) — integrate your mailing service.");
             }
