@@ -80,6 +80,16 @@ function Contacts() {
         }
       });
       bounceCards();
+
+      // Scroll-based floating dots effect
+      const dots = hero.querySelectorAll(".floating-dot");
+      const scrollRatio = window.scrollY / window.innerHeight;
+      dots.forEach((dot, i) => {
+        const scale = 0.5 + 0.5 * Math.sin(scrollRatio * Math.PI + i);
+        const opacity = 0.3 + 0.5 * Math.cos(scrollRatio * Math.PI + i);
+        dot.style.transform += ` scale(${scale})`;
+        dot.style.opacity = opacity;
+      });
     };
 
     window.addEventListener("scroll", revealOnScroll);
