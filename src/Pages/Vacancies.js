@@ -39,11 +39,11 @@ function Vacancies() {
     orbRefs.forEach((ref, index) => {
       if (ref.current) {
         animate(ref.current, {
-          translateX: [0, index === 0 ? 40 : -40],
-          translateY: [0, index === 0 ? 30 : -30],
+          translateX: [0, index === 0 ? 30 : -30],
+          translateY: [0, index === 0 ? 20 : -20],
           direction: "alternate",
           loop: true,
-          duration: 6000,
+          duration: 5000,
           easing: "easeInOutSine",
         });
       }
@@ -68,11 +68,11 @@ function Vacancies() {
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      stars = Array.from({ length: 120 }, () => ({
+      stars = Array.from({ length: 100 }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        radius: Math.random() * 2,
-        speed: Math.random() * 0.5 + 0.2,
+        radius: Math.random() * 1.5,
+        speed: Math.random() * 0.4 + 0.2,
       }));
     };
 
@@ -146,7 +146,7 @@ function Vacancies() {
 
   return (
     <div
-      className="relative w-full min-h-screen flex items-center justify-center px-6 overflow-hidden"
+      className="relative w-full min-h-screen flex items-center justify-center px-4 sm:px-6 overflow-hidden"
       style={{
         paddingTop: navbarHeight,
         background:
@@ -163,30 +163,30 @@ function Vacancies() {
       {/* Glow Orbs */}
       <div
         ref={orbRefs[0]}
-        className="absolute top-20 left-10 w-40 h-40 bg-pink-500 rounded-full blur-3xl opacity-30"
+        className="absolute top-10 left-5 w-24 h-24 sm:w-40 sm:h-40 bg-pink-500 rounded-full blur-3xl opacity-30"
       ></div>
       <div
         ref={orbRefs[1]}
-        className="absolute bottom-20 right-10 w-52 h-52 bg-blue-500 rounded-full blur-3xl opacity-30"
+        className="absolute bottom-10 right-5 w-28 h-28 sm:w-52 sm:h-52 bg-blue-500 rounded-full blur-3xl opacity-30"
       ></div>
 
       {/* Content */}
       <div className="relative z-10 max-w-3xl text-center">
         <h1
           ref={titleRef}
-          className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg mb-8"
+          className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg mb-6 sm:mb-8"
         >
           🚀 Join Our Team
         </h1>
 
         <div
           ref={cardRef}
-          className="p-10 rounded-2xl shadow-2xl border border-white/20 bg-white/10 backdrop-blur-xl text-white"
+          className="w-full max-w-lg p-6 sm:p-10 rounded-2xl shadow-2xl border border-white/20 bg-white/10 backdrop-blur-xl text-white mx-auto"
         >
-          <h2 className="text-2xl font-semibold mb-4">
+          <h2 className="text-xl sm:text-2xl font-semibold mb-4">
             Currently No Vacancies
           </h2>
-          <p className="text-lg opacity-80 mb-6">
+          <p className="text-base sm:text-lg opacity-80 mb-6">
             We don’t have open roles at the moment, but we’re always looking for
             passionate and talented people.  
             Stay tuned — new opportunities are coming soon!
@@ -194,7 +194,7 @@ function Vacancies() {
           <button
             ref={buttonRef}
             onClick={handleRipple}
-            className="relative overflow-hidden px-6 py-3 bg-gradient-to-r from-pink-500 to-yellow-400 text-black font-bold rounded-xl shadow-lg"
+            className="relative overflow-hidden w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-pink-500 to-yellow-400 text-black font-bold rounded-xl shadow-lg"
           >
             ⬅ Back to Home
           </button>
