@@ -1,13 +1,17 @@
 import React, { useEffect, useRef } from "react";
 import { animate } from "animejs";
+import { useNavigate } from "react-router-dom";
 import useNavbarHeight from "../hooks/useNavbarHeight";
 
 function Vacancies() {
   const navbarHeight = useNavbarHeight();
+  const navigate = useNavigate();
+
   const titleRef = useRef(null);
   const cardRef = useRef(null);
   const orbRefs = [useRef(null), useRef(null)];
   const canvasRef = useRef(null);
+  const buttonRef = useRef(null);
 
   useEffect(() => {
     // Animate title
@@ -31,7 +35,7 @@ function Vacancies() {
       });
     }
 
-    // Floating orb animations
+    // Floating orbs
     orbRefs.forEach((ref, index) => {
       if (ref.current) {
         animate(ref.current, {
@@ -45,7 +49,18 @@ function Vacancies() {
       }
     });
 
-    // 🌌 Starfield particle background
+    // Button breathing animation
+    if (buttonRef.current) {
+      animate(buttonRef.current, {
+        scale: [1, 1.05],
+        direction: "alternate",
+        loop: true,
+        easing: "easeInOutSine",
+        duration: 2000,
+      });
+    }
+
+    // 🌌 Starfield
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     let stars = [];
@@ -84,7 +99,7 @@ function Vacancies() {
     let mouseX = 0,
       mouseY = 0;
     const handleMouseMove = (e) => {
-      mouseX = (e.clientX / window.innerWidth - 0.5) * 20; // subtle movement
+      mouseX = (e.clientX / window.innerWidth - 0.5) * 20;
       mouseY = (e.clientY / window.innerHeight - 0.5) * 20;
     };
 
@@ -103,7 +118,31 @@ function Vacancies() {
       window.removeEventListener("resize", resizeCanvas);
       window.removeEventListener("mousemove", handleMouseMove);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Ripple wave effect on button click
+  const handleRipple = (e) => {
+    const button = e.currentTarget;
+    const circle = document.createElement("span");
+    const diameter = Math.max(button.clientWidth, button.clientHeight);
+    const radius = diameter / 2;
+
+    circle.style.width = circle.style.height = `${diameter}px`;
+    circle.style.left = `${e.clientX - button.offsetLeft - radius}px`;
+    circle.style.top = `${e.clientY - button.offsetTop - radius}px`;
+    circle.classList.add("ripple");
+
+    const ripple = button.getElementsByClassName("ripple")[0];
+    if (ripple) {
+      ripple.remove();
+    }
+
+    button.appendChild(circle);
+
+    // navigate home after ripple
+    setTimeout(() => navigate("/"), 300);
+  };
 
   return (
     <div
@@ -114,7 +153,7 @@ function Vacancies() {
           "linear-gradient(135deg, #0a0a12 0%, #141625 50%, #1d1f33 100%)",
       }}
     >
-      {/* 🌌 Starfield Background */}
+      {/* Starfield */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 z-0"
@@ -152,11 +191,34 @@ function Vacancies() {
             passionate and talented people.  
             Stay tuned — new opportunities are coming soon!
           </p>
-          <button className="px-6 py-3 bg-gradient-to-r from-pink-500 to-yellow-400 text-black font-bold rounded-xl shadow-lg hover:scale-105 transition-transform">
-            Notify Me
+          <button
+            ref={buttonRef}
+            onClick={handleRipple}
+            className="relative overflow-hidden px-6 py-3 bg-gradient-to-r from-pink-500 to-yellow-400 text-black font-bold rounded-xl shadow-lg"
+          >
+            ⬅ Back to Home
           </button>
         </div>
       </div>
+
+      {/* Ripple CSS */}
+      <style>{`
+        .ripple {
+          position: absolute;
+          border-radius: 50%;
+          transform: scale(0);
+          animation: ripple 600ms linear;
+          background-color: rgba(255, 255, 255, 0.7);
+          pointer-events: none;
+        }
+
+        @keyframes ripple {
+          to {
+            transform: scale(4);
+            opacity: 0;
+          }
+        }
+      `}</style>
     </div>
   );
 }
