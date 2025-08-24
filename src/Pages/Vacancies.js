@@ -61,12 +61,12 @@ function Vacancies() {
       }));
     };
 
-    const drawStars = () => {
+    const drawStars = (offsetX = 0, offsetY = 0) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "white";
       stars.forEach((star) => {
         ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.arc(star.x + offsetX, star.y + offsetY, star.radius, 0, Math.PI * 2);
         ctx.fill();
       });
     };
@@ -81,8 +81,15 @@ function Vacancies() {
       });
     };
 
+    let mouseX = 0,
+      mouseY = 0;
+    const handleMouseMove = (e) => {
+      mouseX = (e.clientX / window.innerWidth - 0.5) * 20; // subtle movement
+      mouseY = (e.clientY / window.innerHeight - 0.5) * 20;
+    };
+
     const animateStars = () => {
-      drawStars();
+      drawStars(mouseX, mouseY);
       updateStars();
       requestAnimationFrame(animateStars);
     };
@@ -90,9 +97,11 @@ function Vacancies() {
     resizeCanvas();
     animateStars();
     window.addEventListener("resize", resizeCanvas);
+    window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
