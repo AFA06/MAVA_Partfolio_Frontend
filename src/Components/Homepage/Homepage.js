@@ -110,6 +110,13 @@ function Homepage() {
     },
   ];
 
+  // Force smooth scroll on page load
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = "smooth";
+    // Optional: scroll to top immediately (ensures page is scrollable)
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="font-sans bg-black text-white min-h-screen overflow-x-hidden">
       {/* Hero Section */}
