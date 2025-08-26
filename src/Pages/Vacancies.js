@@ -176,7 +176,7 @@ function Vacancies() {
           ref={titleRef}
           className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg mb-6 sm:mb-8"
         >
-          🚀 Join Our Team
+          🚀 Присоединяйся к нашей команде
         </h1>
 
         <div
@@ -184,19 +184,19 @@ function Vacancies() {
           className="w-full max-w-lg p-6 sm:p-10 rounded-2xl shadow-2xl border border-white/20 bg-white/10 backdrop-blur-xl text-white mx-auto"
         >
           <h2 className="text-xl sm:text-2xl font-semibold mb-4">
-            Currently No Vacancies
+            Вакансий пока нет
           </h2>
           <p className="text-base sm:text-lg opacity-80 mb-6">
-            We don’t have open roles at the moment, but we’re always looking for
-            passionate and talented people.  
-            Stay tuned — new opportunities are coming soon!
+            В данный момент у нас нет открытых позиций, но мы всегда ищем
+            талантливых и увлечённых людей.  
+            Следите за обновлениями — новые возможности появятся совсем скоро!
           </p>
           <button
             ref={buttonRef}
             onClick={handleRipple}
             className="relative overflow-hidden w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-pink-500 to-yellow-400 text-black font-bold rounded-xl shadow-lg"
           >
-            ⬅ Back to Home
+            ⬅ Назад на главную
           </button>
         </div>
       </div>
