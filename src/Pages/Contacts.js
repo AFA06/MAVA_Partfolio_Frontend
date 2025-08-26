@@ -106,11 +106,11 @@ function Contacts() {
 
     const moveDots = (e) => {
       const { innerWidth, innerHeight } = window;
-      const xRatio = (e.clientX / innerWidth - 0.5) * 20; // horizontal shift
-      const yRatio = (e.clientY / innerHeight - 0.5) * 20; // vertical shift
+      const xRatio = (e.clientX / innerWidth - 0.5) * 20;
+      const yRatio = (e.clientY / innerHeight - 0.5) * 20;
 
       dots.forEach((dot, i) => {
-        const offset = (i % 10) / 2; // small variation per dot
+        const offset = (i % 10) / 2;
         dot.style.transform = `translate(${xRatio * offset}px, ${yRatio * offset}px)`;
       });
     };
@@ -148,11 +148,10 @@ function Contacts() {
         <div className="absolute inset-0 bg-black bg-opacity-60" />
         <div className="relative z-10 text-center px-4">
           <h1 className="contact-title text-3xl sm:text-5xl md:text-6xl font-bold tracking-wide uppercase bg-gradient-to-r from-yellow-400 via-white to-yellow-400 bg-clip-text text-transparent animate-shimmer">
-            Get in Touch
+            Свяжитесь с нами
           </h1>
           <p className="mt-3 sm:mt-4 text-base sm:text-lg text-gray-300 max-w-xl mx-auto">
-            Let’s discuss your next architectural vision. We’re here to bring
-            concepts to life.
+            Давайте обсудим ваш следующий архитектурный проект. Мы поможем воплотить идеи в жизнь.
           </p>
         </div>
       </section>
@@ -161,10 +160,10 @@ function Contacts() {
       <section className="px-4 sm:px-6 md:px-16 py-14 sm:py-20 max-w-7xl mx-auto reveal">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 text-center">
           {[
-            { icon: MapPin, title: "Office Address", text: "Tashkent, Uzbekistan\nSamarkand Darvoza" },
-            { icon: Phone, title: "Phone", text: "+998 90 123 45 67" },
-            { icon: Mail, title: "Email", text: "info@architecture.com" },
-            { icon: Clock, title: "Working Hours", text: "Mon - Sat\n9:00 AM - 7:00 PM" },
+            { icon: MapPin, title: "Адрес офиса", text: "Ташкент, Узбекистан\nСамарканд Дарвоза" },
+            { icon: Phone, title: "Телефон", text: "+998 90 123 45 67" },
+            { icon: Mail, title: "Электронная почта", text: "info@architecture.com" },
+            { icon: Clock, title: "Рабочие часы", text: "Пн - Сб\n9:00 - 19:00" },
           ].map((item, i) => (
             <div
               key={i}
@@ -184,26 +183,26 @@ function Contacts() {
       <section className="bg-gray-800 py-14 sm:py-20 px-4 sm:px-6 md:px-16 reveal">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-10 text-center uppercase tracking-wider">
-            Send Us a Message
+            Отправьте нам сообщение
           </h2>
           <form ref={formRef} className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             <input
               type="text"
-              placeholder="Your Name"
+              placeholder="Ваше имя"
               className="p-3 sm:p-4 rounded-xl bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-yellow-400 outline-none"
             />
             <input
               type="email"
-              placeholder="Your Email"
+              placeholder="Ваш email"
               className="p-3 sm:p-4 rounded-xl bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-yellow-400 outline-none"
             />
             <input
               type="text"
-              placeholder="Subject"
+              placeholder="Тема"
               className="p-3 sm:p-4 rounded-xl bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-yellow-400 outline-none sm:col-span-2"
             />
             <textarea
-              placeholder="Your Message"
+              placeholder="Ваше сообщение"
               rows="6"
               className="p-3 sm:p-4 rounded-xl bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-yellow-400 outline-none sm:col-span-2"
             ></textarea>
@@ -211,7 +210,7 @@ function Contacts() {
               type="submit"
               className="sm:col-span-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-xl shadow-lg transition duration-300"
             >
-              Send Message
+              Отправить сообщение
             </button>
           </form>
         </div>
@@ -221,7 +220,7 @@ function Contacts() {
       <section className="h-[300px] sm:h-[400px] reveal">
         <iframe
           title="Google Map"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.592480404966!2d69.2401!3d41.2995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b3b2bde39df%3A0x9d184f7a7d0c25b0!2sTashkent!5e0!3m2!1sen!2s!4v1673000000000!5m2!1sen!2s"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.592480404966!2d69.2401!3d41.2995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b3b2bde39df%3A0x9d184f7a7d0c25b0!2sTashkent!5e0!3m2!1sru!2s!4v1673000000000!5m2!1sru!2s"
           className="w-full h-full border-0"
           allowFullScreen=""
           loading="lazy"
