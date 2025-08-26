@@ -4,7 +4,7 @@ import { animate, stagger } from "animejs";
 
 const About = () => {
   useEffect(() => {
-    // Header animation
+    // Анимация заголовка
     animate(".about-header", {
       opacity: [0, 1],
       translateY: [-40, 0],
@@ -12,7 +12,7 @@ const About = () => {
       easing: "easeOutExpo",
     });
 
-    // Intro text animation
+    // Анимация вступительного текста
     animate(".about-text", {
       opacity: [0, 1],
       translateY: [40, 0],
@@ -21,7 +21,7 @@ const About = () => {
       easing: "easeOutExpo",
     });
 
-    // Card animation
+    // Анимация карточек
     animate(".about-card", {
       opacity: [0, 1],
       translateY: [60, 0],
@@ -30,7 +30,7 @@ const About = () => {
       easing: "easeOutCubic",
     });
 
-    // Timeline animation
+    // Анимация таймлайна
     animate(".timeline-item", {
       opacity: [0, 1],
       translateX: [-50, 0],
@@ -42,114 +42,116 @@ const About = () => {
 
   return (
     <div className="about-page relative min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
-      {/* Decorative Background */}
+      {/* Декоративный фон */}
       <div className="absolute inset-0">
         <div className="absolute w-56 h-56 sm:w-72 sm:h-72 bg-purple-500/30 rounded-full blur-3xl top-10 left-5 sm:left-10 animate-pulse"></div>
         <div className="absolute w-72 h-72 sm:w-96 sm:h-96 bg-blue-500/20 rounded-full blur-3xl bottom-10 right-5 sm:right-20 animate-pulse"></div>
       </div>
 
-      {/* Content */}
+      {/* Контент */}
       <div className="relative z-10 px-6 sm:px-10 md:px-20 py-12">
-        {/* Title */}
+        {/* Заголовок */}
         <h1 className="about-header text-4xl sm:text-5xl md:text-6xl font-extrabold text-center mb-6 opacity-0 tracking-tight leading-tight">
-          About Us
+          О нас
         </h1>
 
-        {/* Subtitle */}
+        {/* Подзаголовок */}
         <p className="about-text text-base sm:text-lg md:text-xl text-gray-300 text-center max-w-3xl mx-auto mb-12 sm:mb-16 leading-relaxed opacity-0">
-          At <span className="text-white font-semibold">MaxArchitects</span>, we
-          craft spaces that merge innovation, sustainability, and cultural
-          heritage of Uzbekistan. Our designs are{" "}
-          <span className="text-purple-400">living experiences</span> that
-          inspire creativity, comfort, and connection.
+          В <span className="text-white font-semibold">MaxArchitects</span> мы
+          создаём пространства, которые объединяют инновации, устойчивость и
+          культурное наследие Узбекистана. Наши проекты — это{" "}
+          <span className="text-purple-400">живые пространства</span>, которые
+          вдохновляют на творчество, комфорт и единство.
         </p>
 
-        {/* Cards Section */}
+        {/* Блок карточек */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
           <div className="about-card bg-white/10 backdrop-blur-xl border border-white/20 p-6 sm:p-8 rounded-2xl shadow-2xl opacity-0 hover:scale-105 transition-transform duration-500">
             <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-purple-300">
-              Our Vision
+              Наша Визия
             </h2>
             <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-              To transform Uzbekistan’s architecture into a global symbol of{" "}
+              Превратить архитектуру Узбекистана в глобальный символ{" "}
               <span className="font-medium text-white">
-                innovation and human connection
+                инноваций и человеческих связей
               </span>
-              , shaping the skylines of tomorrow.
+              , формируя облик будущих городов.
             </p>
           </div>
 
           <div className="about-card bg-white/10 backdrop-blur-xl border border-white/20 p-6 sm:p-8 rounded-2xl shadow-2xl opacity-0 hover:scale-105 transition-transform duration-500">
             <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-purple-300">
-              Our Mission
+              Наша Миссия
             </h2>
             <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-              Deliver sustainable, high-quality designs that{" "}
-              <span className="font-medium text-white">elevate lifestyles</span>{" "}
-              while respecting the environment and cultural roots.
-            </p>
-          </div>
-
-          <div className="about-card bg-white/10 backdrop-blur-xl border border-white/20 p-6 sm:p-8 rounded-2xl shadow-2xl opacity-0 hover:scale-105 transition-transform duration-500">
-            <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-purple-300">
-              Our Values
-            </h2>
-            <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-              Integrity, creativity, sustainability, and{" "}
+              Создавать устойчивые и качественные проекты, которые{" "}
               <span className="font-medium text-white">
-                unwavering client dedication
+                улучшают качество жизни
               </span>{" "}
-              guide every project we bring to life.
+              и уважают природу и культурные традиции.
+            </p>
+          </div>
+
+          <div className="about-card bg-white/10 backdrop-blur-xl border border-white/20 p-6 sm:p-8 rounded-2xl shadow-2xl opacity-0 hover:scale-105 transition-transform duration-500">
+            <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-purple-300">
+              Наши Ценности
+            </h2>
+            <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+              Честность, креативность, устойчивость и{" "}
+              <span className="font-medium text-white">
+                преданность клиентам
+              </span>{" "}
+              лежат в основе каждого нашего проекта.
             </p>
           </div>
         </div>
 
-        {/* Timeline Section */}
+        {/* Таймлайн */}
         <div className="mt-20 sm:mt-24">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-10 sm:mb-12 text-purple-300">
-            Our Journey
+            Наш Путь
           </h2>
           <div className="space-y-6 sm:space-y-10 max-w-3xl mx-auto">
             <div className="timeline-item bg-white/10 border border-white/20 p-5 sm:p-6 rounded-xl shadow-lg opacity-0">
               <h3 className="text-lg sm:text-xl font-semibold text-white">
-                2015 – The Beginning
+                2015 – Начало
               </h3>
               <p className="text-gray-400 text-sm sm:text-base mt-2">
-                Founded in Tashkent with a vision to redefine modern
-                architecture in Uzbekistan.
+                Основана в Ташкенте с целью переосмыслить современную
+                архитектуру Узбекистана.
               </p>
             </div>
             <div className="timeline-item bg-white/10 border border-white/20 p-5 sm:p-6 rounded-xl shadow-lg opacity-0">
               <h3 className="text-lg sm:text-xl font-semibold text-white">
-                2018 – First Landmark Project
+                2018 – Первый знаковый проект
               </h3>
               <p className="text-gray-400 text-sm sm:text-base mt-2">
-                Completed our first large-scale residential complex, merging
-                innovation and culture.
+                Завершён первый жилой комплекс крупного масштаба, объединивший
+                инновации и культуру.
               </p>
             </div>
             <div className="timeline-item bg-white/10 border border-white/20 p-5 sm:p-6 rounded-xl shadow-lg opacity-0">
               <h3 className="text-lg sm:text-xl font-semibold text-white">
-                2023 – Expanding Horizons
+                2023 – Выход за пределы страны
               </h3>
               <p className="text-gray-400 text-sm sm:text-base mt-2">
-                Partnered with global firms to bring sustainable designs to
-                international markets.
+                Партнёрство с международными компаниями для внедрения
+                устойчивых решений на мировых рынках.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Team Section */}
+        {/* Команда */}
         <div className="mt-20 sm:mt-24">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-10 sm:mb-12 text-purple-300">
-            Meet Our Team
+            Наша Команда
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {[
-              { name: "Abdurashid Karimov", role: "Founder & Lead Architect" },
-              { name: "Laylo Ismatova", role: "Creative Director" },
-              { name: "Javlonbek Tursunov", role: "Sustainability Expert" },
+              { name: "Абдурашид Каримов", role: "Основатель и Главный Архитектор" },
+              { name: "Лайло Исматова", role: "Креативный Директор" },
+              { name: "Жавлонбек Турсунов", role: "Эксперт по Устойчивости" },
             ].map((member, idx) => (
               <div
                 key={idx}
@@ -169,15 +171,15 @@ const About = () => {
           </div>
         </div>
 
-        {/* Closing CTA */}
+        {/* Заключение */}
         <div className="mt-20 sm:mt-24 text-center">
           <p className="text-gray-400 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-6">
-            Every blueprint we draw is{" "}
-            <span className="text-purple-400 font-semibold">a promise</span> to
-            shape a better, more beautiful Uzbekistan.
+            Каждый наш проект — это{" "}
+            <span className="text-purple-400 font-semibold">обещание</span>{" "}
+            построить более красивый и гармоничный Узбекистан.
           </p>
           <button className="px-6 sm:px-8 py-3 bg-purple-600 hover:bg-purple-700 transition-colors text-white font-semibold rounded-full shadow-lg text-sm sm:text-base">
-            Contact Us
+            Связаться с нами
           </button>
         </div>
       </div>
