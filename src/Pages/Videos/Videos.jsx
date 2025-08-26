@@ -5,12 +5,12 @@ import Modal from 'react-modal';
 import { api } from '../../utils/api';
 
 const courseDetails = {
-  '3d-design': { instructor: 'John Smith', videos: 18, highlights: ['Introduction to 3D modeling tools', 'Texturing and lighting techniques', 'Creating animations in Blender'] },
-  figma: { instructor: 'Anna Designova', videos: 12, highlights: ['Figma interface walkthrough', 'Building responsive UI kits', 'Prototyping interactions'] },
-  direction: { instructor: 'Mark Daniels', videos: 10, highlights: ['Principles of visual storytelling', 'Scene composition', 'Camera angles and transitions'] },
-  'web-dev': { instructor: 'Emily Zhao', videos: 20, highlights: ['React and Next.js fundamentals', 'Backend with Node.js & MongoDB', 'Deploying on Vercel'] },
-  animation: { instructor: 'Carlos Motion', videos: 15, highlights: ['Keyframe animation basics', 'After Effects workflow', 'Exporting for social media'] },
-  branding: { instructor: 'Sara Identi', videos: 9, highlights: ['Brand strategy foundations', 'Logo creation process', 'Building style guides'] },
+  '3d-design': { instructor: 'Джон Смит', videos: 18, highlights: ['Введение в инструменты 3D-моделирования', 'Текстурирование и освещение', 'Создание анимации в Blender'] },
+  figma: { instructor: 'Анна Дизайнова', videos: 12, highlights: ['Обзор интерфейса Figma', 'Создание адаптивных UI-комплектов', 'Прототипирование взаимодействий'] },
+  direction: { instructor: 'Марк Дэниэлс', videos: 10, highlights: ['Принципы визуального сторителлинга', 'Композиция сцены', 'Ракурсы камеры и переходы'] },
+  'web-dev': { instructor: 'Эмили Чжао', videos: 20, highlights: ['Основы React и Next.js', 'Бэкенд на Node.js и MongoDB', 'Деплой на Vercel'] },
+  animation: { instructor: 'Карлос Моушн', videos: 15, highlights: ['Основы покадровой анимации', 'Рабочий процесс в After Effects', 'Экспорт для соцсетей'] },
+  branding: { instructor: 'Сара Айденти', videos: 9, highlights: ['Основы бренд-стратегии', 'Процесс создания логотипа', 'Разработка гайдбука'] },
 };
 
 const mockUser = {
@@ -46,12 +46,12 @@ const Videos = () => {
         }));
         setCategories(cats);
       })
-      .catch((err) => console.error('Failed to fetch categories:', err))
+      .catch((err) => console.error('Ошибка при загрузке категорий:', err))
       .finally(() => setLoading(false));
   }, []);
 
   const handleBuy = (cat) => {
-    const message = encodeURIComponent(`Hello! I want to purchase the "${cat.name}" course.`);
+    const message = encodeURIComponent(`Здравствуйте! Я хочу приобрести курс "${cat.name}".`);
     window.open(`https://t.me/fkhv_1?text=${message}`, '_blank');
   };
 
@@ -63,30 +63,30 @@ const Videos = () => {
   const handleNavigate = (cat) => {
     const hasAccess = mockUser.purchasedCourses.includes(cat.slug);
     if (hasAccess) navigate(`/videos/${cat.slug}`);
-    else alert('Please purchase the course to access full content.');
+    else alert('Пожалуйста, приобретите курс для доступа к полному содержимому.');
   };
 
   if (loading) {
     return (
       <div className="min-h-screen flex justify-center items-center text-white text-xl px-4">
-        Loading categories...
+        Загружаем категории...
       </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-gray-950 text-white py-6 px-4 sm:px-6 lg:px-12">
-      {/* Header */}
+      {/* Заголовок */}
       <div className="text-center mb-8">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-4 gradient-text animate-gradient">
-          🎥 Video Course Categories
+          🎥 Категории видео-курсов
         </h1>
         <p className="text-gray-400 text-sm sm:text-base md:text-lg max-w-xl mx-auto px-2 sm:px-0">
-          Explore professional courses across design and development. Full mobile support & interactive UI.
+          Изучайте профессиональные курсы по дизайну и разработке. Полная поддержка мобильных устройств и интерактивный интерфейс.
         </p>
       </div>
 
-      {/* Course Grid */}
+      {/* Сетка курсов */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {categories.map((cat) => {
           const purchased = mockUser.purchasedCourses.includes(cat.slug);
@@ -95,17 +95,17 @@ const Videos = () => {
               key={cat.slug}
               className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500 group cursor-pointer"
             >
-              {/* Thumbnail */}
+              {/* Миниатюра */}
               <div className="relative h-44 sm:h-52 w-full overflow-hidden">
                 <img
                   src={cat.image}
-                  alt={`${cat.name} Thumbnail`}
+                  alt={`Превью ${cat.name}`}
                   className="h-full w-full object-cover brightness-90 group-hover:brightness-110 transition-all duration-500"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-25 group-hover:bg-opacity-40 transition-all duration-500" />
               </div>
 
-              {/* Card Content */}
+              {/* Содержимое карточки */}
               <div className="p-4 sm:p-5 flex flex-col justify-between h-[230px]">
                 <div>
                   <h2 className="text-xl sm:text-2xl font-bold mb-1 group-hover:text-yellow-400 transition-colors duration-300">{cat.name}</h2>
@@ -118,7 +118,7 @@ const Videos = () => {
                     onClick={() => handlePreview(cat)}
                     className="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-2 px-3 sm:py-2 sm:px-4 rounded-2xl text-xs sm:text-sm w-full sm:w-auto transition-all duration-300 shadow-md hover:shadow-xl"
                   >
-                    Preview
+                    Просмотр
                   </button>
 
                   {purchased ? (
@@ -126,14 +126,14 @@ const Videos = () => {
                       onClick={() => handleNavigate(cat)}
                       className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-3 sm:py-2 sm:px-4 rounded-2xl text-xs sm:text-sm w-full sm:w-auto transition-all duration-300 shadow-md hover:shadow-xl"
                     >
-                      Start Learning
+                      Начать обучение
                     </button>
                   ) : (
                     <button
                       onClick={() => handleBuy(cat)}
                       className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-3 sm:py-2 sm:px-4 rounded-2xl text-xs sm:text-sm w-full sm:w-auto transition-all duration-300 shadow-md hover:shadow-xl"
                     >
-                      Buy Course
+                      Купить курс
                     </button>
                   )}
                 </div>
@@ -143,11 +143,11 @@ const Videos = () => {
         })}
       </div>
 
-      {/* Modal */}
+      {/* Модальное окно */}
       <Modal
         isOpen={modalOpen}
         onRequestClose={() => setModalOpen(false)}
-        contentLabel="Course Preview"
+        contentLabel="Предпросмотр курса"
         className="bg-gray-900 rounded-2xl mx-4 sm:mx-auto max-w-md sm:max-w-2xl mt-16 sm:mt-24 p-4 sm:p-6 text-white outline-none overflow-y-auto max-h-[90vh] shadow-2xl"
         overlayClassName="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 px-2 sm:px-0"
       >
@@ -157,12 +157,12 @@ const Videos = () => {
             <p className="text-gray-400 mb-4 text-sm sm:text-base">{selectedCourse.description}</p>
 
             <div className="mb-4 text-sm sm:text-base">
-              <p><span className="font-semibold">Instructor:</span> {courseDetails[selectedCourse.slug]?.instructor || 'TBA'}</p>
-              <p><span className="font-semibold">Number of Videos:</span> {courseDetails[selectedCourse.slug]?.videos || 'TBA'}</p>
+              <p><span className="font-semibold">Преподаватель:</span> {courseDetails[selectedCourse.slug]?.instructor || 'Уточняется'}</p>
+              <p><span className="font-semibold">Количество видео:</span> {courseDetails[selectedCourse.slug]?.videos || 'Уточняется'}</p>
             </div>
 
             <div>
-              <p className="font-semibold mb-2 text-sm sm:text-base">What You'll Learn:</p>
+              <p className="font-semibold mb-2 text-sm sm:text-base">Вы изучите:</p>
               <ul className="list-disc list-inside text-xs sm:text-sm space-y-1 text-gray-300">
                 {(courseDetails[selectedCourse.slug]?.highlights || []).map((item, idx) => (
                   <li key={idx}>{item}</li>
@@ -174,13 +174,13 @@ const Videos = () => {
               onClick={() => setModalOpen(false)}
               className="mt-4 sm:mt-6 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-3 sm:py-2 sm:px-4 rounded-2xl w-full sm:w-auto transition-all duration-300 shadow-md hover:shadow-xl"
             >
-              Close
+              Закрыть
             </button>
           </div>
         )}
       </Modal>
 
-      {/* Gradient Animation */}
+      {/* Анимация градиента */}
       <style>
         {`
           @keyframes gradient {
