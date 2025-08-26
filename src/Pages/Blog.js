@@ -5,33 +5,33 @@ import { animate, stagger } from "animejs";
 const blogPosts = [
   {
     id: "welcome",
-    title: "Welcome to Our Blog",
+    title: "Добро пожаловать в наш блог",
     description:
-      "Stay updated with the latest news, updates, and insights from our platform.",
+      "Следите за последними новостями, обновлениями и идеями нашей платформы.",
     image: "https://source.unsplash.com/1200x800/?technology,futuristic",
-    tags: ["Platform", "News"],
+    tags: ["Платформа", "Новости"],
     preview:
-      "We build with care — premium content and practical tips for creators and learners.",
+      "Мы создаём с заботой — премиум-контент и практические советы для создателей и учеников.",
   },
   {
     id: "learning",
-    title: "Learning Made Easy",
+    title: "Учиться стало проще",
     description:
-      "Discover how we make online education more effective and engaging.",
+      "Узнайте, как мы делаем онлайн-образование более эффективным и увлекательным.",
     image: "https://source.unsplash.com/1200x800/?education,modern",
-    tags: ["Learning", "Tips"],
+    tags: ["Обучение", "Советы"],
     preview:
-      "Short, structured courses with hands-on projects to keep you moving forward.",
+      "Короткие структурированные курсы с практическими проектами помогут вам двигаться вперёд.",
   },
   {
     id: "behind",
-    title: "Behind the Scenes",
+    title: "Закулисье",
     description:
-      "A look at how we build, create, and innovate to bring you premium content.",
+      "Загляните в то, как мы создаём и развиваем премиум-контент.",
     image: "https://source.unsplash.com/1200x800/?workspace,creative",
-    tags: ["Culture", "Product"],
+    tags: ["Культура", "Продукт"],
     preview:
-      "Our team shares design decisions, tools, and the stories behind product choices.",
+      "Наша команда делится дизайнерскими решениями, инструментами и историями о выборе продуктов.",
   },
 ];
 
@@ -68,7 +68,6 @@ export default function Blog() {
   }
 
   useEffect(() => {
-    // Animate hero text on mobile and desktop
     if (heroRef.current) {
       animate(heroRef.current.querySelectorAll(".hero-line"), {
         translateY: [30, 0],
@@ -79,7 +78,6 @@ export default function Blog() {
       });
     }
 
-    // Scroll-triggered animations for cards (works smooth on mobile)
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -127,24 +125,6 @@ export default function Blog() {
         .card:hover .preview {transform: translateY(0%);}
         .btn-premium:active { transform: scale(0.98); }
         .card:hover { box-shadow: 0 20px 40px rgba(99,102,241,0.12), 0 6px 12px rgba(124,58,237,0.06); }
-
-        /* Responsive adjustments */
-        @media (max-width: 1024px) {
-          .hero-title { font-size: 4rem; }
-          .hero-sub { font-size: 1rem; }
-        }
-        @media (max-width: 768px) {
-          .hero-title { font-size: 2.5rem; }
-          .hero-sub { font-size: 0.95rem; }
-          .card { transform: none !important; }
-          .card-image { transform: none !important; }
-        }
-        @media (max-width: 480px) {
-          .hero-title { font-size: 2.2rem; }
-          .hero-sub { font-size: 0.9rem; }
-          .grid { grid-template-columns: 1fr !important; }
-          .preview { font-size: 0.85rem; }
-        }
       `}</style>
 
       {/* HERO */}
@@ -154,26 +134,25 @@ export default function Blog() {
         <div className="max-w-6xl mx-auto text-center relative z-10">
           <h1 className="hero-line hero-title text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-pink-300">
-              Thoughtful articles,
+              Полезные статьи,
             </span>{" "}
-            <span className="block text-[#e6e9f2] mt-2 md:mt-0">crafted for creators</span>
+            <span className="block text-[#e6e9f2] mt-2 md:mt-0">созданные для создателей</span>
           </h1>
           <p className="hero-line hero-sub mt-6 text-gray-300 max-w-2xl mx-auto">
-            Deep dives, lessons, and practical guides — curated to help you design, build,
-            and ship better products.
+            Глубокие обзоры, уроки и практические руководства — всё, чтобы помочь вам проектировать, создавать и запускать лучшие продукты.
           </p>
           <div className="mt-8 flex items-center justify-center gap-4 flex-wrap">
             <a
               className="inline-flex items-center px-5 py-3 rounded-full text-sm font-medium btn-premium bg-gradient-to-r from-indigo-500 to-pink-500 shadow-lg hover:scale-105 transition-transform duration-300 focus:outline-none"
               href="#posts"
             >
-              Explore posts
+              Читать статьи
             </a>
             <a
               className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium border border-white/10 text-gray-200 hover:bg-white/5 transition-colors"
               href="#subscribe"
             >
-              Subscribe
+              Подписаться
             </a>
           </div>
         </div>
@@ -225,7 +204,7 @@ export default function Blog() {
                     className="text-sm inline-flex items-center gap-2 font-medium px-4 py-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 shadow hover:translate-y-[-2px] transition-transform duration-300"
                     href={`/blog/${post.id}`}
                   >
-                    Read Article
+                    Читать статью
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                       <path
                         d="M5 12h14M13 5l7 7-7 7"
@@ -237,7 +216,7 @@ export default function Blog() {
                     </svg>
                   </a>
                   <div className="text-xs text-gray-400">
-                    <div>5 min read</div>
+                    <div>5 мин чтения</div>
                   </div>
                 </div>
               </div>
@@ -251,9 +230,9 @@ export default function Blog() {
         id="subscribe"
         className="max-w-4xl mx-auto px-6 py-14 rounded-2xl bg-gradient-to-r from-white/4 to-white/6 border border-white/6 text-center"
       >
-        <h4 className="text-lg font-semibold text-white mb-3">Stay up to date</h4>
+        <h4 className="text-lg font-semibold text-white mb-3">Будьте в курсе</h4>
         <p className="text-sm text-gray-300 mb-6">
-          Join our newsletter — short monthly notes, curated reads, and product updates.
+          Подпишитесь на нашу рассылку — короткие ежемесячные заметки, полезные материалы и новости о продуктах.
         </p>
         <form
           onSubmit={(e) => {
@@ -263,7 +242,7 @@ export default function Blog() {
             if (input) {
               input.value = "";
               animate(el, { scale: [1, 0.98, 1], duration: 300 });
-              alert("Subscribed (demo) — integrate your mailing service.");
+              alert("Подписка оформлена (демо) — подключите свой сервис рассылки.");
             }
           }}
           className="flex items-center justify-center gap-3 flex-wrap"
@@ -279,7 +258,7 @@ export default function Blog() {
             type="submit"
             className="px-5 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-pink-500 shadow hover:scale-105 transition-transform duration-200"
           >
-            Subscribe
+            Подписаться
           </button>
         </form>
       </section>
