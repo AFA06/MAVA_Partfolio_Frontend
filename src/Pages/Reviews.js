@@ -9,7 +9,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-// --- Replace with your assets ---
 const HERO_IMAGE = hero1;
 const bgFragments = [
   "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=800",
@@ -19,34 +18,34 @@ const bgFragments = [
 
 const reviews = [
   {
-    name: "Olivia Martinez",
-    role: "Interior Designer",
+    name: "Оливия Мартинес",
+    role: "Дизайнер интерьеров",
     review:
-      "Transformative from day one. They sculpted light, texture, and proportion into a space that breathes. The result is serene and distinctly ours.",
+      "С первого дня это было преобразующее. Они превратили свет, текстуру и пропорции в пространство, которое дышит. Результат — спокойный и уникально наш.",
     rating: 5,
     image: "https://randomuser.me/api/portraits/women/65.jpg",
   },
   {
-    name: "Ethan Johnson",
-    role: "Project Manager",
+    name: "Итан Джонсон",
+    role: "Руководитель проекта",
     review:
-      "Constructability without compromising beauty. Clear drawings, proactive coordination, zero drama. The build phase was the smoothest I’ve managed.",
+      "Практичность без ущерба для красоты. Четкие чертежи, активная координация, никакого стресса. Этап строительства прошёл максимально гладко.",
     rating: 5,
     image: "https://randomuser.me/api/portraits/men/32.jpg",
   },
   {
-    name: "Sophia Lee",
-    role: "Homeowner",
+    name: "София Ли",
+    role: "Владелица дома",
     review:
-      "They designed a sanctuary. Morning light, quiet corners, a flow that feels inevitable. It’s more than a house—it’s a feeling.",
+      "Они спроектировали убежище. Утренний свет, тихие уголки, поток, который ощущается естественным. Это больше, чем дом — это чувство.",
     rating: 5,
     image: "https://randomuser.me/api/portraits/women/22.jpg",
   },
   {
-    name: "David Kim",
-    role: "Developer",
+    name: "Дэвид Ким",
+    role: "Девелопер",
     review:
-      "They hit the numbers and the narrative. Leasing velocity was insane because the architecture sold the vision before we even opened.",
+      "Они соединили цифры и историю. Сдача помещений шла с невероятной скоростью, потому что архитектура продавала видение ещё до открытия.",
     rating: 4,
     image: "https://randomuser.me/api/portraits/men/45.jpg",
   },
@@ -87,12 +86,6 @@ const Reviews = () => {
 
   return (
     <div className="font-sans min-h-screen bg-black text-white relative overflow-hidden">
-      <style>{`
-        @keyframes grain { 0%{transform:translate(0,0)}100%{transform:translate(-100%,-100%)}}
-        @keyframes marquee {0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-        @keyframes floaty {0%{transform:translateY(0)}50%{transform:translateY(-20px)}100%{transform:translateY(0)}}
-      `}</style>
-
       {/* ---- HERO ---- */}
       <section className="relative w-full h-[70vh] sm:h-[80vh] flex items-center justify-center overflow-hidden">
         <div
@@ -126,7 +119,7 @@ const Reviews = () => {
                   animationDelay: `${i * 2}s`,
                 }}
               >
-                <img src={src} alt="fragment" className="w-full h-full object-cover" />
+                <img src={src} alt="фрагмент" className="w-full h-full object-cover" />
               </div>
             ))}
           </motion.div>
@@ -141,9 +134,9 @@ const Reviews = () => {
               transition={{ duration: 0.8 }}
               className="text-3xl sm:text-5xl md:text-7xl font-extrabold tracking-tight drop-shadow-lg"
             >
-              Architecture with{" "}
+              Архитектура с{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-white to-amber-300">
-                Presence
+                присутствием
               </span>
               .
             </motion.h1>
@@ -153,29 +146,8 @@ const Reviews = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mt-4 sm:mt-6 max-w-xl text-white/80 text-base sm:text-lg md:text-xl mx-auto sm:mx-0"
             >
-              Spatial stories shaped by light, proportion, and material honesty.
+              Пространственные истории, сформированные светом, пропорциями и честностью материалов.
             </motion.p>
-          </div>
-        </div>
-      </section>
-
-      {/* ---- MARQUEE ---- */}
-      <section className="relative py-6 sm:py-10 border-y border-white/10 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent">
-        <div className="overflow-hidden">
-          <div
-            className="flex items-center gap-10 sm:gap-16 whitespace-nowrap will-change-transform"
-            style={{ animation: "marquee 28s linear infinite" }}
-          >
-            {["ArchiDaily", "Design Milk", "Dezeen", "Wallpaper*", "Frame", "Domus"].map(
-              (brand, i) => (
-                <span
-                  key={i}
-                  className="text-white/50 hover:text-white/80 transition-colors text-lg sm:text-xl tracking-widest drop-shadow"
-                >
-                  {brand}
-                </span>
-              )
-            )}
           </div>
         </div>
       </section>
@@ -188,10 +160,10 @@ const Reviews = () => {
           viewport={{ once: true }}
           className="text-3xl sm:text-4xl md:text-6xl font-bold mb-3 sm:mb-4"
         >
-          What Our Clients Say
+          Что говорят наши клиенты
         </motion.h2>
         <p className="text-white/70 max-w-xl mx-auto text-base sm:text-lg">
-          Honest words from people we design for.
+          Честные слова людей, для которых мы создаём дизайн.
         </p>
       </section>
 
@@ -221,17 +193,16 @@ const Reviews = () => {
           <div className="relative z-10 grid grid-cols-1 md:grid-cols-2">
             <div className="p-8 sm:p-10 md:p-16 text-center md:text-left">
               <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold">
-                Let’s build something unforgettable.
+                Давайте создадим что-то незабываемое.
               </h3>
               <p className="mt-3 sm:mt-4 text-white/75 text-base sm:text-lg">
-                From concept to delivery, our studio partners with you to craft
-                work that performs—and inspires.
+                От концепции до реализации наша студия работает вместе с вами, чтобы создать работу, которая вдохновляет.
               </p>
               <a
                 href="/contact"
                 className="mt-6 sm:mt-8 inline-block rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-black px-8 sm:px-10 py-3 font-semibold hover:scale-105 transition-transform shadow-lg"
               >
-                Start a Project
+                Начать проект
               </a>
             </div>
             <div className="relative min-h-[200px] sm:min-h-[260px]">
@@ -265,7 +236,6 @@ function Card3D({ review }) {
   });
   const glow = useTransform(tiltX, [0, 1], ["40%", "60%"]);
 
-  // ----- Desktop hover -----
   const handleMove = (e) => {
     const r = ref.current?.getBoundingClientRect();
     if (!r) return;
@@ -277,7 +247,6 @@ function Card3D({ review }) {
     tiltY.set(0.5);
   };
 
-  // ----- Mobile touch -----
   const handleTouchMove = (e) => {
     const r = ref.current?.getBoundingClientRect();
     if (!r) return;
