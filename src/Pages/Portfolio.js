@@ -10,45 +10,46 @@ import "swiper/css/pagination";
 const projectsData = [
   {
     id: 1,
-    name: "Modern Villa",
+    name: "Современная Вилла",
     image:
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-    description: "A luxurious modern villa blending minimalism and comfort.",
+    description:
+      "Роскошная современная вилла, сочетающая минимализм и комфорт.",
   },
   {
     id: 2,
-    name: "Urban Complex",
+    name: "Городской Комплекс",
     image:
       "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80",
-    description: "High-rise urban complex with innovative public spaces.",
+    description: "Многоэтажный городской комплекс с инновационными общественными пространствами.",
   },
   {
     id: 3,
-    name: "Eco House",
+    name: "Эко Дом",
     image:
       "https://images.unsplash.com/photo-1599423300746-b62533397364?auto=format&fit=crop&w=1200&q=80",
-    description: "Sustainable architecture integrated with nature.",
+    description: "Устойчивое строительство, интегрированное с природой.",
   },
   {
     id: 4,
-    name: "Glass Tower",
+    name: "Стеклянная Башня",
     image:
       "https://images.unsplash.com/photo-1529421308361-4b76c0b8d2f1?auto=format&fit=crop&w=1200&q=80",
-    description: "A futuristic glass skyscraper redefining urban skylines.",
+    description: "Футуристический небоскрёб из стекла, меняющий облик города.",
   },
   {
     id: 5,
-    name: "Luxury Resort",
+    name: "Роскошный Курорт",
     image:
       "https://images.unsplash.com/photo-1501117716987-c8e2a0f1e0f1?auto=format&fit=crop&w=1200&q=80",
-    description: "Seaside resort combining luxury with natural harmony.",
+    description: "Курорт у моря, сочетающий роскошь и гармонию с природой.",
   },
   {
     id: 6,
-    name: "Cultural Center",
+    name: "Культурный Центр",
     image:
       "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80",
-    description: "A landmark cultural hub blending tradition and modernity.",
+    description: "Знаковый культурный центр, объединяющий традиции и современность.",
   },
 ];
 
@@ -119,15 +120,14 @@ const Portfolio = () => {
 
         <div className="relative z-20 text-center px-4 sm:px-6 md:px-8 max-w-4xl">
           <h1 className="hero-title text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif font-bold tracking-wide text-yellow-300 drop-shadow-[0_5px_20px_rgba(255,215,0,0.9)]">
-            {`Our Portfolio`.split("").map((char, i) => (
+            {`Наш Портфолио`.split("").map((char, i) => (
               <span key={i} className="inline-block opacity-0">
                 {char}
               </span>
             ))}
           </h1>
           <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl font-light text-gray-100 drop-shadow-md">
-            Showcasing selected projects that highlight our creativity,
-            expertise, and design vision.
+            Подборка проектов, демонстрирующих наше творчество, опыт и видение дизайна.
           </p>
         </div>
       </section>
@@ -142,18 +142,17 @@ const Portfolio = () => {
       >
         <div className="bg-gradient-to-br from-gray-900/70 to-black/70 backdrop-blur-xl border border-yellow-500/30 rounded-2xl md:rounded-3xl shadow-2xl max-w-5xl text-center p-6 sm:p-10 md:p-12 hover:scale-[1.02] transition-transform duration-700">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-serif text-yellow-400 mb-4 sm:mb-6">
-            Our Philosophy
+            Наша Философия
           </h2>
           <p className="text-gray-300 leading-relaxed text-sm sm:text-base md:text-lg">
-            Each project in our portfolio reflects a balance of creativity,
-            precision, and innovation. We aim to design spaces that tell stories,
-            capture emotions, and embody functionality — all while maintaining
-            sustainability and elegance.
+            Каждый проект в нашем портфолио отражает баланс креативности, точности и инноваций. 
+            Мы стремимся создавать пространства, которые рассказывают истории, вызывают эмоции 
+            и воплощают функциональность — при этом сохраняя устойчивость и элегантность.
           </p>
         </div>
       </motion.section>
 
-      {/* Projects Section (Grid on desktop, Carousel on mobile) */}
+      {/* Projects Section */}
       <motion.section
         className="min-h-screen flex flex-col justify-center px-4 sm:px-8 md:px-16 py-10"
         variants={fadeInUp}
@@ -162,7 +161,7 @@ const Portfolio = () => {
         viewport={{ once: true, amount: 0.3 }}
       >
         <h2 className="text-2xl sm:text-3xl md:text-5xl font-serif text-center text-yellow-400 mb-10 sm:mb-12 md:mb-16">
-          Featured Projects
+          Избранные Проекты
         </h2>
 
         {/* Mobile Carousel */}
@@ -243,11 +242,11 @@ const Portfolio = () => {
         <div className="absolute inset-0 bg-black/80"></div>
         <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-4 sm:px-6 md:px-8">
           <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif font-bold text-yellow-400 mb-4 sm:mb-6 drop-shadow-lg">
-            Signature Project
+            Знаковый Проект
           </h2>
           <p className="max-w-3xl text-gray-200 text-sm sm:text-base md:text-lg mb-6 sm:mb-8">
-            A showcase of futuristic design fused with timeless elegance,
-            redefining modern architectural landscapes.
+            Демонстрация футуристического дизайна, объединённого с вечной элегантностью, 
+            переосмысляющего современный архитектурный ландшафт.
           </p>
           <motion.a
             href="#projects"
@@ -255,7 +254,7 @@ const Portfolio = () => {
             whileTap={{ scale: 0.97 }}
             className="px-6 sm:px-8 py-2 sm:py-3 bg-yellow-400 text-black text-sm sm:text-base font-semibold rounded-full shadow-lg hover:bg-yellow-300 transition"
           >
-            View More Projects
+            Смотреть больше проектов
           </motion.a>
         </div>
       </motion.section>
