@@ -10,20 +10,21 @@
   "contacts": "Kontaktlar",
   "videos": "Kurslar",
   "phone": "+998 99 808-36-16",
-  
+
   "hero": {
     "title": "Arxitektura mahoratini namoyish etish",
     "subtitle": "Innovatsion loyihalar va barqaror yechimlar",
     "button": "Loyihalarni ko'rish"
   },
+
   "footer": {
     "studioTitle": "Moskva shahridagi interyer dizayn studiyasi",
-    "studioName": "Lashina Sergey 'VPROEKTE'",
+    "studioName": "Lashina Sergey «VPROEKTE»",
     "studioDesc": "Individual mualliflik yondashuvi.",
     "contacts": "Kontaktlar",
     "phone": "+998 99 808-36-16",
     "email": "hello@vproekte.com",
-    "address": "Ximki, Novogorsk tumani, 'Novogorsk Club' YKK",
+    "address": "Ximki, Novogorsk tumani, «Novogorsk Club» YKK",
     "map": "Xaritada",
     "navigation": "Navigatsiya",
     "link1": "Kvartira ta'miri",
@@ -37,10 +38,11 @@
     "link9": "Blog",
     "link10": "Kontaktlar",
     "link11": "Sayt xaritasi",
-    "bottomLine": "Portfel: Kvartiralar | Uylari | Ofislar | Mehmonxonalar | Hammomlar | Oshxonalar | Yotoqxonalar | Bolalar xonalari | Garderoblar | Kabinetlar | Arxitektura | Jamoat joylari va LOBBILAR",
+    "bottomLine": "Portfel: Kvartiralar | Ular | Ofislar | Mehmonxonalar | Hammomlar | Oshxonalar | Yotoqxonalar | Bolalar xonalari | Garderoblar | Kabinetlar | Arxitektura | Jamoat joylari va LOBBILAR",
     "orderCall": "Qo'ng'iroq buyurtma qilish",
     "dev": "Sayt ishlab chiqilishi —"
   },
+
   "login": {
     "subtitle": "Hisobingizga kiring",
     "email": "Elektron pochta",
@@ -51,29 +53,81 @@
     "noAccount": "Hisobingiz yo'qmi?",
     "errorGeneric": "Kirishda xatolik yuz berdi"
   },
+
   "signup": {
     "name": "Ism",
-  "surname": "Familiya",
-  "namePlaceholder": "Ismingiz",
-  "surnamePlaceholder": "Familiyangiz",
-  "createAccount": "Hisob yarating",
-  "email": "Elektron pochta",
-  "password": "Parol",
-  "confirmPassword": "Parolni tasdiqlang",
-  "signUp": "Ro‘yxatdan o‘tish",
-  "signIn": "Kirish",
-  "haveAccount": "Allaqachon hisobingiz bormi?",
-  "passwordsDoNotMatch": "Parollar mos emas",
-  "signupFailed": "Ro‘yxatdan o‘tishda xatolik yuz berdi",
-  "generalError": "Nomaʼlum xatolik yuz berdi",
-  "male": "Erkak",
-  "female": "Ayol",
-  "gender": "Jinsi",
-  "min8": "Kamida 8 ta belgi",
-  "uppercase": "Bitta katta harf",
-  "lowercase": "Bitta kichik harf",
-  "number": "Bitta raqam",
-  "symbol": "Bitta maxsus belgi (!@#$...)"
-}
+    "surname": "Familiya",
+    "namePlaceholder": "Ismingiz",
+    "surnamePlaceholder": "Familiyangiz",
+    "createAccount": "Hisob yarating",
+    "email": "Elektron pochta",
+    "password": "Parol",
+    "confirmPassword": "Parolni tasdiqlang",
+    "signUp": "Ro‘yxatdan o‘tish",
+    "signIn": "Kirish",
+    "haveAccount": "Allaqachon hisobingiz bormi?",
+    "passwordsDoNotMatch": "Parollar mos emas",
+    "signupFailed": "Ro‘yxatdan o‘tishda xatolik yuz berdi",
+    "generalError": "Nomaʼlum xatolik yuz berdi",
+    "male": "Erkak",
+    "female": "Ayol",
+    "gender": "Jinsi",
+    "min8": "Kamida 8 ta belgi",
+    "uppercase": "Bitta katta harf",
+    "lowercase": "Bitta kichik harf",
+    "number": "Bitta raqam",
+    "symbol": "Bitta maxsus belgi (!@#$...)"
+  },
 
+  "homepage": {
+    "hero": {
+      "title": "Arxitektura mahoratini namoyish etish",
+      "subtitle": "Innovatsion loyihalar va barqaror yechimlar",
+      "desc": "Forma va funksiyani uyg‘unlashtiruvchi innovatsion arxitektura yechimlari.",
+      "button": "Loyihalarni ko‘rish"
+    },
+    "about": {
+      "title": "Studiya haqida",
+      "p1": "Nex Architecture — shahar qiyofasini aniqlik va innovatsiya orqali o‘zgartirayotgan dizaynerlar va muhandislar jamoasi.",
+      "p2": "Har bir loyiha falsafa asosida yaratiladi: forma funksiyaga bo‘ysunadi — ammo sanʼat ruhi bilan."
+    },
+    "advantages": {
+      "title": "Bizning afzalliklarimiz",
+      "projects": {
+        "title": "352 ta yakunlangan loyiha",
+        "desc": "G‘oyalarni haqiqatga aylantiruvchi tajriba."
+      },
+      "clients": {
+        "title": "567 ta mamnun mijoz",
+        "desc": "Ishonchga asoslangan uzoq muddatli hamkorlik."
+      },
+      "revenue": {
+        "title": "656M oylik daromad",
+        "desc": "Barqaror o‘sishni taʼminlovchi loyihalar."
+      },
+      "awards": {
+        "title": "17 ta mukofot",
+        "desc": "Ijodkorlik va innovatsiyalar uchun eʼtirof."
+      }
+    },
+    "reviews": {
+      "title": "Mijozlar sharhlari",
+      "review1": {
+        "text": "«Nex Architecture bizning qarashimizni arxitektura durdonasiga aylantirdi. Ularning detallashtirishdagi yondashuvi — mislsiz.»",
+        "author": "Jane Doe"
+      },
+      "review2": {
+        "text": "«Professional, innovatsion va ishonchli — Nex jamoasi barcha kutganlarimizdan oshdi.»",
+        "author": "John Smith"
+      }
+    },
+    "contact": {
+      "title": "Biz bilan bog‘laning",
+      "desc": "Loyihangiz g‘oyasi bormi yoki savollaringizmi? Har doim yordam berishga tayyormiz.",
+      "name": "Ismingiz",
+      "email": "Emailingiz",
+      "message": "Xabaringiz",
+      "button": "Yuborish"
+    }
+  }
 }
