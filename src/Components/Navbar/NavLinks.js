@@ -1,12 +1,11 @@
-// frontend/src/components/NavLinks.js
 const navLinks = [
-  { label: 'portfolio', href: '/portfolio' },
-  { label: 'reviews', href: '/reviews' },
-  { label: 'about', href: '/about' },
-  { label: 'blog', href: '/blog' },
-  { label: 'vacancies', href: '/vacancies' },
-  { label: 'contacts', href: '/contacts' },
-  { label: 'videos', href: '/videos' }, // <-- still included
+  { label: "portfolio", label_ru: "Портфолио", href: "/portfolio" },
+  { label: "reviews", label_ru: "Отзывы", href: "/reviews" },
+  { label: "about", label_ru: "О нас", href: "/about" },
+  { label: "blog", label_ru: "Блог", href: "/blog" },
+  { label: "vacancies", label_ru: "Вакансии", href: "/vacancies" },
+  { label: "contacts", label_ru: "Контакты", href: "/contacts" },
+  { label: "videos", label_ru: "Видео", href: "/videos" },
 ];
 
 export default navLinks;

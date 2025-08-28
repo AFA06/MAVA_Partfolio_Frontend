@@ -1,0 +1,151 @@
+{
+  "nex": "NEX ARCHITECTS",
+  "portfolio": "Portfolio",
+  "styles": "Styles",
+  "reviews": "Reviews",
+  "about": "About Us",
+  "blog": "Blog",
+  "suppliers": "For Suppliers",
+  "vacancies": "Careers",
+  "contacts": "Contacts",
+  "videos": "Courses",
+  "phone": "+998 99 808-36-16",
+
+  "hero": {
+    "title": "Architecture of the Future",
+    "subtitle": "Ideas, Forms, Solutions",
+    "button": "View Projects"
+  },
+
+  "footer": {
+    "studioTitle": "Interior Design Studio",
+    "studioName": "Sergey Lashin «VPROEKTE»",
+    "studioDesc": "Individual approach.",
+    "contacts": "Contacts",
+    "phone": "+998 99 808-36-16",
+    "email": "hello@vproekte.com",
+    "address": "Khimki, Novogorsk District, KP «Novogorsk Club»",
+    "map": "View on Map",
+    "navigation": "Navigation",
+    "link1": "Apartment Renovation",
+    "link2": "3D Visualization",
+    "link3": "Premium Design",
+    "link4": "Consultation+",
+    "link5": "A Day with a Designer",
+    "link6": "Construction Management",
+    "link7": "Procurement",
+    "link8": "Author Supervision",
+    "link9": "Blog",
+    "link10": "Contacts",
+    "link11": "Sitemap",
+    "bottomLine": "Portfolio: Apartments | Houses | Offices | Living Rooms | Bathrooms | Kitchens | Bedrooms | Kids Rooms | Dressing Rooms | Studies | Architecture | Common Areas | Lobbies",
+    "orderCall": "Request a Call",
+    "dev": "Website development —"
+  },
+
+  "login": {
+    "subtitle": "Log in to your account",
+    "email": "Email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter password",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "noAccount": "Don’t have an account?",
+    "errorGeneric": "Login error"
+  },
+
+  "signup": {
+    "name": "First Name",
+    "surname": "Last Name",
+    "namePlaceholder": "Your first name",
+    "surnamePlaceholder": "Your last name",
+    "createAccount": "Create Account",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "signUp": "Sign Up",
+    "signIn": "Sign In",
+    "haveAccount": "Already have an account?",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "signupFailed": "Signup failed",
+    "generalError": "An error occurred",
+    "min8": "Minimum 8 characters",
+    "uppercase": "One uppercase letter",
+    "lowercase": "One lowercase letter",
+    "number": "One number",
+    "symbol": "One special character (!@#$...)"
+  },
+
+  "homepage": {
+    "hero": {
+      "title": "Architecture of the Future",
+      "subtitle": "Ideas, Forms, Solutions",
+      "desc": "Modern solutions where form and function merge into timeless design.",
+      "button": "View Projects"
+    },
+    "about": {
+      "title": "About Us",
+      "p1": "Nex Architecture is a team of architects and engineers transforming the city’s landscape through innovation and precision.",
+      "p2": "Every project is based on the principle: form follows function, but with an artistic soul."
+    },
+    "advantages": {
+      "title": "Our Advantages",
+      "projects": {
+        "title": "352 Projects",
+        "desc": "Experience turns ideas into reality."
+      },
+      "clients": {
+        "title": "567 Clients",
+        "desc": "Trust and long-term relationships."
+      },
+      "revenue": {
+        "title": "656M Revenue",
+        "desc": "Solutions for sustainable growth."
+      },
+      "awards": {
+        "title": "17 Awards",
+        "desc": "Recognition for creativity."
+      }
+    },
+    "reviews": {
+      "title": "Reviews",
+      "review1": {
+        "text": "“Nex Architecture turned our vision into a masterpiece. Attention to detail is outstanding.”",
+        "author": "Jane Doe"
+      },
+      "review2": {
+        "text": "“Professional, modern, and reliable. The team exceeded our expectations.”",
+        "author": "John Smith"
+      }
+    },
+    "contact": {
+      "title": "Contact Us",
+      "desc": "Have an idea or a question? We are open to dialogue.",
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "button": "Send"
+    }
+  },
+
+  "reviewsPage": {
+    "title": "Our Clients’ Reviews",
+    "subtitle": "We value the trust of every client and take pride in our results.",
+    "review1": {
+      "text": "“The studio’s work exceeded all expectations. Very attentive to detail and always in touch.”",
+      "author": "Anna Ivanova"
+    },
+    "review2": {
+      "text": "“The project was completed on time and with quality. Our office now looks modern and stylish.”",
+      "author": "Sergey Petrov"
+    },
+    "review3": {
+      "text": "“Great team! They suggested several creative solutions we hadn’t even thought of.”",
+      "author": "Ekaterina Smirnova"
+    },
+    "review4": {
+      "text": "“Very professional approach. I recommend them to anyone who wants a quality result.”",
+      "author": "Alexander Orlov"
+    }
+  }
+}
