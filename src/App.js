@@ -12,10 +12,9 @@ import Login from './Components/Login_page/Login';
 import Signup from './Components/Login_page/Signup';
 import Videos from './Pages/Videos/Videos';
 import CategoryVideos from './Pages/Videos/CategoryVideos';
-import Reviews from './Pages/Reviews';
 import ForgotPassword from './Components/Login_page/ForgotPassword';
 import About from './Pages/About';
-import Contacts from './Pages/Contacts'; // ✅ added
+import Contacts from './Pages/Contacts';
 
 import './App.css';
 
@@ -38,10 +37,9 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/videos" element={<Videos />} />
           <Route path="/videos/:category" element={<CategoryVideos />} />
-          <Route path="/reviews" element={<Reviews />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/about" element={<About />} />
-          <Route path="/contacts" element={<Contacts />} /> {/* ✅ added */}
+          <Route path="/contacts" element={<Contacts />} />
         </Routes>
       </main>
 

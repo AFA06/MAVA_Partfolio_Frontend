@@ -1,6 +1,5 @@
 const navLinks = [
   { label: "portfolio", label_ru: "Портфолио", href: "/portfolio" },
-  { label: "reviews", label_ru: "Отзывы", href: "/reviews" },
   { label: "about", label_ru: "О нас", href: "/about" },
   { label: "blog", label_ru: "Блог", href: "/blog" },
   { label: "vacancies", label_ru: "Вакансии", href: "/vacancies" },

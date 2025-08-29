@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import navLinks from "./NavLinks";
 import "./navbar.css";
-import { Menu, X } from "lucide-react"; // icons for hamburger
+import { Menu, X } from "lucide-react"; 
 import logo from "../../assets/logo.jpg";
+import { useTranslation } from "react-i18next";
 
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isOpen, setIsOpen] = useState(false); // mobile menu toggle
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -27,6 +29,12 @@ function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // language change
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    setIsOpen(false);
+  };
 
   return (
     <nav
@@ -47,16 +55,20 @@ function Navbar() {
             }}
           />
           <span className="text-xl font-bold text-white group-hover:text-yellow-400 transition-colors duration-500">
-            NEX
+            {t("nex")}
           </span>
         </Link>
 
         {/* Desktop Center Nav */}
         <div className="hidden lg:flex flex-col items-center space-y-2 mx-auto text-center fade-in">
-          {/* Languages (EN is Russian now) */}
+          {/* Languages */}
           <div className="flex space-x-3">
-            <button className="lang-btn">EN</button>
-            <button className="lang-btn">UZ</button>
+            <button onClick={() => changeLanguage("en")} className="lang-btn">
+              EN
+            </button>
+            <button onClick={() => changeLanguage("uz")} className="lang-btn">
+              UZ
+            </button>
           </div>
           {/* Links */}
           <div className="flex space-x-6 text-base">
@@ -68,7 +80,7 @@ function Navbar() {
                   isActive ? "nav-link nav-link-active" : "nav-link"
                 }
               >
-                {link.label_ru}
+                {t(link.label)}
               </NavLink>
             ))}
           </div>
@@ -76,19 +88,19 @@ function Navbar() {
 
         {/* Right Section */}
         <div className="flex items-center space-x-4 fade-in">
-          <div className="phone-glow">Телефон</div>
+          <div className="phone-glow">{t("phone")}</div>
 
           {!user ? (
             <button onClick={() => navigate("/login")} className="btn-glow">
-              Войти
+              {t("login.signIn")}
             </button>
           ) : (
             <div className="flex items-center space-x-3">
               <span className="text-white font-medium">
-                {user.name || "Пользователь"}
+                {user.name || t("signup.name")}
               </span>
               <button onClick={handleLogout} className="btn-logout">
-                Выйти
+                {t("logout") || "Logout"}
               </button>
             </div>
           )}
@@ -108,8 +120,12 @@ function Navbar() {
         <div className="lg:hidden bg-black/90 backdrop-blur-md px-6 py-4 space-y-4 fade-in">
           {/* Languages */}
           <div className="flex space-x-3">
-            <button className="lang-btn">EN</button>
-            <button className="lang-btn">UZ</button>
+            <button onClick={() => changeLanguage("en")} className="lang-btn">
+              EN
+            </button>
+            <button onClick={() => changeLanguage("uz")} className="lang-btn">
+              UZ
+            </button>
           </div>
 
           {/* Links */}
@@ -123,7 +139,7 @@ function Navbar() {
                   isActive ? "nav-link nav-link-active" : "nav-link"
                 }
               >
-                {link.label_ru}
+                {t(link.label)}
               </NavLink>
             ))}
           </div>
