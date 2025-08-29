@@ -19,17 +19,21 @@ import "./App.css";
 function App() {
   const location = useLocation();
 
-  // Hide Navbar + Footer on login/signup/forgot-password
-  const hideNavAndFooter = ["/login", "/signup", "/forgot-password"].includes(
+  // Hide Footer on homepage + login/signup/forgot-password
+  const hideFooter = ["/", "/login", "/signup", "/forgot-password"].includes(
+    location.pathname
+  );
+
+  // Hide Navbar only on login/signup/forgot-password
+  const hideNavbar = ["/login", "/signup", "/forgot-password"].includes(
     location.pathname
   );
 
   return (
     <>
-      {/* Navbar (hidden on login/signup/forgot-password) */}
-      {!hideNavAndFooter && <Navbar />}
+      {/* Navbar */}
+      {!hideNavbar && <Navbar />}
 
-      {/* 👇 Removed pt-28 so Homepage video fills full screen */}
       <main>
         <Routes>
           <Route path="/" element={<Homepage />} />
@@ -45,8 +49,8 @@ function App() {
         </Routes>
       </main>
 
-      {/* Footer (hidden on login/signup/forgot-password) */}
-      {!hideNavAndFooter && <Footer />}
+      {/* Footer */}
+      {!hideFooter && <Footer />}
     </>
   );
 }
