@@ -7,7 +7,6 @@ import Footer from './Components/Footer/Footer';
 import Homepage from './Components/Homepage/Homepage';
 import Portfolio from './Pages/Portfolio';
 import Blog from './Pages/Blog';
-import Vacancies from './Pages/Vacancies';
 import Login from './Components/Login_page/Login';
 import Signup from './Components/Login_page/Signup';
 import Videos from './Pages/Videos/Videos';
@@ -32,7 +31,6 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/vacancies" element={<Vacancies />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/videos" element={<Videos />} />
