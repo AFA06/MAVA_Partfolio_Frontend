@@ -25,12 +25,12 @@ function App() {
   );
 
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white">
+    <>
       {/* Navbar (hidden on login/signup/forgot-password) */}
       {!hideNavAndFooter && <Navbar />}
 
-      {/* 👇 Add padding-top globally so content won’t hide under the fixed navbar */}
-      <main className={`flex-grow ${!hideNavAndFooter ? "pt-28" : ""}`}>
+      {/* 👇 Removed pt-28 so Homepage video fills full screen */}
+      <main>
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/portfolio" element={<Portfolio />} />
@@ -47,7 +47,7 @@ function App() {
 
       {/* Footer (hidden on login/signup/forgot-password) */}
       {!hideNavAndFooter && <Footer />}
-    </div>
+    </>
   );
 }
 

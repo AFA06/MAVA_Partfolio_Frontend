@@ -4,7 +4,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  background: #000 !important;   /* 🔥 solid black navbar */
+  background: transparent !important;   /* ✅ transparent navbar */
   backdrop-filter: none !important;
   box-shadow: none !important;
   border-bottom: none;
@@ -15,7 +15,7 @@
 
 /* Mobile dropdown */
 .mobile-menu {
-  background: #000; /* solid black dropdown */
+  background: transparent; /* ✅ transparent dropdown */
   padding: 1rem 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
