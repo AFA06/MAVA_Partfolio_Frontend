@@ -1,15 +1,23 @@
 @import "tailwindcss";
 
-/* You can add your custom CSS here if needed */
+/* Base styles for the entire app */
 
-/* Base styles for the entire app, if not handled by Tailwind */
-body {
+html, body, #root {
   margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background-color: #000 !important; /* 🔥 fixes blue background issue */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optional: remove any React default "blue link" or CRA demo styles */
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 code {

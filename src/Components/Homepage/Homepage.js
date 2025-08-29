@@ -9,9 +9,10 @@ function Homepage() {
   }, []);
 
   return (
-    <div className="font-sans text-white min-h-screen">
+    <div className="font-sans text-white min-h-screen bg-black">
       {/* Hero Section with Video Background */}
-      <section className="relative w-full h-screen flex items-center justify-center text-center">
+      <section className="relative w-full h-screen flex items-center justify-center text-center pt-16">
+        {/* Background Video */}
         <video
           autoPlay
           loop
@@ -22,8 +23,11 @@ function Homepage() {
           <source src={backVideo} type="video/mp4" />
           Ваш браузер не поддерживает видео фон.
         </video>
+
+        {/* Overlay */}
         <div className="absolute inset-0 bg-black/60"></div>
 
+        {/* Content */}
         <div className="relative z-10 px-4 sm:px-6 max-w-4xl mx-auto">
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold leading-tight tracking-wide mb-6 text-gold drop-shadow-lg">
             Архитектурные решения будущего

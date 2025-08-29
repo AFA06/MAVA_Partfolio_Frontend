@@ -1,33 +1,36 @@
-// App.js
-import React from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import React from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 
-import Navbar from './Components/Navbar/Navbar';
-import Footer from './Components/Footer/Footer';
-import Homepage from './Components/Homepage/Homepage';
-import Portfolio from './Pages/Portfolio';
-import Blog from './Pages/Blog';
-import Login from './Components/Login_page/Login';
-import Signup from './Components/Login_page/Signup';
-import Videos from './Pages/Videos/Videos';
-import CategoryVideos from './Pages/Videos/CategoryVideos';
-import ForgotPassword from './Components/Login_page/ForgotPassword';
-import About from './Pages/About';
-import Contacts from './Pages/Contacts';
+import Navbar from "./Components/Navbar/Navbar";
+import Footer from "./Components/Footer/Footer";
+import Homepage from "./Components/Homepage/Homepage";
+import Portfolio from "./Pages/Portfolio";
+import Blog from "./Pages/Blog";
+import Login from "./Components/Login_page/Login";
+import Signup from "./Components/Login_page/Signup";
+import Videos from "./Pages/Videos/Videos";
+import CategoryVideos from "./Pages/Videos/CategoryVideos";
+import ForgotPassword from "./Components/Login_page/ForgotPassword";
+import About from "./Pages/About";
+import Contacts from "./Pages/Contacts";
 
-import './App.css';
+import "./App.css";
 
 function App() {
   const location = useLocation();
 
-  const hideNavAndFooter = ['/login', '/signup', '/forgot-password'].includes(location.pathname);
+  // Hide Navbar + Footer on login/signup/forgot-password
+  const hideNavAndFooter = ["/login", "/signup", "/forgot-password"].includes(
+    location.pathname
+  );
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-900 text-white">
+    <div className="min-h-screen flex flex-col bg-black text-white">
+      {/* Navbar (hidden on login/signup/forgot-password) */}
       {!hideNavAndFooter && <Navbar />}
 
       {/* 👇 Add padding-top globally so content won’t hide under the fixed navbar */}
-      <main className={`flex-grow ${!hideNavAndFooter ? 'pt-28' : ''}`}>
+      <main className={`flex-grow ${!hideNavAndFooter ? "pt-28" : ""}`}>
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/portfolio" element={<Portfolio />} />
@@ -42,6 +45,7 @@ function App() {
         </Routes>
       </main>
 
+      {/* Footer (hidden on login/signup/forgot-password) */}
       {!hideNavAndFooter && <Footer />}
     </div>
   );

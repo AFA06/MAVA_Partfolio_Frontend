@@ -1,9 +1,8 @@
-// src/Pages/About.js
 import React from "react";
 
 const About = () => {
   return (
-    <div className="about-page min-h-screen bg-gray-50 text-gray-800 px-6 sm:px-12 md:px-20 py-16">
+    <div className="about-page min-h-screen bg-gray-50 text-gray-800 px-6 sm:px-12 md:px-20 pt-16 pb-16">
       {/* Заголовок */}
       <h1 className="text-4xl sm:text-5xl font-bold text-center mb-12 tracking-tight">
         О нас

@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import navLinks from "./NavLinks";
 import "./navbar.css";
-import { Menu, X } from "lucide-react"; 
+import { Menu, X } from "lucide-react";
 import logo from "../../assets/logo.jpg";
 import { useTranslation } from "react-i18next";
 
 function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
@@ -20,29 +19,13 @@ function Navbar() {
     window.location.reload();
   };
 
-  // scroll blur effect
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) setIsScrolled(true);
-      else setIsScrolled(false);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // language change
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
     setIsOpen(false);
   };
 
   return (
-    <nav
-      id="navbar"
-      className={`navbar-container fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "navbar-no-blur" : "navbar-blur"
-      }`}
-    >
+    <nav id="navbar" className="navbar-container">
       <div className="flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-3 group fade-in">
@@ -59,9 +42,8 @@ function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop Center Nav */}
+        {/* Desktop Nav */}
         <div className="hidden lg:flex flex-col items-center space-y-2 mx-auto text-center fade-in">
-          {/* Languages */}
           <div className="flex space-x-3">
             <button onClick={() => changeLanguage("en")} className="lang-btn">
               EN
@@ -70,7 +52,6 @@ function Navbar() {
               UZ
             </button>
           </div>
-          {/* Links */}
           <div className="flex space-x-6 text-base">
             {navLinks.map((link) => (
               <NavLink
@@ -105,7 +86,7 @@ function Navbar() {
             </div>
           )}
 
-          {/* Hamburger toggle for mobile */}
+          {/* Mobile Toggle */}
           <button
             className="lg:hidden text-white focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
@@ -115,11 +96,10 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Dropdown Menu */}
+      {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="lg:hidden bg-black/90 backdrop-blur-md px-6 py-4 space-y-4 fade-in">
-          {/* Languages */}
-          <div className="flex space-x-3">
+        <div className="lg:hidden mobile-menu fade-in">
+          <div className="flex space-x-3 mb-3">
             <button onClick={() => changeLanguage("en")} className="lang-btn">
               EN
             </button>
@@ -128,7 +108,6 @@ function Navbar() {
             </button>
           </div>
 
-          {/* Links */}
           <div className="flex flex-col space-y-3">
             {navLinks.map((link) => (
               <NavLink
