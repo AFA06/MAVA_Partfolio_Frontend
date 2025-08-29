@@ -26,7 +26,8 @@ function App() {
     <div className="min-h-screen flex flex-col bg-gray-900 text-white">
       {!hideNavAndFooter && <Navbar />}
 
-      <main className="flex-grow">
+      {/* 👇 Add padding-top globally so content won’t hide under the fixed navbar */}
+      <main className={`flex-grow ${!hideNavAndFooter ? 'pt-28' : ''}`}>
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/portfolio" element={<Portfolio />} />
