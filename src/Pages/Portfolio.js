@@ -57,10 +57,10 @@ const projectsData = [
 
 const Portfolio = () => {
   return (
-    <div className="w-full bg-[#f4f4f2] text-gray-900 font-sans">
+    <div className="w-full bg-[#eeece8] text-gray-900 font-sans">
       {/* Hero Section */}
-      <section className="relative flex flex-col items-center justify-center text-center py-28 px-6 bg-gradient-to-b from-[#f4f4f2] to-[#ececea] border-b border-gray-300">
-        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/blueprint.png')]"></div>
+      <section className="relative flex flex-col items-center justify-center text-center py-28 px-6 bg-gradient-to-b from-[#eeece8] to-[#e2e0dc] border-b border-gray-400">
+        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/blueprint.png')]"></div>
         <div className="relative z-10">
           <img
             src="https://cdn-icons-png.flaticon.com/512/2990/2990502.png"
@@ -71,31 +71,32 @@ const Portfolio = () => {
             Наше Портфолио
           </h1>
           <p className="max-w-2xl mx-auto text-gray-700 text-lg leading-relaxed">
-            Современные архитектурные решения с акцентом на эстетику,
-            функциональность и устойчивость.
+            Архитектурные проекты, в которых сочетаются искусство, инженерия и
+            функциональность.
           </p>
         </div>
       </section>
 
       {/* About Section */}
-      <section className="py-20 px-6 sm:px-12 md:px-20">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <section className="py-20 px-6 sm:px-12 md:px-20 relative">
+        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/white-diamond.png')]"></div>
+        <div className="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl md:text-4xl font-serif text-gray-800 mb-6">
+            <h2 className="text-3xl md:text-4xl font-serif text-gray-800 mb-6 border-l-4 border-gray-600 pl-4">
               Наша Философия
             </h2>
             <p className="text-gray-700 leading-relaxed text-lg">
               Каждый проект отражает баланс креативности, точности и инноваций.
-              Мы создаём пространства, которые вдохновляют и соединяют эстетику
-              с функциональностью, сохраняя при этом элегантность и
-              устойчивость.
+              Мы создаём пространства, которые вдохновляют, соединяя эстетику и
+              функциональность. Архитектура для нас — это искусство и
+              ответственность.
             </p>
           </div>
           <div className="flex justify-center">
             <img
               src="https://cdn-icons-png.flaticon.com/512/2990/2990509.png"
               alt="architectural sketch"
-              className="w-72 h-72 opacity-80"
+              className="w-80 h-80 opacity-90"
             />
           </div>
         </div>
@@ -104,10 +105,11 @@ const Portfolio = () => {
       {/* Projects Section */}
       <section
         id="projects"
-        className="py-20 px-6 sm:px-12 md:px-20 bg-gradient-to-b from-[#ececea] to-[#f4f4f2] border-y border-gray-300"
+        className="py-20 px-6 sm:px-12 md:px-20 bg-gradient-to-b from-[#e2e0dc] to-[#eeece8] border-y border-gray-400"
       >
-        <h2 className="text-3xl md:text-4xl font-serif text-center text-gray-800 mb-14">
+        <h2 className="text-3xl md:text-4xl font-serif text-center text-gray-800 mb-14 relative">
           Избранные Проекты
+          <span className="block w-24 h-1 bg-gray-700 mx-auto mt-4"></span>
         </h2>
 
         {/* Mobile Carousel */}
@@ -120,7 +122,7 @@ const Portfolio = () => {
           >
             {projectsData.map((project) => (
               <SwiperSlide key={project.id}>
-                <div className="rounded-xl overflow-hidden bg-white border border-gray-200 shadow hover:shadow-lg transition-shadow duration-300">
+                <div className="rounded-xl overflow-hidden bg-[#fdfdfb] border border-gray-300 shadow-md hover:shadow-xl transition-all duration-300">
                   <img
                     src={project.image}
                     alt={project.name}
@@ -145,7 +147,7 @@ const Portfolio = () => {
           {projectsData.map((project) => (
             <div
               key={project.id}
-              className="rounded-xl overflow-hidden bg-white border border-gray-200 shadow hover:shadow-lg transition-all duration-300"
+              className="rounded-xl overflow-hidden bg-[#fdfdfb] border border-gray-300 shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
             >
               <img
                 src={project.image}
@@ -166,20 +168,20 @@ const Portfolio = () => {
       </section>
 
       {/* Showcase Section */}
-      <section className="relative py-28 px-6 bg-[#f0f0ee]">
-        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/graph-paper.png')]"></div>
+      <section className="relative py-28 px-6 bg-[#e8e6e2]">
+        <div className="absolute inset-0 opacity-15 bg-[url('https://www.transparenttextures.com/patterns/graph-paper.png')]"></div>
         <div className="relative max-w-4xl mx-auto text-center">
           <img
             src="https://cdn-icons-png.flaticon.com/512/2990/2990515.png"
             alt="blueprint drawing"
-            className="w-16 h-16 mx-auto mb-6 opacity-70"
+            className="w-16 h-16 mx-auto mb-6 opacity-80"
           />
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-6">
             Знаковый Проект
           </h2>
           <p className="max-w-3xl mx-auto text-gray-700 text-lg mb-8">
-            Демонстрация современного архитектурного мышления, где каждая линия
-            и форма создают гармоничное пространство.
+            Архитектурное мышление, воплощённое в реальность. Каждая линия и
+            форма — часть гармоничного пространства.
           </p>
           <a
             href="#projects"
