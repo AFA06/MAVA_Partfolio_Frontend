@@ -1,249 +1,83 @@
 // src/Pages/Blog.jsx
-import React, { useEffect, useRef } from "react";
-import { animate, stagger } from "animejs";
-
-const blogPosts = [
-  {
-    id: "welcome",
-    title: "Добро пожаловать в наш блог",
-    description:
-      "Следите за последними новостями, обновлениями и идеями нашей платформы.",
-    image: "https://source.unsplash.com/1200x800/?technology,futuristic",
-    tags: ["Платформа", "Новости"],
-    preview:
-      "Мы создаём с заботой — премиум-контент и практические советы для создателей и учеников.",
-  },
-  {
-    id: "learning",
-    title: "Учиться стало проще",
-    description:
-      "Узнайте, как мы делаем онлайн-образование более эффективным и увлекательным.",
-    image: "https://source.unsplash.com/1200x800/?education,modern",
-    tags: ["Обучение", "Советы"],
-    preview:
-      "Короткие структурированные курсы с практическими проектами помогут вам двигаться вперёд.",
-  },
-  {
-    id: "behind",
-    title: "Закулисье",
-    description:
-      "Загляните в то, как мы создаём и развиваем премиум-контент.",
-    image: "https://source.unsplash.com/1200x800/?workspace,creative",
-    tags: ["Культура", "Продукт"],
-    preview:
-      "Наша команда делится дизайнерскими решениями, инструментами и историями о выборе продуктов.",
-  },
-];
+import React from "react";
 
 export default function Blog() {
-  const cardsRef = useRef([]);
-  const heroRef = useRef(null);
-
-  // Parallax tilt for desktop only
-  function handlePointerMove(e, idx) {
-    if (window.innerWidth < 768) return;
-    const el = cardsRef.current[idx];
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width;
-    const py = (e.clientY - rect.top) / rect.height;
-    const rotateY = (px - 0.5) * 8;
-    const rotateX = (0.5 - py) * 6;
-    const img = el.querySelector(".card-image");
-    const depth = el.querySelector(".card-deco");
-    el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    if (img) img.style.transform = `scale(1.05) translateZ(15px)`;
-    if (depth) depth.style.transform = `translate3d(${(px - 0.5) * 20}px, ${(py - 0.5) *
-      15}px, -5px)`;
-  }
-
-  function resetTilt(idx) {
-    const el = cardsRef.current[idx];
-    if (!el) return;
-    const img = el.querySelector(".card-image");
-    const depth = el.querySelector(".card-deco");
-    el.style.transform = `none`;
-    if (img) img.style.transform = `scale(1)`;
-    if (depth) depth.style.transform = `translate3d(0,0,0)`;
-  }
-
-  useEffect(() => {
-    if (heroRef.current) {
-      animate(heroRef.current.querySelectorAll(".hero-line"), {
-        translateY: [30, 0],
-        opacity: [0, 1],
-        duration: 900,
-        delay: stagger(120),
-        easing: "easeOutCubic",
-      });
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const node = entry.target;
-          if (entry.isIntersecting) {
-            animate(node, {
-              translateY: window.innerWidth < 768 ? [20, 0] : [40, 0],
-              opacity: [0, 1],
-              duration: 700,
-              easing: "easeOutCubic",
-              delay: node.dataset.index ? parseInt(node.dataset.index) * 120 : 0,
-            });
-            observer.unobserve(node);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    cardsRef.current.forEach((c, i) => {
-      if (c) {
-        c.style.opacity = 0;
-        c.dataset.index = i;
-        observer.observe(c);
-      }
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <div className="min-h-screen text-white font-sans">
-      <style>{`
-        .hero-gradient {
-          background: linear-gradient(120deg, rgba(79,70,229,0.12), rgba(139,92,246,0.09) 30%, rgba(236,72,153,0.05));
-          position: relative;
-          overflow: visible;
-        }
-        @keyframes slow-rotate {0%{transform:rotate(0deg) translateX(0);}50%{transform:rotate(6deg) translateX(6px);}100%{transform:rotate(0deg) translateX(0);}}
-        .hero-orb {position:absolute;width:420px;height:420px;filter:blur(80px);opacity:0.28;border-radius:50%;animation:slow-rotate 12s linear infinite;pointer-events:none;mix-blend-mode: screen;}
-        .hero-orb.a {background:radial-gradient(circle at 30% 30%, #7c3aed, #4f46e5); top:-90px; left:-60px;}
-        .hero-orb.b {background:radial-gradient(circle at 70% 70%, #ec4899, #f97316); bottom:-90px; right:-60px; animation-duration: 14s; opacity:0.18;}
-        .card-deco {transition: transform 0.6s cubic-bezier(.2,.9,.3,1); position:absolute; inset:0; pointer-events:none;}
-        .preview {transform: translateY(100%); transition: transform 420ms cubic-bezier(.2,.9,.3,1);}
-        .card:hover .preview {transform: translateY(0%);}
-        .btn-premium:active { transform: scale(0.98); }
-        .card:hover { box-shadow: 0 20px 40px rgba(99,102,241,0.12), 0 6px 12px rgba(124,58,237,0.06); }
-      `}</style>
-
+    <div className="w-full bg-[#eeece8] text-gray-900 font-sans">
       {/* HERO */}
-      <header ref={heroRef} className="hero-gradient relative overflow-hidden py-20 px-6">
-        <div className="hero-orb a" />
-        <div className="hero-orb b" />
-        <div className="max-w-6xl mx-auto text-center relative z-10">
-          <h1 className="hero-line hero-title text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-pink-300">
-              Полезные статьи,
-            </span>{" "}
-            <span className="block text-[#e6e9f2] mt-2 md:mt-0">созданные для создателей</span>
+      <header className="relative flex flex-col items-center justify-center text-center py-28 px-6 bg-gradient-to-b from-[#eeece8] to-[#e2e0dc] border-b border-gray-400">
+        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/blueprint.png')]"></div>
+        <div className="relative z-10">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/2990/2990506.png"
+            alt="blog icon"
+            className="w-20 h-20 mb-6 opacity-80 mx-auto"
+          />
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-gray-800 mb-4 tracking-tight">
+            Наш Блог
           </h1>
-          <p className="hero-line hero-sub mt-6 text-gray-300 max-w-2xl mx-auto">
-            Глубокие обзоры, уроки и практические руководства — всё, чтобы помочь вам проектировать, создавать и запускать лучшие продукты.
+          <p className="max-w-2xl mx-auto text-gray-700 text-lg leading-relaxed">
+            Видео и короткие заметки о нашей работе, проектах и вдохновении.
           </p>
-          <div className="mt-8 flex items-center justify-center gap-4 flex-wrap">
-            <a
-              className="inline-flex items-center px-5 py-3 rounded-full text-sm font-medium btn-premium bg-gradient-to-r from-indigo-500 to-pink-500 shadow-lg hover:scale-105 transition-transform duration-300 focus:outline-none"
-              href="#posts"
-            >
-              Читать статьи
-            </a>
-            <a
-              className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium border border-white/10 text-gray-200 hover:bg-white/5 transition-colors"
-              href="#subscribe"
-            >
-              Подписаться
-            </a>
-          </div>
         </div>
       </header>
 
-      {/* POSTS */}
-      <main className="max-w-7xl mx-auto px-6 -mt-12 pb-28">
-        <div className="grid md:grid-cols-3 gap-8">
-          {blogPosts.map((post, idx) => (
-            <article
-              key={post.id}
-              ref={(el) => (cardsRef.current[idx] = el)}
-              className="card relative rounded-2xl overflow-hidden border border-white/6 bg-gradient-to-b from-white/4 to-white/2 backdrop-blur-sm p-0 transition-all duration-500"
-              onPointerMove={(e) => handlePointerMove(e, idx)}
-              onPointerLeave={() => resetTilt(idx)}
-              aria-labelledby={`post-${post.id}-title`}
-            >
-              <div className="relative h-64">
-                <img
-                  className="card-image w-full h-full object-cover transition-transform duration-700"
-                  src={post.image}
-                  alt={post.title}
-                />
-                <div className="card-deco" aria-hidden="true" />
-                <div className="absolute top-4 left-4 flex gap-2 z-10 flex-wrap">
-                  {post.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="text-xs font-semibold px-3 py-1 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                <div className="absolute left-0 right-0 bottom-0 p-4 preview bg-gradient-to-t from-black/70 to-transparent text-gray-100">
-                  <p className="text-sm line-clamp-3">{post.preview}</p>
-                </div>
-              </div>
-              <div className="p-6">
-                <h3
-                  id={`post-${post.id}-title`}
-                  className="text-xl font-bold mb-2 text-white tracking-tight"
-                >
-                  {post.title}
-                </h3>
-                <p className="text-sm text-gray-300 mb-4 line-clamp-3">{post.description}</p>
-                <div className="flex items-center justify-between gap-4 flex-wrap">
-                  <a
-                    className="text-sm inline-flex items-center gap-2 font-medium px-4 py-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 shadow hover:translate-y-[-2px] transition-transform duration-300"
-                    href={`/blog/${post.id}`}
-                  >
-                    Читать статью
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M5 12h14M13 5l7 7-7 7"
-                        stroke="white"
-                        strokeWidth="1.6"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </a>
-                  <div className="text-xs text-gray-400">
-                    <div>5 мин чтения</div>
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </main>
+      {/* VIDEO Section */}
+      <section className="relative py-20 px-6 sm:px-12 md:px-20 bg-[#e8e6e2] border-t border-gray-400">
+        <div className="absolute inset-0 opacity-15 bg-[url('https://www.transparenttextures.com/patterns/graph-paper.png')]"></div>
+        <div className="relative max-w-5xl mx-auto text-center">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/2990/2990501.png"
+            alt="video icon"
+            className="w-16 h-16 mx-auto mb-6 opacity-80"
+          />
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-6">
+            Видео из нашей жизни
+          </h2>
+          <p className="max-w-2xl mx-auto text-gray-700 text-lg mb-10">
+            Короткие ролики о нашей работе, проектах и вдохновении.
+          </p>
 
-      {/* SUBSCRIBE */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Example YouTube Embed */}
+            <div className="aspect-w-16 aspect-h-9">
+              <iframe
+                className="w-full h-64 md:h-80 rounded-xl shadow-lg border border-gray-300"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                title="YouTube video"
+                allowFullScreen
+              ></iframe>
+            </div>
+
+            {/* Example Instagram Embed */}
+            <div className="aspect-w-16 aspect-h-9">
+              <iframe
+                className="w-full h-64 md:h-80 rounded-xl shadow-lg border border-gray-300"
+                src="https://www.instagram.com/reel/CyZ5z1wAnkU/embed"
+                title="Instagram reel"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Subscribe */}
       <section
         id="subscribe"
-        className="max-w-4xl mx-auto px-6 py-14 rounded-2xl bg-gradient-to-r from-white/4 to-white/6 border border-white/6 text-center"
+        className="max-w-4xl mx-auto px-6 py-14 rounded-2xl bg-[#fdfdfb] border border-gray-300 shadow-md text-center my-20"
       >
-        <h4 className="text-lg font-semibold text-white mb-3">Будьте в курсе</h4>
-        <p className="text-sm text-gray-300 mb-6">
-          Подпишитесь на нашу рассылку — короткие ежемесячные заметки, полезные материалы и новости о продуктах.
+        <h4 className="text-xl font-serif font-semibold text-gray-800 mb-3">
+          Будьте в курсе
+        </h4>
+        <p className="text-sm text-gray-600 mb-6">
+          Подпишитесь на нашу рассылку — короткие ежемесячные заметки,
+          полезные материалы и новости о проектах.
         </p>
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            const el = e.currentTarget;
-            const input = el.querySelector("input");
-            if (input) {
-              input.value = "";
-              animate(el, { scale: [1, 0.98, 1], duration: 300 });
-              alert("Подписка оформлена (демо) — подключите свой сервис рассылки.");
-            }
+            alert("Подписка оформлена (демо).");
           }}
           className="flex items-center justify-center gap-3 flex-wrap"
         >
@@ -252,11 +86,11 @@ export default function Blog() {
             type="email"
             required
             placeholder="you@company.com"
-            className="min-w-[260px] px-4 py-3 rounded-full bg-white/6 placeholder:text-gray-300 border border-white/6 text-white focus:outline-none"
+            className="min-w-[260px] px-4 py-3 rounded-full border border-gray-400 text-gray-800 focus:outline-none"
           />
           <button
             type="submit"
-            className="px-5 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-pink-500 shadow hover:scale-105 transition-transform duration-200"
+            className="px-5 py-3 rounded-full bg-gray-800 text-white text-sm font-semibold shadow hover:bg-gray-700 transition"
           >
             Подписаться
           </button>
