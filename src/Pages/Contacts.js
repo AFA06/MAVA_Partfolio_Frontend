@@ -1,112 +1,225 @@
 // src/Pages/Contacts.jsx
-import React from "react";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import React, { useMemo } from "react";
 
 export default function Contacts() {
+  // generate paper grain once
+  const paperDataUrl = useMemo(() => {
+    const canvas = document.createElement("canvas");
+    const s = 120;
+    canvas.width = s;
+    canvas.height = s;
+    const ctx = canvas.getContext("2d");
+    const imgData = ctx.createImageData(s, s);
+    for (let i = 0; i < imgData.data.length; i += 4) {
+      const v = 245 + Math.floor(Math.random() * 10);
+      imgData.data[i] = v;
+      imgData.data[i + 1] = v;
+      imgData.data[i + 2] = v;
+      imgData.data[i + 3] = 255;
+    }
+    ctx.putImageData(imgData, 0, 0);
+    return canvas.toDataURL();
+  }, []);
+
   return (
-    <div className="w-full bg-[#eeece8] text-gray-900 font-sans">
+    <div className="relative min-h-screen w-full bg-[#f8f7f3] text-[#232323] antialiased selection:bg-neutral-800 selection:text-white">
+      {/* sketchy defs */}
+      <svg width="0" height="0" className="absolute">
+        <defs>
+          <filter id="wobble">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.8"
+              numOctaves="1"
+              seed="2"
+              result="noise"
+            />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="noise"
+              scale="0.6"
+              xChannelSelector="R"
+              yChannelSelector="G"
+            />
+          </filter>
+          <pattern
+            id="pencilStroke"
+            width="300"
+            height="6"
+            patternUnits="userSpaceOnUse"
+          >
+            <rect width="300" height="6" fill="transparent" />
+            <path
+              d="M2 3 Q 60 0 120 3 T 298 3"
+              stroke="#1f2937"
+              strokeWidth="2"
+              fill="none"
+              strokeLinecap="round"
+            />
+          </pattern>
+          <filter id="grain">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.9"
+              numOctaves="2"
+              stitchTiles="stitch"
+            />
+            <feColorMatrix type="saturate" values="0" />
+            <feComponentTransfer>
+              <feFuncA type="table" tableValues="0 0.15" />
+            </feComponentTransfer>
+          </filter>
+        </defs>
+      </svg>
+
+      {/* paper grain overlay */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 opacity-[0.35]"
+        style={{
+          backgroundImage: `url(${paperDataUrl})`,
+          mixBlendMode: "multiply",
+        }}
+      />
+
       {/* HERO */}
-      <header className="relative flex flex-col items-center justify-center text-center py-28 px-6 bg-gradient-to-b from-[#eeece8] to-[#e2e0dc] border-b border-gray-400">
-        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/blueprint.png')]"></div>
-        <div className="relative z-10">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/484/484167.png"
-            alt="contacts icon"
-            className="w-20 h-20 mb-6 opacity-80 mx-auto"
-          />
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-gray-800 mb-4 tracking-tight">
+      <header className="relative overflow-hidden">
+        <div className="mx-auto max-w-4xl px-6 sm:px-10 pt-20 pb-16 text-center">
+          <h1
+            className="text-[clamp(2.25rem,6vw,4rem)] leading-[1.1] font-serif tracking-tight text-neutral-900"
+            style={{ filter: "url(#wobble)" }}
+          >
             Контакты
           </h1>
-          <p className="max-w-2xl mx-auto text-gray-700 text-lg leading-relaxed">
-            Свяжитесь с нами для обсуждения проектов или получения консультации.
+          <div className="mt-4 h-[6px] w-52 mx-auto">
+            <svg width="100%" height="6" viewBox="0 0 300 6">
+              <rect width="300" height="6" fill="url(#pencilStroke)" />
+            </svg>
+          </div>
+          <p className="mt-6 max-w-2xl mx-auto text-[17px] leading-relaxed text-neutral-700">
+            Свяжитесь с нами для обсуждения проектов или консультации.
           </p>
         </div>
       </header>
 
-      {/* Contact Info */}
-      <section className="relative py-20 px-6 sm:px-12 md:px-20 bg-[#e8e6e2] border-t border-gray-400">
-        <div className="absolute inset-0 opacity-15 bg-[url('https://www.transparenttextures.com/patterns/graph-paper.png')]"></div>
-        <div className="relative max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-10">
+      {/* CONTACT INFO */}
+      <section className="px-6 sm:px-10 py-20">
+        <div className="mx-auto max-w-6xl text-center">
+          <h2
+            className="text-3xl sm:text-4xl font-serif font-bold text-neutral-900"
+            style={{ filter: "url(#wobble)" }}
+          >
             Наши контакты
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-gray-700">
-            <div className="flex flex-col items-center bg-white rounded-xl shadow-md p-6 border border-gray-300">
-              <MapPin className="h-10 w-10 text-gray-800 mb-3" />
-              <h3 className="font-semibold text-lg mb-2">Адрес</h3>
-              <p className="text-sm whitespace-pre-line">Ташкент, Узбекистан{"\n"}Самарканд Дарвоза</p>
-            </div>
-            <div className="flex flex-col items-center bg-white rounded-xl shadow-md p-6 border border-gray-300">
-              <Phone className="h-10 w-10 text-gray-800 mb-3" />
-              <h3 className="font-semibold text-lg mb-2">Телефон</h3>
-              <p className="text-sm">+998 90 123 45 67</p>
-            </div>
-            <div className="flex flex-col items-center bg-white rounded-xl shadow-md p-6 border border-gray-300">
-              <Mail className="h-10 w-10 text-gray-800 mb-3" />
-              <h3 className="font-semibold text-lg mb-2">Email</h3>
-              <p className="text-sm">info@architecture.com</p>
-            </div>
-            <div className="flex flex-col items-center bg-white rounded-xl shadow-md p-6 border border-gray-300">
-              <Clock className="h-10 w-10 text-gray-800 mb-3" />
-              <h3 className="font-semibold text-lg mb-2">Рабочие часы</h3>
-              <p className="text-sm whitespace-pre-line">Пн - Сб{"\n"}9:00 - 19:00</p>
-            </div>
+          <div className="mt-3 h-[6px] w-64 mx-auto">
+            <svg width="100%" height="6" viewBox="0 0 300 6">
+              <rect width="300" height="6" fill="url(#pencilStroke)" />
+            </svg>
+          </div>
+
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                title: "Адрес",
+                text: "Ташкент, Узбекистан\nСамарканд Дарвоза",
+              },
+              { title: "Телефон", text: "+998 90 123 45 67" },
+              { title: "Email", text: "info@architecture.com" },
+              { title: "Рабочие часы", text: "Пн - Сб\n9:00 - 19:00" },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="relative rounded-[20px] border border-neutral-300 bg-white/80 p-6 shadow-[0_8px_20px_rgba(0,0,0,0.06)]"
+              >
+                <h3
+                  className="font-serif font-semibold text-lg text-neutral-900"
+                  style={{ filter: "url(#wobble)" }}
+                >
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm whitespace-pre-line text-neutral-700">
+                  {item.text}
+                </p>
+                <div
+                  className="pointer-events-none absolute inset-0 rounded-[20px] border-[3px] border-neutral-900/70 opacity-[0.05]"
+                  style={{ filter: "url(#wobble)" }}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Contact Form */}
-      <section className="max-w-4xl mx-auto px-6 py-14 rounded-2xl bg-[#fdfdfb] border border-gray-300 shadow-md text-center my-20">
-        <h4 className="text-xl font-serif font-semibold text-gray-800 mb-3">
-          Отправьте нам сообщение
-        </h4>
-        <p className="text-sm text-gray-600 mb-6">
-          Мы ответим на ваши вопросы и обсудим детали проекта.
-        </p>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            alert("Сообщение отправлено (демо).");
-          }}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6"
-        >
-          <input
-            type="text"
-            placeholder="Ваше имя"
-            className="p-3 sm:p-4 rounded-xl border border-gray-400 text-gray-800 focus:outline-none sm:col-span-2"
-            required
-          />
-          <input
-            type="email"
-            placeholder="Ваш email"
-            className="p-3 sm:p-4 rounded-xl border border-gray-400 text-gray-800 focus:outline-none sm:col-span-2"
-            required
-          />
-          <textarea
-            placeholder="Ваше сообщение"
-            rows="6"
-            className="p-3 sm:p-4 rounded-xl border border-gray-400 text-gray-800 focus:outline-none sm:col-span-2"
-            required
-          ></textarea>
-          <button
-            type="submit"
-            className="sm:col-span-2 bg-gray-800 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-xl shadow-lg hover:bg-gray-700 transition"
+      {/* CONTACT FORM */}
+      <section className="relative px-6 sm:px-10 py-16">
+        <div className="mx-auto max-w-2xl rounded-[22px] border border-neutral-300 bg-white/70 shadow-[0_8px_20px_rgba(0,0,0,0.05)] p-8 text-center">
+          <h4
+            className="text-2xl font-serif font-bold text-neutral-900"
+            style={{ filter: "url(#wobble)" }}
           >
-            Отправить
-          </button>
-        </form>
+            Отправьте нам сообщение
+          </h4>
+          <div className="mt-2 h-[6px] w-40 mx-auto">
+            <svg width="100%" height="6" viewBox="0 0 300 6">
+              <rect width="300" height="6" fill="url(#pencilStroke)" />
+            </svg>
+          </div>
+          <p className="mt-4 text-[15.5px] text-neutral-700 leading-relaxed">
+            Мы ответим на ваши вопросы и обсудим детали проекта.
+          </p>
+
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              alert("Сообщение отправлено (демо).");
+            }}
+            className="mt-6 grid grid-cols-1 gap-4"
+          >
+            <input
+              type="text"
+              placeholder="Ваше имя"
+              className="p-3 rounded-lg border border-neutral-400 text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-800"
+              required
+            />
+            <input
+              type="email"
+              placeholder="Ваш email"
+              className="p-3 rounded-lg border border-neutral-400 text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-800"
+              required
+            />
+            <textarea
+              rows="5"
+              placeholder="Ваше сообщение"
+              className="p-3 rounded-lg border border-neutral-400 text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-800"
+              required
+            />
+            <button
+              type="submit"
+              className="mt-2 px-6 py-3 rounded-lg border border-neutral-900 bg-neutral-900 text-white text-sm font-semibold hover:bg-neutral-700 transition"
+            >
+              Отправить
+            </button>
+          </form>
+        </div>
       </section>
 
-      {/* Map */}
-      <section className="h-[300px] sm:h-[400px]">
+      {/* MAP */}
+      <section className="h-[320px] sm:h-[420px] mt-12">
         <iframe
           title="Google Map"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.592480404966!2d69.2401!3d41.2995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b3b2bde39df%3A0x9d184f7a7d0c25b0!2sTashkent!5e0!3m2!1sru!2s!4v1673000000000!5m2!1sru!2s"
           className="w-full h-full border-0"
           allowFullScreen=""
           loading="lazy"
-        ></iframe>
+        />
       </section>
+
+      {/* subtle grain tint */}
+      <div
+        className="pointer-events-none fixed inset-0"
+        aria-hidden
+        style={{ filter: "url(#grain)" }}
+      />
     </div>
   );
 }

@@ -1,101 +1,196 @@
 // src/Pages/Blog.jsx
-import React from "react";
+import React, { useMemo } from "react";
 
 export default function Blog() {
+  // Generate paper grain dataURL once
+  const paperDataUrl = useMemo(() => {
+    const canvas = document.createElement("canvas");
+    const s = 120;
+    canvas.width = s;
+    canvas.height = s;
+    const ctx = canvas.getContext("2d");
+    const imgData = ctx.createImageData(s, s);
+    for (let i = 0; i < imgData.data.length; i += 4) {
+      const v = 245 + Math.floor(Math.random() * 10);
+      imgData.data[i] = v;
+      imgData.data[i + 1] = v;
+      imgData.data[i + 2] = v;
+      imgData.data[i + 3] = 255;
+    }
+    ctx.putImageData(imgData, 0, 0);
+    return canvas.toDataURL();
+  }, []);
+
   return (
-    <div className="w-full bg-[#eeece8] text-gray-900 font-sans">
+    <div className="relative min-h-screen w-full bg-[#f8f7f3] text-[#232323] antialiased selection:bg-neutral-800 selection:text-white">
+      {/* SVG defs for sketch effects */}
+      <svg width="0" height="0" className="absolute">
+        <defs>
+          <filter id="wobble" filterUnits="objectBoundingBox">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.8"
+              numOctaves="1"
+              seed="2"
+              result="noise"
+            />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="noise"
+              scale="0.6"
+              xChannelSelector="R"
+              yChannelSelector="G"
+            />
+          </filter>
+          <pattern
+            id="pencilStroke"
+            width="300"
+            height="6"
+            patternUnits="userSpaceOnUse"
+          >
+            <rect width="300" height="6" fill="transparent" />
+            <path
+              d="M2 3 Q 60 0 120 3 T 298 3"
+              stroke="#1f2937"
+              strokeWidth="2"
+              fill="none"
+              strokeLinecap="round"
+            />
+          </pattern>
+          <filter id="grain">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.9"
+              numOctaves="2"
+              stitchTiles="stitch"
+            />
+            <feColorMatrix type="saturate" values="0" />
+            <feComponentTransfer>
+              <feFuncA type="table" tableValues="0 0.15" />
+            </feComponentTransfer>
+          </filter>
+        </defs>
+      </svg>
+
+      {/* Paper grain */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 opacity-[0.35]"
+        style={{
+          backgroundImage: `url(${paperDataUrl})`,
+          mixBlendMode: "multiply",
+        }}
+      />
+
       {/* HERO */}
-      <header className="relative flex flex-col items-center justify-center text-center py-28 px-6 bg-gradient-to-b from-[#eeece8] to-[#e2e0dc] border-b border-gray-400">
-        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/blueprint.png')]"></div>
-        <div className="relative z-10">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/2990/2990506.png"
-            alt="blog icon"
-            className="w-20 h-20 mb-6 opacity-80 mx-auto"
-          />
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-gray-800 mb-4 tracking-tight">
+      <header className="relative overflow-hidden">
+        <div className="mx-auto max-w-4xl px-6 sm:px-10 pt-20 pb-16 text-center">
+          <h1
+            className="text-[clamp(2.25rem,6vw,4rem)] leading-[1.1] font-serif tracking-tight text-neutral-900"
+            style={{ filter: "url(#wobble)" }}
+          >
             Наш Блог
           </h1>
-          <p className="max-w-2xl mx-auto text-gray-700 text-lg leading-relaxed">
-            Видео и короткие заметки о нашей работе, проектах и вдохновении.
+          <div className="mt-4 h-[6px] w-52 mx-auto">
+            <svg width="100%" height="6" viewBox="0 0 300 6">
+              <rect width="300" height="6" fill="url(#pencilStroke)" />
+            </svg>
+          </div>
+          <p className="mt-6 max-w-2xl mx-auto text-[17px] leading-relaxed text-neutral-700 italic">
+            Истории, заметки и вдохновение из нашей студии.
           </p>
         </div>
       </header>
 
-      {/* VIDEO Section */}
-      <section className="relative py-20 px-6 sm:px-12 md:px-20 bg-[#e8e6e2] border-t border-gray-400">
-        <div className="absolute inset-0 opacity-15 bg-[url('https://www.transparenttextures.com/patterns/graph-paper.png')]"></div>
-        <div className="relative max-w-5xl mx-auto text-center">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/2990/2990501.png"
-            alt="video icon"
-            className="w-16 h-16 mx-auto mb-6 opacity-80"
-          />
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-6">
+      {/* VIDEO SECTION */}
+      <section className="px-6 sm:px-10 py-20">
+        <div className="mx-auto max-w-6xl text-center">
+          <h2
+            className="text-3xl sm:text-4xl font-serif font-bold text-neutral-900"
+            style={{ filter: "url(#wobble)" }}
+          >
             Видео из нашей жизни
           </h2>
-          <p className="max-w-2xl mx-auto text-gray-700 text-lg mb-10">
-            Короткие ролики о нашей работе, проектах и вдохновении.
+          <div className="mt-3 h-[6px] w-64 mx-auto">
+            <svg width="100%" height="6" viewBox="0 0 300 6">
+              <rect width="300" height="6" fill="url(#pencilStroke)" />
+            </svg>
+          </div>
+          <p className="mt-5 max-w-2xl mx-auto text-neutral-600 text-lg">
+            Короткие ролики о нашей команде, проектах и вдохновении.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Example YouTube Embed */}
-            <div className="aspect-w-16 aspect-h-9">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div className="relative rounded-[20px] border border-neutral-300 shadow-[0_8px_20px_rgba(0,0,0,0.06)] overflow-hidden bg-white/80">
               <iframe
-                className="w-full h-64 md:h-80 rounded-xl shadow-lg border border-gray-300"
+                className="w-full h-64 md:h-80"
                 src="https://www.youtube.com/embed/dQw4w9WgXcQ"
                 title="YouTube video"
                 allowFullScreen
-              ></iframe>
+              />
+              <div className="pointer-events-none absolute inset-0 rounded-[20px] border-[3px] border-neutral-900/70 opacity-[0.05]" style={{ filter: "url(#wobble)" }} />
             </div>
 
-            {/* Example Instagram Embed */}
-            <div className="aspect-w-16 aspect-h-9">
+            <div className="relative rounded-[20px] border border-neutral-300 shadow-[0_8px_20px_rgba(0,0,0,0.06)] overflow-hidden bg-white/80">
               <iframe
-                className="w-full h-64 md:h-80 rounded-xl shadow-lg border border-gray-300"
+                className="w-full h-64 md:h-80"
                 src="https://www.instagram.com/reel/CyZ5z1wAnkU/embed"
                 title="Instagram reel"
                 allowFullScreen
-              ></iframe>
+              />
+              <div className="pointer-events-none absolute inset-0 rounded-[20px] border-[3px] border-neutral-900/70 opacity-[0.05]" style={{ filter: "url(#wobble)" }} />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Subscribe */}
-      <section
-        id="subscribe"
-        className="max-w-4xl mx-auto px-6 py-14 rounded-2xl bg-[#fdfdfb] border border-gray-300 shadow-md text-center my-20"
-      >
-        <h4 className="text-xl font-serif font-semibold text-gray-800 mb-3">
-          Будьте в курсе
-        </h4>
-        <p className="text-sm text-gray-600 mb-6">
-          Подпишитесь на нашу рассылку — короткие ежемесячные заметки,
-          полезные материалы и новости о проектах.
-        </p>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            alert("Подписка оформлена (демо).");
-          }}
-          className="flex items-center justify-center gap-3 flex-wrap"
-        >
-          <input
-            aria-label="Email"
-            type="email"
-            required
-            placeholder="you@company.com"
-            className="min-w-[260px] px-4 py-3 rounded-full border border-gray-400 text-gray-800 focus:outline-none"
-          />
-          <button
-            type="submit"
-            className="px-5 py-3 rounded-full bg-gray-800 text-white text-sm font-semibold shadow hover:bg-gray-700 transition"
+      {/* SUBSCRIBE */}
+      <section className="relative px-6 sm:px-10 py-16">
+        <div className="mx-auto max-w-2xl rounded-[22px] border border-neutral-300 bg-white/70 shadow-[0_8px_20px_rgba(0,0,0,0.05)] p-8 text-center">
+          <h4
+            className="text-2xl font-serif font-bold text-neutral-900"
+            style={{ filter: "url(#wobble)" }}
           >
-            Подписаться
-          </button>
-        </form>
+            Будьте в курсе
+          </h4>
+          <div className="mt-2 h-[6px] w-40 mx-auto">
+            <svg width="100%" height="6" viewBox="0 0 300 6">
+              <rect width="300" height="6" fill="url(#pencilStroke)" />
+            </svg>
+          </div>
+          <p className="mt-5 text-neutral-700 text-[15.5px] leading-relaxed">
+            Подпишитесь на нашу рассылку — ежемесячные заметки, полезные
+            материалы и новости о проектах.
+          </p>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              alert("Подписка оформлена (демо).");
+            }}
+            className="mt-6 flex flex-col sm:flex-row items-center gap-4 justify-center"
+          >
+            <input
+              type="email"
+              required
+              placeholder="you@company.com"
+              className="min-w-[240px] flex-1 px-4 py-3 rounded-lg border border-neutral-400 text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-800"
+            />
+            <button
+              type="submit"
+              className="px-6 py-3 rounded-lg border border-neutral-900 bg-neutral-900 text-white text-sm font-semibold hover:bg-neutral-700 transition"
+            >
+              Подписаться
+            </button>
+          </form>
+        </div>
       </section>
+
+      {/* Global subtle grain tint */}
+      <div
+        className="pointer-events-none fixed inset-0"
+        aria-hidden
+        style={{ filter: "url(#grain)" }}
+      />
     </div>
   );
 }
