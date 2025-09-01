@@ -1,223 +1,104 @@
-// src/Pages/Contacts.js
-import React, { useEffect, useRef } from "react";
+// src/Pages/Contacts.jsx
+import React from "react";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
-import { animate, stagger } from "animejs";
 
-function Contacts() {
-  const formRef = useRef(null);
-
-  useEffect(() => {
-    const isMobile = window.innerWidth < 640;
-    const fast = isMobile ? 600 : 1200;
-    const medium = isMobile ? 400 : 800;
-
-    // Hero title fade-in + shimmer
-    animate(".contact-title", {
-      opacity: [0, 1],
-      translateY: [-20, 0],
-      duration: fast,
-      easing: "easeOutExpo",
-    });
-
-    const hero = document.querySelector(".contact-hero");
-    if (hero) {
-      animate(".contact-title", {
-        backgroundPositionX: ["-200%", "200%"],
-        duration: 3000,
-        loop: true,
-        easing: "linear",
-      });
-    }
-
-    // Contact cards fade-in + bounce
-    const cards = document.querySelectorAll(".contact-card");
-    animate(cards, {
-      opacity: [0, 1],
-      translateY: [30, 0],
-      delay: stagger(isMobile ? 100 : 200),
-      easing: "easeOutExpo",
-      duration: medium,
-    });
-
-    const bounceCards = () => {
-      cards.forEach((card) => {
-        const rect = card.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100 && !card.classList.contains("bounced")) {
-          card.classList.add("bounced");
-          animate(card, {
-            translateY: [-10, 0, -5, 0],
-            duration: 1200,
-            easing: "easeOutElastic(1, .5)",
-          });
-        }
-      });
-    };
-
-    // Scroll reveal & form animation
-    const sections = document.querySelectorAll(".reveal");
-    const revealOnScroll = () => {
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 80 && !section.classList.contains("animated")) {
-          section.classList.add("animated");
-          animate(section, {
-            opacity: [0, 1],
-            translateY: [40, 0],
-            duration: fast,
-            easing: "easeOutExpo",
-          });
-
-          const inputs = section.querySelectorAll("input, textarea, button");
-          if (inputs.length > 0) {
-            animate(inputs, {
-              opacity: [0, 1],
-              translateY: [30, 0],
-              delay: stagger(100),
-              duration: fast,
-              easing: "easeOutExpo",
-            });
-          }
-        }
-      });
-      bounceCards();
-
-      // Scroll-based floating dots effect
-      const dots = hero.querySelectorAll(".floating-dot");
-      const scrollRatio = window.scrollY / window.innerHeight;
-      dots.forEach((dot, i) => {
-        const scale = 0.5 + 0.5 * Math.sin(scrollRatio * Math.PI + i);
-        const opacity = 0.3 + 0.5 * Math.cos(scrollRatio * Math.PI + i);
-        dot.style.transform += ` scale(${scale})`;
-        dot.style.opacity = opacity;
-      });
-    };
-
-    window.addEventListener("scroll", revealOnScroll);
-    revealOnScroll();
-    return () => window.removeEventListener("scroll", revealOnScroll);
-  }, []);
-
-  // Mouse move effect for floating dots
-  useEffect(() => {
-    const hero = document.querySelector(".contact-hero");
-    if (!hero) return;
-
-    const dots = hero.querySelectorAll(".floating-dot");
-
-    const moveDots = (e) => {
-      const { innerWidth, innerHeight } = window;
-      const xRatio = (e.clientX / innerWidth - 0.5) * 20;
-      const yRatio = (e.clientY / innerHeight - 0.5) * 20;
-
-      dots.forEach((dot, i) => {
-        const offset = (i % 10) / 2;
-        dot.style.transform = `translate(${xRatio * offset}px, ${yRatio * offset}px)`;
-      });
-    };
-
-    window.addEventListener("mousemove", moveDots);
-    return () => window.removeEventListener("mousemove", moveDots);
-  }, []);
-
+export default function Contacts() {
   return (
-    <div className="relative bg-gray-900 text-white overflow-hidden">
-      {/* Hero Section */}
-      <section
-        className="contact-hero relative h-[40vh] sm:h-[50vh] flex items-center justify-center bg-cover bg-center overflow-hidden"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1505842465776-3d90f616310d?auto=format&fit=crop&w=2000&q=80')",
-        }}
-      >
-        {/* Floating Dots */}
-        <div className="absolute inset-0">
-          {[...Array(30)].map((_, i) => (
-            <span
-              key={i}
-              className="floating-dot absolute w-1.5 h-1.5 bg-yellow-400 rounded-full opacity-50 animate-float"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${5 + Math.random() * 10}s`,
-              }}
-            ></span>
-          ))}
-        </div>
-
-        <div className="absolute inset-0 bg-black bg-opacity-60" />
-        <div className="relative z-10 text-center px-4">
-          <h1 className="contact-title text-3xl sm:text-5xl md:text-6xl font-bold tracking-wide uppercase bg-gradient-to-r from-yellow-400 via-white to-yellow-400 bg-clip-text text-transparent animate-shimmer">
-            Свяжитесь с нами
+    <div className="w-full bg-[#eeece8] text-gray-900 font-sans">
+      {/* HERO */}
+      <header className="relative flex flex-col items-center justify-center text-center py-28 px-6 bg-gradient-to-b from-[#eeece8] to-[#e2e0dc] border-b border-gray-400">
+        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/blueprint.png')]"></div>
+        <div className="relative z-10">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/484/484167.png"
+            alt="contacts icon"
+            className="w-20 h-20 mb-6 opacity-80 mx-auto"
+          />
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-gray-800 mb-4 tracking-tight">
+            Контакты
           </h1>
-          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-gray-300 max-w-xl mx-auto">
-            Давайте обсудим ваш следующий архитектурный проект. Мы поможем воплотить идеи в жизнь.
+          <p className="max-w-2xl mx-auto text-gray-700 text-lg leading-relaxed">
+            Свяжитесь с нами для обсуждения проектов или получения консультации.
           </p>
         </div>
-      </section>
+      </header>
 
       {/* Contact Info */}
-      <section className="px-4 sm:px-6 md:px-16 py-14 sm:py-20 max-w-7xl mx-auto reveal">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 text-center">
-          {[
-            { icon: MapPin, title: "Адрес офиса", text: "Ташкент, Узбекистан\nСамарканд Дарвоза" },
-            { icon: Phone, title: "Телефон", text: "+998 90 123 45 67" },
-            { icon: Mail, title: "Электронная почта", text: "info@architecture.com" },
-            { icon: Clock, title: "Рабочие часы", text: "Пн - Сб\n9:00 - 19:00" },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="contact-card bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow hover:scale-105 duration-500 cursor-pointer overflow-hidden relative group"
-            >
-              <item.icon className="mx-auto h-8 w-8 sm:h-10 sm:w-10 text-yellow-400 mb-3" />
-              <h3 className="text-lg sm:text-xl font-semibold">{item.title}</h3>
-              <p className="mt-2 text-sm sm:text-base text-gray-400 whitespace-pre-line">{item.text}</p>
-
-              <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/40 to-white/20 opacity-0 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none animate-shimmer-fast"></div>
+      <section className="relative py-20 px-6 sm:px-12 md:px-20 bg-[#e8e6e2] border-t border-gray-400">
+        <div className="absolute inset-0 opacity-15 bg-[url('https://www.transparenttextures.com/patterns/graph-paper.png')]"></div>
+        <div className="relative max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-10">
+            Наши контакты
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-gray-700">
+            <div className="flex flex-col items-center bg-white rounded-xl shadow-md p-6 border border-gray-300">
+              <MapPin className="h-10 w-10 text-gray-800 mb-3" />
+              <h3 className="font-semibold text-lg mb-2">Адрес</h3>
+              <p className="text-sm whitespace-pre-line">Ташкент, Узбекистан{"\n"}Самарканд Дарвоза</p>
             </div>
-          ))}
+            <div className="flex flex-col items-center bg-white rounded-xl shadow-md p-6 border border-gray-300">
+              <Phone className="h-10 w-10 text-gray-800 mb-3" />
+              <h3 className="font-semibold text-lg mb-2">Телефон</h3>
+              <p className="text-sm">+998 90 123 45 67</p>
+            </div>
+            <div className="flex flex-col items-center bg-white rounded-xl shadow-md p-6 border border-gray-300">
+              <Mail className="h-10 w-10 text-gray-800 mb-3" />
+              <h3 className="font-semibold text-lg mb-2">Email</h3>
+              <p className="text-sm">info@architecture.com</p>
+            </div>
+            <div className="flex flex-col items-center bg-white rounded-xl shadow-md p-6 border border-gray-300">
+              <Clock className="h-10 w-10 text-gray-800 mb-3" />
+              <h3 className="font-semibold text-lg mb-2">Рабочие часы</h3>
+              <p className="text-sm whitespace-pre-line">Пн - Сб{"\n"}9:00 - 19:00</p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Contact Form */}
-      <section className="bg-gray-800 py-14 sm:py-20 px-4 sm:px-6 md:px-16 reveal">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-10 text-center uppercase tracking-wider">
-            Отправьте нам сообщение
-          </h2>
-          <form ref={formRef} className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-            <input
-              type="text"
-              placeholder="Ваше имя"
-              className="p-3 sm:p-4 rounded-xl bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-yellow-400 outline-none"
-            />
-            <input
-              type="email"
-              placeholder="Ваш email"
-              className="p-3 sm:p-4 rounded-xl bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-yellow-400 outline-none"
-            />
-            <input
-              type="text"
-              placeholder="Тема"
-              className="p-3 sm:p-4 rounded-xl bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-yellow-400 outline-none sm:col-span-2"
-            />
-            <textarea
-              placeholder="Ваше сообщение"
-              rows="6"
-              className="p-3 sm:p-4 rounded-xl bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-yellow-400 outline-none sm:col-span-2"
-            ></textarea>
-            <button
-              type="submit"
-              className="sm:col-span-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-xl shadow-lg transition duration-300"
-            >
-              Отправить сообщение
-            </button>
-          </form>
-        </div>
+      <section className="max-w-4xl mx-auto px-6 py-14 rounded-2xl bg-[#fdfdfb] border border-gray-300 shadow-md text-center my-20">
+        <h4 className="text-xl font-serif font-semibold text-gray-800 mb-3">
+          Отправьте нам сообщение
+        </h4>
+        <p className="text-sm text-gray-600 mb-6">
+          Мы ответим на ваши вопросы и обсудим детали проекта.
+        </p>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            alert("Сообщение отправлено (демо).");
+          }}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6"
+        >
+          <input
+            type="text"
+            placeholder="Ваше имя"
+            className="p-3 sm:p-4 rounded-xl border border-gray-400 text-gray-800 focus:outline-none sm:col-span-2"
+            required
+          />
+          <input
+            type="email"
+            placeholder="Ваш email"
+            className="p-3 sm:p-4 rounded-xl border border-gray-400 text-gray-800 focus:outline-none sm:col-span-2"
+            required
+          />
+          <textarea
+            placeholder="Ваше сообщение"
+            rows="6"
+            className="p-3 sm:p-4 rounded-xl border border-gray-400 text-gray-800 focus:outline-none sm:col-span-2"
+            required
+          ></textarea>
+          <button
+            type="submit"
+            className="sm:col-span-2 bg-gray-800 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-xl shadow-lg hover:bg-gray-700 transition"
+          >
+            Отправить
+          </button>
+        </form>
       </section>
 
       {/* Map */}
-      <section className="h-[300px] sm:h-[400px] reveal">
+      <section className="h-[300px] sm:h-[400px]">
         <iframe
           title="Google Map"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.592480404966!2d69.2401!3d41.2995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b3b2bde39df%3A0x9d184f7a7d0c25b0!2sTashkent!5e0!3m2!1sru!2s!4v1673000000000!5m2!1sru!2s"
@@ -226,27 +107,6 @@ function Contacts() {
           loading="lazy"
         ></iframe>
       </section>
-
-      {/* CSS */}
-      <style>
-        {`
-          @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-          }
-          .animate-shimmer { background-size: 200% auto; animation: shimmer 3s linear infinite; }
-          .animate-shimmer-fast { background-size: 200% auto; animation: shimmer 1.5s linear infinite; }
-
-          @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-          }
-          .animate-float { animation: float linear infinite; }
-        `}
-      </style>
     </div>
   );
 }
-
-export default Contacts;
