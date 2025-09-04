@@ -68,6 +68,7 @@ const Videos = () => {
 
   const handleBuy = (cat) => {
     const message = encodeURIComponent(`Здравствуйте! Я хочу приобрести курс "${cat.name}".`);
+
     window.open(`https://t.me/fkhv_1?text=${message}`, '_blank');
   };
 
@@ -92,6 +93,20 @@ const Videos = () => {
 
   return (
     <div className="relative min-h-screen w-full bg-[#f8f7f3] text-[#232323] antialiased">
+      {/* Sketch filters */}
+      <svg width="0" height="0" className="absolute">
+        <defs>
+          <filter id="wobble" filterUnits="objectBoundingBox">
+            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="1" seed="2" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.6" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+          <pattern id="pencilStroke" width="300" height="6" patternUnits="userSpaceOnUse">
+            <rect width="300" height="6" fill="transparent" />
+            <path d="M2 3 Q 60 0 120 3 T 298 3" stroke="#1f2937" strokeWidth="2" fill="none" strokeLinecap="round" />
+          </pattern>
+        </defs>
+      </svg>
+
       {/* Paper grain overlay */}
       <div
         aria-hidden
@@ -101,50 +116,59 @@ const Videos = () => {
 
       {/* Hero */}
       <header className="relative px-6 sm:px-10 pt-24 pb-16 text-center">
-        <h1 className="text-[clamp(2rem,5vw,3.5rem)] font-serif font-bold text-neutral-900 tracking-tight">
-          🎥 Видео‑курсы
+        <h1 className="text-[clamp(2rem,5vw,3.5rem)] font-serif font-bold text-neutral-900 tracking-tight" style={{ filter: 'url(#wobble)' }}>
+          🎥 Видео-курсы
         </h1>
-        <div className="mt-3 h-[6px] w-48 mx-auto bg-neutral-300" />
+        <div className="mt-3 h-[6px] w-48 mx-auto">
+          <svg width="100%" height="6" viewBox="0 0 300 6" preserveAspectRatio="none">
+            <rect width="300" height="6" fill="url(#pencilStroke)" />
+          </svg>
+        </div>
         <p className="mt-6 max-w-2xl mx-auto text-[17px] leading-relaxed text-neutral-700">
-          Освойте профессиональные навыки в дизайне и разработке. Каждый курс сопровождается практическими материалами.
+          Освойте профессиональные навыки в дизайне и разработке. <span className="font-medium">Каждый курс — как архитектурный проект:</span> продуманный, структурированный и вдохновляющий.
         </p>
       </header>
 
       {/* Courses */}
       <section className="px-6 sm:px-10 pb-24">
-        <div className="mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {categories.map((cat) => {
             const purchased = mockUser.purchasedCourses.includes(cat.slug);
             return (
               <div
                 key={cat.slug}
-                className="relative rounded-[22px] border border-neutral-300 bg-white/70 backdrop-blur-[1px] p-6 shadow-[0_10px_24px_rgba(0,0,0,0.05)] hover:shadow-xl transition cursor-pointer"
+                className="relative rounded-[22px] border border-neutral-300 bg-white/80 backdrop-blur-[1px] p-6 shadow-[0_10px_24px_rgba(0,0,0,0.08)] hover:shadow-2xl transition cursor-pointer flex flex-col"
               >
-                <div className="h-40 w-full mb-4 overflow-hidden rounded-xl">
+                <div className="h-48 w-full mb-4 overflow-hidden rounded-xl border border-neutral-200">
                   <img src={cat.image} alt={cat.name} className="h-full w-full object-cover" />
                 </div>
-                <h2 className="text-xl font-serif font-semibold text-neutral-900">{cat.name}</h2>
-                <p className="mt-2 text-sm text-neutral-600 line-clamp-2">{cat.description}</p>
-                <p className="mt-2 text-[15px] font-medium text-green-700">{cat.price.toLocaleString()} UZS</p>
+                <h2 className="text-2xl font-serif font-semibold text-neutral-900 mb-1" style={{ filter: 'url(#wobble)' }}>{cat.name}</h2>
+                <div className="h-[6px] w-32 mb-3">
+                  <svg width="100%" height="6" viewBox="0 0 300 6" preserveAspectRatio="none">
+                    <rect width="300" height="6" fill="url(#pencilStroke)" />
+                  </svg>
+                </div>
+                <p className="text-sm text-neutral-700 line-clamp-2 mb-2">{cat.description}</p>
+                <p className="text-[15px] font-medium text-green-700">{cat.price.toLocaleString()} UZS</p>
 
-                <div className="mt-4 flex gap-2 flex-wrap">
+                <div className="mt-auto pt-4 flex gap-2 flex-wrap">
                   <button
                     onClick={() => handlePreview(cat)}
-                    className="px-4 py-2 bg-neutral-900 text-white text-sm font-semibold rounded-full hover:bg-neutral-700 transition"
+                    className="px-5 py-2 bg-neutral-900 text-white text-sm font-semibold rounded-full hover:bg-neutral-700 transition"
                   >
                     Просмотр
                   </button>
                   {purchased ? (
                     <button
                       onClick={() => handleNavigate(cat)}
-                      className="px-4 py-2 bg-green-700 text-white text-sm font-semibold rounded-full hover:bg-green-600 transition"
+                      className="px-5 py-2 bg-green-700 text-white text-sm font-semibold rounded-full hover:bg-green-600 transition"
                     >
                       Начать обучение
                     </button>
                   ) : (
                     <button
                       onClick={() => handleBuy(cat)}
-                      className="px-4 py-2 bg-yellow-600 text-white text-sm font-semibold rounded-full hover:bg-yellow-500 transition"
+                      className="px-5 py-2 bg-yellow-600 text-white text-sm font-semibold rounded-full hover:bg-yellow-500 transition"
                     >
                       Купить курс
                     </button>
@@ -161,15 +185,20 @@ const Videos = () => {
         isOpen={modalOpen}
         onRequestClose={() => setModalOpen(false)}
         contentLabel="Предпросмотр курса"
-        className="bg-white rounded-[22px] mx-4 sm:mx-auto max-w-md sm:max-w-2xl mt-16 sm:mt-24 p-6 text-neutral-900 outline-none overflow-y-auto max-h-[90vh] shadow-xl"
+        className="bg-white rounded-[22px] mx-4 sm:mx-auto max-w-md sm:max-w-2xl mt-16 sm:mt-24 p-6 text-neutral-900 outline-none overflow-y-auto max-h-[90vh] shadow-xl border border-neutral-200"
         overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-2 sm:px-0"
       >
         {selectedCourse && (
           <div>
-            <h2 className="text-2xl sm:text-3xl font-serif font-bold mb-2">{selectedCourse.name}</h2>
+            <h2 className="text-2xl sm:text-3xl font-serif font-bold mb-2" style={{ filter: 'url(#wobble)' }}>{selectedCourse.name}</h2>
+            <div className="h-[6px] w-32 mb-3">
+              <svg width="100%" height="6" viewBox="0 0 300 6" preserveAspectRatio="none">
+                <rect width="300" height="6" fill="url(#pencilStroke)" />
+              </svg>
+            </div>
             <p className="text-neutral-700 mb-4 text-sm sm:text-base">{selectedCourse.description}</p>
 
-            <div className="mb-4 text-sm sm:text-base">
+            <div className="mb-4 text-sm sm:text-base space-y-1">
               <p><span className="font-semibold">Преподаватель:</span> {courseDetails[selectedCourse.slug]?.instructor || 'Уточняется'}</p>
               <p><span className="font-semibold">Количество видео:</span> {courseDetails[selectedCourse.slug]?.videos || 'Уточняется'}</p>
             </div>
@@ -185,13 +214,21 @@ const Videos = () => {
 
             <button
               onClick={() => setModalOpen(false)}
-              className="mt-6 px-4 py-2 bg-red-600 text-white text-sm font-semibold rounded-full hover:bg-red-500 transition"
+              className="mt-6 px-5 py-2 bg-red-600 text-white text-sm font-semibold rounded-full hover:bg-red-500 transition"
             >
               Закрыть
             </button>
           </div>
         )}
       </Modal>
+
+      {/* Outro section */}
+      <section className="px-6 sm:px-10 py-28 text-center bg-[#f3f2ef] border-t border-neutral-300">
+        <h2 className="text-[clamp(1.75rem,4vw,2.5rem)] font-serif font-bold text-neutral-900 mb-6" style={{ filter: 'url(#wobble)' }}>Каждый курс — как архитектурный проект</h2>
+        <p className="max-w-2xl mx-auto text-[16px] leading-relaxed text-neutral-700 mb-8">
+          Мы создаем образовательные программы с той же тщательностью, что и архитекторы проектируют здания: с фундаментом, структурой и эстетикой.
+        </p>
+      </section>
     </div>
   );
 };
