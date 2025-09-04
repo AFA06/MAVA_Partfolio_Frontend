@@ -28,7 +28,7 @@ function Navbar() {
         </Link>
       </div>
 
-      {/* Center: Links */}
+      {/* Center: Links (desktop only) */}
       <div className="navbar-center hidden lg:flex">
         {navLinks.map((link) => (
           <NavLink
@@ -43,7 +43,7 @@ function Navbar() {
         ))}
       </div>
 
-      {/* Right: Languages + Mobile */}
+      {/* Right: Languages + Mobile toggle */}
       <div className="navbar-right flex items-center gap-3">
         <button onClick={() => changeLanguage("en")} className="lang">
           EN
@@ -56,38 +56,40 @@ function Navbar() {
           className={`lg:hidden ${isHome ? "text-white" : "text-gray-800"}`}
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
       </div>
 
       {/* Mobile Dropdown */}
-      {isOpen && (
-        <div className={`lg:hidden mobile-menu ${isHome ? "home-menu" : ""}`}>
-          <div className="flex gap-3 mb-3">
-            <button onClick={() => changeLanguage("en")} className="lang">
-              EN
-            </button>
-            <button onClick={() => changeLanguage("uz")} className="lang">
-              UZ
-            </button>
-          </div>
-
-          <div className="flex flex-col gap-3">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.href}
-                to={link.href}
-                onClick={() => setIsOpen(false)}
-                className={({ isActive }) =>
-                  isActive ? "nav-link nav-link-active" : "nav-link"
-                }
-              >
-                {t(link.label)}
-              </NavLink>
-            ))}
-          </div>
+      <div
+        className={`mobile-menu-wrapper lg:hidden ${
+          isOpen ? "open" : ""
+        } ${isHome ? "home-menu" : ""}`}
+      >
+        <div className="flex gap-3 mb-3">
+          <button onClick={() => changeLanguage("en")} className="lang">
+            EN
+          </button>
+          <button onClick={() => changeLanguage("uz")} className="lang">
+            UZ
+          </button>
         </div>
-      )}
+
+        <div className="flex flex-col gap-3">
+          {navLinks.map((link) => (
+            <NavLink
+              key={link.href}
+              to={link.href}
+              onClick={() => setIsOpen(false)}
+              className={({ isActive }) =>
+                isActive ? "nav-link nav-link-active" : "nav-link"
+              }
+            >
+              {t(link.label)}
+            </NavLink>
+          ))}
+        </div>
+      </div>
     </nav>
   );
 }

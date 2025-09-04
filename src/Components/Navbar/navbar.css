@@ -1,19 +1,19 @@
-/* Navbar Grid Layout (same everywhere) */
+/* Base Navbar */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 100;
   height: 60px;
   display: grid;
-  grid-template-columns: 1fr auto 1fr; /* keeps left, center, right */
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   padding: 0 20px;
   border-bottom: 1px solid #ddd;
-  background: #fff; /* default for all pages */
+  background: #fff;
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Left */
+/* Left, Center, Right layout */
 .navbar-left {
   display: flex;
   align-items: center;
@@ -21,14 +21,12 @@
   justify-self: start;
 }
 
-/* Center */
 .navbar-center {
   display: flex;
   justify-content: center;
   gap: 24px;
 }
 
-/* Right */
 .navbar-right {
   display: flex;
   justify-self: end;
@@ -73,25 +71,32 @@
   color: #000;
 }
 
-.lang.active {
-  font-weight: bold;
-  color: #000;
-}
-
-/* Mobile */
-.mobile-menu {
-  padding: 12px 20px;
+/* === Mobile Dropdown === */
+.mobile-menu-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  padding: 0 20px;
   border-top: 1px solid #ddd;
   background: #fff;
 }
 
-/* === Homepage Special Styling Only === */
+.mobile-menu-wrapper.open {
+  max-height: 400px; /* enough for content */
+  opacity: 1;
+  transform: translateY(0);
+  padding: 12px 20px;
+}
+
+/* === Homepage Special Styling === */
 .home-navbar {
-  position: absolute !important; /* sits over the video */
+  position: absolute !important;
   top: 0;
   left: 0;
   right: 0;
-  background: transparent !important; /* fully transparent */
+  background: transparent !important;
   border-bottom: none !important;
   box-shadow: none !important;
 }
@@ -118,4 +123,12 @@
 .home-menu .nav-link,
 .home-menu .lang {
   color: #fff;
+}
+
+/* Prevent white flash */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  height: 100%;
 }
