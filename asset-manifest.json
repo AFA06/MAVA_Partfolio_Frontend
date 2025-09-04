@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/Arch_Website_Frontend/static/css/main.fb17327f.css",
-    "main.js": "/Arch_Website_Frontend/static/js/main.850fed93.js",
+    "main.js": "/Arch_Website_Frontend/static/js/main.4696215c.js",
     "static/js/453.670e15c7.chunk.js": "/Arch_Website_Frontend/static/js/453.670e15c7.chunk.js",
     "static/media/back.mp4": "/Arch_Website_Frontend/static/media/back.17b44b0f602fbecd0b85.mp4",
     "static/media/logo.jpg": "/Arch_Website_Frontend/static/media/logo.564387836666473ac00f.jpg",
     "index.html": "/Arch_Website_Frontend/index.html",
     "main.fb17327f.css.map": "/Arch_Website_Frontend/static/css/main.fb17327f.css.map",
-    "main.850fed93.js.map": "/Arch_Website_Frontend/static/js/main.850fed93.js.map",
+    "main.4696215c.js.map": "/Arch_Website_Frontend/static/js/main.4696215c.js.map",
     "453.670e15c7.chunk.js.map": "/Arch_Website_Frontend/static/js/453.670e15c7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fb17327f.css",
-    "static/js/main.850fed93.js"
+    "static/js/main.4696215c.js"
   ]
 }
