@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import navLinks from "./NavLinks";
 import "./navbar.css";
 import { Menu, X } from "lucide-react";
@@ -9,6 +9,9 @@ import { useTranslation } from "react-i18next";
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { t, i18n } = useTranslation();
+  const location = useLocation();
+
+  const isHome = location.pathname === "/";
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -16,15 +19,17 @@ function Navbar() {
   };
 
   return (
-    <nav className="navbar">
-      {/* Left: Logo + Name (name styled same as nav-link) */}
-      <Link to="/" className="flex items-center gap-2">
-        <img src={logo} alt="Logo" className="logo-img" />
-        <span className="nav-link">{t("nex")}</span>
-      </Link>
+    <nav className={`navbar ${isHome ? "home-navbar" : ""}`}>
+      {/* Left: Logo */}
+      <div className="navbar-left">
+        <Link to="/" className="flex items-center gap-2">
+          <img src={logo} alt="Logo" className="logo-img" />
+          <span className="nav-link">{t("nex")}</span>
+        </Link>
+      </div>
 
-      {/* Desktop Nav */}
-      <div className="hidden lg:flex items-center gap-6">
+      {/* Center: Links */}
+      <div className="navbar-center hidden lg:flex">
         {navLinks.map((link) => (
           <NavLink
             key={link.href}
@@ -38,8 +43,8 @@ function Navbar() {
         ))}
       </div>
 
-      {/* Right Section (Languages + mobile toggle) */}
-      <div className="navbar-right">
+      {/* Right: Languages + Mobile */}
+      <div className="navbar-right flex items-center gap-3">
         <button onClick={() => changeLanguage("en")} className="lang">
           EN
         </button>
@@ -47,9 +52,8 @@ function Navbar() {
           UZ
         </button>
 
-        {/* Mobile Toggle */}
         <button
-          className="lg:hidden text-gray-800 focus:outline-none"
+          className={`lg:hidden ${isHome ? "text-white" : "text-gray-800"}`}
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -58,7 +62,7 @@ function Navbar() {
 
       {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="lg:hidden mobile-menu">
+        <div className={`lg:hidden mobile-menu ${isHome ? "home-menu" : ""}`}>
           <div className="flex gap-3 mb-3">
             <button onClick={() => changeLanguage("en")} className="lang">
               EN
