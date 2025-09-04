@@ -65,6 +65,8 @@
   cursor: pointer;
   color: #666;
   transition: color 0.2s;
+  background: none;
+  border: none;
 }
 
 .lang:hover {
@@ -88,6 +90,33 @@
   opacity: 1;
   transform: translateY(0);
   padding: 12px 20px;
+}
+
+/* Hamburger toggle */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Desktop only */
+.desktop-only {
+  display: flex;
+}
+
+/* === Responsive === */
+@media (max-width: 1024px) {
+  .navbar {
+    grid-template-columns: auto auto auto;
+  }
+  .navbar-center.desktop-only,
+  .navbar-right .desktop-only {
+    display: none;
+  }
+  .mobile-toggle {
+    display: block;
+  }
 }
 
 /* === Homepage Special Styling === */
@@ -126,7 +155,9 @@
 }
 
 /* Prevent white flash */
-html, body, #root {
+html,
+body,
+#root {
   margin: 0;
   padding: 0;
   background: #000;

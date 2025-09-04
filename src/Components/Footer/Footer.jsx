@@ -1,6 +1,11 @@
 // src/Components/Footer.jsx
 import React from "react";
-import { FaInstagram, FaFacebookF, FaLinkedinIn, FaTelegramPlane } from "react-icons/fa";
+import {
+  FaInstagram,
+  FaFacebookF,
+  FaLinkedinIn,
+  FaTelegramPlane,
+} from "react-icons/fa";
 
 function Footer() {
   return (
@@ -9,7 +14,7 @@ function Footer() {
         background: "#ffffff",
         color: "#4b5563",
         position: "relative",
-        padding: "3rem 1.5rem 1.5rem",
+        padding: "2.5rem 1.25rem 1.25rem",
         borderTop: "1px solid rgba(0,0,0,0.1)",
         boxShadow: "0 -2px 6px rgba(0,0,0,0.05)",
       }}
@@ -22,27 +27,31 @@ function Footer() {
           left: 0,
           width: "100%",
           height: "3px",
-          background:
-            "linear-gradient(to right, #facc15, #fde047, #facc15)",
+          background: "linear-gradient(to right, #facc15, #fde047, #facc15)",
           animation: "shimmer 6s linear infinite",
+          backgroundSize: "200% 100%",
         }}
       ></div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10 text-center md:text-left">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-8 relative z-10 text-center md:text-left">
         {/* Brand Info */}
-        <div>
+        <div className="flex-1">
           <h2 className="text-2xl font-bold text-yellow-500 mb-3 tracking-wide">
             NEX ARCHITECTS
           </h2>
-          <p className="text-gray-600">All rights reserved , Made by Abdurashid Fattokhov © {new Date().getFullYear()}</p>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            All rights reserved, Made by{" "}
+            <span className="font-medium">Abdurashid Fattokhov</span> ©{" "}
+            {new Date().getFullYear()}
+          </p>
         </div>
 
         {/* Social Media */}
-        <div>
+        <div className="flex-1">
           <h2 className="text-lg font-semibold mb-4 text-yellow-500 uppercase tracking-wide">
             Follow Us
           </h2>
-          <div className="flex justify-center md:justify-start gap-4">
+          <div className="flex justify-center md:justify-start flex-wrap gap-4">
             {[
               { href: "https://instagram.com", icon: <FaInstagram /> },
               { href: "https://facebook.com", icon: <FaFacebookF /> },

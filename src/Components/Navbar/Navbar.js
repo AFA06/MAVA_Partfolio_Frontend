@@ -29,7 +29,7 @@ function Navbar() {
       </div>
 
       {/* Center: Links (desktop only) */}
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-center desktop-only">
         {navLinks.map((link) => (
           <NavLink
             key={link.href}
@@ -44,16 +44,19 @@ function Navbar() {
       </div>
 
       {/* Right: Languages + Mobile toggle */}
-      <div className="navbar-right flex items-center gap-3">
-        <button onClick={() => changeLanguage("en")} className="lang">
-          EN
-        </button>
-        <button onClick={() => changeLanguage("uz")} className="lang">
-          UZ
-        </button>
+      <div className="navbar-right">
+        <div className="desktop-only flex gap-3">
+          <button onClick={() => changeLanguage("en")} className="lang">
+            EN
+          </button>
+          <button onClick={() => changeLanguage("uz")} className="lang">
+            UZ
+          </button>
+        </div>
 
+        {/* Hamburger */}
         <button
-          className={`lg:hidden ${isHome ? "text-white" : "text-gray-800"}`}
+          className={`mobile-toggle ${isHome ? "text-white" : "text-gray-800"}`}
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={26} /> : <Menu size={26} />}
@@ -62,9 +65,9 @@ function Navbar() {
 
       {/* Mobile Dropdown */}
       <div
-        className={`mobile-menu-wrapper lg:hidden ${
-          isOpen ? "open" : ""
-        } ${isHome ? "home-menu" : ""}`}
+        className={`mobile-menu-wrapper ${isOpen ? "open" : ""} ${
+          isHome ? "home-menu" : ""
+        }`}
       >
         <div className="flex gap-3 mb-3">
           <button onClick={() => changeLanguage("en")} className="lang">
