@@ -239,5 +239,17 @@
     "outroText": "MaxArchitects builds a harmonious Uzbekistan where architecture connects past and future.",
     "outroButton": "Contact Us",
     "footer": "© {{year}} — Architecture Studio. All rights reserved."
+  },
+
+  "blogPage": {
+    "title": "Our Blog",
+    "subtitle": "Stories, notes, and inspiration from our studio.",
+    "videoTitle": "Videos from Our Life",
+    "videoSubtitle": "Short clips about our team, projects, and inspiration.",
+    "subscribeTitle": "Stay Updated",
+    "subscribeSubtitle": "Subscribe for monthly notes, useful materials, and project updates.",
+    "subscribePlaceholder": "you@company.com",
+    "subscribeButton": "Subscribe",
+    "subscribeAlert": "Subscription successful (demo)."
   }
 }
