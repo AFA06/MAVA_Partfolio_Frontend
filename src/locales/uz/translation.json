@@ -218,5 +218,17 @@
         "role": "Barqarorlik Bo‘yicha Mutaxassis"
       }
     }
+  },
+
+  "blogPage": {
+    "title": "Bizning Blog",
+    "subtitle": "Studiyamizdan hikoyalar, eslatmalar va ilhomlar.",
+    "videoTitle": "Hayotimizdan videolar",
+    "videoSubtitle": "Jamoamiz, loyihalarimiz va ilhomimiz haqida qisqa roliklar.",
+    "subscribeTitle": "Yangiliklardan xabardor bo‘ling",
+    "subscribeSubtitle": "Obuna bo‘ling — oylik eslatmalar, foydali materiallar va loyihalar yangiliklari.",
+    "subscribePlaceholder": "siz@kompaniya.com",
+    "subscribeButton": "Obuna bo‘lish",
+    "subscribeAlert": "Obuna muvaffaqiyatli amalga oshirildi (demo)."
   }
 }
