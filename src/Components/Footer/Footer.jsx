@@ -1,4 +1,3 @@
-// src/Components/Footer.jsx
 import React from "react";
 import {
   FaInstagram,
@@ -6,8 +5,11 @@ import {
   FaLinkedinIn,
   FaTelegramPlane,
 } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer
       style={{
@@ -37,19 +39,31 @@ function Footer() {
         {/* Brand Info */}
         <div className="flex-1">
           <h2 className="text-2xl font-bold text-yellow-500 mb-3 tracking-wide">
-            NEX ARCHITECTS
+            {t("nex")}
           </h2>
           <p className="text-gray-600 text-sm leading-relaxed">
-            All rights reserved, Made by{" "}
-            <span className="font-medium">Abdurashid Fattokhov</span> ©{" "}
+            {t("footer.rights")}{" "}
+            <span className="font-medium">{t("footer.author")}</span> ©{" "}
             {new Date().getFullYear()}
           </p>
+        </div>
+
+        {/* Studio Info */}
+        <div className="flex-1 text-sm text-gray-600">
+          <h3 className="text-lg font-semibold mb-2 text-yellow-500">
+            {t("footer.studioTitle")}
+          </h3>
+          <p className="mb-1">{t("footer.studioName")}</p>
+          <p className="mb-1">{t("footer.studioDesc")}</p>
+          <p className="mb-1">{t("footer.phone")}</p>
+          <p className="mb-1">{t("footer.email")}</p>
+          <p>{t("footer.address")}</p>
         </div>
 
         {/* Social Media */}
         <div className="flex-1">
           <h2 className="text-lg font-semibold mb-4 text-yellow-500 uppercase tracking-wide">
-            Follow Us
+            {t("footer.follow")}
           </h2>
           <div className="flex justify-center md:justify-start flex-wrap gap-4">
             {[

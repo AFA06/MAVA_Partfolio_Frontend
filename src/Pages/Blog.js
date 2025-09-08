@@ -1,7 +1,10 @@
 // src/Pages/Blog.jsx
 import React, { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Blog() {
+  const { t } = useTranslation();
+
   // Generate paper grain dataURL once
   const paperDataUrl = useMemo(() => {
     const canvas = document.createElement("canvas");
@@ -89,7 +92,7 @@ export default function Blog() {
             className="text-[clamp(2rem,6vw,4rem)] leading-[1.1] font-serif tracking-tight text-neutral-900"
             style={{ filter: "url(#wobble)" }}
           >
-            Наш Блог
+            {t("blogPage.title")}
           </h1>
           <div className="mt-4 h-[6px] w-40 sm:w-52 mx-auto">
             <svg width="100%" height="6" viewBox="0 0 300 6">
@@ -97,7 +100,7 @@ export default function Blog() {
             </svg>
           </div>
           <p className="mt-6 max-w-2xl mx-auto text-[15px] sm:text-[17px] leading-relaxed text-neutral-700 italic">
-            Истории, заметки и вдохновение из нашей студии.
+            {t("blogPage.subtitle")}
           </p>
         </div>
       </header>
@@ -109,7 +112,7 @@ export default function Blog() {
             className="text-[clamp(1.75rem,4vw,2.5rem)] font-serif font-bold text-neutral-900"
             style={{ filter: "url(#wobble)" }}
           >
-            Видео из нашей жизни
+            {t("blogPage.videoTitle")}
           </h2>
           <div className="mt-3 h-[6px] w-48 sm:w-64 mx-auto">
             <svg width="100%" height="6" viewBox="0 0 300 6">
@@ -117,7 +120,7 @@ export default function Blog() {
             </svg>
           </div>
           <p className="mt-5 max-w-2xl mx-auto text-neutral-600 text-[15px] sm:text-lg">
-            Короткие ролики о нашей команде, проектах и вдохновении.
+            {t("blogPage.videoSubtitle")}
           </p>
 
           <div className="mt-10 sm:mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
@@ -159,7 +162,7 @@ export default function Blog() {
             className="text-xl sm:text-2xl font-serif font-bold text-neutral-900"
             style={{ filter: "url(#wobble)" }}
           >
-            Будьте в курсе
+            {t("blogPage.subscribeTitle")}
           </h4>
           <div className="mt-2 h-[6px] w-32 sm:w-40 mx-auto">
             <svg width="100%" height="6" viewBox="0 0 300 6">
@@ -167,27 +170,26 @@ export default function Blog() {
             </svg>
           </div>
           <p className="mt-5 text-neutral-700 text-[14.5px] sm:text-[15.5px] leading-relaxed">
-            Подпишитесь на нашу рассылку — ежемесячные заметки, полезные
-            материалы и новости о проектах.
+            {t("blogPage.subscribeSubtitle")}
           </p>
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              alert("Подписка оформлена (демо).");
+              alert(t("blogPage.subscribeAlert"));
             }}
             className="mt-6 flex flex-col sm:flex-row items-center gap-4 justify-center"
           >
             <input
               type="email"
               required
-              placeholder="you@company.com"
+              placeholder={t("blogPage.subscribePlaceholder")}
               className="min-w-[220px] flex-1 px-4 py-2.5 sm:py-3 rounded-lg border border-neutral-400 text-neutral-900 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-neutral-800"
             />
             <button
               type="submit"
               className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg border border-neutral-900 bg-neutral-900 text-white text-sm sm:text-base font-semibold hover:bg-neutral-700 transition"
             >
-              Подписаться
+              {t("blogPage.subscribeButton")}
             </button>
           </form>
         </div>

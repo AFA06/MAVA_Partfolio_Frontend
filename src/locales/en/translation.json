@@ -40,7 +40,9 @@
     "link11": "Sitemap",
     "bottomLine": "Portfolio: Apartments | Houses | Offices | Living Rooms | Bathrooms | Kitchens | Bedrooms | Kids Rooms | Dressing Rooms | Studies | Architecture | Common Areas | Lobbies",
     "orderCall": "Request a Call",
-    "dev": "Website development —"
+    "dev": "Website development —",
+    "rights": "All rights reserved, Made by",
+    "follow": "Follow Us"
   },
 
   "login": {
@@ -79,24 +81,23 @@
   "homepage": {
     "hero": {
       "title": "Architecture of the Future",
-      "subtitle": "Ideas, Forms, Solutions",
-      "desc": "Modern solutions where form and function merge into timeless design.",
-      "button": "View Projects"
+      "desc": "We design modern buildings and spaces in Uzbekistan and beyond.",
+      "button": "View Portfolio"
     },
     "about": {
       "title": "About Us",
-      "p1": "Nex Architecture is a team of architects and engineers transforming the city’s landscape through innovation and precision.",
-      "p2": "Every project is based on the principle: form follows function, but with an artistic soul."
+      "p1": "Nex Architecture is a team of architects and engineers reshaping cities through innovation and precision.",
+      "p2": "Each project follows the principle: form follows function, but with an artistic soul."
     },
     "advantages": {
       "title": "Our Advantages",
       "projects": {
         "title": "352 Projects",
-        "desc": "Experience turns ideas into reality."
+        "desc": "Experience that transforms ideas into reality."
       },
       "clients": {
         "title": "567 Clients",
-        "desc": "Trust and long-term relationships."
+        "desc": "Trust and long-term partnerships."
       },
       "revenue": {
         "title": "656M Revenue",
@@ -110,7 +111,7 @@
     "reviews": {
       "title": "Reviews",
       "review1": {
-        "text": "“Nex Architecture turned our vision into a masterpiece. Attention to detail is outstanding.”",
+        "text": "“Nex Architecture turned our vision into a masterpiece. Attention to detail at the highest level.”",
         "author": "Jane Doe"
       },
       "review2": {
@@ -120,7 +121,7 @@
     },
     "contact": {
       "title": "Contact Us",
-      "desc": "Have an idea or a question? We are open to dialogue.",
+      "desc": "Have an idea or a question? We’re open to dialogue.",
       "name": "Name",
       "email": "Email",
       "message": "Message",
@@ -130,7 +131,7 @@
 
   "reviewsPage": {
     "title": "Our Clients’ Reviews",
-    "subtitle": "We value the trust of every client and take pride in our results.",
+    "subtitle": "We value the trust of every client and are proud of the results.",
     "review1": {
       "text": "“The studio’s work exceeded all expectations. Very attentive to detail and always in touch.”",
       "author": "Anna Ivanova"
@@ -140,12 +141,103 @@
       "author": "Sergey Petrov"
     },
     "review3": {
-      "text": "“Great team! They suggested several creative solutions we hadn’t even thought of.”",
+      "text": "“Great team! They offered several creative solutions we hadn’t even thought of.”",
       "author": "Ekaterina Smirnova"
     },
     "review4": {
-      "text": "“Very professional approach. I recommend them to anyone who wants a quality result.”",
+      "text": "“A very professional approach. I recommend them to anyone who wants quality results.”",
       "author": "Alexander Orlov"
     }
+  },
+
+  "portfolioPage": {
+    "title": "Project Portfolio",
+    "subtitle": "The best projects that reflect our expertise and design philosophy.",
+    "philosophyTitle": "Our Philosophy",
+    "philosophyText": "We create architecture that combines aesthetics and functionality. Each project for us is a story written in space.",
+    "featuredProjects": "Featured Projects",
+    "dragHint": "Drag to explore more",
+    "projects": [
+      {
+        "id": 1,
+        "name": "Modern Apartment",
+        "description": "Minimalist design with cozy elements for everyday living.",
+        "image": "/images/portfolio/apartment.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Country House",
+        "description": "A space created for comfort and inspiration away from the city.",
+        "image": "/images/portfolio/house.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Office Center",
+        "description": "An innovative workspace with a focus on productivity.",
+        "image": "/images/portfolio/office.jpg"
+      }
+    ]
+  },
+
+  "aboutPage": {
+    "title": "About Nex Architects",
+    "intro": "We are a multidisciplinary team of architects, designers, and engineers dedicated to creating meaningful spaces.",
+    "missionTitle": "Our Mission",
+    "missionText": "To shape environments that blend functionality, beauty, and sustainability, improving the way people live and work.",
+    "visionTitle": "Our Vision",
+    "visionText": "To become a leading architecture studio in Central Asia, known for innovation, quality, and timeless design.",
+    "valuesTitle": "Our Values",
+    "values": [
+      {
+        "title": "Innovation",
+        "text": "We constantly explore new ideas and technologies to bring unique solutions."
+      },
+      {
+        "title": "Quality",
+        "text": "We deliver projects with precision, detail, and excellence in every step."
+      },
+      {
+        "title": "Sustainability",
+        "text": "We prioritize eco-friendly materials and approaches for a better future."
+      },
+      {
+        "title": "Collaboration",
+        "text": "We believe the best results come from working closely with clients and partners."
+      }
+    ],
+    "timelineTitle": "Our Journey",
+    "timeline": [
+      {
+        "year": "2015 – Beginning",
+        "text": "The company was founded in Tashkent with the goal of reimagining the country’s architecture."
+      },
+      {
+        "year": "2018 – First Major Project",
+        "text": "A residential complex was completed, combining innovation with cultural traditions."
+      },
+      {
+        "year": "2023 – International Collaboration",
+        "text": "Expansion into foreign markets with sustainable solutions developed with international partners."
+      }
+    ],
+    "teamTitle": "Our Team",
+    "team": [
+      {
+        "name": "Abdurashid Karimov",
+        "role": "Founder & Chief Architect"
+      },
+      {
+        "name": "Lailo Ismatova",
+        "role": "Creative Director"
+      },
+      {
+        "name": "Javlonbek Tursunov",
+        "role": "Sustainability Expert"
+      }
+    ],
+    "outroTitle": "Every project — a step into the future",
+    "outroText": "MaxArchitects builds a harmonious Uzbekistan where architecture connects past and future.",
+    "outroButton": "Contact Us",
+    "footer": "© {{year}} — Architecture Studio. All rights reserved."
   }
 }

@@ -3,55 +3,58 @@
   "portfolio": "Portfel",
   "styles": "Uslublar",
   "reviews": "Sharhlar",
-  "about": "Studiya haqida",
+  "about": "Biz haqimizda",
   "blog": "Blog",
   "suppliers": "Yetkazib beruvchilar uchun",
-  "vacancies": "Bo'sh ish o'rinlari",
-  "contacts": "Kontaktlar",
+  "vacancies": "Ish o‘rinlari",
+  "contacts": "Aloqa",
   "videos": "Kurslar",
   "phone": "+998 99 808-36-16",
 
   "hero": {
-    "title": "Arxitektura mahoratini namoyish etish",
-    "subtitle": "Innovatsion loyihalar va barqaror yechimlar",
-    "button": "Loyihalarni ko'rish"
+    "title": "Kelajak Arxitekturasi",
+    "subtitle": "G‘oyalar, Formlar, Yechimlar",
+    "button": "Loyihalarni ko‘rish"
   },
 
   "footer": {
-    "studioTitle": "Moskva shahridagi interyer dizayn studiyasi",
-    "studioName": "Lashina Sergey «VPROEKTE»",
-    "studioDesc": "Individual mualliflik yondashuvi.",
-    "contacts": "Kontaktlar",
+    "rights": "Barcha huquqlar himoyalangan, Muallif",
+    "author": "Abdurashid Fattokhov",
+    "follow": "Bizni kuzatib boring",
+    "studioTitle": "Interyer Dizayn Studiyasi",
+    "studioName": "Sergey Lashin «VPROEKTE»",
+    "studioDesc": "Individual yondashuv.",
+    "contacts": "Aloqa",
     "phone": "+998 99 808-36-16",
     "email": "hello@vproekte.com",
-    "address": "Ximki, Novogorsk tumani, «Novogorsk Club» YKK",
-    "map": "Xaritada",
+    "address": "Ximki, Novogorsk tumani, KP «Novogorsk Club»",
+    "map": "Xaritada ko‘rish",
     "navigation": "Navigatsiya",
-    "link1": "Kvartira ta'miri",
-    "link2": "3D-vizualizatsiya",
-    "link3": "Premium dizayn",
+    "link1": "Kvartira ta’mirlash",
+    "link2": "3D Vizualizatsiya",
+    "link3": "Premium Dizayn",
     "link4": "Konsultatsiya+",
-    "link5": "Dizayner bilan kun",
+    "link5": "Dizayner bilan bir kun",
     "link6": "Qurilishni boshqarish",
-    "link7": "Jihozlash",
+    "link7": "Xarid qilish",
     "link8": "Mualliflik nazorati",
     "link9": "Blog",
-    "link10": "Kontaktlar",
+    "link10": "Aloqa",
     "link11": "Sayt xaritasi",
-    "bottomLine": "Portfel: Kvartiralar | Ular | Ofislar | Mehmonxonalar | Hammomlar | Oshxonalar | Yotoqxonalar | Bolalar xonalari | Garderoblar | Kabinetlar | Arxitektura | Jamoat joylari va LOBBILAR",
-    "orderCall": "Qo'ng'iroq buyurtma qilish",
-    "dev": "Sayt ishlab chiqilishi —"
+    "bottomLine": "Portfel: Kvartiralar | Uylar | Ofislar | Yashash xonalari | Vannalar | Oshxonalar | Yotoqxona | Bolalar xonasi | Garderoblar | Kabinetlar | Arxitektura | Umumiy joylar | Lobbilari",
+    "orderCall": "Qo‘ng‘iroq buyurtma qilish",
+    "dev": "Vebsayt ishlab chiqish —"
   },
 
   "login": {
     "subtitle": "Hisobingizga kiring",
-    "email": "Elektron pochta",
+    "email": "Email",
     "password": "Parol",
-    "passwordPlaceholder": "Parolingizni kiriting",
+    "passwordPlaceholder": "Parolni kiriting",
     "signIn": "Kirish",
-    "signUp": "Ro'yxatdan o'tish",
-    "noAccount": "Hisobingiz yo'qmi?",
-    "errorGeneric": "Kirishda xatolik yuz berdi"
+    "signUp": "Ro‘yxatdan o‘tish",
+    "noAccount": "Hisobingiz yo‘qmi?",
+    "errorGeneric": "Kirishda xato"
   },
 
   "signup": {
@@ -59,20 +62,17 @@
     "surname": "Familiya",
     "namePlaceholder": "Ismingiz",
     "surnamePlaceholder": "Familiyangiz",
-    "createAccount": "Hisob yarating",
-    "email": "Elektron pochta",
+    "createAccount": "Hisob yaratish",
+    "email": "Email",
     "password": "Parol",
     "confirmPassword": "Parolni tasdiqlang",
     "signUp": "Ro‘yxatdan o‘tish",
     "signIn": "Kirish",
     "haveAccount": "Allaqachon hisobingiz bormi?",
     "passwordsDoNotMatch": "Parollar mos emas",
-    "signupFailed": "Ro‘yxatdan o‘tishda xatolik yuz berdi",
-    "generalError": "Nomaʼlum xatolik yuz berdi",
-    "male": "Erkak",
-    "female": "Ayol",
-    "gender": "Jinsi",
-    "min8": "Kamida 8 ta belgi",
+    "signupFailed": "Ro‘yxatdan o‘tishda xato",
+    "generalError": "Xatolik yuz berdi",
+    "min8": "Kamida 8 ta belgidan iborat bo‘lishi kerak",
     "uppercase": "Bitta katta harf",
     "lowercase": "Bitta kichik harf",
     "number": "Bitta raqam",
@@ -81,53 +81,142 @@
 
   "homepage": {
     "hero": {
-      "title": "Arxitektura mahoratini namoyish etish",
-      "subtitle": "Innovatsion loyihalar va barqaror yechimlar",
-      "desc": "Forma va funksiyani uyg‘unlashtiruvchi innovatsion arxitektura yechimlari.",
-      "button": "Loyihalarni ko‘rish"
+      "title": "Kelajak Arxitekturasi",
+      "desc": "Biz zamonaviy binolar va makonlarni O‘zbekistonda va undan tashqarida loyihalashtiramiz.",
+      "button": "Portfelni ko‘rish"
     },
     "about": {
-      "title": "Studiya haqida",
-      "p1": "Nex Architecture — shahar qiyofasini aniqlik va innovatsiya orqali o‘zgartirayotgan dizaynerlar va muhandislar jamoasi.",
-      "p2": "Har bir loyiha falsafa asosida yaratiladi: forma funksiyaga bo‘ysunadi — ammo sanʼat ruhi bilan."
+      "title": "Biz haqimizda",
+      "p1": "Nex Architecture — innovatsiya va aniqlik orqali shaharlarni o‘zgartirayotgan me’mor va muhandislar jamoasi.",
+      "p2": "Har bir loyiha shiorga amal qiladi: forma funksiyaga bo‘ysunadi, ammo san’at ruhi bilan."
     },
     "advantages": {
-      "title": "Bizning afzalliklarimiz",
+      "title": "Afzalliklarimiz",
       "projects": {
-        "title": "352 ta yakunlangan loyiha",
-        "desc": "G‘oyalarni haqiqatga aylantiruvchi tajriba."
+        "title": "352 loyiha",
+        "desc": "Tajriba g‘oyalarni haqiqatga aylantiradi."
       },
       "clients": {
-        "title": "567 ta mamnun mijoz",
-        "desc": "Ishonchga asoslangan uzoq muddatli hamkorlik."
+        "title": "567 mijoz",
+        "desc": "Ishonch va uzoq muddatli hamkorlik."
       },
       "revenue": {
-        "title": "656M oylik daromad",
-        "desc": "Barqaror o‘sishni taʼminlovchi loyihalar."
+        "title": "656M daromad",
+        "desc": "Barqaror o‘sish uchun yechimlar."
       },
       "awards": {
         "title": "17 ta mukofot",
-        "desc": "Ijodkorlik va innovatsiyalar uchun eʼtirof."
+        "desc": "Ijodkorlik uchun e’tirof."
       }
     },
     "reviews": {
-      "title": "Mijozlar sharhlari",
+      "title": "Sharhlar",
       "review1": {
-        "text": "«Nex Architecture bizning qarashimizni arxitektura durdonasiga aylantirdi. Ularning detallashtirishdagi yondashuvi — mislsiz.»",
+        "text": "“Nex Architecture bizning orzuyimizni asarga aylantirdi. Detallarga e’tibor juda zo‘r.”",
         "author": "Jane Doe"
       },
       "review2": {
-        "text": "«Professional, innovatsion va ishonchli — Nex jamoasi barcha kutganlarimizdan oshdi.»",
+        "text": "“Professional, zamonaviy va ishonchli. Jamoa kutganimizdan ham yaxshi ishladi.”",
         "author": "John Smith"
       }
     },
     "contact": {
       "title": "Biz bilan bog‘laning",
-      "desc": "Loyihangiz g‘oyasi bormi yoki savollaringizmi? Har doim yordam berishga tayyormiz.",
-      "name": "Ismingiz",
-      "email": "Emailingiz",
-      "message": "Xabaringiz",
+      "desc": "G‘oyangiz yoki savolingiz bormi? Biz doimo muloqotga ochiqmiz.",
+      "name": "Ism",
+      "email": "Email",
+      "message": "Xabar",
       "button": "Yuborish"
+    }
+  },
+
+  "reviewsPage": {
+    "title": "Mijozlarimiz Sharhlari",
+    "subtitle": "Har bir mijozimizning ishonchini qadrlaymiz va natijalarimiz bilan faxrlanamiz.",
+    "review1": {
+      "text": "“Studiya ishlari barcha kutganlardan oshib ketdi. Detallarga juda e’tiborli va doim aloqada.”",
+      "author": "Anna Ivanova"
+    },
+    "review2": {
+      "text": "“Loyiha o‘z vaqtida va sifatli bajarildi. Ofisimiz zamonaviy va uslubiy ko‘rinishga ega.”",
+      "author": "Sergey Petrov"
+    },
+    "review3": {
+      "text": "“Zo‘r jamoa! Biz o‘ylamagan bir nechta ijodiy yechimlar taklif qilishdi.”",
+      "author": "Ekaterina Smirnova"
+    },
+    "review4": {
+      "text": "“Juda professional yondashuv. Sifatli natijalarni xohlovchilarga tavsiya qilaman.”",
+      "author": "Alexander Orlov"
+    }
+  },
+
+  "portfolioPage": {
+    "title": "Loyihalar Portfeli",
+    "subtitle": "Eng yaxshi loyihalarimiz, ularning tajribamiz va dizayn falsafamizni aks ettiradi.",
+    "philosophyTitle": "Bizning Falsafamiz",
+    "philosophyText": "Biz estetik va funksionallikni uyg‘unlashtirgan arxitekturani yaratamiz. Har bir loyiha biz uchun makonda yozilgan hikoya.",
+    "featuredProjects": "Tanlangan Loyihalar",
+    "dragHint": "Ko‘proq ko‘rish uchun sudrab o'tkazing",
+    "projects": [
+      {
+        "id": 1,
+        "name": "Zamonaviy Kvartira",
+        "description": "Har kunlik hayot uchun minimalistik va qulay elementlar bilan dizayn.",
+        "image": "/images/portfolio/apartment.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Qishloq Uyi",
+        "description": "Shahar tashqarisida qulaylik va ilhom uchun yaratilgan makon.",
+        "image": "/images/portfolio/house.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Ofis Markazi",
+        "description": "Ish unumdorligiga yo‘naltirilgan innovatsion ish joyi.",
+        "image": "/images/portfolio/office.jpg"
+      }
+    ]
+  },
+
+  "aboutPage": {
+    "title": "Biz haqimizda",
+    "intro": "Bizning vazifamiz — zamonaviy, barqaror va ilhomlantiruvchi arxitektura orqali shaharlarni o‘zgartirish.",
+    "missionTitle": "Bizning Missiyamiz",
+    "missionText": "Arxitektura orqali jamiyatga foyda keltirish, zamonaviy dizaynni amaliy yechimlar bilan uyg‘unlashtirish.",
+    "visionTitle": "Bizning Vizyonimiz",
+    "visionText": "Har bir inson ilhomlantiruvchi va qulay muhitda yashash va ishlash imkoniyatiga ega bo‘lishi kerak.",
+    "valuesTitle": "Qiymatlarimiz",
+    "timelineTitle": "Bizning Tariximiz",
+    "timeline": {
+      "2015": {
+        "title": "Boshlanish",
+        "text": "Kompaniya Toshkentda mamlakat arxitekturasini qayta o‘ylash maqsadida asos solindi."
+      },
+      "2018": {
+        "title": "Birinchi yirik loyiha",
+        "text": "Innovatsiya va madaniy an’analarni uyg‘unlashtirgan turar-joy majmuasi amalga oshirildi."
+      },
+      "2023": {
+        "title": "Xalqaro hamkorlik",
+        "text": "Xorijiy bozorga chiqildi va xalqaro hamkorlar bilan barqaror yechimlar joriy etildi."
+      }
+    },
+    "teamTitle": "Bizning Jamoa",
+    "team": {
+      "founder": {
+        "name": "Abdurashid Karimov",
+        "role": "Asoschi va Bosh Me’mor"
+      },
+      "creative": {
+        "name": "Laylo Ismatova",
+        "role": "Kreativ Direktor"
+      },
+      "sustainability": {
+        "name": "Javlonbek Tursunov",
+        "role": "Barqarorlik Bo‘yicha Mutaxassis"
+      }
     }
   }
 }

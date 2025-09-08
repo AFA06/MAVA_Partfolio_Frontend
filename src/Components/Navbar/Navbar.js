@@ -1,3 +1,4 @@
+// src/Components/Navbar.jsx
 import React, { useState } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import navLinks from "./NavLinks";
@@ -20,7 +21,7 @@ function Navbar() {
 
   return (
     <nav className={`navbar ${isHome ? "home-navbar" : ""}`}>
-      {/* Left: Logo */}
+      {/* Left: Logo + Title */}
       <div className="navbar-left">
         <Link to="/" className="flex items-center gap-2">
           <img src={logo} alt="Logo" className="logo-img" />
@@ -28,8 +29,8 @@ function Navbar() {
         </Link>
       </div>
 
-      {/* Center: Links (desktop only) */}
-      <div className="navbar-center desktop-only">
+      {/* Center: Desktop Nav Links */}
+      <div className="navbar-center hidden lg:flex">
         {navLinks.map((link) => (
           <NavLink
             key={link.href}
@@ -43,42 +44,32 @@ function Navbar() {
         ))}
       </div>
 
-      {/* Right: Languages + Mobile toggle */}
-      <div className="navbar-right">
-        <div className="desktop-only flex gap-3">
-          <button onClick={() => changeLanguage("en")} className="lang">
-            EN
-          </button>
-          <button onClick={() => changeLanguage("uz")} className="lang">
-            UZ
-          </button>
-        </div>
-
-        {/* Hamburger */}
+      {/* Right: Languages + Hamburger */}
+      <div className="navbar-right flex items-center gap-3">
+        <button onClick={() => changeLanguage("ru")} className="lang">
+          RU
+        </button>
+        <button onClick={() => changeLanguage("en")} className="lang">
+          EN
+        </button>
+        <button onClick={() => changeLanguage("uz")} className="lang">
+          UZ
+        </button>
         <button
-          className={`mobile-toggle ${isHome ? "text-white" : "text-gray-800"}`}
+          className={`lg:hidden ${isHome ? "text-white" : "text-gray-800"}`}
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <X size={26} /> : <Menu size={26} />}
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
-      {/* Mobile Dropdown */}
+      {/* Mobile Sidebar */}
       <div
-        className={`mobile-menu-wrapper ${isOpen ? "open" : ""} ${
+        className={`mobile-sidebar ${isOpen ? "open" : ""} ${
           isHome ? "home-menu" : ""
         }`}
       >
-        <div className="flex gap-3 mb-3">
-          <button onClick={() => changeLanguage("en")} className="lang">
-            EN
-          </button>
-          <button onClick={() => changeLanguage("uz")} className="lang">
-            UZ
-          </button>
-        </div>
-
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4 p-6">
           {navLinks.map((link) => (
             <NavLink
               key={link.href}

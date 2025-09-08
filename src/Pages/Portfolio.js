@@ -1,55 +1,12 @@
 import React, { useMemo, useState } from "react";
-
-const projectsData = [
-  {
-    id: 1,
-    name: "Современная Вилла",
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85",
-    description:
-      "Роскошная современная вилла, сочетающая минимализм и комфорт.",
-  },
-  {
-    id: 2,
-    name: "Городской Комплекс",
-    image:
-      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1800&q=85",
-    description:
-      "Многоэтажный городской комплекс с инновационными общественными пространствами.",
-  },
-  {
-    id: 3,
-    name: "Эко Дом",
-    image:
-      "https://images.unsplash.com/photo-1599423300746-b62533397364?auto=format&fit=crop&w=1800&q=85",
-    description: "Устойчивое строительство, интегрированное с природой.",
-  },
-  {
-    id: 4,
-    name: "Стеклянная Башня",
-    image:
-      "https://images.unsplash.com/photo-1529421308361-4b76c0b8d2f1?auto=format&fit=crop&w=1800&q=85",
-    description:
-      "Футуристический небоскрёб из стекла, меняющий облик города.",
-  },
-  {
-    id: 5,
-    name: "Роскошный Курорт",
-    image:
-      "https://images.unsplash.com/photo-1501117716987-c8e2a0f1e0f1?auto=format&fit=crop&w=1800&q=85",
-    description: "Курорт у моря, сочетающий роскошь и гармонию с природой.",
-  },
-  {
-    id: 6,
-    name: "Культурный Центр",
-    image:
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1800&q=85",
-    description:
-      "Знаковый культурный центр, объединяющий традиции и современность.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export default function Portfolio() {
+  const { t } = useTranslation();
+
+  // Project data from translations
+  const projectsData = t("portfolioPage.projects", { returnObjects: true });
+
   const [selected, setSelected] = useState(projectsData[0]);
 
   // Generate subtle paper grain texture
@@ -92,12 +49,7 @@ export default function Portfolio() {
               yChannelSelector="G"
             />
           </filter>
-          <pattern
-            id="pencilStroke"
-            width="300"
-            height="6"
-            patternUnits="userSpaceOnUse"
-          >
+          <pattern id="pencilStroke" width="300" height="6" patternUnits="userSpaceOnUse">
             <rect width="300" height="6" fill="transparent" />
             <path
               d="M2 3 Q 60 0 120 3 T 298 3"
@@ -108,12 +60,7 @@ export default function Portfolio() {
             />
           </pattern>
           <filter id="grain">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.9"
-              numOctaves="2"
-              stitchTiles="stitch"
-            />
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" />
             <feColorMatrix type="saturate" values="0" />
             <feComponentTransfer>
               <feFuncA type="table" tableValues="0 0.15" />
@@ -139,7 +86,7 @@ export default function Portfolio() {
             className="text-[clamp(2rem,6vw,4rem)] leading-tight font-serif tracking-tight text-neutral-900"
             style={{ filter: "url(#wobble)" }}
           >
-            Наше Портфолио
+            {t("portfolioPage.title")}
           </h1>
           <div className="mt-3 h-[6px] w-48">
             <svg width="100%" height="6" viewBox="0 0 300 6">
@@ -147,8 +94,7 @@ export default function Portfolio() {
             </svg>
           </div>
           <p className="mt-5 max-w-2xl text-base sm:text-lg leading-relaxed text-neutral-700">
-            Архитектура без шума и пыли: чистые линии, ручные акценты, спокойная
-            палитра. Премиум-минимализм без лишней декоративности.
+            {t("portfolioPage.subtitle")}
           </p>
         </div>
       </header>
@@ -179,7 +125,7 @@ export default function Portfolio() {
           <div className="lg:col-span-5">
             <div className="rounded-2xl border border-neutral-300 bg-white/70 p-5 sm:p-8 shadow-md">
               <h2 className="text-xl sm:text-2xl font-serif text-neutral-900">
-                Наша Философия
+                {t("portfolioPage.philosophyTitle")}
               </h2>
               <div className="mt-2 h-[6px] w-32">
                 <svg width="100%" height="6" viewBox="0 0 300 6">
@@ -187,9 +133,7 @@ export default function Portfolio() {
                 </svg>
               </div>
               <p className="mt-4 text-sm sm:text-base leading-relaxed text-neutral-700">
-                Каждый проект — это баланс функциональности и поэтики формы. Мы
-                работаем с пространством аккуратно: минимализм в цвете, щедрость
-                в деталях, ручные акценты вместо иконок.
+                {t("portfolioPage.philosophyText")}
               </p>
             </div>
           </div>
@@ -200,9 +144,9 @@ export default function Portfolio() {
       <section className="mt-14 sm:mt-20 px-4 sm:px-6 pb-20">
         <div className="mx-auto max-w-7xl">
           <div className="flex items-baseline justify-between">
-            <h3 className="text-lg sm:text-xl font-serif">Избранные проекты</h3>
+            <h3 className="text-lg sm:text-xl font-serif">{t("portfolioPage.featuredProjects")}</h3>
             <span className="text-xs text-neutral-500 hidden sm:inline">
-              перетащите • скролл
+              {t("portfolioPage.scrollHint")}
             </span>
           </div>
 
