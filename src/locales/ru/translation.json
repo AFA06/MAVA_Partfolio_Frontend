@@ -251,5 +251,22 @@
     "subscribePlaceholder": "you@company.com",
     "subscribeButton": "Подписаться",
     "subscribeAlert": "Подписка успешно оформлена (демо)."
-  }
+  },
+
+  "contactsPage": {
+  "title": "Контакты",
+  "subtitle": "Мы всегда рады новым проектам и сотрудничеству.",
+  "addressTitle": "Наш адрес",
+  "address": "г. Ташкент, ул. Амир Темур, д. 15",
+  "phoneTitle": "Телефон",
+  "phone": "+998 99 808-36-16",
+  "emailTitle": "Электронная почта",
+  "email": "hello@vproekte.com",
+  "formTitle": "Напишите нам",
+  "formName": "Имя",
+  "formEmail": "Электронная почта",
+  "formMessage": "Сообщение",
+  "formButton": "Отправить",
+  "mapTitle": "Мы на карте"
+}
 }
