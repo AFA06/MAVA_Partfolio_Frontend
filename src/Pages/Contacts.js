@@ -1,7 +1,10 @@
 // src/Pages/Contacts.jsx
 import React, { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Contacts() {
+  const { t } = useTranslation();
+
   // generate paper grain once
   const paperDataUrl = useMemo(() => {
     const canvas = document.createElement("canvas");
@@ -89,7 +92,7 @@ export default function Contacts() {
             className="text-[clamp(2rem,6vw,3.5rem)] leading-[1.1] font-serif tracking-tight text-neutral-900"
             style={{ filter: "url(#wobble)" }}
           >
-            Контакты
+            {t("contacts.title")}
           </h1>
           <div className="mt-4 h-[6px] w-40 sm:w-52 mx-auto">
             <svg width="100%" height="6" viewBox="0 0 300 6">
@@ -97,7 +100,7 @@ export default function Contacts() {
             </svg>
           </div>
           <p className="mt-6 max-w-2xl mx-auto text-base sm:text-[17px] leading-relaxed text-neutral-700 px-2">
-            Свяжитесь с нами для обсуждения проектов или консультации.
+            {t("contacts.subtitle")}
           </p>
         </div>
       </header>
@@ -109,7 +112,7 @@ export default function Contacts() {
             className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-neutral-900"
             style={{ filter: "url(#wobble)" }}
           >
-            Наши контакты
+            {t("contacts.infoTitle")}
           </h2>
           <div className="mt-3 h-[6px] w-44 sm:w-64 mx-auto">
             <svg width="100%" height="6" viewBox="0 0 300 6">
@@ -120,12 +123,15 @@ export default function Contacts() {
           <div className="mt-10 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {[
               {
-                title: "Адрес",
-                text: "Ташкент, Узбекистан\nСамарканд Дарвоза",
+                title: t("contacts.address.title"),
+                text: t("contacts.address.text"),
               },
-              { title: "Телефон", text: "+998 90 123 45 67" },
-              { title: "Email", text: "info@architecture.com" },
-              { title: "Рабочие часы", text: "Пн - Сб\n9:00 - 19:00" },
+              { title: t("contacts.phone.title"), text: t("contacts.phone.text") },
+              { title: t("contacts.email.title"), text: t("contacts.email.text") },
+              {
+                title: t("contacts.hours.title"),
+                text: t("contacts.hours.text"),
+              },
             ].map((item, i) => (
               <div
                 key={i}
@@ -157,7 +163,7 @@ export default function Contacts() {
             className="text-xl sm:text-2xl font-serif font-bold text-neutral-900"
             style={{ filter: "url(#wobble)" }}
           >
-            Отправьте нам сообщение
+            {t("contacts.form.title")}
           </h4>
           <div className="mt-2 h-[6px] w-32 sm:w-40 mx-auto">
             <svg width="100%" height="6" viewBox="0 0 300 6">
@@ -165,31 +171,31 @@ export default function Contacts() {
             </svg>
           </div>
           <p className="mt-4 text-sm sm:text-[15.5px] text-neutral-700 leading-relaxed px-1">
-            Мы ответим на ваши вопросы и обсудим детали проекта.
+            {t("contacts.form.subtitle")}
           </p>
 
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              alert("Сообщение отправлено (демо).");
+              alert(t("contacts.form.alert"));
             }}
             className="mt-6 grid grid-cols-1 gap-4"
           >
             <input
               type="text"
-              placeholder="Ваше имя"
+              placeholder={t("contacts.form.name")}
               className="p-3 rounded-lg border border-neutral-400 text-neutral-900 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-neutral-800"
               required
             />
             <input
               type="email"
-              placeholder="Ваш email"
+              placeholder={t("contacts.form.email")}
               className="p-3 rounded-lg border border-neutral-400 text-neutral-900 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-neutral-800"
               required
             />
             <textarea
               rows="5"
-              placeholder="Ваше сообщение"
+              placeholder={t("contacts.form.message")}
               className="p-3 rounded-lg border border-neutral-400 text-neutral-900 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-neutral-800"
               required
             />
@@ -197,7 +203,7 @@ export default function Contacts() {
               type="submit"
               className="mt-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg border border-neutral-900 bg-neutral-900 text-white text-sm sm:text-base font-semibold hover:bg-neutral-700 transition"
             >
-              Отправить
+              {t("contacts.form.button")}
             </button>
           </form>
         </div>
