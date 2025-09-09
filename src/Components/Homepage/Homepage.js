@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Phone, Send } from "lucide-react"; // icons
 import backVideo from "../../assets/back.mp4";
 
 function Homepage() {
@@ -44,6 +45,29 @@ function Homepage() {
         >
           {t("homepage.hero.button")}
         </Link>
+      </div>
+
+      {/* Floating Action Buttons */}
+      <div className="fixed bottom-6 right-6 flex flex-col gap-4 z-50">
+        {/* 📞 Phone Button */}
+        <a
+          href="tel:+998083616"
+          className="w-14 h-14 flex items-center justify-center rounded-full bg-green-500 text-white shadow-lg hover:scale-110 transition-transform duration-300 relative group"
+        >
+          <Phone className="w-6 h-6" />
+          <span className="absolute inset-0 rounded-full bg-green-500 opacity-40 blur-xl animate-pulse"></span>
+        </a>
+
+        {/* 💬 Telegram Button */}
+        <a
+          href="https://t.me/abdukarimov_arch"  // ✅ Opens chat with @abdukarimov_arch
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-14 h-14 flex items-center justify-center rounded-full bg-blue-500 text-white shadow-lg hover:scale-110 transition-transform duration-300 relative group"
+        >
+          <Send className="w-6 h-6" />
+          <span className="absolute inset-0 rounded-full bg-blue-500 opacity-40 blur-xl animate-pulse"></span>
+        </a>
       </div>
     </section>
   );
