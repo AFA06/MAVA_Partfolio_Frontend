@@ -18,9 +18,6 @@
   },
 
   "footer": {
-    "rights": "Barcha huquqlar himoyalangan, Muallif",
-    "author": "Abdurashid Fattokhov",
-    "follow": "Bizni kuzatib boring",
     "studioTitle": "Interyer Dizayn Studiyasi",
     "studioName": "Sergey Lashin «VPROEKTE»",
     "studioDesc": "Individual yondashuv.",
@@ -41,9 +38,12 @@
     "link9": "Blog",
     "link10": "Aloqa",
     "link11": "Sayt xaritasi",
-    "bottomLine": "Portfel: Kvartiralar | Uylar | Ofislar | Yashash xonalari | Vannalar | Oshxonalar | Yotoqxona | Bolalar xonasi | Garderoblar | Kabinetlar | Arxitektura | Umumiy joylar | Lobbilari",
+    "bottomLine": "Portfel: Kvartiralar | Uylar | Ofislar | Yashash xonalari | Vannalar | Oshxonalar | Yotoqxonalar | Bolalar xonalari | Garderoblar | Kabinetlar | Arxitektura | Umumiy joylar | Lobbilari",
     "orderCall": "Qo‘ng‘iroq buyurtma qilish",
-    "dev": "Vebsayt ishlab chiqish —"
+    "dev": "Vebsayt ishlab chiqish —",
+    "rights": "Barcha huquqlar himoyalangan, Muallif",
+    "author": "Abdurashid Fattokhov",
+    "follow": "Bizni kuzatib boring"
   },
 
   "login": {
@@ -153,11 +153,11 @@
 
   "portfolioPage": {
     "title": "Loyihalar Portfeli",
-    "subtitle": "Eng yaxshi loyihalarimiz, ularning tajribamiz va dizayn falsafamizni aks ettiradi.",
+    "subtitle": "Eng yaxshi loyihalarimiz, ular tajribamiz va dizayn falsafamizni aks ettiradi.",
     "philosophyTitle": "Bizning Falsafamiz",
     "philosophyText": "Biz estetik va funksionallikni uyg‘unlashtirgan arxitekturani yaratamiz. Har bir loyiha biz uchun makonda yozilgan hikoya.",
     "featuredProjects": "Tanlangan Loyihalar",
-    "dragHint": "Ko‘proq ko‘rish uchun sudrab o'tkazing",
+    "dragHint": "Ko‘proq ko‘rish uchun sudrab o‘tkazing",
     "projects": [
       {
         "id": 1,
@@ -181,43 +181,65 @@
   },
 
   "aboutPage": {
-    "title": "Biz haqimizda",
-    "intro": "Bizning vazifamiz — zamonaviy, barqaror va ilhomlantiruvchi arxitektura orqali shaharlarni o‘zgartirish.",
+    "title": "Nex Architects haqida",
+    "intro": "Biz me’morlar, dizaynerlar va muhandislarning ko‘p tarmoqli jamoasimiz, ma’noli makonlarni yaratishga bag‘ishlanganmiz.",
     "missionTitle": "Bizning Missiyamiz",
-    "missionText": "Arxitektura orqali jamiyatga foyda keltirish, zamonaviy dizaynni amaliy yechimlar bilan uyg‘unlashtirish.",
+    "missionText": "Foydalilik, go‘zallik va barqarorlikni uyg‘unlashtirgan muhitlarni yaratish orqali insonlarning hayoti va ishini yaxshilash.",
     "visionTitle": "Bizning Vizyonimiz",
-    "visionText": "Har bir inson ilhomlantiruvchi va qulay muhitda yashash va ishlash imkoniyatiga ega bo‘lishi kerak.",
+    "visionText": "Markaziy Osiyoda innovatsiya, sifat va abadiy dizayn bilan tanilgan yetakchi arxitektura studiyasiga aylanish.",
     "valuesTitle": "Qiymatlarimiz",
-    "timelineTitle": "Bizning Tariximiz",
-    "timeline": {
-      "2015": {
-        "title": "Boshlanish",
+    "values": [
+      {
+        "title": "Innovatsiya",
+        "text": "Biz noyob yechimlarni olib kelish uchun yangi g‘oyalar va texnologiyalarni izlaymiz."
+      },
+      {
+        "title": "Sifat",
+        "text": "Biz loyihalarni har bir bosqichda aniqlik, tafsilot va mukammallik bilan taqdim etamiz."
+      },
+      {
+        "title": "Barqarorlik",
+        "text": "Yaxshi kelajak uchun ekologik toza materiallar va uslublarga ustuvorlik beramiz."
+      },
+      {
+        "title": "Hamkorlik",
+        "text": "Eng yaxshi natijalar mijozlar va hamkorlar bilan yaqin ishlashdan kelib chiqadi deb hisoblaymiz."
+      }
+    ],
+    "timelineTitle": "Bizning Yo‘limiz",
+    "timeline": [
+      {
+        "year": "2015 – Boshlanish",
         "text": "Kompaniya Toshkentda mamlakat arxitekturasini qayta o‘ylash maqsadida asos solindi."
       },
-      "2018": {
-        "title": "Birinchi yirik loyiha",
+      {
+        "year": "2018 – Birinchi yirik loyiha",
         "text": "Innovatsiya va madaniy an’analarni uyg‘unlashtirgan turar-joy majmuasi amalga oshirildi."
       },
-      "2023": {
-        "title": "Xalqaro hamkorlik",
+      {
+        "year": "2023 – Xalqaro Hamkorlik",
         "text": "Xorijiy bozorga chiqildi va xalqaro hamkorlar bilan barqaror yechimlar joriy etildi."
       }
-    },
+    ],
     "teamTitle": "Bizning Jamoa",
-    "team": {
-      "founder": {
+    "team": [
+      {
         "name": "Abdurashid Karimov",
         "role": "Asoschi va Bosh Me’mor"
       },
-      "creative": {
-        "name": "Laylo Ismatova",
+      {
+        "name": "Lailo Ismatova",
         "role": "Kreativ Direktor"
       },
-      "sustainability": {
+      {
         "name": "Javlonbek Tursunov",
-        "role": "Barqarorlik Bo‘yicha Mutaxassis"
+        "role": "Barqarorlik Mutaxassisi"
       }
-    }
+    ],
+    "outroTitle": "Har bir loyiha — kelajakka qadam",
+    "outroText": "MaxArchitects o‘tmish va kelajakni bog‘lovchi uyg‘un O‘zbekistonni qurmoqda.",
+    "outroButton": "Biz bilan bog‘laning",
+    "footer": "© {{year}} — Arxitektura Studiyasi. Barcha huquqlar himoyalangan."
   },
 
   "blogPage": {
@@ -230,5 +252,51 @@
     "subscribePlaceholder": "siz@kompaniya.com",
     "subscribeButton": "Obuna bo‘lish",
     "subscribeAlert": "Obuna muvaffaqiyatli amalga oshirildi (demo)."
-  }
+  },
+
+  "contactsPage": {
+    "title": "Aloqa",
+    "subtitle": "Loyihalar bo‘yicha maslahat yoki hamkorlik uchun biz bilan bog‘laning.",
+    "infoTitle": "Bizning Aloqalar",
+    "address": {
+      "title": "Manzil",
+      "text": "Toshkent, O‘zbekiston\nSamarqand Darvoza"
+    },
+    "phone": {
+      "title": "Telefon",
+      "text": "+998 90 123 45 67"
+    },
+    "email": {
+      "title": "Email",
+      "text": "info@architecture.com"
+    },
+    "hours": {
+      "title": "Ish vaqti",
+      "text": "Dush - Shan\n9:00 - 19:00"
+    },
+    "form": {
+      "title": "Bizga xabar yuboring",
+      "subtitle": "Savollaringizga javob beramiz va loyiha tafsilotlarini muhokama qilamiz.",
+      "alert": "Xabar yuborildi (demo).",
+      "name": "Ismingiz",
+      "email": "Emailingiz",
+      "message": "Xabaringiz",
+      "button": "Yuborish"
+    }
+  },
+  "videosPage": {
+  "loading": "Kurslar yuklanmoqda...",
+  "heroTitle": "Bizning kurslarimiz bilan yangi bilimlarni o‘rganing",
+  "heroSubtitle": "Yo‘nalishni tanlang va o‘zingizga qulay vaqtda o‘rganishni boshlang.",
+  "preview": "Batafsil",
+  "buyCourse": "Kursni sotib olish",
+  "startLearning": "O‘qishni boshlash",
+  "instructor": "O‘qituvchi",
+  "videosCount": "Videolar soni",
+  "youWillLearn": "Siz nimalarni o‘rganasiz",
+  "close": "Yopish",
+  "outroTitle": "Bugunoq ta’lim yo‘lingizni boshlang",
+  "outroText": "Bizning kurslarimiz sizga ish va ijodda foydali bo‘ladigan ko‘nikmalarni egallashga yordam beradi."
+}
+
 }
