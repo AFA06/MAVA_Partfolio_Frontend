@@ -19,6 +19,16 @@ function Navbar() {
     setIsOpen(false);
   };
 
+  // About & Contacts links
+  const extraLinks = navLinks.filter(
+    (link) => link.label === "about" || link.label === "contacts"
+  );
+
+  // Other links
+  const mainLinks = navLinks.filter(
+    (link) => link.label !== "about" && link.label !== "contacts"
+  );
+
   return (
     <nav className={`navbar ${isHome ? "home-navbar" : ""}`}>
       {/* Left: Logo */}
@@ -28,7 +38,7 @@ function Navbar() {
         </Link>
       </div>
 
-      {/* Center: Desktop Nav Links */}
+      {/* Center: Desktop Nav Links (include all) */}
       <div className="navbar-center hidden lg:flex">
         {navLinks.map((link) => (
           <NavLink
@@ -43,8 +53,23 @@ function Navbar() {
         ))}
       </div>
 
-      {/* Right: Languages + Hamburger (Mobile only) */}
+      {/* Right: Mobile Extra Links + Languages + Hamburger */}
       <div className="navbar-right flex items-center gap-3">
+        {/* Show About & Contacts only on mobile (hidden on desktop) */}
+        <div className="flex gap-3 lg:hidden">
+          {extraLinks.map((link) => (
+            <NavLink
+              key={link.href}
+              to={link.href}
+              className={({ isActive }) =>
+                isActive ? "nav-link nav-link-active" : "nav-link"
+              }
+            >
+              {t(link.label)}
+            </NavLink>
+          ))}
+        </div>
+
         {/* Desktop Languages */}
         <div className="hidden lg:flex gap-2">
           <button onClick={() => changeLanguage("ru")} className="lang">
@@ -67,14 +92,14 @@ function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Sidebar */}
+      {/* Mobile Sidebar (without About & Contacts now) */}
       <div
         className={`mobile-sidebar ${isOpen ? "open" : ""} ${
           isHome ? "home-menu" : ""
         }`}
       >
         <div className="flex flex-col gap-4 p-6">
-          {navLinks.map((link) => (
+          {mainLinks.map((link) => (
             <NavLink
               key={link.href}
               to={link.href}
