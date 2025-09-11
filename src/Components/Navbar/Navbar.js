@@ -1,3 +1,4 @@
+// src/components/Navbar/Navbar.jsx
 import React, { useState } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import navLinks from "./NavLinks";
@@ -20,7 +21,7 @@ function Navbar() {
 
   return (
     <nav className={`navbar ${isHome ? "home-navbar" : ""}`}>
-      {/* Left: Logo only */}
+      {/* Left: Logo */}
       <div className="navbar-left">
         <Link to="/" className="flex items-center">
           <img src={logo} alt="Logo" className="logo-img" />
@@ -42,7 +43,7 @@ function Navbar() {
         ))}
       </div>
 
-      {/* Right: Desktop Languages + Mobile Contact/Hamburger */}
+      {/* Right: Languages + Hamburger (Mobile only) */}
       <div className="navbar-right flex items-center gap-3">
         {/* Desktop Languages */}
         <div className="hidden lg:flex gap-2">
@@ -57,17 +58,7 @@ function Navbar() {
           </button>
         </div>
 
-        {/* Contact link only visible in mobile */}
-        <NavLink
-          to="/contact"
-          className={`block lg:hidden ${
-            isHome ? "text-white" : "text-gray-800"
-          } font-semibold`}
-        >
-          {t("contact")}
-        </NavLink>
-
-        {/* Hamburger (mobile only) */}
+        {/* Hamburger (Mobile only) */}
         <button
           className={`lg:hidden ${isHome ? "text-white" : "text-gray-800"}`}
           onClick={() => setIsOpen(!isOpen)}
@@ -96,7 +87,7 @@ function Navbar() {
             </NavLink>
           ))}
 
-          {/* Language Switcher inside hamburger (mobile only) */}
+          {/* Language Switcher (mobile only) */}
           <div className="flex gap-4 mt-4">
             <button onClick={() => changeLanguage("ru")} className="lang">
               RU
