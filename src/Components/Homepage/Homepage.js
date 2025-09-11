@@ -1,4 +1,3 @@
-// src/Components/Homepage.jsx
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -31,16 +30,26 @@ function Homepage() {
       <div className="absolute inset-0 bg-black/60"></div>
 
       {/* Content */}
-      <div className="relative z-10 px-4 sm:px-6 max-w-3xl mx-auto text-white">
-        <h1 className="text-2xl sm:text-4xl md:text-6xl font-extrabold leading-snug tracking-wide mb-4 text-gold drop-shadow-lg">
-          {t("homepage.hero.title")}
+      <div className="relative z-10 px-4 sm:px-6 max-w-4xl mx-auto text-white flex flex-col items-center">
+        {/* Company Name */}
+        <h1 className="text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tight mb-6 text-white drop-shadow-2xl">
+          Nex Architects
         </h1>
-        <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-xl text-gray-200 mb-8">
+
+        {/* Slogan */}
+        <h2 className="text-xl sm:text-3xl md:text-4xl font-semibold tracking-wide text-gold drop-shadow-lg mb-6">
+          {t("homepage.hero.title")}
+        </h2>
+
+        {/* Description */}
+        <p className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed mb-10">
           {t("homepage.hero.desc")}
         </p>
+
+        {/* Call to Action */}
         <Link
           to="/portfolio"
-          className="inline-block px-5 sm:px-8 py-2 sm:py-3 text-sm sm:text-lg font-semibold rounded-full border-2 border-gold text-gold
+          className="inline-block px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-full border-2 border-gold text-gold
             hover:bg-gold hover:text-black transition-all duration-300 ease-in-out shadow-lg"
         >
           {t("homepage.hero.button")}
@@ -60,7 +69,7 @@ function Homepage() {
 
         {/* 💬 Telegram Button */}
         <a
-          href="https://t.me/abdukarimov_arch" // ✅ Opens chat with @abdukarimov_arch
+          href="https://t.me/abdukarimov_arch"
           target="_blank"
           rel="noopener noreferrer"
           className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full bg-blue-500 text-white shadow-lg hover:scale-110 transition-transform duration-300 relative group"

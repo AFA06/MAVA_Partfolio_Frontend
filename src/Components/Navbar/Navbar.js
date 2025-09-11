@@ -1,4 +1,3 @@
-// src/Components/Navbar.jsx
 import React, { useState } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import navLinks from "./NavLinks";
@@ -21,11 +20,10 @@ function Navbar() {
 
   return (
     <nav className={`navbar ${isHome ? "home-navbar" : ""}`}>
-      {/* Left: Logo + Title */}
+      {/* Left: Logo only */}
       <div className="navbar-left">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center">
           <img src={logo} alt="Logo" className="logo-img" />
-          <span className="nav-link">{t("nex")}</span>
         </Link>
       </div>
 
@@ -44,17 +42,32 @@ function Navbar() {
         ))}
       </div>
 
-      {/* Right: Languages + Hamburger */}
+      {/* Right: Desktop Languages + Mobile Contact/Hamburger */}
       <div className="navbar-right flex items-center gap-3">
-        <button onClick={() => changeLanguage("ru")} className="lang">
-          RU
-        </button>
-        <button onClick={() => changeLanguage("en")} className="lang">
-          EN
-        </button>
-        <button onClick={() => changeLanguage("uz")} className="lang">
-          UZ
-        </button>
+        {/* Desktop Languages */}
+        <div className="hidden lg:flex gap-2">
+          <button onClick={() => changeLanguage("ru")} className="lang">
+            RU
+          </button>
+          <button onClick={() => changeLanguage("en")} className="lang">
+            EN
+          </button>
+          <button onClick={() => changeLanguage("uz")} className="lang">
+            UZ
+          </button>
+        </div>
+
+        {/* Contact link only visible in mobile */}
+        <NavLink
+          to="/contact"
+          className={`block lg:hidden ${
+            isHome ? "text-white" : "text-gray-800"
+          } font-semibold`}
+        >
+          {t("contact")}
+        </NavLink>
+
+        {/* Hamburger (mobile only) */}
         <button
           className={`lg:hidden ${isHome ? "text-white" : "text-gray-800"}`}
           onClick={() => setIsOpen(!isOpen)}
@@ -82,6 +95,19 @@ function Navbar() {
               {t(link.label)}
             </NavLink>
           ))}
+
+          {/* Language Switcher inside hamburger (mobile only) */}
+          <div className="flex gap-4 mt-4">
+            <button onClick={() => changeLanguage("ru")} className="lang">
+              RU
+            </button>
+            <button onClick={() => changeLanguage("en")} className="lang">
+              EN
+            </button>
+            <button onClick={() => changeLanguage("uz")} className="lang">
+              UZ
+            </button>
+          </div>
         </div>
       </div>
     </nav>
