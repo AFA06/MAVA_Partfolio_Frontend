@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import navLinks from "./NavLinks";
-import "./navbar.css";
 import { Menu, X } from "lucide-react";
-import logo from "../../assets/logo.png"; // ✅ Make sure logo.png exists
+import logo from "../../assets/logo.png";
 import { useTranslation } from "react-i18next";
+import "./navbar.css";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -80,11 +80,11 @@ function Navbar() {
 
       {/* Mobile Sidebar */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-black z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-full w-64 bg-black text-white z-50 transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex justify-between items-center px-4 py-3 border-b border-white/10">
+        <div className="flex justify-between items-center px-4 py-3 border-b border-white/20">
           <img src={logo} alt="Logo" className="h-8" />
           <button
             onClick={() => setIsOpen(false)}
@@ -95,7 +95,7 @@ function Navbar() {
           </button>
         </div>
 
-        <div className="flex flex-col gap-4 p-6">
+        <div className="flex flex-col gap-4 p-6 bg-black">
           {mainLinks.map((link) => (
             <NavLink
               key={link.href}
@@ -110,7 +110,7 @@ function Navbar() {
           ))}
 
           {/* Extra Links */}
-          <div className="mt-4 border-t border-white/10 pt-4 flex flex-col gap-3">
+          <div className="mt-4 border-t border-white/20 pt-4 flex flex-col gap-3">
             {extraLinks.map((link) => (
               <NavLink
                 key={link.href}

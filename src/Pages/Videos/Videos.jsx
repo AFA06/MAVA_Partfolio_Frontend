@@ -19,6 +19,9 @@ const courses = [
 const Videos = () => {
   const { t } = useTranslation();
 
+  // Emoji icons for features
+  const featureIcons = ["👩‍🏫", "⏰", "🛠️"];
+
   return (
     <div className="bg-[#f8f7f3]">
       {/* Hero Section */}
@@ -45,9 +48,9 @@ const Videos = () => {
           {t("videosPage.coursesTitle")}
         </h2>
         <div className="grid gap-6 sm:gap-8 md:gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-          {courses.map((course, index) => (
+          {courses.map((course) => (
             <div
-              key={index}
+              key={course.key}
               className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition cursor-pointer flex flex-col"
             >
               <img
@@ -82,13 +85,15 @@ const Videos = () => {
           {t("videosPage.featuresTitle")}
         </h2>
         <div className="max-w-4xl mx-auto grid gap-6 sm:gap-8 md:gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-          {[1, 2, 3].map((num) => (
+          {[1, 2, 3].map((num, index) => (
             <div key={num} className="flex flex-col items-center text-center px-4">
-              <p className="text-4xl sm:text-5xl mb-2">{t(`videosPage.feature${num}.icon`)}</p>
+              <p className="text-4xl sm:text-5xl mb-2">{featureIcons[index]}</p>
               <h3 className="font-semibold text-lg sm:text-xl mb-1">
-                {t(`videosPage.feature${num}.title`)}
+                {t(`videosPage.feature${num}Title`)}
               </h3>
-              <p className="text-neutral-700 text-sm sm:text-base">{t(`videosPage.feature${num}.desc`)}</p>
+              <p className="text-neutral-700 text-sm sm:text-base">
+                {t(`videosPage.feature${num}Desc`)}
+              </p>
             </div>
           ))}
         </div>
