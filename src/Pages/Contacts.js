@@ -2,8 +2,10 @@ import React, { useState, useMemo } from "react";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 export default function Contacts() {
+  const { t } = useTranslation();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(null);
@@ -27,10 +29,10 @@ export default function Contacts() {
   }, []);
 
   const contactItems = [
-    { title: "Адрес", text: "г. Ташкент, Узбекистан", icon: <MapPin /> },
-    { title: "Телефон", text: "+998 (90) 014 14 44", icon: <Phone /> },
-    { title: "Электронная почта", text: "architectsnex@gmail.com", icon: <Mail /> },
-    { title: "Часы работы", text: "Пн - Сб\n9:00 - 20:00", icon: <Clock /> },
+    { title: t("contactsPage.address.title"), text: t("contactsPage.address.text"), icon: <MapPin /> },
+    { title: t("contactsPage.phone.title"), text: t("contactsPage.phone.text"), icon: <Phone /> },
+    { title: t("contactsPage.email.title"), text: t("contactsPage.email.text"), icon: <Mail /> },
+    { title: t("contactsPage.hours.title"), text: t("contactsPage.hours.text"), icon: <Clock /> },
   ];
 
   const handleSubmit = async (e) => {
@@ -73,11 +75,11 @@ export default function Contacts() {
           className="mx-auto max-w-4xl px-6 pt-24 pb-16 text-center"
         >
           <h1 className="text-[clamp(2rem,6vw,3.5rem)] leading-[1.1] font-serif tracking-tight text-neutral-900">
-            Контакты
+            {t("contactsPage.title")}
           </h1>
           <div className="mt-5 h-[3px] w-32 sm:w-44 mx-auto bg-neutral-800" />
           <p className="mt-6 max-w-2xl mx-auto text-lg leading-relaxed text-neutral-700">
-            Свяжитесь с нами, чтобы обсудить проекты или заказать консультацию.
+            {t("contactsPage.subtitle")}
           </p>
         </motion.div>
       </header>
@@ -118,17 +120,17 @@ export default function Contacts() {
           className="mx-auto max-w-2xl rounded-2xl border border-neutral-200 bg-white/80 shadow-lg p-8 text-center backdrop-blur"
         >
           <h4 className="text-2xl font-serif font-bold text-neutral-900">
-            Напишите нам
+            {t("contactsPage.form.title")}
           </h4>
           <div className="mt-3 h-[2px] w-24 mx-auto bg-neutral-800" />
           <p className="mt-4 text-neutral-600 text-sm sm:text-base">
-            Мы ответим на ваши вопросы и обсудим детали проекта.
+            {t("contactsPage.form.subtitle")}
           </p>
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-4 text-left">
             <div>
               <label className="block text-sm font-medium text-neutral-700 mb-1">
-                Ваше имя
+                {t("contactsPage.form.name")}
               </label>
               <input
                 type="text"
@@ -140,7 +142,7 @@ export default function Contacts() {
             </div>
             <div>
               <label className="block text-sm font-medium text-neutral-700 mb-1">
-                Email
+                {t("contactsPage.form.email")}
               </label>
               <input
                 type="email"
@@ -152,7 +154,7 @@ export default function Contacts() {
             </div>
             <div>
               <label className="block text-sm font-medium text-neutral-700 mb-1">
-                Сообщение
+                {t("contactsPage.form.message")}
               </label>
               <textarea
                 rows="5"
@@ -168,11 +170,11 @@ export default function Contacts() {
               disabled={loading}
               className="mt-2 w-full px-6 py-3 rounded-lg border border-neutral-900 bg-neutral-900 text-white font-semibold hover:bg-neutral-700 transition"
             >
-              {loading ? "Отправка..." : "Отправить"}
+              {loading ? t("contactsPage.form.sending") || "Отправка..." : t("contactsPage.form.button")}
             </button>
 
-            {success === true && <p className="mt-2 text-green-600">Сообщение отправлено!</p>}
-            {success === false && <p className="mt-2 text-red-600">Ошибка отправки.</p>}
+            {success === true && <p className="mt-2 text-green-600">{t("contactsPage.form.alert")}</p>}
+            {success === false && <p className="mt-2 text-red-600">{t("contactsPage.form.error") || "Ошибка отправки."}</p>}
           </form>
         </motion.div>
       </section>
