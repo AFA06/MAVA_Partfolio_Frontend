@@ -1,13 +1,24 @@
 import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+// Import images directly
+import img1 from "/Users/macbook/Desktop/Website_Original/architecture-website/frontend/src/assets/1.jpg";
+import img2 from "/Users/macbook/Desktop/Website_Original/architecture-website/frontend/src/assets/2.jpg";
+import img3 from "/Users/macbook/Desktop/Website_Original/architecture-website/frontend/src/assets/3.jpg";
+
 export default function Portfolio() {
   const { t } = useTranslation();
 
   // Project data from translations
   const projectsData = t("portfolioPage.projects", { returnObjects: true });
 
-  const [selected, setSelected] = useState(projectsData[0]);
+  // Inject images into translated projects
+  const projectsWithImages = projectsData.map((project, index) => ({
+    ...project,
+    image: [img1, img2, img3][index % 3], // cycle through 1, 2, 3.jpg
+  }));
+
+  const [selected, setSelected] = useState(projectsWithImages[0]);
 
   // Generate subtle paper grain texture
   const paperDataUrl = useMemo(() => {
@@ -154,7 +165,7 @@ export default function Portfolio() {
           <div className="mt-6 lg:hidden">
             <div className="-mx-4 px-4 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none]">
               <div className="flex gap-4 min-w-max pr-4">
-                {projectsData.map((p) => (
+                {projectsWithImages.map((p) => (
                   <button
                     key={p.id}
                     onClick={() => setSelected(p)}
@@ -181,7 +192,7 @@ export default function Portfolio() {
 
           {/* Desktop grid */}
           <div className="mt-8 hidden lg:grid grid-cols-12 gap-6">
-            {projectsData.map((p) => (
+            {projectsWithImages.map((p) => (
               <button
                 key={p.id}
                 onClick={() => setSelected(p)}

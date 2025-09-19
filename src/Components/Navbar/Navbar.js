@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import navLinks from "./NavLinks";
 import "./navbar.css";
 import { Menu, X } from "lucide-react";
-import logo from "../../assets/logo.png"; 
+import logo from "../../assets/logo.png"; // ✅ Make sure logo.png exists
 import { useTranslation } from "react-i18next";
 
 function Navbar() {
@@ -16,17 +16,25 @@ function Navbar() {
     setIsOpen(false);
   };
 
+  const extraLinks = navLinks.filter(
+    (link) => link.label === "about" || link.label === "contacts"
+  );
+
+  const mainLinks = navLinks.filter(
+    (link) => link.label !== "about" && link.label !== "contacts"
+  );
+
   return (
-    <nav className="navbar">
+    <nav className="navbar fixed w-full top-0 z-50 bg-black/80 backdrop-blur-md">
       {/* Left: Logo */}
-      <div className="navbar-left">
-        <NavLink to="/" className="logo-link">
-          <img src={logo} alt="Logo" className="logo-img" />
+      <div className="navbar-left flex items-center px-4 py-2">
+        <NavLink to="/" className="logo-link flex items-center">
+          <img src={logo} alt="Logo" className="logo-img h-10 w-auto" />
         </NavLink>
       </div>
 
       {/* Center: Desktop Links */}
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-center hidden lg:flex gap-6">
         {navLinks.map((link) => (
           <NavLink
             key={link.href}
@@ -40,10 +48,10 @@ function Navbar() {
         ))}
       </div>
 
-      {/* Right: Languages + Mobile Hamburger */}
-      <div className="navbar-right flex items-center gap-3">
+      {/* Right: Language + Hamburger */}
+      <div className="navbar-right flex items-center gap-3 ml-auto pr-4">
         {/* Desktop Languages */}
-        <div className="hidden lg:flex gap-3">
+        <div className="hidden lg:flex gap-2">
           <button onClick={() => changeLanguage("ru")} className="lang">
             RU
           </button>
@@ -55,16 +63,43 @@ function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Hamburger */}
-        <button className="lg:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
+        {/* Hamburger */}
+        <button
+          className="lg:hidden text-white"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle menu"
+        >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
+      {/* Overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+          onClick={() => setIsOpen(false)}
+        ></div>
+      )}
+
       {/* Mobile Sidebar */}
-      <div className={`mobile-sidebar ${isOpen ? "open" : ""}`}>
-        <div className="flex flex-col gap-6 mt-16 ml-6">
-          {navLinks.map((link) => (
+      <div
+        className={`fixed top-0 right-0 h-full w-64 bg-black z-50 transform transition-transform duration-300 ease-in-out ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex justify-between items-center px-4 py-3 border-b border-white/10">
+          <img src={logo} alt="Logo" className="h-8" />
+          <button
+            onClick={() => setIsOpen(false)}
+            className="text-white"
+            aria-label="Close menu"
+          >
+            <X size={24} />
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-4 p-6">
+          {mainLinks.map((link) => (
             <NavLink
               key={link.href}
               to={link.href}
@@ -77,6 +112,23 @@ function Navbar() {
             </NavLink>
           ))}
 
+          {/* Extra Links (About, Contacts) */}
+          <div className="mt-4 border-t border-white/10 pt-4 flex flex-col gap-3">
+            {extraLinks.map((link) => (
+              <NavLink
+                key={link.href}
+                to={link.href}
+                onClick={() => setIsOpen(false)}
+                className={({ isActive }) =>
+                  isActive ? "nav-link nav-link-active" : "nav-link"
+                }
+              >
+                {t(link.label)}
+              </NavLink>
+            ))}
+          </div>
+
+          {/* Language Switch */}
           <div className="flex gap-4 mt-6">
             <button onClick={() => changeLanguage("ru")} className="lang">
               RU
