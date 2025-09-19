@@ -295,23 +295,27 @@
   "heroTitle": "Discover new knowledge with our courses",
   "heroSubtitle": "Choose a category and start learning at your own pace.",
   "coursesTitle": "Our Courses",
-  "courseDetails": "Preview",
+  "course1": {
+    "title": "Web Development Bootcamp",
+    "description": "Learn how to build modern websites using HTML, CSS, and JavaScript."
+  },
+  "course2": {
+    "title": "Data Science with Python",
+    "description": "Analyze data, build machine learning models, and create visualizations."
+  },
+  "course3": {
+    "title": "UI/UX Design Fundamentals",
+    "description": "Design user-friendly and visually appealing interfaces and experiences."
+  },
+  "preview": "Preview",
   "featuresTitle": "Why Choose Us",
   "feature1Title": "Expert Instructors",
   "feature1Desc": "Courses are taught by practicing professionals with years of experience.",
   "feature2Title": "Flexible Schedule",
   "feature2Desc": "Learn at your convenience, without being tied to a timetable.",
   "feature3Title": "Practical Projects",
-  "feature3Desc": "Gain real-world skills by completing projects close to actual practice.",
-  "preview": "Preview",
-  "buyCourse": "Buy course",
-  "startLearning": "Start learning",
-  "instructor": "Instructor",
-  "videosCount": "Number of videos",
-  "youWillLearn": "What you will learn",
-  "close": "Close",
-  "outroTitle": "Start your learning journey today",
-  "outroText": "Our courses will help you gain skills that are valuable for both work and creativity."
+  "feature3Desc": "Gain real-world skills by completing projects close to actual practice."
 }
+
 
 }
