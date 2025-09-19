@@ -290,41 +290,32 @@
     }
   },
 
-  "videosPage": {
-  "loading": "Kurslar yuklanmoqda...",
-  "heroTitle": "Bizning kurslarimiz",
-  "heroSubtitle": "Yo‘nalishni tanlang va o‘zingizga qulay vaqtda o‘rganishni boshlang.",
-  "coursesTitle": "Bizning Kurslar",
-  "course1": {
-    "title": "Veb dasturlash",
-    "description": "HTML, CSS va JavaScript yordamida zamonaviy veb-saytlar yaratishni o‘rganing."
-  },
-  "course2": {
-    "title": "Python bilan Data Science",
-    "description": "Ma’lumotlarni tahlil qiling, mashinani o‘rganish modellarini yarating va natijalarni vizualizatsiya qiling."
-  },
-  "course3": {
-    "title": "UI/UX dizayn asoslari",
-    "description": "Foydalanuvchiga qulay va vizual jihatdan chiroyli interfeys va tajribalarni yarating."
-  },
-  "courseDetails": "Batafsil",
-  "featuresTitle": "Nima uchun bizni tanlaydilar",
-  "feature1Title": "Ekspert o‘qituvchilar",
-  "feature1Desc": "O‘qituvchilar amaliyotda faoliyat yuritayotgan ko‘p yillik tajribaga ega mutaxassislar.",
-  "feature2Title": "Moslashuvchan jadval",
-  "feature2Desc": "O‘zingizga qulay vaqtda, jadvalga bog‘lanmasdan o‘qing.",
-  "feature3Title": "Amaliy loyihalar",
-  "feature3Desc": "Amaliyotga yaqin loyihalarni bajarish orqali haqiqiy ko‘nikmalarni oling.",
-  "preview": "Batafsil",
-  "buyCourse": "Kursni sotib olish",
-  "startLearning": "O‘qishni boshlash",
-  "instructor": "O‘qituvchi",
-  "videosCount": "Videolar soni",
-  "youWillLearn": "Siz nimalarni o‘rganasiz",
-  "close": "Yopish",
-  "outroTitle": "Bugunoq ta’lim yo‘lingizni boshlang",
-  "outroText": "Bizning kurslarimiz sizga ish va ijodda foydali bo‘ladigan ko‘nikmalarni egallashga yordam beradi."
-}
+   "videosPage": {
+    "loading": "Kurslar yuklanmoqda...",
+    "heroTitle": "Bizning kurslarimiz",
+    "heroSubtitle": "Yo‘nalishni tanlang va o‘zingizga qulay vaqtda o‘rganishni boshlang.",
+    "coursesTitle": "Bizning Kurslar",
+    "course1": { "title": "Veb dasturlash", "description": "HTML, CSS va JavaScript yordamida zamonaviy veb-saytlar yaratishni o‘rganing." },
+    "course2": { "title": "Python bilan Data Science", "description": "Ma’lumotlarni tahlil qiling, ML modellarini yarating va natijalarni vizualizatsiya qiling." },
+    "course3": { "title": "UI/UX dizayn asoslari", "description": "Foydalanuvchiga qulay va vizual jihatdan chiroyli interfeys yarating." },
+    "visitCompany": "Kompaniya saytiga o'tish",
+    "preview": "Batafsil",
+    "buyCourse": "Kursni sotib olish",
+    "startLearning": "O‘qishni boshlash",
+    "instructor": "O‘qituvchi",
+    "videosCount": "Videolar soni",
+    "youWillLearn": "Siz nimalarni o‘rganasiz",
+    "close": "Yopish",
+    "featuresTitle": "Nima uchun bizni tanlaydilar",
+    "feature1Title": "Ekspert o‘qituvchilar",
+    "feature1Desc": "O‘qituvchilar amaliyotda faoliyat yuritayotgan ko‘p yillik tajribaga ega.",
+    "feature2Title": "Moslashuvchan jadval",
+    "feature2Desc": "O‘zingizga qulay vaqtda, jadvalga bog‘lanmasdan o‘qing.",
+    "feature3Title": "Amaliy loyihalar",
+    "feature3Desc": "Amaliyotga yaqin loyihalarni bajarish orqali haqiqiy ko‘nikmalarni oling.",
+    "outroTitle": "Bugunoq ta’lim yo‘lingizni boshlang",
+    "outroText": "Bizning kurslarimiz sizga ish va ijodda foydali bo‘ladigan ko‘nikmalarni egallashga yordam beradi."
+  }
 
 
 }
