@@ -1,8 +1,8 @@
 // src/Components/Homepage/Homepage.jsx
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Phone, Send } from "lucide-react";
-import testImage from "../../assets/test.png"; // ✅ Correct relative path
+import { Phone, Send, Home, Pencil, Box } from "lucide-react"; // added optional icons
+import testImage from "../../assets/test.png";
 
 function Homepage() {
   useEffect(() => {
@@ -12,15 +12,15 @@ function Homepage() {
 
   return (
     <section
-      className="relative w-full h-screen flex items-center justify-center text-center overflow-hidden bg-black bg-cover bg-center"
-      style={{ backgroundImage: `url(${testImage})` }} // ✅ Background image
+      className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-black bg-cover bg-center"
+      style={{ backgroundImage: `url(${testImage})` }}
     >
-      {/* 🔹 Dark overlay for better readability */}
+      {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/60"></div>
 
-      {/* Контент */}
-      <div className="relative z-10 px-4 sm:px-6 max-w-4xl mx-auto text-white flex flex-col items-center">
-        {/* ✅ Premium typography */}
+      {/* Main content */}
+      <div className="relative z-10 px-4 sm:px-6 max-w-4xl mx-auto flex flex-col items-center text-center">
+        {/* Headings */}
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold uppercase tracking-wide text-white drop-shadow-2xl mb-3">
           New Era Excellence
         </h1>
@@ -28,26 +28,42 @@ function Homepage() {
           Architects
         </h2>
 
-        {/* ✅ Refined paragraph */}
-        <p className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-gray-100 leading-relaxed mb-10 drop-shadow-md">
+        {/* Paragraph */}
+        <p className="max-w-2xl text-base sm:text-lg md:text-xl text-gray-100 leading-relaxed mb-8 drop-shadow-md">
           Архитектурное бюро, где идеи превращаются в стильные и удобные проекты.
           От концепции до реализации.
         </p>
 
-        {/* ✅ Gradient button */}
+        {/* CTA Button */}
         <Link
           to="/portfolio"
           className="inline-block px-8 sm:px-12 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-full 
-            bg-gradient-to-r from-gray-900 via-gray-800 to-black 
-            text-white border border-white/20 
-            hover:from-black hover:via-gray-900 hover:to-gray-800 
-            transition-all duration-300 ease-in-out shadow-xl"
+                     bg-gradient-to-r from-gray-900 via-gray-800 to-black 
+                     text-white border border-white/20 
+                     hover:from-black hover:via-gray-900 hover:to-gray-800 
+                     transition-all duration-300 ease-in-out shadow-xl mb-8"
         >
           Смотреть проекты
         </Link>
+
+        {/* Optional service icons */}
+        <div className="flex gap-8 mt-4 text-gray-200">
+          <div className="flex flex-col items-center">
+            <Home className="w-6 h-6 sm:w-8 sm:h-8 mb-1" />
+            <span className="text-sm sm:text-base">Дизайн интерьера</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <Pencil className="w-6 h-6 sm:w-8 sm:h-8 mb-1" />
+            <span className="text-sm sm:text-base">Проектирование</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <Box className="w-6 h-6 sm:w-8 sm:h-8 mb-1" />
+            <span className="text-sm sm:text-base">3D Моделирование</span>
+          </div>
+        </div>
       </div>
 
-      {/* 🔹 Плавающие кнопки */}
+      {/* Floating contact buttons */}
       <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 flex flex-col gap-3 sm:gap-4 z-50">
         {/* Phone */}
         <a
