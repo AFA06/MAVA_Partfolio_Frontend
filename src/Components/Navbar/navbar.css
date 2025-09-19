@@ -1,73 +1,89 @@
-/* Base Navbar */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 100;
-  height: 60px;
-  display: flex; /* ✅ flex instead of grid */
+  height: 85px; /* balanced height (was 90px) */
+  display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
-  border-bottom: 1px solid #ddd;
-  background: #fff;
-  transition: background 0.3s ease, color 0.3s ease;
+  padding: 0 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+  /* ✨ Modern subtle transparent background */
+  background: rgba(40, 40, 40, 0.65); /* soft mid-gray, slightly see-through */
+  backdrop-filter: blur(10px) saturate(120%); /* frosted glass effect */
+
+  transition: background 0.3s ease, color 0.3s ease, height 0.3s ease;
 }
 
-/* Left, Center, Right layout */
+/* Layout spacing */
 .navbar-left {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 24px;
 }
+
 .navbar-center {
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 24px;
+  gap: 32px;
   flex: 1;
 }
+
 .navbar-right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 20px;
 }
 
 /* Logo */
+.logo-link {
+  display: flex;
+  align-items: center;
+}
+
 .logo-img {
-  height: 32px;
+  height: 95px;   /* ✅ slightly smaller than 110px */
   width: auto;
-  border-radius: 50%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+  transform: scale(1.06); /* smooth zoom effect on hover */
 }
 
 /* Links */
 .nav-link {
-  color: #333;
+  color: #f5f5f5;
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s ease;
   font-weight: 500;
 }
 .nav-link:hover {
-  color: #000;
+  color: #ffd700;
 }
 .nav-link-active {
   font-weight: 600;
-  color: #000;
+  color: #ffd700;
 }
 
-/* Language */
+/* Language buttons */
 .lang {
   font-size: 0.9rem;
   cursor: pointer;
-  color: #666;
+  color: #f5f5f5;
   transition: color 0.2s;
   background: none;
   border: none;
 }
 .lang:hover {
-  color: #000;
+  color: #ffd700;
 }
 
-/* === Mobile Sidebar === */
+/* Mobile Sidebar */
 .mobile-sidebar {
   position: fixed;
   top: 0;
@@ -75,51 +91,13 @@
   width: 80%;
   max-width: 280px;
   height: 100%;
-  background: #fff;
-  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+  background: rgba(30, 30, 30, 0.9); /* slightly lighter than black */
+  backdrop-filter: blur(12px);
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.3);
   transition: right 0.3s ease;
   z-index: 200;
   overflow-y: auto;
 }
 .mobile-sidebar.open {
   right: 0;
-}
-
-/* === Homepage Special Styling === */
-.home-navbar {
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: transparent !important;
-  border-bottom: none !important;
-  box-shadow: none !important;
-}
-.home-navbar .nav-link,
-.home-navbar .lang {
-  color: #fff;
-}
-.home-navbar .nav-link:hover,
-.home-navbar .lang:hover {
-  color: #ffd700;
-}
-.home-navbar .nav-link-active {
-  color: #ffd700;
-}
-.home-menu {
-  background: rgba(0, 0, 0, 0.9);
-}
-.home-menu .nav-link,
-.home-menu .lang {
-  color: #fff;
-}
-
-/* Prevent white flash */
-html,
-body,
-#root {
-  margin: 0;
-  padding: 0;
-  background: #000;
-  height: 100%;
 }

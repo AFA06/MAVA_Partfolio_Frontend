@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 /* Base styles for the entire app */
-
-/* ✅ Removed global wrapper styles — keep it minimal */
 html, body, #root {
   margin: 0;
   padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* 🚀 FIX: disable horizontal scroll */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

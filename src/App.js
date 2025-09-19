@@ -6,11 +6,8 @@ import Footer from "./Components/Footer/Footer";
 import Homepage from "./Components/Homepage/Homepage";
 import Portfolio from "./Pages/Portfolio";
 import Blog from "./Pages/Blog";
-import Login from "./Components/Login_page/Login";
-import Signup from "./Components/Login_page/Signup";
 import Videos from "./Pages/Videos/Videos";
 import CategoryVideos from "./Pages/Videos/CategoryVideos";
-import ForgotPassword from "./Components/Login_page/ForgotPassword";
 import About from "./Pages/About";
 import Contacts from "./Pages/Contacts";
 
@@ -19,31 +16,21 @@ import "./App.css";
 function App() {
   const location = useLocation();
 
-  // Hide Footer on homepage + login/signup/forgot-password
-  const hideFooter = ["/", "/login", "/signup", "/forgot-password"].includes(
-    location.pathname
-  );
-
-  // Hide Navbar only on login/signup/forgot-password
-  const hideNavbar = ["/login", "/signup", "/forgot-password"].includes(
-    location.pathname
-  );
+  // Hide Footer only on homepage (optional — adjust if you want always visible)
+  const hideFooter = ["/"].includes(location.pathname);
 
   return (
     <>
-      {/* Navbar */}
-      {!hideNavbar && <Navbar />}
+      {/* Navbar (always visible now) */}
+      <Navbar />
 
       <main>
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
           <Route path="/videos" element={<Videos />} />
           <Route path="/videos/:category" element={<CategoryVideos />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/about" element={<About />} />
           <Route path="/contacts" element={<Contacts />} />
         </Routes>
