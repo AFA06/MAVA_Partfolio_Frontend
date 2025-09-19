@@ -87,67 +87,67 @@ export default function Blog() {
 
       {/* HERO */}
       <header className="relative overflow-hidden">
-        <div className="mx-auto max-w-4xl px-6 sm:px-10 pt-20 sm:pt-24 pb-16 sm:pb-20 text-center">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 pt-16 sm:pt-20 pb-12 sm:pb-16 text-center">
           <h1
-            className="text-[clamp(2rem,6vw,4rem)] leading-[1.1] font-serif tracking-tight text-neutral-900"
+            className="text-[clamp(1.75rem,6vw,3.5rem)] sm:text-[clamp(2rem,6vw,4rem)] leading-[1.1] font-serif tracking-tight text-neutral-900"
             style={{ filter: "url(#wobble)" }}
           >
             {t("blogPage.title")}
           </h1>
-          <div className="mt-4 h-[6px] w-40 sm:w-52 mx-auto">
+          <div className="mt-3 h-[4px] sm:h-[6px] w-32 sm:w-52 mx-auto">
             <svg width="100%" height="6" viewBox="0 0 300 6">
               <rect width="300" height="6" fill="url(#pencilStroke)" />
             </svg>
           </div>
-          <p className="mt-6 max-w-2xl mx-auto text-[15px] sm:text-[17px] leading-relaxed text-neutral-700 italic">
+          <p className="mt-4 sm:mt-6 max-w-xl mx-auto text-[13px] sm:text-[15px] md:text-[17px] leading-relaxed text-neutral-700 italic">
             {t("blogPage.subtitle")}
           </p>
         </div>
       </header>
 
       {/* VIDEO SECTION */}
-      <section className="px-6 sm:px-10 py-16 sm:py-20">
+      <section className="px-4 sm:px-6 py-12 sm:py-16">
         <div className="mx-auto max-w-6xl text-center">
           <h2
-            className="text-[clamp(1.75rem,4vw,2.5rem)] font-serif font-bold text-neutral-900"
+            className="text-[clamp(1.5rem,4vw,2.25rem)] sm:text-[clamp(1.75rem,4vw,2.5rem)] font-serif font-bold text-neutral-900"
             style={{ filter: "url(#wobble)" }}
           >
             {t("blogPage.videoTitle")}
           </h2>
-          <div className="mt-3 h-[6px] w-48 sm:w-64 mx-auto">
+          <div className="mt-2 sm:mt-3 h-[4px] sm:h-[6px] w-40 sm:w-64 mx-auto">
             <svg width="100%" height="6" viewBox="0 0 300 6">
               <rect width="300" height="6" fill="url(#pencilStroke)" />
             </svg>
           </div>
-          <p className="mt-5 max-w-2xl mx-auto text-neutral-600 text-[15px] sm:text-lg">
+          <p className="mt-4 sm:mt-5 max-w-2xl mx-auto text-neutral-600 text-[13px] sm:text-[15px] md:text-[16px]">
             {t("blogPage.videoSubtitle")}
           </p>
 
-          <div className="mt-10 sm:mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
+          <div className="mt-8 sm:mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {/* Video 1 */}
-            <div className="relative rounded-[20px] border border-neutral-300 shadow-[0_8px_20px_rgba(0,0,0,0.06)] overflow-hidden bg-white/80">
+            <div className="relative rounded-xl sm:rounded-[20px] border border-neutral-300 shadow-[0_6px_16px_rgba(0,0,0,0.06)] overflow-hidden bg-white/80">
               <iframe
-                className="w-full h-56 sm:h-64 md:h-80"
+                className="w-full h-48 sm:h-64 md:h-80"
                 src="https://www.youtube.com/embed/dQw4w9WgXcQ"
                 title="YouTube video"
                 allowFullScreen
               />
               <div
-                className="pointer-events-none absolute inset-0 rounded-[20px] border-[3px] border-neutral-900/70 opacity-[0.05]"
+                className="pointer-events-none absolute inset-0 rounded-xl sm:rounded-[20px] border-[2px] sm:border-[3px] border-neutral-900/70 opacity-[0.05]"
                 style={{ filter: "url(#wobble)" }}
               />
             </div>
 
             {/* Video 2 */}
-            <div className="relative rounded-[20px] border border-neutral-300 shadow-[0_8px_20px_rgba(0,0,0,0.06)] overflow-hidden bg-white/80">
+            <div className="relative rounded-xl sm:rounded-[20px] border border-neutral-300 shadow-[0_6px_16px_rgba(0,0,0,0.06)] overflow-hidden bg-white/80">
               <iframe
-                className="w-full h-56 sm:h-64 md:h-80"
+                className="w-full h-48 sm:h-64 md:h-80"
                 src="https://www.instagram.com/reel/CyZ5z1wAnkU/embed"
                 title="Instagram reel"
                 allowFullScreen
               />
               <div
-                className="pointer-events-none absolute inset-0 rounded-[20px] border-[3px] border-neutral-900/70 opacity-[0.05]"
+                className="pointer-events-none absolute inset-0 rounded-xl sm:rounded-[20px] border-[2px] sm:border-[3px] border-neutral-900/70 opacity-[0.05]"
                 style={{ filter: "url(#wobble)" }}
               />
             </div>
@@ -156,20 +156,20 @@ export default function Blog() {
       </section>
 
       {/* SUBSCRIBE */}
-      <section className="relative px-6 sm:px-10 py-16 sm:py-20">
-        <div className="mx-auto max-w-2xl rounded-[22px] border border-neutral-300 bg-white/70 shadow-[0_8px_20px_rgba(0,0,0,0.05)] p-6 sm:p-8 text-center">
+      <section className="relative px-4 sm:px-6 py-12 sm:py-16">
+        <div className="mx-auto max-w-2xl rounded-xl sm:rounded-[22px] border border-neutral-300 bg-white/70 shadow-[0_6px_16px_rgba(0,0,0,0.05)] p-4 sm:p-8 text-center">
           <h4
-            className="text-xl sm:text-2xl font-serif font-bold text-neutral-900"
+            className="text-lg sm:text-xl md:text-2xl font-serif font-bold text-neutral-900"
             style={{ filter: "url(#wobble)" }}
           >
             {t("blogPage.subscribeTitle")}
           </h4>
-          <div className="mt-2 h-[6px] w-32 sm:w-40 mx-auto">
+          <div className="mt-1 sm:mt-2 h-[4px] sm:h-[6px] w-24 sm:w-40 mx-auto">
             <svg width="100%" height="6" viewBox="0 0 300 6">
               <rect width="300" height="6" fill="url(#pencilStroke)" />
             </svg>
           </div>
-          <p className="mt-5 text-neutral-700 text-[14.5px] sm:text-[15.5px] leading-relaxed">
+          <p className="mt-3 sm:mt-5 text-neutral-700 text-[13px] sm:text-[14.5px] md:text-[15.5px] leading-relaxed">
             {t("blogPage.subscribeSubtitle")}
           </p>
           <form
@@ -177,17 +177,17 @@ export default function Blog() {
               e.preventDefault();
               alert(t("blogPage.subscribeAlert"));
             }}
-            className="mt-6 flex flex-col sm:flex-row items-center gap-4 justify-center"
+            className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center"
           >
             <input
               type="email"
               required
               placeholder={t("blogPage.subscribePlaceholder")}
-              className="min-w-[220px] flex-1 px-4 py-2.5 sm:py-3 rounded-lg border border-neutral-400 text-neutral-900 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-neutral-800"
+              className="min-w-[200px] flex-1 px-3 py-2 sm:py-3 rounded-lg border border-neutral-400 text-neutral-900 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-neutral-800"
             />
             <button
               type="submit"
-              className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg border border-neutral-900 bg-neutral-900 text-white text-sm sm:text-base font-semibold hover:bg-neutral-700 transition"
+              className="px-4 sm:px-6 py-2 sm:py-3 rounded-lg border border-neutral-900 bg-neutral-900 text-white text-sm sm:text-base font-semibold hover:bg-neutral-700 transition"
             >
               {t("blogPage.subscribeButton")}
             </button>

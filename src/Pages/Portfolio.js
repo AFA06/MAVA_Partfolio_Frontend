@@ -154,12 +154,7 @@ export default function Portfolio() {
       {/* Projects scroller */}
       <section className="mt-14 sm:mt-20 px-4 sm:px-6 pb-20">
         <div className="mx-auto max-w-7xl">
-          <div className="flex items-baseline justify-between">
-            <h3 className="text-lg sm:text-xl font-serif">{t("portfolioPage.featuredProjects")}</h3>
-            <span className="text-xs text-neutral-500 hidden sm:inline">
-              {t("portfolioPage.scrollHint")}
-            </span>
-          </div>
+          <h3 className="text-lg sm:text-xl font-serif">{t("portfolioPage.featuredProjects")}</h3>
 
           {/* Mobile scroller */}
           <div className="mt-6 lg:hidden">

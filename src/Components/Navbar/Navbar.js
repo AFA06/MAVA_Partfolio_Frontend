@@ -25,31 +25,28 @@ function Navbar() {
   );
 
   return (
-    <nav className="navbar fixed w-full top-0 z-50 bg-black/80 backdrop-blur-md">
-      {/* Left: Logo */}
-      <div className="navbar-left flex items-center px-4 py-2">
-        <NavLink to="/" className="logo-link flex items-center">
-          <img src={logo} alt="Logo" className="logo-img h-10 w-auto" />
+    <nav className="fixed w-full top-0 z-50 bg-black/80 backdrop-blur-md">
+      <div className="flex items-center justify-between px-4 py-2 max-w-7xl mx-auto">
+        {/* Logo */}
+        <NavLink to="/" className="flex items-center">
+          <img src={logo} alt="Logo" className="h-10 w-auto" />
         </NavLink>
-      </div>
 
-      {/* Center: Desktop Links */}
-      <div className="navbar-center hidden lg:flex gap-6">
-        {navLinks.map((link) => (
-          <NavLink
-            key={link.href}
-            to={link.href}
-            className={({ isActive }) =>
-              isActive ? "nav-link nav-link-active" : "nav-link"
-            }
-          >
-            {t(link.label)}
-          </NavLink>
-        ))}
-      </div>
+        {/* Desktop Links */}
+        <div className="hidden lg:flex gap-6">
+          {navLinks.map((link) => (
+            <NavLink
+              key={link.href}
+              to={link.href}
+              className={({ isActive }) =>
+                isActive ? "nav-link nav-link-active" : "nav-link"
+              }
+            >
+              {t(link.label)}
+            </NavLink>
+          ))}
+        </div>
 
-      {/* Right: Language + Hamburger */}
-      <div className="navbar-right flex items-center gap-3 ml-auto pr-4">
         {/* Desktop Languages */}
         <div className="hidden lg:flex gap-2">
           <button onClick={() => changeLanguage("ru")} className="lang">
@@ -73,7 +70,7 @@ function Navbar() {
         </button>
       </div>
 
-      {/* Overlay */}
+      {/* Mobile Overlay */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
@@ -112,7 +109,7 @@ function Navbar() {
             </NavLink>
           ))}
 
-          {/* Extra Links (About, Contacts) */}
+          {/* Extra Links */}
           <div className="mt-4 border-t border-white/10 pt-4 flex flex-col gap-3">
             {extraLinks.map((link) => (
               <NavLink

@@ -1,3 +1,4 @@
+// src/pages/Contacts.jsx
 import React, { useState, useMemo } from "react";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { motion } from "framer-motion";
@@ -72,21 +73,21 @@ export default function Contacts() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="mx-auto max-w-4xl px-6 pt-24 pb-16 text-center"
+          className="mx-auto max-w-4xl px-4 sm:px-6 pt-20 sm:pt-24 pb-12 sm:pb-16 text-center"
         >
-          <h1 className="text-[clamp(2rem,6vw,3.5rem)] leading-[1.1] font-serif tracking-tight text-neutral-900">
+          <h1 className="text-[clamp(1.75rem,6vw,3.5rem)] sm:text-[clamp(2rem,6vw,3.75rem)] leading-[1.1] font-serif tracking-tight text-neutral-900">
             {t("contactsPage.title")}
           </h1>
-          <div className="mt-5 h-[3px] w-32 sm:w-44 mx-auto bg-neutral-800" />
-          <p className="mt-6 max-w-2xl mx-auto text-lg leading-relaxed text-neutral-700">
+          <div className="mt-4 sm:mt-5 h-[2.5px] sm:h-[3px] w-28 sm:w-44 mx-auto bg-neutral-800" />
+          <p className="mt-4 sm:mt-6 max-w-xl mx-auto text-sm sm:text-base leading-relaxed text-neutral-700">
             {t("contactsPage.subtitle")}
           </p>
         </motion.div>
       </header>
 
       {/* CONTACT CARDS */}
-      <section className="px-6 py-16">
-        <div className="mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <section className="px-4 sm:px-6 py-12 sm:py-16">
+        <div className="mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {contactItems.map((item, i) => (
             <motion.div
               key={i}
@@ -94,15 +95,13 @@ export default function Contacts() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
               viewport={{ once: true }}
-              className="group relative rounded-2xl border border-neutral-200 bg-white/80 p-6 shadow-md hover:shadow-xl transition"
+              className="group relative rounded-2xl border border-neutral-200 bg-white/80 p-5 sm:p-6 shadow-md hover:shadow-xl transition"
             >
-              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-neutral-900 text-white mb-4 group-hover:scale-110 transition">
+              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-neutral-900 text-white mb-3 sm:mb-4 group-hover:scale-110 transition">
                 {item.icon}
               </div>
-              <h3 className="font-serif font-semibold text-lg text-neutral-900">
-                {item.title}
-              </h3>
-              <p className="mt-2 text-sm sm:text-base whitespace-pre-line text-neutral-700">
+              <h3 className="font-serif font-semibold text-lg text-neutral-900">{item.title}</h3>
+              <p className="mt-1 sm:mt-2 text-sm sm:text-base whitespace-pre-line text-neutral-700">
                 {item.text}
               </p>
             </motion.div>
@@ -111,23 +110,23 @@ export default function Contacts() {
       </section>
 
       {/* CONTACT FORM */}
-      <section className="relative px-6 py-16">
+      <section className="relative px-4 sm:px-6 py-12 sm:py-16">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="mx-auto max-w-2xl rounded-2xl border border-neutral-200 bg-white/80 shadow-lg p-8 text-center backdrop-blur"
+          className="mx-auto max-w-xl sm:max-w-2xl rounded-2xl border border-neutral-200 bg-white/80 shadow-lg p-6 sm:p-8 text-center backdrop-blur"
         >
-          <h4 className="text-2xl font-serif font-bold text-neutral-900">
+          <h4 className="text-xl sm:text-2xl font-serif font-bold text-neutral-900">
             {t("contactsPage.form.title")}
           </h4>
-          <div className="mt-3 h-[2px] w-24 mx-auto bg-neutral-800" />
-          <p className="mt-4 text-neutral-600 text-sm sm:text-base">
+          <div className="mt-2 sm:mt-3 h-[2px] w-20 sm:w-24 mx-auto bg-neutral-800" />
+          <p className="mt-2 sm:mt-4 text-neutral-600 text-sm sm:text-base">
             {t("contactsPage.form.subtitle")}
           </p>
 
-          <form onSubmit={handleSubmit} className="mt-6 space-y-4 text-left">
+          <form onSubmit={handleSubmit} className="mt-4 sm:mt-6 space-y-4 text-left">
             <div>
               <label className="block text-sm font-medium text-neutral-700 mb-1">
                 {t("contactsPage.form.name")}
