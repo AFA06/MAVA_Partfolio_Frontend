@@ -82,8 +82,13 @@
   "homepage": {
     "hero": {
       "title": "Kelajak Arxitekturasi",
-      "desc": "Biz zamonaviy binolar va makonlarni O‘zbekistonda va undan tashqarida loyihalashtiramiz.",
-      "button": "Portfelni ko‘rish"
+      "desc": "Arxitektura studiyasi, bu yerda g‘oyalar zamonaviy va funksional loyihalarga aylanadi. Konseptdan amalga oshirishgacha.",
+      "button": "Loyihalarni ko‘rish",
+      "services": {
+        "interior": "Interyer Dizayn",
+        "planning": "Loyihalashtirish",
+        "modeling": "3D Modellashtirish"
+      }
     },
     "about": {
       "title": "Biz haqimizda",
@@ -284,19 +289,19 @@
       "button": "Yuborish"
     }
   },
-  "videosPage": {
-  "loading": "Kurslar yuklanmoqda...",
-  "heroTitle": "Bizning kurslarimiz bilan yangi bilimlarni o‘rganing",
-  "heroSubtitle": "Yo‘nalishni tanlang va o‘zingizga qulay vaqtda o‘rganishni boshlang.",
-  "preview": "Batafsil",
-  "buyCourse": "Kursni sotib olish",
-  "startLearning": "O‘qishni boshlash",
-  "instructor": "O‘qituvchi",
-  "videosCount": "Videolar soni",
-  "youWillLearn": "Siz nimalarni o‘rganasiz",
-  "close": "Yopish",
-  "outroTitle": "Bugunoq ta’lim yo‘lingizni boshlang",
-  "outroText": "Bizning kurslarimiz sizga ish va ijodda foydali bo‘ladigan ko‘nikmalarni egallashga yordam beradi."
-}
 
+  "videosPage": {
+    "loading": "Kurslar yuklanmoqda...",
+    "heroTitle": "Bizning kurslarimiz bilan yangi bilimlarni o‘rganing",
+    "heroSubtitle": "Yo‘nalishni tanlang va o‘zingizga qulay vaqtda o‘rganishni boshlang.",
+    "preview": "Batafsil",
+    "buyCourse": "Kursni sotib olish",
+    "startLearning": "O‘qishni boshlash",
+    "instructor": "O‘qituvchi",
+    "videosCount": "Videolar soni",
+    "youWillLearn": "Siz nimalarni o‘rganasiz",
+    "close": "Yopish",
+    "outroTitle": "Bugunoq ta’lim yo‘lingizni boshlang",
+    "outroText": "Bizning kurslarimiz sizga ish va ijodda foydali bo‘ladigan ko‘nikmalarni egallashga yordam beradi."
+  }
 }

@@ -81,8 +81,13 @@
   "homepage": {
     "hero": {
       "title": "Architecture of the Future",
-      "desc": "We design modern buildings and spaces in Uzbekistan and beyond.",
-      "button": "View Portfolio"
+      "desc": "An architectural studio where ideas turn into stylish and functional projects. From concept to realization.",
+      "button": "View Projects",
+      "services": {
+        "interior": "Interior Design",
+        "planning": "Project Planning",
+        "modeling": "3D Modeling"
+      }
     },
     "about": {
       "title": "About Us",
@@ -283,19 +288,19 @@
       "button": "Send"
     }
   },
-  "videosPage": {
-  "loading": "Loading courses...",
-  "heroTitle": "Discover new knowledge with our courses",
-  "heroSubtitle": "Choose a category and start learning at your own pace.",
-  "preview": "Preview",
-  "buyCourse": "Buy course",
-  "startLearning": "Start learning",
-  "instructor": "Instructor",
-  "videosCount": "Number of videos",
-  "youWillLearn": "What you will learn",
-  "close": "Close",
-  "outroTitle": "Start your learning journey today",
-  "outroText": "Our courses will help you gain skills that are valuable for both work and creativity."
-}
 
+  "videosPage": {
+    "loading": "Loading courses...",
+    "heroTitle": "Discover new knowledge with our courses",
+    "heroSubtitle": "Choose a category and start learning at your own pace.",
+    "preview": "Preview",
+    "buyCourse": "Buy course",
+    "startLearning": "Start learning",
+    "instructor": "Instructor",
+    "videosCount": "Number of videos",
+    "youWillLearn": "What you will learn",
+    "close": "Close",
+    "outroTitle": "Start your learning journey today",
+    "outroText": "Our courses will help you gain skills that are valuable for both work and creativity."
+  }
 }
