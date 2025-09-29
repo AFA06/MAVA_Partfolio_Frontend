@@ -18,32 +18,15 @@
   },
 
   "footer": {
-    "studioTitle": "Interior Design Studio",
-    "studioName": "Sergey Lashin «VPROEKTE»",
-    "studioDesc": "Individual approach.",
-    "contacts": "Contacts",
-    "phone": "+998 99 808-36-16",
-    "email": "hello@vproekte.com",
-    "address": "Khimki, Novogorsk District, KP «Novogorsk Club»",
-    "map": "View on Map",
-    "navigation": "Navigation",
-    "link1": "Apartment Renovation",
-    "link2": "3D Visualization",
-    "link3": "Premium Design",
-    "link4": "Consultation+",
-    "link5": "A Day with a Designer",
-    "link6": "Construction Management",
-    "link7": "Procurement",
-    "link8": "Author Supervision",
-    "link9": "Blog",
-    "link10": "Contacts",
-    "link11": "Sitemap",
-    "bottomLine": "Portfolio: Apartments | Houses | Offices | Living Rooms | Bathrooms | Kitchens | Bedrooms | Kids Rooms | Dressing Rooms | Studies | Architecture | Common Areas | Lobbies",
-    "orderCall": "Request a Call",
-    "dev": "Website development —",
-    "rights": "All rights reserved, Made by",
-    "follow": "Follow Us"
-  },
+  "rights": "All rights reserved, Made by",
+  "navigation": "Navigation",
+  "contacts": "Contacts",
+  "link9": "Portfolio",
+  "link3": "Courses",
+  "follow": "Follow Us",
+  "dev": "Made with ❤️ by"
+}
+,
 
   "login": {
     "subtitle": "Log in to your account",

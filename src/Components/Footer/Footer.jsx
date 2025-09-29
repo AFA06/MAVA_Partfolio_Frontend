@@ -10,62 +10,59 @@ import { useTranslation } from "react-i18next";
 function Footer() {
   const { t } = useTranslation();
 
-  return (
-    <footer
-      style={{
-        background: "#ffffff",
-        color: "#4b5563",
-        position: "relative",
-        padding: "2.5rem 1.25rem 1.25rem",
-        borderTop: "1px solid rgba(0,0,0,0.1)",
-        boxShadow: "0 -2px 6px rgba(0,0,0,0.05)",
-      }}
-    >
-      {/* 🔥 Top Accent Divider */}
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "3px",
-          background: "linear-gradient(to right, #facc15, #fde047, #facc15)",
-          animation: "shimmer 6s linear infinite",
-          backgroundSize: "200% 100%",
-        }}
-      ></div>
+  // Helper for safe translation fallback
+  const tr = (key, fallback) => (t(key) !== key ? t(key) : fallback);
 
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-8 relative z-10 text-center md:text-left">
-        {/* Brand Info */}
-        <div className="flex-1">
-          <h2 className="text-2xl font-bold text-yellow-500 mb-3 tracking-wide">
-            {t("nex")}
+  return (
+    <footer className="bg-gray-900 text-gray-300 relative">
+      {/* Top Divider */}
+      <div className="h-1 w-full bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 animate-[shimmer_6s_linear_infinite]"></div>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
+        {/* Brand */}
+        <div>
+          <h2 className="text-3xl font-bold text-yellow-400 mb-4 tracking-wide">
+            {tr("nex", "NEX")}
           </h2>
-          <p className="text-gray-600 text-sm leading-relaxed">
-            {t("footer.rights")}{" "}
-            <span className="font-medium">{t("footer.author")}</span> ©{" "}
+          <p className="text-sm leading-relaxed text-gray-400 max-w-xs">
+            {tr("footer.rights", "All rights reserved, Made by")}{" "}
+            <span className="font-medium text-white">Mava</span> ©{" "}
             {new Date().getFullYear()}
           </p>
         </div>
 
-        {/* Studio Info */}
-        <div className="flex-1 text-sm text-gray-600">
-          <h3 className="text-lg font-semibold mb-2 text-yellow-500">
-            {t("footer.studioTitle")}
+        {/* Links */}
+        <div className="flex flex-col gap-2">
+          <h3 className="text-lg font-semibold text-yellow-400 mb-3 uppercase tracking-wide">
+            {tr("footer.navigation", "Navigation")}
           </h3>
-          <p className="mb-1">{t("footer.studioName")}</p>
-          <p className="mb-1">{t("footer.studioDesc")}</p>
-          <p className="mb-1">{t("footer.phone")}</p>
-          <p className="mb-1">{t("footer.email")}</p>
-          <p>{t("footer.address")}</p>
+          <a
+            href="http://localhost:3001/Arch_Website_Frontend/contacts"
+            className="hover:text-yellow-300 transition"
+          >
+            {tr("footer.contacts", "Contacts")}
+          </a>
+          <a
+            href="http://localhost:3001/Arch_Website_Frontend/portfolio"
+            className="hover:text-yellow-300 transition"
+          >
+            {tr("footer.link9", "Blog / Portfolio")}
+          </a>
+          <a
+            href="http://localhost:3001/Arch_Website_Frontend/videos"
+            className="hover:text-yellow-300 transition"
+          >
+            {tr("footer.link3", "Premium Design / Courses")}
+          </a>
         </div>
 
         {/* Social Media */}
-        <div className="flex-1">
-          <h2 className="text-lg font-semibold mb-4 text-yellow-500 uppercase tracking-wide">
-            {t("footer.follow")}
-          </h2>
-          <div className="flex justify-center md:justify-start flex-wrap gap-4">
+        <div>
+          <h3 className="text-lg font-semibold text-yellow-400 mb-3 uppercase tracking-wide">
+            {tr("footer.follow", "Follow Us")}
+          </h3>
+          <div className="flex gap-4">
             {[
               { href: "https://instagram.com", icon: <FaInstagram /> },
               { href: "https://facebook.com", icon: <FaFacebookF /> },
@@ -77,7 +74,7 @@ function Footer() {
                 href={href}
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 hover:text-yellow-500 hover:border-yellow-400 hover:shadow-[0_0_10px_rgba(250,204,21,0.6)] transition bg-white"
+                className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-600 text-gray-300 hover:text-yellow-400 hover:border-yellow-400 hover:shadow-[0_0_15px_rgba(250,204,21,0.6)] transition"
               >
                 <span className="text-lg">{icon}</span>
               </a>
@@ -86,7 +83,13 @@ function Footer() {
         </div>
       </div>
 
-      {/* Animations */}
+      {/* Bottom Bar */}
+      <div className="border-t border-gray-700 py-6 text-center text-sm text-gray-500">
+        {tr("footer.dev", "Made with ❤️ by")}{" "}
+        <span className="text-yellow-400 font-medium">Mava</span>
+      </div>
+
+      {/* Animation Keyframes */}
       <style>{`
         @keyframes shimmer {
           0% { background-position: -200% 0; }

@@ -31,17 +31,17 @@ export default function About() {
         className="relative h-[60vh] sm:h-[70vh] md:h-[75vh] flex items-center justify-center bg-fixed bg-center bg-cover"
         style={{ backgroundImage: `url(${aboutImage})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80" />
+        <div className="absolute inset-0 bg-black/60" />
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           className="relative z-10 text-center text-white px-4 sm:px-6"
         >
-          <h1 className="text-3xl sm:text-4xl md:text-[clamp(2.5rem,6vw,5rem)] font-serif font-bold drop-shadow-lg">
+          <h1 className="text-3xl sm:text-4xl md:text-[clamp(2.5rem,6vw,5rem)] font-serif font-bold tracking-tight">
             {t("aboutPage.title")}
           </h1>
-          <p className="mt-4 sm:mt-6 max-w-xl sm:max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed text-gray-200 drop-shadow">
+          <p className="mt-4 sm:mt-6 max-w-xl sm:max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed text-gray-200">
             {t("aboutPage.intro")}
           </p>
         </motion.div>
@@ -51,33 +51,33 @@ export default function About() {
       <section className="px-4 sm:px-6 py-16 sm:py-20 bg-white">
         <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
           <motion.div
-            whileHover={{ y: -6, scale: 1.02 }}
-            className="p-6 sm:p-8 rounded-2xl shadow-xl border bg-white/70 backdrop-blur-md transition-all duration-300"
+            whileHover={{ y: -6 }}
+            className="p-6 sm:p-8 rounded-xl shadow-md border border-gray-200 bg-white transition-all duration-300"
           >
-            <Building2 className="w-8 h-8 sm:w-10 sm:h-10 text-gray-800 mb-3 sm:mb-4" />
-            <h2 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-gray-900">
+            <Building2 className="w-8 h-8 sm:w-10 sm:h-10 text-gray-700 mb-4" />
+            <h2 className="text-lg sm:text-xl font-semibold mb-3 text-gray-900">
               {t("aboutPage.missionTitle")}
             </h2>
             <p className="text-gray-600 text-sm sm:text-base">{t("aboutPage.missionText")}</p>
           </motion.div>
 
           <motion.div
-            whileHover={{ y: -6, scale: 1.02 }}
-            className="p-6 sm:p-8 rounded-2xl shadow-xl border bg-white/70 backdrop-blur-md transition-all duration-300"
+            whileHover={{ y: -6 }}
+            className="p-6 sm:p-8 rounded-xl shadow-md border border-gray-200 bg-white transition-all duration-300"
           >
-            <Compass className="w-8 h-8 sm:w-10 sm:h-10 text-gray-800 mb-3 sm:mb-4" />
-            <h2 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-gray-900">
+            <Compass className="w-8 h-8 sm:w-10 sm:h-10 text-gray-700 mb-4" />
+            <h2 className="text-lg sm:text-xl font-semibold mb-3 text-gray-900">
               {t("aboutPage.visionTitle")}
             </h2>
             <p className="text-gray-600 text-sm sm:text-base">{t("aboutPage.visionText")}</p>
           </motion.div>
 
           <motion.div
-            whileHover={{ y: -6, scale: 1.02 }}
-            className="p-6 sm:p-8 rounded-2xl shadow-xl border bg-white/70 backdrop-blur-md transition-all duration-300"
+            whileHover={{ y: -6 }}
+            className="p-6 sm:p-8 rounded-xl shadow-md border border-gray-200 bg-white transition-all duration-300"
           >
-            <Users2 className="w-8 h-8 sm:w-10 sm:h-10 text-gray-800 mb-3 sm:mb-4" />
-            <h2 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-gray-900">
+            <Users2 className="w-8 h-8 sm:w-10 sm:h-10 text-gray-700 mb-4" />
+            <h2 className="text-lg sm:text-xl font-semibold mb-3 text-gray-900">
               {t("aboutPage.valuesTitle")}
             </h2>
             <ul className="space-y-2 text-gray-600 text-sm sm:text-base">
@@ -92,89 +92,103 @@ export default function About() {
         </div>
       </section>
 
-      
+      {/* Timeline */}
+      <section
+        className="relative px-4 sm:px-6 py-20 bg-fixed bg-center bg-cover"
+        style={{ backgroundImage: `url(${aboutImage})` }}
+      >
+        <div className="absolute inset-0 bg-black/70"></div>
+        <div className="relative z-10">
+          {/* Title */}
+          <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-12 text-white tracking-tight">
+            {t("aboutPage.timelineTitle")}
+          </h2>
 
-{/* Timeline */}
-<section
-  className="relative px-4 sm:px-6 py-20 bg-fixed bg-center bg-cover"
-  style={{ backgroundImage: `url(${aboutImage})` }}
->
-  {/* Overlay */}
-  <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70"></div>
+          <div className="relative max-w-4xl mx-auto">
+            {/* Central line */}
+            <div className="hidden md:block absolute left-1/2 top-0 h-full w-[1px] bg-gray-300 transform -translate-x-1/2"></div>
 
-  <div className="relative z-10">
-    {/* Title */}
-    <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-12 text-white">
-      {t("aboutPage.timelineTitle")}
-    </h2>
+            <div className="space-y-20">
+              {Array.isArray(timeline) &&
+                timeline.map((tItem, idx) => {
+                  const isLeft = idx % 2 === 0;
+                  return (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 40 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                      className={`relative w-full md:w-1/2 ${
+                        isLeft
+                          ? "md:pr-16 text-left md:text-right"
+                          : "md:pl-16 md:ml-auto text-left"
+                      }`}
+                    >
+                      {/* Connector line */}
+                      <div
+                        className={`hidden md:block absolute top-1/2 transform -translate-y-1/2 h-[1px] bg-gray-400 
+                          ${isLeft ? "-right-16 w-16" : "-left-16 w-16"}`}
+                      ></div>
 
-    <div className="relative max-w-3xl mx-auto">
-      {/* Central vertical line */}
-      <div className="hidden md:block absolute left-1/2 top-0 h-full w-1 bg-white/50 transform -translate-x-1/2 rounded-lg shadow-lg"></div>
-
-      <div className="space-y-16">
-        {Array.isArray(timeline) &&
-          timeline.map((tItem, idx) => {
-            const isLeft = idx % 2 === 0;
-
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-                className={`relative w-full md:w-1/2 ${
-                  isLeft
-                    ? "md:pr-12 text-left md:text-right"
-                    : "md:pl-12 md:ml-auto text-left"
-                }`}
-              >
-                {/* Connector arrow from center line to card */}
-                <div
-                  className={`hidden md:block absolute top-10 w-6 h-6 bg-indigo-400 
-                    ${isLeft ? "clip-arrow-left right-[-28px]" : "clip-arrow-right left-[-28px]"}`}
-                ></div>
-
-                {/* Timeline card */}
-                <div className="p-6 bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl border border-gray-200 hover:shadow-3xl transition-all duration-300 relative">
-                  <h3 className="font-semibold text-lg text-gray-900">{tItem.year}</h3>
-                  <p className="text-gray-600 mt-2 text-sm sm:text-base">{tItem.text}</p>
-                </div>
-              </motion.div>
-            );
-          })}
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
+                      {/* Card */}
+                      <div className="relative p-6 sm:p-8 bg-white/10 backdrop-blur-md rounded-xl shadow-md border border-white/20 hover:shadow-lg transition-all duration-500">
+                        <h3 className="font-semibold text-lg sm:text-xl text-white">
+                          {tItem.year}
+                        </h3>
+                        <p className="text-gray-200 mt-3 text-sm sm:text-base leading-relaxed">
+                          {tItem.text}
+                        </p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Team */}
-      <section className="px-4 sm:px-6 py-16 sm:py-20 bg-white overflow-hidden">
-        <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-12">
-          {t("aboutPage.teamTitle")}
-        </h2>
+      <section className="px-4 sm:px-6 py-20 sm:py-24 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden relative">
+        {/* Title */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-extrabold text-gray-900 tracking-tight">
+            {t("aboutPage.teamTitle")}
+          </h2>
+          <div className="mt-4 w-20 h-[2px] mx-auto bg-gray-300 rounded-full"></div>
+        </div>
+
+        {/* Scroll Wrapper */}
         <div className="relative w-full max-w-7xl mx-auto overflow-hidden">
           <div className="flex w-max animate-scroll">
             {[...team, ...team].map((m, idx) => (
               <div
                 key={idx}
-                className="min-w-[220px] sm:min-w-[240px] md:min-w-[260px] bg-white/90 backdrop-blur-md border rounded-2xl shadow-lg p-5 mx-4 flex-shrink-0 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+                className="group min-w-[220px] sm:min-w-[240px] md:min-w-[260px] bg-white border border-gray-200 rounded-xl shadow-md p-6 mx-5 flex-shrink-0 
+                           hover:shadow-xl hover:-translate-y-2 transition-all duration-500"
               >
-                <img
-                  src={m.photo}
-                  alt={m.name}
-                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-100 shadow-md"
-                />
-                <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-900 text-center">
+                {/* Image */}
+                <div className="relative w-24 h-24 sm:w-28 sm:h-28 mx-auto mb-5">
+                  <img
+                    src={m.photo}
+                    alt={m.name}
+                    className="w-full h-full rounded-full object-cover border-4 border-white shadow-sm group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 rounded-full border border-gray-200 opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                </div>
+
+                {/* Name */}
+                <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900 text-center">
                   {m.name}
                 </h3>
-                <p className="text-gray-600 text-xs sm:text-sm md:text-base text-center">
+
+                {/* Role */}
+                <p className="text-gray-500 text-sm sm:text-base md:text-lg text-center mt-1">
                   {m.role}
                 </p>
+
+                {/* Accent line */}
+                <div className="mt-4 w-12 h-[2px] mx-auto bg-gray-300 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
               </div>
             ))}
           </div>

@@ -11,6 +11,7 @@ export default function Contacts() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(null);
 
+  // Premium paper-like texture overlay
   const paperDataUrl = useMemo(() => {
     const canvas = document.createElement("canvas");
     const s = 120;
@@ -56,11 +57,11 @@ export default function Contacts() {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-[#f8f7f3] text-[#232323] antialiased overflow-x-hidden">
+    <div className="relative min-h-screen w-full bg-gradient-to-br from-[#fafafa] via-[#f5f5f4] to-[#ececec] text-[#232323] antialiased overflow-x-hidden">
       {/* paper overlay */}
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 opacity-[0.25]"
+        className="pointer-events-none fixed inset-0 opacity-[0.2]"
         style={{
           backgroundImage: `url(${paperDataUrl})`,
           mixBlendMode: "multiply",
@@ -75,11 +76,11 @@ export default function Contacts() {
           transition={{ duration: 0.8 }}
           className="mx-auto max-w-4xl px-4 sm:px-6 pt-20 sm:pt-24 pb-12 sm:pb-16 text-center"
         >
-          <h1 className="text-[clamp(1.75rem,6vw,3.5rem)] sm:text-[clamp(2rem,6vw,3.75rem)] leading-[1.1] font-serif tracking-tight text-neutral-900">
+          <h1 className="text-[clamp(2.25rem,6vw,3.75rem)] font-serif font-bold tracking-tight text-neutral-900">
             {t("contactsPage.title")}
           </h1>
-          <div className="mt-4 sm:mt-5 h-[2.5px] sm:h-[3px] w-28 sm:w-44 mx-auto bg-neutral-800" />
-          <p className="mt-4 sm:mt-6 max-w-xl mx-auto text-sm sm:text-base leading-relaxed text-neutral-700">
+          <div className="mt-5 h-[3px] w-40 mx-auto bg-gradient-to-r from-neutral-900 via-neutral-600 to-neutral-900 rounded-full" />
+          <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-neutral-700">
             {t("contactsPage.subtitle")}
           </p>
         </motion.div>
@@ -95,13 +96,13 @@ export default function Contacts() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
               viewport={{ once: true }}
-              className="group relative rounded-2xl border border-neutral-200 bg-white/80 p-5 sm:p-6 shadow-md hover:shadow-xl transition"
+              className="group relative rounded-2xl border border-neutral-200 bg-white/80 backdrop-blur-lg p-6 shadow-lg hover:shadow-2xl transition hover:-translate-y-1"
             >
-              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-neutral-900 text-white mb-3 sm:mb-4 group-hover:scale-110 transition">
+              <div className="flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-neutral-900 to-neutral-700 text-white mb-4 group-hover:scale-110 transition">
                 {item.icon}
               </div>
               <h3 className="font-serif font-semibold text-lg text-neutral-900">{item.title}</h3>
-              <p className="mt-1 sm:mt-2 text-sm sm:text-base whitespace-pre-line text-neutral-700">
+              <p className="mt-2 text-sm sm:text-base whitespace-pre-line text-neutral-700">
                 {item.text}
               </p>
             </motion.div>
@@ -110,23 +111,23 @@ export default function Contacts() {
       </section>
 
       {/* CONTACT FORM */}
-      <section className="relative px-4 sm:px-6 py-12 sm:py-16">
+      <section className="relative px-4 sm:px-6 py-12 sm:py-20">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="mx-auto max-w-xl sm:max-w-2xl rounded-2xl border border-neutral-200 bg-white/80 shadow-lg p-6 sm:p-8 text-center backdrop-blur"
+          className="mx-auto max-w-xl sm:max-w-2xl rounded-3xl border border-neutral-200 bg-white/90 shadow-2xl p-8 sm:p-12 text-center backdrop-blur-xl"
         >
-          <h4 className="text-xl sm:text-2xl font-serif font-bold text-neutral-900">
+          <h4 className="text-2xl sm:text-3xl font-serif font-bold text-neutral-900">
             {t("contactsPage.form.title")}
           </h4>
-          <div className="mt-2 sm:mt-3 h-[2px] w-20 sm:w-24 mx-auto bg-neutral-800" />
-          <p className="mt-2 sm:mt-4 text-neutral-600 text-sm sm:text-base">
+          <div className="mt-3 h-[3px] w-28 mx-auto bg-gradient-to-r from-neutral-900 via-neutral-600 to-neutral-900 rounded-full" />
+          <p className="mt-4 text-neutral-600 text-sm sm:text-base">
             {t("contactsPage.form.subtitle")}
           </p>
 
-          <form onSubmit={handleSubmit} className="mt-4 sm:mt-6 space-y-4 text-left">
+          <form onSubmit={handleSubmit} className="mt-6 space-y-5 text-left">
             <div>
               <label className="block text-sm font-medium text-neutral-700 mb-1">
                 {t("contactsPage.form.name")}
@@ -135,7 +136,7 @@ export default function Contacts() {
                 type="text"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full p-3 rounded-lg border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800"
+                className="w-full p-3 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 shadow-sm"
                 required
               />
             </div>
@@ -147,7 +148,7 @@ export default function Contacts() {
                 type="email"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full p-3 rounded-lg border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800"
+                className="w-full p-3 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 shadow-sm"
                 required
               />
             </div>
@@ -159,7 +160,7 @@ export default function Contacts() {
                 rows="5"
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full p-3 rounded-lg border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800"
+                className="w-full p-3 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 shadow-sm"
                 required
               />
             </div>
@@ -167,7 +168,7 @@ export default function Contacts() {
             <button
               type="submit"
               disabled={loading}
-              className="mt-2 w-full px-6 py-3 rounded-lg border border-neutral-900 bg-neutral-900 text-white font-semibold hover:bg-neutral-700 transition"
+              className="mt-2 w-full px-6 py-3 rounded-xl bg-gradient-to-r from-neutral-900 to-neutral-700 text-white font-semibold shadow-md hover:shadow-xl hover:from-neutral-800 hover:to-neutral-600 transition"
             >
               {loading ? t("contactsPage.form.sending") || "Отправка..." : t("contactsPage.form.button")}
             </button>
@@ -176,6 +177,20 @@ export default function Contacts() {
             {success === false && <p className="mt-2 text-red-600">{t("contactsPage.form.error") || "Ошибка отправки."}</p>}
           </form>
         </motion.div>
+      </section>
+
+      {/* GOOGLE MAPS */}
+      <section className="relative w-full h-[400px] sm:h-[500px] mt-12">
+        <iframe
+          title="Office Location"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.73372759458!2d69.2877!3d41.3108!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8ad6b25b6b3b%3A0x7f79a0f7b6c8b9c!2sHamid%20Olimjon%20Metro%20Station!5e0!3m2!1sen!2suz!4v1693501234567!5m2!1sen!2suz"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen=""
+          loading="lazy"
+          className="rounded-t-3xl shadow-2xl"
+        ></iframe>
       </section>
     </div>
   );
