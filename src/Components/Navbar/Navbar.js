@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import navLinks from "./NavLinks";
 import { Menu, X } from "lucide-react";
-import logo from "../../assets/logo.jpg";
 import { useTranslation } from "react-i18next";
 import "./navbar.css";
 
@@ -16,11 +15,9 @@ function Navbar() {
     setIsOpen(false);
   };
 
-  // Split links: Contacts separately for top-right on mobile
   const contactsLink = navLinks.find(link => link.label === "contacts");
   const mainLinks = navLinks.filter(link => link.label !== "contacts");
 
-  // Order: About first in center, then others
   const orderedLinks = [
     ...mainLinks.filter(link => link.label === "about"),
     ...mainLinks.filter(link => link.label !== "about")
@@ -28,15 +25,15 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      {/* Left (logo + name) */}
-      <div className="navbar-left">
+      {/* Left (logo + name) desktop only */}
+      <div className="navbar-left hidden lg:flex">
         <NavLink to="/" className="logo-link">
-          <img src={logo} alt="MAVA Logo" className="logo-img" />
+          <img src={require("../../assets/logo.jpg")} alt="MAVA Logo" className="logo-img" />
           <span className="logo-text">MAVA</span>
         </NavLink>
       </div>
 
-      {/* Center nav links (desktop) */}
+      {/* Center nav links (desktop only) */}
       <div className="navbar-center hidden lg:flex">
         {contactsLink && (
           <NavLink
@@ -80,33 +77,23 @@ function Navbar() {
 
       {/* Mobile sidebar */}
       <div className={`mobile-sidebar ${isOpen ? "open" : ""}`}>
-        {/* Logo */}
-        <div className="sidebar-logo">
-          <img src={logo} alt="MAVA Logo" />
-          <span>MAVA</span>
-        </div>
-
-        {/* Top-right contacts link */}
-        {contactsLink && (
-          <NavLink
-            to={contactsLink.href}
-            onClick={() => setIsOpen(false)}
-            className="top-contact"
-          >
-            {t(contactsLink.label)}
-          </NavLink>
-        )}
-
-        {/* Mobile nav links centered */}
+        {/* Links only */}
         <div className="links-container">
+          {contactsLink && (
+            <NavLink
+              to={contactsLink.href}
+              onClick={() => setIsOpen(false)}
+              className="nav-link"
+            >
+              {t(contactsLink.label)}
+            </NavLink>
+          )}
           {orderedLinks.map((link) => (
             <NavLink
               key={link.href}
               to={link.href}
               onClick={() => setIsOpen(false)}
-              className={({ isActive }) =>
-                isActive ? "nav-link nav-link-active" : "nav-link"
-              }
+              className="nav-link"
             >
               {t(link.label)}
             </NavLink>
@@ -120,7 +107,7 @@ function Navbar() {
           <button onClick={() => changeLanguage("uz")} className="lang">UZ</button>
         </div>
 
-        {/* Close button */}
+        {/* Close button top-right */}
         <button
           onClick={() => setIsOpen(false)}
           className="close-btn text-white"
