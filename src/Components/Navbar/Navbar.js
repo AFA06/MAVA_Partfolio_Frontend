@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import navLinks from "./NavLinks";
 import { Menu, X } from "lucide-react";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.jpg";
 import { useTranslation } from "react-i18next";
 import "./navbar.css";
 
@@ -25,30 +25,33 @@ function Navbar() {
   );
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-black/80 backdrop-blur-md">
-      <div className="flex items-center justify-between px-4 py-2 max-w-7xl mx-auto">
-        {/* Logo */}
-        <NavLink to="/" className="flex items-center">
-          <img src={logo} alt="Logo" className="h-10 w-auto" />
+    <nav className="navbar">
+      {/* Left (logo + name) */}
+      <div className="navbar-left">
+        <NavLink to="/" className="logo-link">
+          <img src={logo} alt="MAVA Logo" className="logo-img" />
+          <span className="logo-text">MAVA</span>
         </NavLink>
+      </div>
 
-        {/* Desktop Links */}
-        <div className="hidden lg:flex gap-6">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.href}
-              to={link.href}
-              className={({ isActive }) =>
-                isActive ? "nav-link nav-link-active" : "nav-link"
-              }
-            >
-              {t(link.label)}
-            </NavLink>
-          ))}
-        </div>
+      {/* Center nav links (desktop) */}
+      <div className="navbar-center hidden lg:flex">
+        {navLinks.map((link) => (
+          <NavLink
+            key={link.href}
+            to={link.href}
+            className={({ isActive }) =>
+              isActive ? "nav-link nav-link-active" : "nav-link"
+            }
+          >
+            {t(link.label)}
+          </NavLink>
+        ))}
+      </div>
 
-        {/* Desktop Languages */}
-        <div className="hidden lg:flex gap-2">
+      {/* Right (languages + hamburger) */}
+      <div className="navbar-right">
+        <div className="hidden lg:flex gap-4">
           <button onClick={() => changeLanguage("ru")} className="lang">
             RU
           </button>
@@ -60,7 +63,6 @@ function Navbar() {
           </button>
         </div>
 
-        {/* Hamburger */}
         <button
           className="lg:hidden text-white"
           onClick={() => setIsOpen(!isOpen)}
@@ -70,22 +72,13 @@ function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
-          onClick={() => setIsOpen(false)}
-        ></div>
-      )}
-
-      {/* Mobile Sidebar */}
-      <div
-        className={`fixed top-0 right-0 h-full w-64 bg-black text-white z-50 transform transition-transform duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <div className="flex justify-between items-center px-4 py-3 border-b border-white/20">
-          <img src={logo} alt="Logo" className="h-8" />
+      {/* Mobile sidebar */}
+      <div className={`mobile-sidebar ${isOpen ? "open" : ""}`}>
+        <div className="flex justify-between items-center px-4 py-4 border-b border-white/10">
+          <div className="flex items-center gap-2">
+            <img src={logo} alt="MAVA Logo" className="logo-img-small" />
+            <span className="logo-text-small">MAVA</span>
+          </div>
           <button
             onClick={() => setIsOpen(false)}
             className="text-white"
@@ -95,7 +88,7 @@ function Navbar() {
           </button>
         </div>
 
-        <div className="flex flex-col gap-4 p-6 bg-black">
+        <div className="flex flex-col gap-5 p-6">
           {mainLinks.map((link) => (
             <NavLink
               key={link.href}
@@ -109,8 +102,7 @@ function Navbar() {
             </NavLink>
           ))}
 
-          {/* Extra Links */}
-          <div className="mt-4 border-t border-white/20 pt-4 flex flex-col gap-3">
+          <div className="mt-6 border-t border-white/10 pt-4 flex flex-col gap-3">
             {extraLinks.map((link) => (
               <NavLink
                 key={link.href}
@@ -125,7 +117,7 @@ function Navbar() {
             ))}
           </div>
 
-          {/* Language Switch */}
+          {/* Language switch */}
           <div className="flex gap-4 mt-6">
             <button onClick={() => changeLanguage("ru")} className="lang">
               RU
