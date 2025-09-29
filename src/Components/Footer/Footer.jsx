@@ -10,7 +10,6 @@ import { useTranslation } from "react-i18next";
 function Footer() {
   const { t } = useTranslation();
 
-  // Helper for safe translation fallback
   const tr = (key, fallback) => (t(key) !== key ? t(key) : fallback);
 
   return (
@@ -19,13 +18,13 @@ function Footer() {
       <div className="h-1 w-full bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 animate-[shimmer_6s_linear_infinite]"></div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
         {/* Brand */}
-        <div>
-          <h2 className="text-3xl font-bold text-yellow-400 mb-4 tracking-wide">
+        <div className="flex flex-col items-start sm:items-start md:items-start">
+          <h2 className="text-2xl sm:text-3xl font-bold text-yellow-400 mb-4 tracking-wide">
             {tr("nex", "NEX")}
           </h2>
-          <p className="text-sm leading-relaxed text-gray-400 max-w-xs">
+          <p className="text-sm sm:text-base leading-relaxed text-gray-400 max-w-xs">
             {tr("footer.rights", "All rights reserved, Made by")}{" "}
             <span className="font-medium text-white">Mava</span> ©{" "}
             {new Date().getFullYear()}
@@ -34,35 +33,35 @@ function Footer() {
 
         {/* Links */}
         <div className="flex flex-col gap-2">
-          <h3 className="text-lg font-semibold text-yellow-400 mb-3 uppercase tracking-wide">
+          <h3 className="text-lg sm:text-xl font-semibold text-yellow-400 mb-3 uppercase tracking-wide">
             {tr("footer.navigation", "Navigation")}
           </h3>
           <a
             href="http://localhost:3001/Arch_Website_Frontend/contacts"
-            className="hover:text-yellow-300 transition"
+            className="hover:text-yellow-300 transition text-sm sm:text-base"
           >
             {tr("footer.contacts", "Contacts")}
           </a>
           <a
             href="http://localhost:3001/Arch_Website_Frontend/portfolio"
-            className="hover:text-yellow-300 transition"
+            className="hover:text-yellow-300 transition text-sm sm:text-base"
           >
             {tr("footer.link9", "Blog / Portfolio")}
           </a>
           <a
             href="http://localhost:3001/Arch_Website_Frontend/videos"
-            className="hover:text-yellow-300 transition"
+            className="hover:text-yellow-300 transition text-sm sm:text-base"
           >
             {tr("footer.link3", "Premium Design / Courses")}
           </a>
         </div>
 
         {/* Social Media */}
-        <div>
-          <h3 className="text-lg font-semibold text-yellow-400 mb-3 uppercase tracking-wide">
+        <div className="flex flex-col">
+          <h3 className="text-lg sm:text-xl font-semibold text-yellow-400 mb-3 uppercase tracking-wide">
             {tr("footer.follow", "Follow Us")}
           </h3>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             {[
               { href: "https://instagram.com", icon: <FaInstagram /> },
               { href: "https://facebook.com", icon: <FaFacebookF /> },
@@ -84,7 +83,7 @@ function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-700 py-6 text-center text-sm text-gray-500">
+      <div className="border-t border-gray-700 py-6 text-center text-sm sm:text-base text-gray-500">
         {tr("footer.dev", "Made with ❤️ by")}{" "}
         <span className="text-yellow-400 font-medium">Mava</span>
       </div>
