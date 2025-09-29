@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
+/* ----------------------------- */
 /* Base styles for the entire app */
+/* ----------------------------- */
 html, body, #root {
   margin: 0;
   padding: 0;
@@ -13,13 +15,46 @@ html, body, #root {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Optional: remove any React default "blue link" or CRA demo styles */
+/* Remove default link styles */
 a {
   color: inherit;
   text-decoration: none;
 }
 
+/* Code font */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* ----------------------------- */
+/* Infinite scrolling animation for Наша команда */
+/* ----------------------------- */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 25s linear infinite;
+  display: flex;
+}
+
+/* ----------------------------- */
+/* Timeline connector arrows: true triangles pointing from center line to cards */
+/* ----------------------------- */
+@layer utilities {
+  /* Left arrow: points from center line to left card */
+  .clip-arrow-left {
+    clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  }
+
+  /* Right arrow: points from center line to right card */
+  .clip-arrow-right {
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+  }
 }
