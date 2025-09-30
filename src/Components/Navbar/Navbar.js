@@ -24,7 +24,19 @@ function Navbar() {
   ];
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${isOpen ? "transparent" : ""}`}>
+      {/* Mobile left (logo) */}
+      <div className="mobile-left lg:hidden flex items-center gap-2">
+        <NavLink to="/" className="logo-link">
+          <img
+            src={require("../../assets/logo.jpg")}
+            alt="MAVA Logo"
+            className="logo-img"
+          />
+          <span className="logo-text">MAVA</span>
+        </NavLink>
+      </div>
+
       {/* Desktop left (logo) */}
       <div className="navbar-left hidden lg:flex">
         <NavLink to="/" className="logo-link">
@@ -37,8 +49,8 @@ function Navbar() {
         </NavLink>
       </div>
 
-      {/* Mobile left (hamburger) */}
-      <div className="lg:hidden flex items-center">
+      {/* Mobile right (hamburger) */}
+      <div className="mobile-right lg:hidden flex items-center">
         <button
           className="text-white"
           onClick={() => setIsOpen(!isOpen)}
@@ -73,36 +85,29 @@ function Navbar() {
         ))}
       </div>
 
-      {/* Right side */}
-      <div className="navbar-right">
-        {/* Desktop languages */}
-        <div className="hidden lg:flex gap-4">
-          <button onClick={() => changeLanguage("ru")} className="lang">
-            RU
-          </button>
-          <button onClick={() => changeLanguage("en")} className="lang">
-            EN
-          </button>
-          <button onClick={() => changeLanguage("uz")} className="lang">
-            UZ
-          </button>
-        </div>
-
-        {/* Mobile logo */}
-        <div className="lg:hidden flex items-center gap-2">
-          <img
-            src={require("../../assets/logo.jpg")}
-            alt="MAVA Logo"
-            className="logo-img"
-            style={{ height: "40px" }}
-          />
-          <span className="logo-text">MAVA</span>
-        </div>
+      {/* Right side (desktop languages) */}
+      <div className="navbar-right hidden lg:flex gap-4">
+        <button onClick={() => changeLanguage("ru")} className="lang">
+          RU
+        </button>
+        <button onClick={() => changeLanguage("en")} className="lang">
+          EN
+        </button>
+        <button onClick={() => changeLanguage("uz")} className="lang">
+          UZ
+        </button>
       </div>
 
-      {/* ===== Mobile Sidebar + Overlay ===== */}
-      {isOpen && <div className="overlay" onClick={() => setIsOpen(false)} />}
+      {/* ===== Fullscreen Mobile Sidebar ===== */}
       <div className={`mobile-sidebar ${isOpen ? "open" : ""}`}>
+        <button
+          onClick={() => setIsOpen(false)}
+          className="close-btn text-white"
+          aria-label="Close menu"
+        >
+          <X size={28} />
+        </button>
+
         <div className="links-container">
           {contactsLink && (
             <NavLink
@@ -136,14 +141,6 @@ function Navbar() {
             UZ
           </button>
         </div>
-
-        <button
-          onClick={() => setIsOpen(false)}
-          className="close-btn text-white"
-          aria-label="Close menu"
-        >
-          <X size={24} />
-        </button>
       </div>
     </nav>
   );
