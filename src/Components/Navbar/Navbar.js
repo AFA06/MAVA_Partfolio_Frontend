@@ -5,7 +5,6 @@ import navLinks from "./NavLinks";
 import { Menu, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import "./navbar.css";
-import logo from "../../assets/logo.jpg";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,15 +25,30 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      {/* Left: Logo + MAVA */}
-      <div className="navbar-left">
+      {/* Desktop left (logo) */}
+      <div className="navbar-left hidden lg:flex">
         <NavLink to="/" className="logo-link">
-          <img src={logo} alt="MAVA Logo" className="logo-img" />
+          <img
+            src={require("../../assets/logo.jpg")}
+            alt="MAVA Logo"
+            className="logo-img"
+          />
           <span className="logo-text">MAVA</span>
         </NavLink>
       </div>
 
-      {/* Center (Desktop nav links) */}
+      {/* Mobile left (hamburger) */}
+      <div className="lg:hidden flex items-center">
+        <button
+          className="text-white"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle menu"
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </div>
+
+      {/* Center nav links (desktop only) */}
       <div className="navbar-center hidden lg:flex">
         {contactsLink && (
           <NavLink
@@ -59,22 +73,8 @@ function Navbar() {
         ))}
       </div>
 
-      {/* Right: Contacts (mobile always visible) + Lang + Hamburger */}
+      {/* Right side */}
       <div className="navbar-right">
-        {/* Contacts visible in mobile navbar */}
-        {contactsLink && (
-          <NavLink
-            to={contactsLink.href}
-            className={({ isActive }) =>
-              isActive
-                ? "nav-link nav-link-active mobile-contact"
-                : "nav-link mobile-contact"
-            }
-          >
-            {t(contactsLink.label)}
-          </NavLink>
-        )}
-
         {/* Desktop languages */}
         <div className="hidden lg:flex gap-4">
           <button onClick={() => changeLanguage("ru")} className="lang">
@@ -88,22 +88,31 @@ function Navbar() {
           </button>
         </div>
 
-        {/* Hamburger menu (mobile only) */}
-        <button
-          className="lg:hidden text-white"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        {/* Mobile logo */}
+        <div className="lg:hidden flex items-center gap-2">
+          <img
+            src={require("../../assets/logo.jpg")}
+            alt="MAVA Logo"
+            className="logo-img"
+            style={{ height: "40px" }}
+          />
+          <span className="logo-text">MAVA</span>
+        </div>
       </div>
 
-      {/* Overlay background */}
-      {isOpen && <div className="overlay" onClick={() => setIsOpen(false)}></div>}
-
-      {/* Mobile Sidebar (slide from right) */}
+      {/* ===== Mobile Sidebar + Overlay ===== */}
+      {isOpen && <div className="overlay" onClick={() => setIsOpen(false)} />}
       <div className={`mobile-sidebar ${isOpen ? "open" : ""}`}>
         <div className="links-container">
+          {contactsLink && (
+            <NavLink
+              to={contactsLink.href}
+              onClick={() => setIsOpen(false)}
+              className="nav-link"
+            >
+              {t(contactsLink.label)}
+            </NavLink>
+          )}
           {orderedLinks.map((link) => (
             <NavLink
               key={link.href}

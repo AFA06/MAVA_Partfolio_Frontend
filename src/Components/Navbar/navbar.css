@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.85); /* SAME COLOR FOR NAVBAR & SIDEBAR */
   backdrop-filter: blur(12px) saturate(150%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: background 0.3s ease, height 0.3s ease;
@@ -27,17 +27,6 @@
   justify-content: center;
   gap: 28px;
   flex: 1;
-}
-
-/* Mobile contact always visible */
-.mobile-contact {
-  display: inline-flex;
-}
-
-@media (min-width: 1024px) {
-  .mobile-contact {
-    display: none;
-  }
 }
 
 /* Logo */
@@ -107,28 +96,28 @@
   text-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
 }
 
-/* Overlay (full background when menu open) */
+/* Overlay (dark cover) */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.65);
   z-index: 150;
 }
 
-/* Sidebar (slide from right) */
+/* Mobile Sidebar */
 .mobile-sidebar {
   position: fixed;
   top: 0;
-  right: -100%;
+  left: -100%;
   width: 80%;
-  max-width: 280px;
+  max-width: 300px;
   height: 100%;
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(0, 0, 0, 0.85); /* SAME COLOR AS NAVBAR */
   backdrop-filter: blur(12px);
-  transition: right 0.35s ease;
+  transition: left 0.35s ease;
   z-index: 200;
   display: flex;
   flex-direction: column;
@@ -137,7 +126,7 @@
 }
 
 .mobile-sidebar.open {
-  right: 0;
+  left: 0;
 }
 
 .mobile-sidebar .links-container {
