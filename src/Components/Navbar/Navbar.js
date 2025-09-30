@@ -26,18 +26,15 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      {/* Left side (hamburger for mobile, empty in desktop) */}
+      {/* Left: Logo + MAVA */}
       <div className="navbar-left">
-        <button
-          className="lg:hidden text-white"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        <NavLink to="/" className="logo-link">
+          <img src={logo} alt="MAVA Logo" className="logo-img" />
+          <span className="logo-text">MAVA</span>
+        </NavLink>
       </div>
 
-      {/* Center nav links (desktop only) */}
+      {/* Center (Desktop nav links) */}
       <div className="navbar-center hidden lg:flex">
         {contactsLink && (
           <NavLink
@@ -62,8 +59,22 @@ function Navbar() {
         ))}
       </div>
 
-      {/* Right side (logo desktop & mobile) */}
+      {/* Right: Contacts (mobile always visible) + Lang + Hamburger */}
       <div className="navbar-right">
+        {/* Contacts visible in mobile navbar */}
+        {contactsLink && (
+          <NavLink
+            to={contactsLink.href}
+            className={({ isActive }) =>
+              isActive
+                ? "nav-link nav-link-active mobile-contact"
+                : "nav-link mobile-contact"
+            }
+          >
+            {t(contactsLink.label)}
+          </NavLink>
+        )}
+
         {/* Desktop languages */}
         <div className="hidden lg:flex gap-4">
           <button onClick={() => changeLanguage("ru")} className="lang">
@@ -77,26 +88,22 @@ function Navbar() {
           </button>
         </div>
 
-        {/* Logo always visible */}
-        <NavLink to="/" className="logo-link">
-          <img src={logo} alt="MAVA Logo" className="logo-img" />
-          <span className="logo-text">MAVA</span>
-        </NavLink>
+        {/* Hamburger menu (mobile only) */}
+        <button
+          className="lg:hidden text-white"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle menu"
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
       </div>
 
-      {/* Mobile sidebar */}
+      {/* Overlay background */}
+      {isOpen && <div className="overlay" onClick={() => setIsOpen(false)}></div>}
+
+      {/* Mobile Sidebar (slide from right) */}
       <div className={`mobile-sidebar ${isOpen ? "open" : ""}`}>
-        {/* Links */}
         <div className="links-container">
-          {contactsLink && (
-            <NavLink
-              to={contactsLink.href}
-              onClick={() => setIsOpen(false)}
-              className="nav-link"
-            >
-              {t(contactsLink.label)}
-            </NavLink>
-          )}
           {orderedLinks.map((link) => (
             <NavLink
               key={link.href}
@@ -109,7 +116,6 @@ function Navbar() {
           ))}
         </div>
 
-        {/* Languages */}
         <div className="languages-container">
           <button onClick={() => changeLanguage("ru")} className="lang">
             RU
@@ -122,7 +128,6 @@ function Navbar() {
           </button>
         </div>
 
-        {/* Close button */}
         <button
           onClick={() => setIsOpen(false)}
           className="close-btn text-white"
