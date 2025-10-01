@@ -110,6 +110,7 @@
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(6px);
   z-index: 150;
   opacity: 0;
   pointer-events: none;
@@ -129,19 +130,23 @@
   width: 80%;
   max-width: 320px;
   height: 100vh;
-  background: #000; /* SOLID BLACK BACKGROUND */
+  background: linear-gradient(180deg, #000 0%, #111 100%);
+  backdrop-filter: blur(20px) saturate(150%);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 200;
   display: flex;
   flex-direction: column;
   padding: 60px 24px;
   transform: translateX(100%);
-  transition: transform 0.35s ease;
+  transition: transform 0.35s cubic-bezier(0.77, 0, 0.175, 1);
+  box-shadow: -6px 0 25px rgba(0,0,0,0.5);
 }
 
 .mobile-sidebar.open {
   transform: translateX(0);
 }
 
+/* Sidebar links */
 .mobile-sidebar .links-container {
   display: flex;
   flex-direction: column;
@@ -151,7 +156,23 @@
 
 .mobile-sidebar .nav-link {
   font-size: 1.2rem;
-  color: #fff; /* white text */
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateX(20px);
+  animation: slideIn 0.4s forwards;
+}
+
+.mobile-sidebar.open .nav-link:nth-child(1) { animation-delay: 0.1s; }
+.mobile-sidebar.open .nav-link:nth-child(2) { animation-delay: 0.2s; }
+.mobile-sidebar.open .nav-link:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .mobile-sidebar .nav-link:hover {
@@ -159,9 +180,11 @@
   text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
 }
 
+/* Languages inside sidebar */
 .mobile-sidebar .languages-container {
   display: flex;
   gap: 16px;
+  margin-top: auto;
 }
 
 .mobile-sidebar .lang {
@@ -169,8 +192,16 @@
   color: #fff;
   background: none;
   border: none;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
+.mobile-sidebar .lang:hover {
+  color: #ffd700;
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
+}
+
+/* Close button */
 .mobile-sidebar .close-btn {
   position: absolute;
   top: 20px;
@@ -179,9 +210,15 @@
   background: none;
   border: none;
   cursor: pointer;
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
 }
 
-/* Mobile adjustments */
+.mobile-sidebar .close-btn:hover {
+  transform: rotate(90deg);
+}
+
+/* Hamburger button */
 .menu-btn {
   color: #fff;
   background: none;
@@ -189,6 +226,7 @@
   cursor: pointer;
 }
 
+/* Mobile adjustments */
 @media (max-width: 1024px) {
   .navbar-center {
     display: none;
