@@ -6,7 +6,7 @@
   height: 70px;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* keeps left - center - right layout */
+  justify-content: space-between;
   padding: 0 24px;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(12px) saturate(150%);
@@ -123,25 +123,26 @@
   pointer-events: auto;
 }
 
-/* Mobile sidebar (RIGHT side) */
+/* Mobile sidebar (RIGHT side, with solid background) */
 .mobile-sidebar {
   position: fixed;
   top: 0;
-  right: 0; /* ✅ open from the right */
+  right: 0;
   width: 80%;
   max-width: 320px;
   height: 100%;
-  background: rgba(0, 0, 0, 0.95);
+  background: #111; /* ✅ solid dark background */
   z-index: 200;
   display: flex;
   flex-direction: column;
   padding: 40px 24px;
-  transform: translateX(100%); /* ✅ start hidden on the right */
+  transform: translateX(100%);
   transition: transform 0.35s ease;
+  box-shadow: -2px 0 12px rgba(0,0,0,0.6); /* little shadow */
 }
 
 .mobile-sidebar.open {
-  transform: translateX(0); /* ✅ slide in from right */
+  transform: translateX(0);
 }
 
 .mobile-sidebar .links-container {
@@ -170,6 +171,11 @@
   position: absolute;
   top: 20px;
   right: 20px;
+  font-size: 1.8rem;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 /* Mobile hamburger */
@@ -178,6 +184,7 @@
   background: none;
   border: none;
   cursor: pointer;
+  font-size: 1.8rem;
 }
 
 /* Responsive tweak */
