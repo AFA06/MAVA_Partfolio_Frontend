@@ -15,6 +15,7 @@ function Navbar() {
     setIsOpen(false);
   };
 
+  // Separate contacts link
   const contactsLink = navLinks.find((link) => link.label === "contacts");
   const mainLinks = navLinks.filter((link) => link.label !== "contacts");
 
@@ -24,10 +25,10 @@ function Navbar() {
   ];
 
   return (
-    <nav className={`navbar ${isOpen ? "transparent" : ""}`}>
-      {/* Mobile left (logo) */}
-      <div className="mobile-left lg:hidden flex items-center gap-2">
-        <NavLink to="/" className="logo-link">
+    <nav className="navbar">
+      {/* ===== Left: Logo (always visible) ===== */}
+      <div className="navbar-left">
+        <NavLink to="/" className="logo-link" onClick={() => setIsOpen(false)}>
           <img
             src={require("../../assets/logo.jpg")}
             alt="MAVA Logo"
@@ -37,30 +38,7 @@ function Navbar() {
         </NavLink>
       </div>
 
-      {/* Desktop left (logo) */}
-      <div className="navbar-left hidden lg:flex">
-        <NavLink to="/" className="logo-link">
-          <img
-            src={require("../../assets/logo.jpg")}
-            alt="MAVA Logo"
-            className="logo-img"
-          />
-          <span className="logo-text">MAVA</span>
-        </NavLink>
-      </div>
-
-      {/* Mobile right (hamburger) */}
-      <div className="mobile-right lg:hidden flex items-center">
-        <button
-          className="text-white"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
-
-      {/* Center nav links (desktop only) */}
+      {/* ===== Center: Links (desktop only) ===== */}
       <div className="navbar-center hidden lg:flex">
         {contactsLink && (
           <NavLink
@@ -85,20 +63,43 @@ function Navbar() {
         ))}
       </div>
 
-      {/* Right side (desktop languages) */}
-      <div className="navbar-right hidden lg:flex gap-4">
-        <button onClick={() => changeLanguage("ru")} className="lang">
-          RU
-        </button>
-        <button onClick={() => changeLanguage("en")} className="lang">
-          EN
-        </button>
-        <button onClick={() => changeLanguage("uz")} className="lang">
-          UZ
-        </button>
+      {/* ===== Right: Languages (desktop) + Contacts + Hamburger (mobile) ===== */}
+      <div className="navbar-right">
+        {/* Desktop languages */}
+        <div className="hidden lg:flex gap-4">
+          <button onClick={() => changeLanguage("ru")} className="lang">RU</button>
+          <button onClick={() => changeLanguage("en")} className="lang">EN</button>
+          <button onClick={() => changeLanguage("uz")} className="lang">UZ</button>
+        </div>
+
+        {/* Mobile contacts + hamburger */}
+        <div className="lg:hidden flex items-center gap-4">
+          {contactsLink && (
+            <NavLink
+              to={contactsLink.href}
+              className="nav-link text-sm"
+              onClick={() => setIsOpen(false)}
+            >
+              {t(contactsLink.label)}
+            </NavLink>
+          )}
+          <button
+            className="menu-btn"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
-      {/* ===== Fullscreen Mobile Sidebar ===== */}
+      {/* ===== Overlay ===== */}
+      <div
+        className={`overlay ${isOpen ? "show" : ""}`}
+        onClick={() => setIsOpen(false)}
+      ></div>
+
+      {/* ===== Sidebar (mobile) ===== */}
       <div className={`mobile-sidebar ${isOpen ? "open" : ""}`}>
         <button
           onClick={() => setIsOpen(false)}
@@ -109,15 +110,6 @@ function Navbar() {
         </button>
 
         <div className="links-container">
-          {contactsLink && (
-            <NavLink
-              to={contactsLink.href}
-              onClick={() => setIsOpen(false)}
-              className="nav-link"
-            >
-              {t(contactsLink.label)}
-            </NavLink>
-          )}
           {orderedLinks.map((link) => (
             <NavLink
               key={link.href}
@@ -131,15 +123,9 @@ function Navbar() {
         </div>
 
         <div className="languages-container">
-          <button onClick={() => changeLanguage("ru")} className="lang">
-            RU
-          </button>
-          <button onClick={() => changeLanguage("en")} className="lang">
-            EN
-          </button>
-          <button onClick={() => changeLanguage("uz")} className="lang">
-            UZ
-          </button>
+          <button onClick={() => changeLanguage("ru")} className="lang">RU</button>
+          <button onClick={() => changeLanguage("en")} className="lang">EN</button>
+          <button onClick={() => changeLanguage("uz")} className="lang">UZ</button>
         </div>
       </div>
     </nav>
