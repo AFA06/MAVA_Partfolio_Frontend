@@ -22,7 +22,7 @@ function Footer() {
         {/* Brand */}
         <div className="flex flex-col items-start sm:items-start md:items-start">
           <h2 className="text-2xl sm:text-3xl font-bold text-yellow-400 mb-4 tracking-wide">
-            {tr("nex", "NEX")}
+            {tr("mava-group", "MAVA GROUP")}
           </h2>
           <p className="text-sm sm:text-base leading-relaxed text-gray-400 max-w-xs">
             {tr("footer.rights", "All rights reserved, Made by")}{" "}
@@ -46,13 +46,13 @@ function Footer() {
             href="http://localhost:3001/Arch_Website_Frontend/portfolio"
             className="hover:text-yellow-300 transition text-sm sm:text-base"
           >
-            {tr("footer.link9", "Blog / Portfolio")}
+            {tr("footer.link9", "Portfolio")}
           </a>
           <a
             href="http://localhost:3001/Arch_Website_Frontend/videos"
             className="hover:text-yellow-300 transition text-sm sm:text-base"
           >
-            {tr("footer.link3", "Premium Design / Courses")}
+            {tr("footer.link3", "Courses")}
           </a>
         </div>
 

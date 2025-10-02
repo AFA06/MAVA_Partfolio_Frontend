@@ -17,33 +17,14 @@
     "button": "Loyihalarni ko‘rish"
   },
 
-  "footer": {
-    "studioTitle": "Interyer Dizayn Studiyasi",
-    "studioName": "Sergey Lashin «VPROEKTE»",
-    "studioDesc": "Individual yondashuv.",
-    "contacts": "Aloqa",
-    "phone": "+998 99 808-36-16",
-    "email": "hello@vproekte.com",
-    "address": "Ximki, Novogorsk tumani, KP «Novogorsk Club»",
-    "map": "Xaritada ko‘rish",
+    "footer": {
+    "rights": "Barcha huquqlar himoyalangan, yaratuvchi:",
     "navigation": "Navigatsiya",
-    "link1": "Kvartira ta’mirlash",
-    "link2": "3D Vizualizatsiya",
-    "link3": "Premium Dizayn",
-    "link4": "Konsultatsiya+",
-    "link5": "Dizayner bilan bir kun",
-    "link6": "Qurilishni boshqarish",
-    "link7": "Xarid qilish",
-    "link8": "Mualliflik nazorati",
-    "link9": "Blog",
-    "link10": "Aloqa",
-    "link11": "Sayt xaritasi",
-    "bottomLine": "Portfel: Kvartiralar | Uylar | Ofislar | Yashash xonalari | Vannalar | Oshxonalar | Yotoqxonalar | Bolalar xonalari | Garderoblar | Kabinetlar | Arxitektura | Umumiy joylar | Lobbilari",
-    "orderCall": "Qo‘ng‘iroq buyurtma qilish",
-    "dev": "Vebsayt ishlab chiqish —",
-    "rights": "Barcha huquqlar himoyalangan, Muallif",
-    "author": "Abdurashid Fattokhov",
-    "follow": "Bizni kuzatib boring"
+    "contacts": "Aloqa",
+    "link9": "Portfolio",
+    "link3": "Kurslar",
+    "follow": "Bizni kuzatib boring",
+    "dev": "❤️ bilan ishlab chiqildi —"
   },
 
   "login": {
