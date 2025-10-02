@@ -18,9 +18,17 @@ function Navbar() {
   const contactsLink = navLinks.find((link) => link.label === "contacts");
   const mainLinks = navLinks.filter((link) => link.label !== "contacts");
 
+  // Desktop order (About first, unchanged)
   const orderedLinks = [
     ...mainLinks.filter((link) => link.label === "about"),
     ...mainLinks.filter((link) => link.label !== "about"),
+  ];
+
+  // Mobile order: Courses → Portfolio → About Us
+  const mobileOrderedLinks = [
+    ...mainLinks.filter((link) => link.label === "courses"),
+    ...mainLinks.filter((link) => link.label === "portfolio"),
+    ...mainLinks.filter((link) => link.label === "about"),
   ];
 
   return (
@@ -124,7 +132,7 @@ function Navbar() {
         </button>
 
         <div className="links-container">
-          {orderedLinks.map((link) => (
+          {mobileOrderedLinks.map((link) => (
             <NavLink
               key={link.href}
               to={link.href}

@@ -25,10 +25,10 @@ function Homepage() {
       <div className="relative z-10 px-4 sm:px-6 max-w-4xl mx-auto flex flex-col items-center text-center">
         {/* Headings */}
         <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-wide text-white drop-shadow-2xl mb-2">
-          New Era Excellence
+          Mava Group 
         </h1>
         <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-wider text-gray-200 drop-shadow-lg mb-4">
-          Architects
+          
         </h2>
 
         {/* Paragraph */}
