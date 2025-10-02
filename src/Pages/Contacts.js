@@ -11,7 +11,7 @@ export default function Contacts() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(null);
 
-  // Glass-like texture overlay
+  // Premium paper-like texture overlay
   const paperDataUrl = useMemo(() => {
     const canvas = document.createElement("canvas");
     const s = 120;
@@ -57,14 +57,14 @@ export default function Contacts() {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-gradient-to-br from-[#101010] via-[#181818] to-[#202020] text-white antialiased overflow-x-hidden">
-      {/* glass texture overlay */}
+    <div className="relative min-h-screen w-full bg-gradient-to-br from-[#faf7f2] via-[#f3ede8] to-[#ebe3dc] text-[#2b2b2b] antialiased overflow-x-hidden">
+      {/* paper overlay */}
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 opacity-[0.12]"
+        className="pointer-events-none fixed inset-0 opacity-[0.15]"
         style={{
           backgroundImage: `url(${paperDataUrl})`,
-          mixBlendMode: "overlay",
+          mixBlendMode: "multiply",
         }}
       />
 
@@ -76,11 +76,11 @@ export default function Contacts() {
           transition={{ duration: 0.8 }}
           className="mx-auto max-w-4xl px-4 sm:px-6 pt-20 sm:pt-24 pb-12 sm:pb-16 text-center"
         >
-          <h1 className="text-[clamp(2.25rem,6vw,3.75rem)] font-serif font-bold tracking-tight text-white">
+          <h1 className="text-[clamp(2.25rem,6vw,3.75rem)] font-serif font-bold tracking-tight text-neutral-900">
             {t("contactsPage.title")}
           </h1>
-          <div className="mt-5 h-[3px] w-40 mx-auto bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400 rounded-full" />
-          <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-gray-300">
+          <div className="mt-5 h-[3px] w-40 mx-auto bg-gradient-to-r from-[#8b5e3c] via-[#a47148] to-[#8b5e3c] rounded-full" />
+          <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-neutral-700">
             {t("contactsPage.subtitle")}
           </p>
         </motion.div>
@@ -96,13 +96,13 @@ export default function Contacts() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
               viewport={{ once: true }}
-              className="group relative rounded-2xl border border-white/10 bg-white/10 backdrop-blur-xl p-6 shadow-lg hover:shadow-2xl hover:shadow-white/10 transition hover:-translate-y-1"
+              className="group relative rounded-2xl border border-[#e4d6c7] bg-white/80 backdrop-blur-lg p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition"
             >
-              <div className="flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-cyan-500/90 to-blue-500/90 text-white mb-4 group-hover:scale-110 transition">
+              <div className="flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-[#a47148] to-[#8b5e3c] text-white mb-4 group-hover:scale-110 transition">
                 {item.icon}
               </div>
-              <h3 className="font-serif font-semibold text-lg text-white">{item.title}</h3>
-              <p className="mt-2 text-sm sm:text-base whitespace-pre-line text-gray-300">
+              <h3 className="font-serif font-semibold text-lg text-neutral-900">{item.title}</h3>
+              <p className="mt-2 text-sm sm:text-base whitespace-pre-line text-neutral-700">
                 {item.text}
               </p>
             </motion.div>
@@ -117,50 +117,50 @@ export default function Contacts() {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="mx-auto max-w-xl sm:max-w-2xl rounded-3xl border border-white/10 bg-white/10 shadow-2xl p-8 sm:p-12 text-center backdrop-blur-2xl"
+          className="mx-auto max-w-xl sm:max-w-2xl rounded-3xl border border-[#e4d6c7] bg-white/90 shadow-2xl p-8 sm:p-12 text-center backdrop-blur-xl"
         >
-          <h4 className="text-2xl sm:text-3xl font-serif font-bold text-white">
+          <h4 className="text-2xl sm:text-3xl font-serif font-bold text-neutral-900">
             {t("contactsPage.form.title")}
           </h4>
-          <div className="mt-3 h-[3px] w-28 mx-auto bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400 rounded-full" />
-          <p className="mt-4 text-gray-300 text-sm sm:text-base">
+          <div className="mt-3 h-[3px] w-28 mx-auto bg-gradient-to-r from-[#a47148] via-[#8b5e3c] to-[#a47148] rounded-full" />
+          <p className="mt-4 text-neutral-600 text-sm sm:text-base">
             {t("contactsPage.form.subtitle")}
           </p>
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-5 text-left">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-neutral-700 mb-1">
                 {t("contactsPage.form.name")}
               </label>
               <input
                 type="text"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full p-3 rounded-xl border border-white/20 bg-black/40 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 shadow-sm"
+                className="w-full p-3 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-[#a47148] shadow-sm"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-neutral-700 mb-1">
                 {t("contactsPage.form.email")}
               </label>
               <input
                 type="email"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full p-3 rounded-xl border border-white/20 bg-black/40 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 shadow-sm"
+                className="w-full p-3 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-[#a47148] shadow-sm"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-neutral-700 mb-1">
                 {t("contactsPage.form.message")}
               </label>
               <textarea
                 rows="5"
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full p-3 rounded-xl border border-white/20 bg-black/40 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 shadow-sm"
+                className="w-full p-3 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-[#a47148] shadow-sm"
                 required
               />
             </div>
@@ -168,13 +168,13 @@ export default function Contacts() {
             <button
               type="submit"
               disabled={loading}
-              className="mt-2 w-full px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500/80 to-blue-500/80 text-white font-semibold shadow-md hover:from-cyan-400 hover:to-blue-400 transition"
+              className="mt-2 w-full px-6 py-3 rounded-xl bg-gradient-to-r from-[#d4a373] to-[#b5835a] text-white font-semibold shadow-md hover:shadow-lg transition"
             >
               {loading ? t("contactsPage.form.sending") || "Отправка..." : t("contactsPage.form.button")}
             </button>
 
-            {success === true && <p className="mt-2 text-green-400">{t("contactsPage.form.alert")}</p>}
-            {success === false && <p className="mt-2 text-red-400">{t("contactsPage.form.error") || "Ошибка отправки."}</p>}
+            {success === true && <p className="mt-2 text-green-600">{t("contactsPage.form.alert")}</p>}
+            {success === false && <p className="mt-2 text-red-600">{t("contactsPage.form.error") || "Ошибка отправки."}</p>}
           </form>
         </motion.div>
       </section>
