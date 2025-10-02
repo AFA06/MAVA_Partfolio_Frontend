@@ -18,15 +18,16 @@ function Navbar() {
   const contactsLink = navLinks.find((link) => link.label === "contacts");
   const mainLinks = navLinks.filter((link) => link.label !== "contacts");
 
-  // Desktop order (About first, unchanged)
+  // Desktop order: Contacts → Portfolio → Videos (Courses) → About Us
   const orderedLinks = [
+    ...mainLinks.filter((link) => link.label === "portfolio"),
+    ...mainLinks.filter((link) => link.label === "videos"), // Courses
     ...mainLinks.filter((link) => link.label === "about"),
-    ...mainLinks.filter((link) => link.label !== "about"),
   ];
 
-  // Mobile order: Courses → Portfolio → About Us
+  // Mobile order stays the same
   const mobileOrderedLinks = [
-    ...mainLinks.filter((link) => link.label === "courses"),
+    ...mainLinks.filter((link) => link.label === "videos"), // Courses
     ...mainLinks.filter((link) => link.label === "portfolio"),
     ...mainLinks.filter((link) => link.label === "about"),
   ];
