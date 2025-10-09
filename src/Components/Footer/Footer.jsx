@@ -31,28 +31,42 @@ function Footer() {
           </p>
         </div>
 
-        {/* Links */}
+        {/* ✅ Navigation Links (new order) */}
         <div className="flex flex-col gap-2">
           <h3 className="text-lg sm:text-xl font-semibold text-yellow-400 mb-3 uppercase tracking-wide">
             {tr("footer.navigation", "Navigation")}
           </h3>
-          <a
-            href="http://localhost:3001/Arch_Website_Frontend/contacts"
-            className="hover:text-yellow-300 transition text-sm sm:text-base"
-          >
-            {tr("footer.contacts", "Contacts")}
-          </a>
+
+          {/* Portfolio */}
           <a
             href="http://localhost:3001/Arch_Website_Frontend/portfolio"
             className="hover:text-yellow-300 transition text-sm sm:text-base"
           >
             {tr("footer.link9", "Portfolio")}
           </a>
+
+          {/* Courses */}
           <a
             href="http://localhost:3001/Arch_Website_Frontend/videos"
             className="hover:text-yellow-300 transition text-sm sm:text-base"
           >
             {tr("footer.link3", "Courses")}
+          </a>
+
+          {/* Contacts */}
+          <a
+            href="http://localhost:3001/Arch_Website_Frontend/contacts"
+            className="hover:text-yellow-300 transition text-sm sm:text-base"
+          >
+            {tr("footer.contacts", "Contacts")}
+          </a>
+
+          {/* About Us */}
+          <a
+            href="http://localhost:3001/Arch_Website_Frontend/about"
+            className="hover:text-yellow-300 transition text-sm sm:text-base"
+          >
+            {tr("footer.about", "About Us")}
           </a>
         </div>
 

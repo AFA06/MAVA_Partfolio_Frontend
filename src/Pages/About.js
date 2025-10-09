@@ -15,8 +15,9 @@ export default function About() {
   const timeline = t("aboutPage.timeline", { returnObjects: true }) || [];
   const values = t("aboutPage.values", { returnObjects: true }) || [];
 
+  // ✅ Changed name to "Mava Group"
   const team = [
-    { name: "John Doe", role: "Lead Architect", photo: team1 },
+    { name: "Mava Group", role: "Lead Architect", photo: team1 },
     { name: "Jane Smith", role: "Interior Designer", photo: team2 },
     { name: "Michael Lee", role: "Project Manager", photo: team3 },
     { name: "Sophia Kim", role: "3D Designer", photo: team1 },
