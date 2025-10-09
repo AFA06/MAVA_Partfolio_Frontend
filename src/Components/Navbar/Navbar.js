@@ -18,14 +18,15 @@ function Navbar() {
   const contactsLink = navLinks.find((link) => link.label === "contacts");
   const mainLinks = navLinks.filter((link) => link.label !== "contacts");
 
-  // Desktop order: Contacts → Portfolio → Videos (Courses) → About Us
+  // ✅ New Desktop order: Portfolio → Courses (Videos) → Contacts → About Us
   const orderedLinks = [
     ...mainLinks.filter((link) => link.label === "portfolio"),
     ...mainLinks.filter((link) => link.label === "videos"), // Courses
+    ...(contactsLink ? [contactsLink] : []),
     ...mainLinks.filter((link) => link.label === "about"),
   ];
 
-  // Mobile order stays the same
+  // 📱 Mobile order stays the same
   const mobileOrderedLinks = [
     ...mainLinks.filter((link) => link.label === "videos"), // Courses
     ...mainLinks.filter((link) => link.label === "portfolio"),
@@ -78,18 +79,8 @@ function Navbar() {
         </button>
       </div>
 
-      {/* Desktop center nav links */}
+      {/* ✅ Desktop center nav links (new order) */}
       <div className="navbar-center hidden lg:flex">
-        {contactsLink && (
-          <NavLink
-            to={contactsLink.href}
-            className={({ isActive }) =>
-              isActive ? "nav-link nav-link-active" : "nav-link"
-            }
-          >
-            {t(contactsLink.label)}
-          </NavLink>
-        )}
         {orderedLinks.map((link) => (
           <NavLink
             key={link.href}

@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://AFA06.github.io/Arch_Website_Frontend", 
+"homepage": "https://afa06.github.io/MAVA_Partfolio_Frontend",
   "dependencies": {
     "@csstools/normalize.css": "^12.1.1",
     "@hookform/resolvers": "^3.9.0",
