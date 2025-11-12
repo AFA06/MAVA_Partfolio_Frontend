@@ -250,24 +250,33 @@
     },
     "phone": {
       "title": "Telefon",
-      "text": "+998 90 123 45 67"
+      "text": "+998 99 936-65-56\n+998 90 014-14-44"
     },
     "email": {
       "title": "Email",
-      "text": "info@architecture.com"
+      "text": "mavagroup2009@gmail.com"
     },
     "hours": {
       "title": "Ish vaqti",
-      "text": "Dush - Shan\n9:00 - 19:00"
+      "monday": "Dushanba",
+      "tuesday": "Seshanba",
+      "wednesday": "Chorshanba",
+      "thursday": "Payshanba",
+      "friday": "Juma",
+      "saturday": "Shanba",
+      "sunday": "Yakshanba",
+      "closed": "Yopiq"
     },
     "form": {
       "title": "Bizga xabar yuboring",
       "subtitle": "Savollaringizga javob beramiz va loyiha tafsilotlarini muhokama qilamiz.",
       "alert": "Xabar yuborildi (demo).",
+      "error": "Xabar yuborishda xatolik yuz berdi.",
       "name": "Ismingiz",
       "email": "Emailingiz",
       "message": "Xabaringiz",
-      "button": "Yuborish"
+      "button": "Yuborish",
+      "sending": "Yuborilmoqda..."
     }
   },
 
