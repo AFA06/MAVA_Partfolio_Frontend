@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  FaInstagram,
-  FaFacebookF,
-  FaLinkedinIn,
-  FaTelegramPlane,
-} from "react-icons/fa";
+import { FaInstagram, FaTelegramPlane } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
 function Footer() {
@@ -31,7 +26,7 @@ function Footer() {
           </p>
         </div>
 
-        {/* ✅ Navigation Links (new order) */}
+        {/* ✅ Navigation Links — open in same tab */}
         <div className="flex flex-col gap-2">
           <h3 className="text-lg sm:text-xl font-semibold text-yellow-400 mb-3 uppercase tracking-wide">
             {tr("footer.navigation", "Navigation")}
@@ -39,7 +34,7 @@ function Footer() {
 
           {/* Portfolio */}
           <a
-            href="http://localhost:3001/Arch_Website_Frontend/portfolio"
+            href="http://localhost:3001/MAVA_Partfolio_Frontend/portfolio"
             className="hover:text-yellow-300 transition text-sm sm:text-base"
           >
             {tr("footer.link9", "Portfolio")}
@@ -47,7 +42,7 @@ function Footer() {
 
           {/* Courses */}
           <a
-            href="http://localhost:3001/Arch_Website_Frontend/videos"
+            href="http://localhost:3001/MAVA_Partfolio_Frontend/videos"
             className="hover:text-yellow-300 transition text-sm sm:text-base"
           >
             {tr("footer.link3", "Courses")}
@@ -55,7 +50,7 @@ function Footer() {
 
           {/* Contacts */}
           <a
-            href="http://localhost:3001/Arch_Website_Frontend/contacts"
+            href="http://localhost:3001/MAVA_Partfolio_Frontend/contacts"
             className="hover:text-yellow-300 transition text-sm sm:text-base"
           >
             {tr("footer.contacts", "Contacts")}
@@ -63,24 +58,28 @@ function Footer() {
 
           {/* About Us */}
           <a
-            href="http://localhost:3001/Arch_Website_Frontend/about"
+            href="http://localhost:3001/MAVA_Partfolio_Frontend/about"
             className="hover:text-yellow-300 transition text-sm sm:text-base"
           >
             {tr("footer.about", "About Us")}
           </a>
         </div>
 
-        {/* Social Media */}
+        {/* ✅ Social Media — only Instagram & Telegram (open in new tab) */}
         <div className="flex flex-col">
           <h3 className="text-lg sm:text-xl font-semibold text-yellow-400 mb-3 uppercase tracking-wide">
             {tr("footer.follow", "Follow Us")}
           </h3>
           <div className="flex flex-wrap gap-4">
             {[
-              { href: "https://instagram.com", icon: <FaInstagram /> },
-              { href: "https://facebook.com", icon: <FaFacebookF /> },
-              { href: "https://linkedin.com", icon: <FaLinkedinIn /> },
-              { href: "https://t.me/", icon: <FaTelegramPlane /> },
+              {
+                href: "https://www.instagram.com/mavagroup_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+                icon: <FaInstagram />,
+              },
+              {
+                href: "https://t.me/MAVA_GROUP",
+                icon: <FaTelegramPlane />,
+              },
             ].map(({ href, icon }, idx) => (
               <a
                 key={idx}
