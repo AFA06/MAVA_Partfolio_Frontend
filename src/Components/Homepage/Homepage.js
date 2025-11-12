@@ -1,4 +1,3 @@
-// src/Components/Homepage/Homepage.jsx
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Phone, Send, Home, Pencil, Box } from "lucide-react";
@@ -25,10 +24,9 @@ function Homepage() {
       <div className="relative z-10 px-4 sm:px-6 max-w-4xl mx-auto flex flex-col items-center text-center">
         {/* Headings */}
         <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-wide text-white drop-shadow-2xl mb-2">
-          Mava Group 
+          Mava Group
         </h1>
         <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-wider text-gray-200 drop-shadow-lg mb-4">
-          
         </h2>
 
         {/* Paragraph */}
@@ -67,6 +65,7 @@ function Homepage() {
 
       {/* Floating contact buttons */}
       <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 flex flex-col gap-3 sm:gap-4 z-50">
+        {/* Phone Button */}
         <a
           href="tel:+998901234567"
           className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center 
@@ -77,8 +76,9 @@ function Homepage() {
           <span className="absolute inset-0 rounded-full bg-green-500 opacity-40 blur-xl animate-pulse"></span>
         </a>
 
+        {/* Telegram Button (✅ updated link) */}
         <a
-          href="https://t.me/yourcompany"
+          href="https://t.me/MAVA_GROUP"
           target="_blank"
           rel="noopener noreferrer"
           className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center 
