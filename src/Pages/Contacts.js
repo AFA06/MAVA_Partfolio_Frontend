@@ -11,7 +11,7 @@ export default function Contacts() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(null);
 
-  // Premium paper-like texture overlay
+  // Paper-like texture overlay
   const paperDataUrl = useMemo(() => {
     const canvas = document.createElement("canvas");
     const s = 120;
@@ -31,10 +31,54 @@ export default function Contacts() {
   }, []);
 
   const contactItems = [
-    { title: t("contactsPage.address.title"), text: t("contactsPage.address.text"), icon: <MapPin /> },
-    { title: t("contactsPage.phone.title"), text: t("contactsPage.phone.text"), icon: <Phone /> },
-    { title: t("contactsPage.email.title"), text: t("contactsPage.email.text"), icon: <Mail /> },
-    { title: t("contactsPage.hours.title"), text: t("contactsPage.hours.text"), icon: <Clock /> },
+    {
+      title: t("contactsPage.address.title"),
+      text: "г. Ташкент, Узбекистан",
+      icon: <MapPin />,
+    },
+    {
+      title: t("contactsPage.phone.title"),
+      text: "+998 99 936-65-56\n+998 90 014-14-44",
+      icon: <Phone />,
+    },
+    {
+      title: t("contactsPage.email.title"),
+      text: "mavagroup2009@gmail.com",
+      icon: <Mail />,
+    },
+    {
+      title: t("contactsPage.hours.title"),
+      icon: <Clock />,
+      text: (
+        <div className="space-y-1.5 text-sm sm:text-base text-neutral-700">
+          {[
+            ["Понедельник", "09:00–21:00"],
+            ["Вторник", "09:00–21:00"],
+            ["Среда", "09:00–21:00"],
+            ["Четверг", "09:00–21:00"],
+            ["Пятница", "14:00–21:00"],
+            ["Суббота", "10:00–19:00"],
+            ["Воскресенье", "Закрыто"],
+          ].map(([day, time], i) => (
+            <div
+              key={i}
+              className="flex justify-between border-b border-[#f1e7dc] pb-0.5 last:border-none"
+            >
+              <span className="font-medium">{day}</span>
+              <span
+                className={`${
+                  time === "Закрыто"
+                    ? "text-red-500 font-medium"
+                    : "text-neutral-700"
+                }`}
+              >
+                {time}
+              </span>
+            </div>
+          ))}
+        </div>
+      ),
+    },
   ];
 
   const handleSubmit = async (e) => {
@@ -58,7 +102,7 @@ export default function Contacts() {
 
   return (
     <div className="relative min-h-screen w-full bg-gradient-to-br from-[#faf7f2] via-[#f3ede8] to-[#ebe3dc] text-[#2b2b2b] antialiased overflow-x-hidden">
-      {/* paper overlay */}
+      {/* Paper overlay */}
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 opacity-[0.15]"
@@ -68,7 +112,7 @@ export default function Contacts() {
         }}
       />
 
-      {/* Hero */}
+      {/* Header */}
       <header className="relative overflow-hidden">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -86,7 +130,7 @@ export default function Contacts() {
         </motion.div>
       </header>
 
-      {/* CONTACT CARDS */}
+      {/* Contact Cards */}
       <section className="px-4 sm:px-6 py-12 sm:py-16">
         <div className="mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {contactItems.map((item, i) => (
@@ -101,16 +145,18 @@ export default function Contacts() {
               <div className="flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-[#a47148] to-[#8b5e3c] text-white mb-4 group-hover:scale-110 transition">
                 {item.icon}
               </div>
-              <h3 className="font-serif font-semibold text-lg text-neutral-900">{item.title}</h3>
-              <p className="mt-2 text-sm sm:text-base whitespace-pre-line text-neutral-700">
+              <h3 className="font-serif font-semibold text-lg text-neutral-900">
+                {item.title}
+              </h3>
+              <div className="mt-2 text-neutral-700 whitespace-pre-line leading-relaxed">
                 {item.text}
-              </p>
+              </div>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* CONTACT FORM */}
+      {/* Contact Form */}
       <section className="relative px-4 sm:px-6 py-12 sm:py-20">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -170,16 +216,24 @@ export default function Contacts() {
               disabled={loading}
               className="mt-2 w-full px-6 py-3 rounded-xl bg-gradient-to-r from-[#d4a373] to-[#b5835a] text-white font-semibold shadow-md hover:shadow-lg transition"
             >
-              {loading ? t("contactsPage.form.sending") || "Отправка..." : t("contactsPage.form.button")}
+              {loading
+                ? t("contactsPage.form.sending") || "Отправка..."
+                : t("contactsPage.form.button")}
             </button>
 
-            {success === true && <p className="mt-2 text-green-600">{t("contactsPage.form.alert")}</p>}
-            {success === false && <p className="mt-2 text-red-600">{t("contactsPage.form.error") || "Ошибка отправки."}</p>}
+            {success === true && (
+              <p className="mt-2 text-green-600">{t("contactsPage.form.alert")}</p>
+            )}
+            {success === false && (
+              <p className="mt-2 text-red-600">
+                {t("contactsPage.form.error") || "Ошибка отправки."}
+              </p>
+            )}
           </form>
         </motion.div>
       </section>
 
-      {/* GOOGLE MAPS */}
+      {/* Google Maps */}
       <section className="relative w-full h-[400px] sm:h-[500px] mt-12">
         <iframe
           title="Office Location"

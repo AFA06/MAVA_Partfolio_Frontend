@@ -32,8 +32,9 @@ const PROJECTS = Array.from({ length: 12 }, (_, i) => ({
 export default function Portfolio() {
   const [zoomedProject, setZoomedProject] = useState(null);
   const cardRefs = useRef([]);
+  const scrollStartRef = useRef(0);
 
-  // Scroll-based zoom effect
+  // Scroll-based zoom effect (Intersection Observer)
   useEffect(() => {
     const currentCards = cardRefs.current;
 
@@ -63,6 +64,38 @@ export default function Portfolio() {
     };
   }, []);
 
+  // 👇 Smooth close on scroll beyond threshold
+  useEffect(() => {
+    if (!zoomedProject) return;
+
+    const startY = window.scrollY;
+    scrollStartRef.current = startY;
+
+    let timeoutId = null;
+
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      const distance = Math.abs(currentY - scrollStartRef.current);
+
+      // If scrolled more than 100px total → close with a smooth delay
+      if (distance > 100) {
+        window.removeEventListener("scroll", handleScroll);
+
+        // Add small timeout for smooth UX (feels like zooming out slowly)
+        timeoutId = setTimeout(() => {
+          setZoomedProject(null);
+        }, 400); // 0.4s delay
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [zoomedProject]);
+
   const toggleZoom = (slug) => {
     setZoomedProject((prev) => (prev === slug ? null : slug));
   };
@@ -80,9 +113,12 @@ export default function Portfolio() {
               onClick={() => toggleZoom(project.slug)}
               className={`relative cursor-pointer transition-all duration-700 ease-in-out rounded-lg overflow-hidden shadow-xl ${
                 isZoomed
-                  ? "w-[95vw] h-[80vh] z-40 flex bg-white overflow-x-auto"
-                  : "w-[90vw] sm:w-[300px] md:w-[400px] lg:w-[500px] h-[220px] flex items-center justify-center"
+                  ? "w-[95vw] h-[80vh] z-40 flex bg-white overflow-x-auto scale-100"
+                  : "w-[90vw] sm:w-[300px] md:w-[400px] lg:w-[500px] h-[220px] flex items-center justify-center scale-95"
               }`}
+              style={{
+                transition: "all 0.7s ease", // ensures smooth zooming in/out
+              }}
             >
               {/* Card Preview (not zoomed) */}
               {!isZoomed && (
