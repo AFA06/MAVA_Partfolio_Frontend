@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Phone, Send, Home, Pencil, Box } from "lucide-react";
+import { Phone, Send } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import testImage from "../../assets/test.png";
 
@@ -33,7 +33,7 @@ function Homepage() {
       {/* Main content */}
       <div className="relative z-10 px-4 sm:px-6 max-w-4xl mx-auto flex flex-col items-center text-center">
         <h1 className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-wide text-white drop-shadow-2xl mb-2">
-          Mava Group
+          MAVA Group
         </h1>
         <p className="max-w-md xs:max-w-lg sm:max-w-xl text-xs xs:text-sm sm:text-lg md:text-xl text-gray-100 leading-relaxed mb-6 drop-shadow-md">
           {t("homepage.hero.desc")}
@@ -50,28 +50,6 @@ function Homepage() {
         >
           {t("homepage.hero.button")}
         </Link>
-
-        {/* Services */}
-        <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mt-2 text-gray-200">
-          <div className="flex flex-col items-center">
-            <Home className="w-5 h-5 xs:w-6 xs:h-6 sm:w-8 sm:h-8 mb-1" />
-            <span className="text-[10px] xs:text-xs sm:text-base">
-              {t("homepage.hero.services.interior")}
-            </span>
-          </div>
-          <div className="flex flex-col items-center">
-            <Pencil className="w-5 h-5 xs:w-6 xs:h-6 sm:w-8 sm:h-8 mb-1" />
-            <span className="text-[10px] xs:text-xs sm:text-base">
-              {t("homepage.hero.services.planning")}
-            </span>
-          </div>
-          <div className="flex flex-col items-center">
-            <Box className="w-5 h-5 xs:w-6 xs:h-6 sm:w-8 sm:h-8 mb-1" />
-            <span className="text-[10px] xs:text-xs sm:text-base">
-              {t("homepage.hero.services.modeling")}
-            </span>
-          </div>
-        </div>
       </div>
 
       {/* Floating contact buttons */}
