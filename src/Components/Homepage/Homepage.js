@@ -11,9 +11,16 @@ function Homepage() {
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "smooth";
     window.scrollTo(0, 0);
+
+    const handleClickOutside = () => setShowPhoneOptions(false);
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
-  const togglePhoneOptions = () => setShowPhoneOptions(!showPhoneOptions);
+  const togglePhoneOptions = (e) => {
+    e.stopPropagation();
+    setShowPhoneOptions((prev) => !prev);
+  };
 
   return (
     <section
@@ -69,33 +76,43 @@ function Homepage() {
 
       {/* Floating contact buttons */}
       <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 flex flex-col gap-3 sm:gap-4 z-50">
-        {/* 📞 Phone Button with options */}
+        {/* 📞 Phone Button */}
         <div className="relative">
           <button
             onClick={togglePhoneOptions}
             className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center 
-                       rounded-full bg-green-500/90 text-white shadow-lg 
-                       backdrop-blur-md hover:scale-110 transition-transform duration-300 relative group"
+                       rounded-full bg-gradient-to-br from-green-500 to-green-600 
+                       text-white shadow-lg backdrop-blur-md 
+                       hover:scale-110 transition-transform duration-300 relative group"
           >
             <Phone className="w-4 h-4 sm:w-6 sm:h-6" />
             <span className="absolute inset-0 rounded-full bg-green-500 opacity-40 blur-xl animate-pulse"></span>
           </button>
 
-          {/* Phone options dropdown */}
+          {/* Dropdown for numbers */}
           {showPhoneOptions && (
             <div
-              className="absolute bottom-14 right-0 bg-white text-gray-800 rounded-xl shadow-lg border border-gray-200 p-3 w-44 sm:w-48 space-y-2 animate-fadeIn"
-              onMouseLeave={() => setShowPhoneOptions(false)}
+              onClick={(e) => e.stopPropagation()}
+              className="absolute bottom-14 right-0 w-52 sm:w-56 p-3 bg-white/90 
+                         backdrop-blur-xl border border-green-100 rounded-2xl shadow-[0_0_25px_rgba(16,185,129,0.25)] 
+                         animate-slideUp space-y-2"
             >
+              <p className="text-center text-sm font-semibold text-gray-700 border-b border-gray-200 pb-1">
+                Call Us
+              </p>
               <a
                 href="tel:+998999366556"
-                className="block text-sm sm:text-base font-medium hover:text-green-600 transition"
+                className="block text-sm sm:text-base text-gray-800 font-medium 
+                           hover:text-green-600 transition-all duration-200 bg-white/50 
+                           rounded-lg px-3 py-2 shadow-sm hover:shadow-md"
               >
                 📞 +998 99 936 65 56
               </a>
               <a
                 href="tel:+998900141444"
-                className="block text-sm sm:text-base font-medium hover:text-green-600 transition"
+                className="block text-sm sm:text-base text-gray-800 font-medium 
+                           hover:text-green-600 transition-all duration-200 bg-white/50 
+                           rounded-lg px-3 py-2 shadow-sm hover:shadow-md"
               >
                 📞 +998 90 014 14 44
               </a>
@@ -109,22 +126,23 @@ function Homepage() {
           target="_blank"
           rel="noopener noreferrer"
           className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center 
-                     rounded-full bg-blue-500/90 text-white shadow-lg 
-                     backdrop-blur-md hover:scale-110 transition-transform duration-300 relative group"
+                     rounded-full bg-gradient-to-br from-blue-500 to-blue-600 
+                     text-white shadow-lg backdrop-blur-md 
+                     hover:scale-110 transition-transform duration-300 relative group"
         >
           <Send className="w-4 h-4 sm:w-6 sm:h-6" />
           <span className="absolute inset-0 rounded-full bg-blue-500 opacity-40 blur-xl animate-pulse"></span>
         </a>
       </div>
 
-      {/* Fade animation for dropdown */}
+      {/* Animations */}
       <style>{`
-        @keyframes fadeIn {
+        @keyframes slideUp {
           from { opacity: 0; transform: translateY(10px); }
           to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fadeIn {
-          animation: fadeIn 0.25s ease-out;
+        .animate-slideUp {
+          animation: slideUp 0.25s ease-out;
         }
       `}</style>
     </section>
