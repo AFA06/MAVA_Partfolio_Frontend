@@ -11,7 +11,6 @@ function Homepage() {
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "smooth";
     window.scrollTo(0, 0);
-
     const handleClickOutside = () => setShowPhoneOptions(false);
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
@@ -28,70 +27,59 @@ function Homepage() {
       style={{ backgroundImage: `url(${testImage})` }}
     >
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/60"></div>
+      <div className="absolute inset-0 bg-black/65"></div>
 
       {/* Main content */}
-      <div className="relative z-10 px-4 sm:px-6 max-w-4xl mx-auto flex flex-col items-center text-center">
-        <h1 className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-wide text-white drop-shadow-2xl mb-2">
-          MAVA Group
+      <div className="relative z-10 px-4 sm:px-6 max-w-3xl mx-auto flex flex-col items-center text-center">
+        <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold uppercase tracking-wide text-white mb-4 leading-tight">
+          MAVA GROUP
         </h1>
-        <p className="max-w-md xs:max-w-lg sm:max-w-xl text-xs xs:text-sm sm:text-lg md:text-xl text-gray-100 leading-relaxed mb-6 drop-shadow-md">
+
+        <p className="max-w-2xl text-sm sm:text-lg md:text-xl text-gray-200 leading-relaxed mb-8">
           {t("homepage.hero.desc")}
         </p>
 
         {/* CTA Button */}
         <Link
           to="/portfolio"
-          className="inline-block px-5 xs:px-6 sm:px-10 py-2 xs:py-2.5 sm:py-3.5 text-xs xs:text-sm sm:text-lg font-semibold rounded-full 
-                     bg-gradient-to-r from-gray-900 via-gray-800 to-black 
-                     text-white border border-white/20 
-                     hover:from-black hover:via-gray-900 hover:to-gray-800 
-                     transition-all duration-300 ease-in-out shadow-xl mb-6 sm:mb-8"
+          className="inline-block px-8 py-3 text-sm sm:text-lg font-semibold rounded-full
+                     bg-white/10 backdrop-blur-md border border-white/25 text-white
+                     hover:bg-white/20 transition-all duration-300 shadow-xl"
         >
           {t("homepage.hero.button")}
         </Link>
       </div>
 
       {/* Floating contact buttons */}
-      <div className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 flex flex-col gap-2 sm:gap-4 z-50">
-        {/* 📞 Phone Button */}
+      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 flex flex-col gap-3 z-50">
+        {/* Phone Button */}
         <div className="relative">
           <button
             onClick={togglePhoneOptions}
-            className="w-12 h-12 sm:w-12 sm:h-12 flex items-center justify-center 
-                       rounded-full bg-gradient-to-br from-green-500 to-green-600 
-                       text-white shadow-lg backdrop-blur-md 
-                       hover:scale-110 transition-transform duration-300 relative group active:scale-95"
+            className="w-12 h-12 flex items-center justify-center rounded-full bg-green-600 text-white shadow-lg hover:scale-110 transition-transform duration-300 active:scale-95"
           >
-            <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
-            <span className="absolute inset-0 rounded-full bg-green-500 opacity-40 blur-xl animate-pulse"></span>
+            <Phone className="w-6 h-6" />
           </button>
 
-          {/* Dropdown for phone numbers */}
+          {/* Dropdown */}
           {showPhoneOptions && (
             <div
               onClick={(e) => e.stopPropagation()}
-              className="absolute bottom-14 right-0 w-44 sm:w-52 p-3 bg-white/95 
-                         backdrop-blur-xl border border-green-100 rounded-2xl 
-                         shadow-[0_0_20px_rgba(16,185,129,0.25)] animate-slideUp space-y-2
-                         origin-bottom-right"
+              className="absolute bottom-14 right-0 w-48 p-3 bg-white/95 backdrop-blur-xl
+                         border border-gray-200 rounded-xl shadow-xl animate-slideUp space-y-2"
             >
-              <p className="text-center text-xs sm:text-sm font-semibold text-gray-700 border-b border-gray-200 pb-1">
+              <p className="text-center text-sm font-semibold text-gray-800 border-b pb-1">
                 Call Us
               </p>
               <a
                 href="tel:+998999366556"
-                className="block text-xs sm:text-sm text-gray-800 font-medium 
-                           hover:text-green-600 transition-all duration-200 bg-white/60 
-                           rounded-lg px-3 py-2 shadow-sm hover:shadow-md active:scale-95"
+                className="block text-sm text-gray-800 font-medium hover:text-green-600 transition px-3 py-2 rounded-lg bg-white/60 hover:bg-white"
               >
                 📞 +998 99 936 65 56
               </a>
               <a
                 href="tel:+998900141444"
-                className="block text-xs sm:text-sm text-gray-800 font-medium 
-                           hover:text-green-600 transition-all duration-200 bg-white/60 
-                           rounded-lg px-3 py-2 shadow-sm hover:shadow-md active:scale-95"
+                className="block text-sm text-gray-800 font-medium hover:text-green-600 transition px-3 py-2 rounded-lg bg-white/60 hover:bg-white"
               >
                 📞 +998 90 014 14 44
               </a>
@@ -99,22 +87,17 @@ function Homepage() {
           )}
         </div>
 
-        {/* 💬 Telegram Button */}
+        {/* Telegram */}
         <a
           href="https://t.me/MAVA_GROUP"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-12 h-12 sm:w-12 sm:h-12 flex items-center justify-center 
-                     rounded-full bg-gradient-to-br from-blue-500 to-blue-600 
-                     text-white shadow-lg backdrop-blur-md 
-                     hover:scale-110 transition-transform duration-300 relative group active:scale-95"
+          className="w-12 h-12 flex items-center justify-center rounded-full bg-blue-600 text-white shadow-lg hover:scale-110 transition-transform duration-300 active:scale-95"
         >
-          <Send className="w-5 h-5 sm:w-6 sm:h-6" />
-          <span className="absolute inset-0 rounded-full bg-blue-500 opacity-40 blur-xl animate-pulse"></span>
+          <Send className="w-6 h-6" />
         </a>
       </div>
 
-      {/* Animations */}
       <style>{`
         @keyframes slideUp {
           from { opacity: 0; transform: translateY(10px); }

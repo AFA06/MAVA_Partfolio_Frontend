@@ -1,4 +1,3 @@
-// src/components/Navbar/Navbar.jsx
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import navLinks from "./NavLinks";
@@ -6,7 +5,6 @@ import { Menu, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import "./navbar.css";
 
-// FIXED: import SVGs correctly
 import logoWhite from "../../assets/logo.png";
 
 function Navbar() {
@@ -21,31 +19,26 @@ function Navbar() {
   const contactsLink = navLinks.find((link) => link.label === "contacts");
   const mainLinks = navLinks.filter((link) => link.label !== "contacts");
 
+  // Desktop link order
   const orderedLinks = [
-    ...mainLinks.filter((link) => link.label === "portfolio"),
-    ...mainLinks.filter((link) => link.label === "videos"),
-    ...(contactsLink ? [contactsLink] : []),
-    ...mainLinks.filter((link) => link.label === "about"),
-  ];
+    ...mainLinks.filter((l) => l.label === "portfolio"),
+    ...mainLinks.filter((l) => l.label === "videos"),
+    contactsLink,
+    ...mainLinks.filter((l) => l.label === "about"),
+  ].filter(Boolean);
 
-  const mobileOrderedLinks = [
-    ...mainLinks.filter((link) => link.label === "videos"),
-    ...mainLinks.filter((link) => link.label === "portfolio"),
-    ...mainLinks.filter((link) => link.label === "about"),
-  ];
+  // Mobile simplified order
+  const mobileOrdered = [
+    ...mainLinks.filter((l) => l.label === "videos"),
+    ...mainLinks.filter((l) => l.label === "portfolio"),
+    ...mainLinks.filter((l) => l.label === "about"),
+    contactsLink,
+  ].filter(Boolean);
 
   return (
     <nav className="navbar">
       
-      {/* Mobile left */}
-      <div className="mobile-left lg:hidden flex items-center gap-2">
-        <NavLink to="/" className="logo-link">
-          <img src={logoWhite} alt="MAVA Logo" className="logo-img" />
-          <span className="logo-text">MAVA</span>
-        </NavLink>
-      </div>
-
-      {/* Desktop left */}
+      {/* Desktop Left */}
       <div className="navbar-left hidden lg:flex">
         <NavLink to="/" className="logo-link">
           <img src={logoWhite} alt="MAVA Logo" className="logo-img" />
@@ -53,7 +46,15 @@ function Navbar() {
         </NavLink>
       </div>
 
-      {/* Desktop center nav links */}
+      {/* Mobile Left */}
+      <div className="mobile-left lg:hidden">
+        <NavLink to="/" className="logo-link">
+          <img src={logoWhite} alt="MAVA Logo" className="logo-img" />
+          <span className="logo-text">MAVA</span>
+        </NavLink>
+      </div>
+
+      {/* Desktop Center */}
       <div className="navbar-center hidden lg:flex">
         {orderedLinks.map((link) => (
           <NavLink
@@ -68,20 +69,21 @@ function Navbar() {
         ))}
       </div>
 
-      {/* Desktop right */}
-      <div className="navbar-right hidden lg:flex gap-4">
-        <button onClick={() => changeLanguage("ru")} className="lang">RU</button>
-        <button onClick={() => changeLanguage("en")} className="lang">EN</button>
-        <button onClick={() => changeLanguage("uz")} className="lang">UZ</button>
+      {/* Desktop Right (languages) */}
+      <div className="navbar-right hidden lg:flex">
+        {["ru", "en", "uz"].map((lng) => (
+          <button key={lng} onClick={() => changeLanguage(lng)} className="lang">
+            {lng.toUpperCase()}
+          </button>
+        ))}
       </div>
 
-      {/* Mobile right */}
+      {/* Mobile Right */}
       <div className="mobile-right lg:hidden flex items-center gap-4">
         {contactsLink && (
           <NavLink
             to={contactsLink.href}
             className="nav-link text-sm"
-            onClick={() => setIsOpen(false)}
           >
             {t(contactsLink.label)}
           </NavLink>
@@ -95,16 +97,16 @@ function Navbar() {
       <div
         className={`overlay ${isOpen ? "show" : ""}`}
         onClick={() => setIsOpen(false)}
-      ></div>
+      />
 
-      {/* Sidebar */}
+      {/* Mobile Sidebar */}
       <div className={`mobile-sidebar ${isOpen ? "open" : ""}`}>
         <button onClick={() => setIsOpen(false)} className="close-btn">
           <X size={28} />
         </button>
 
         <div className="links-container">
-          {mobileOrderedLinks.map((link) => (
+          {mobileOrdered.map((link) => (
             <NavLink
               key={link.href}
               to={link.href}
@@ -117,9 +119,11 @@ function Navbar() {
         </div>
 
         <div className="languages-container">
-          <button onClick={() => changeLanguage("ru")} className="lang">RU</button>
-          <button onClick={() => changeLanguage("en")} className="lang">EN</button>
-          <button onClick={() => changeLanguage("uz")} className="lang">UZ</button>
+          {["ru", "en", "uz"].map((lng) => (
+            <button key={lng} onClick={() => changeLanguage(lng)} className="lang">
+              {lng.toUpperCase()}
+            </button>
+          ))}
         </div>
       </div>
     </nav>
