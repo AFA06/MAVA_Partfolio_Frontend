@@ -2,6 +2,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTheme } from "../context/ThemeContext";
 
+//
+// ---------------- REAL PROJECTS ---------------- //
+//
+
 const PROJECTS = [
   {
     slug: "charvak-dacha-1",
@@ -25,7 +29,6 @@ const PROJECTS = [
     ],
     descriptions: Array(9).fill("Project description will be added soon."),
   },
-
   {
     slug: "house-lunacharsky",
     name: "House Lunacharsky",
@@ -44,7 +47,6 @@ const PROJECTS = [
     ],
     descriptions: Array(5).fill("Project description will be added soon."),
   },
-
   {
     slug: "kongress-hall",
     name: "Kongress Hall",
@@ -67,7 +69,6 @@ const PROJECTS = [
     ],
     descriptions: Array(9).fill("Project description will be added soon."),
   },
-
   {
     slug: "ofis-avo",
     name: "AVO Office",
@@ -80,7 +81,6 @@ const PROJECTS = [
     coverImages: Array.from({ length: 21 }, (_, i) => `Assets/Ofis_AVO/${i + 2}.jpg`),
     descriptions: Array(21).fill("Project description will be added soon."),
   },
-
   {
     slug: "sanora-lounge-bar",
     name: "Sanora Lounge Bar",
@@ -93,7 +93,6 @@ const PROJECTS = [
     coverImages: Array.from({ length: 24 }, (_, i) => `Assets/Sanora_Lounge_Bar/${i + 1}.jpg`),
     descriptions: Array(24).fill("Project description will be added soon."),
   },
-
   {
     slug: "turkestan-villa",
     name: "Turkestan Villa",
@@ -141,7 +140,7 @@ export default function Portfolio() {
   const { theme } = useTheme();
   const isDark = theme === "dark";
 
-  // Center the opened card
+  // center the card when opened
   useEffect(() => {
     if (!zoomedProject) return;
 
@@ -153,10 +152,9 @@ export default function Portfolio() {
         target.offsetTop - window.innerHeight / 2 + target.clientHeight / 2;
 
       window.scrollTo({ top, behavior: "smooth" });
-    }, 120);
+    }, 150);
   }, [zoomedProject]);
 
-  // Smooth open/close logic
   const toggleZoom = slug => {
     if (zoomedProject === slug) {
       setZoomedProject(null);
@@ -166,7 +164,7 @@ export default function Portfolio() {
     if (zoomedProject !== null) {
       const next = slug;
       setZoomedProject(null);
-      setTimeout(() => setZoomedProject(next), 80);
+      setTimeout(() => setZoomedProject(next), 100);
     } else {
       setZoomedProject(slug);
     }
@@ -200,7 +198,7 @@ export default function Portfolio() {
                     : "w-full max-w-xl h-[230px]"
                 }`}
               >
-                {/* CLOSED CARD PREVIEW */}
+                {/* CLOSED PREVIEW */}
                 {!isZoomed && (
                   <div className="relative w-full h-full">
                     <img
@@ -214,16 +212,16 @@ export default function Portfolio() {
                   </div>
                 )}
 
-                {/* OPENED GALLERY — NO BLACK GAPS */}
+                {/* OPENED FULL-IMAGE, NO SCROLL INSIDE */}
                 {isZoomed && (
                   <div className="flex gap-8 p-8 max-w-full overflow-x-auto">
 
                     {/* FIRST IMAGE */}
-                    <div className="min-w-[90vw] rounded-xl overflow-hidden">
+                    <div className="min-w-[90vw] flex justify-center items-center">
                       <img
                         src={project.coverImages[0]}
                         alt=""
-                        className="w-full h-auto object-contain"
+                        className="object-contain max-h-screen max-w-[90vw]"
                       />
                     </div>
 
@@ -231,12 +229,12 @@ export default function Portfolio() {
                     {project.coverImages.slice(1).map((img, idx) => (
                       <div
                         key={idx}
-                        className="min-w-[90vw] rounded-xl overflow-hidden"
+                        className="min-w-[90vw] flex justify-center items-center"
                       >
                         <img
                           src={img}
                           alt=""
-                          className="w-full h-auto object-contain"
+                          className="object-contain max-h-screen max-w-[90vw]"
                         />
                       </div>
                     ))}
