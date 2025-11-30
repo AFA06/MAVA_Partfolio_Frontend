@@ -149,38 +149,45 @@ export default function Portfolio() {
   const { theme } = useTheme();
   const isDark = theme === "dark";
 
-  // KEEP ZOOM ANIMATION + CARD SCALE
+  // Zoom animation remains
   useEffect(() => {
     const current = cardRefs.current;
     const obs = new IntersectionObserver(
-      entries => {
-        entries.forEach(e => {
-          e.target.style.transform = e.isIntersecting ? "scale(1.02)" : "scale(0.96)";
-        });
-      },
+      entries => entries.forEach(e => {
+        e.target.style.transform = e.isIntersecting ? "scale(1.02)" : "scale(0.96)";
+      }),
       { threshold: 0.5 }
     );
     current.forEach(c => c && obs.observe(c));
     return () => current.forEach(c => c && obs.unobserve(c));
   }, []);
 
-  // REMOVE ONLY THE SCROLL-TO-CLOSE LOGIC (your request)
-  useEffect(() => {}, [zoomedProject]);
+  // Center the card on open
+  useEffect(() => {
+    if (!zoomedProject) return;
+
+    setTimeout(() => {
+      const target = cardRefs.current.find(c => c?.dataset?.slug === zoomedProject);
+      if (target) {
+        window.scrollTo({
+          top: target.offsetTop - 80,
+          behavior: "smooth",
+        });
+      }
+    }, 80);
+  }, [zoomedProject]);
 
   const toggleZoom = slug => setZoomedProject(prev => (prev === slug ? null : slug));
 
   return (
     <div className={`min-h-screen ${isDark ? "bg-[#050509] text-gray-100" : "bg-[#f5f5f6] text-gray-900"}`}>
+
       <div className="max-w-6xl mx-auto py-14 px-4 flex flex-col items-center gap-10">
 
-        {/* HEADER */}
         <div className="text-center max-w-3xl">
-          <h1 className={`text-4xl md:text-5xl font-semibold uppercase ${isDark ? "text-white" : "text-gray-900"}`}>
-            Selected Works
-          </h1>
+          <h1 className="text-5xl font-semibold uppercase">Selected Works</h1>
         </div>
 
-        {/* PROJECT LIST */}
         <div className="flex flex-col items-center gap-10 w-full">
           {PROJECTS.map((project, index) => {
             const isZoomed = zoomedProject === project.slug;
@@ -188,52 +195,39 @@ export default function Portfolio() {
             return (
               <div
                 key={project.slug}
+                data-slug={project.slug}
                 ref={el => (cardRefs.current[index] = el)}
                 onClick={() => toggleZoom(project.slug)}
-                className={`relative cursor-pointer transition-all duration-700 ease-out rounded-2xl overflow-hidden ${
+                className={`relative cursor-pointer transition-all duration-700 rounded-2xl overflow-hidden ${
                   isZoomed
-                    ? `w-full h-[80vh] z-40 flex overflow-x-auto ${
-                        isDark ? "bg-[#060711]" : "bg-white"
-                      }`
-                    : `w-full max-w-xl h-[230px] flex items-center justify-center ${
-                        isDark ? "bg-[#060711]" : "bg-white"
-                      }`
+                    ? "w-full h-[80vh] z-40 flex overflow-x-auto"
+                    : "w-full max-w-xl h-[230px]"
                 }`}
               >
 
-                {/* PREVIEW CARD */}
+                {/* PREVIEW */}
                 {!isZoomed && (
                   <div className="relative w-full h-full">
-                    <img src={project.coverImages[0]} alt="" className="object-cover w-full h-full" />
+                    <img src={project.coverImages[0]} alt="" className="w-full h-full object-cover" />
                     <div className="absolute bottom-4 left-4 text-xl text-white font-semibold">
                       {project.name}
                     </div>
                   </div>
                 )}
 
-                {/* ZOOMED VIEW WITH SPACING */}
+                {/* ZOOMED VIEW */}
                 {isZoomed && (
-                  <div className="flex gap-8 p-8">
-                    {/* First Image */}
-                    <div className="min-w-[90vw] h-[70vh] rounded-xl overflow-hidden bg-black">
-                      <img
-                        src={project.coverImages[0]}
-                        alt=""
-                        className="object-cover w-full h-full rounded-xl"
-                      />
+                  <div className="flex gap-8 p-8 max-w-full overflow-x-auto overflow-y-hidden">
+
+                    {/* FIRST IMAGE */}
+                    <div className="min-w-[90vw] h-[70vh] rounded-xl overflow-hidden bg-black shadow-lg">
+                      <img src={project.coverImages[0]} alt="" className="object-cover w-full h-full rounded-xl" />
                     </div>
 
-                    {/* Gallery */}
+                    {/* OTHER SLIDES */}
                     {project.coverImages.slice(1).map((img, idx) => (
-                      <div
-                        key={idx}
-                        className="min-w-[90vw] h-[70vh] rounded-xl overflow-hidden bg-black"
-                      >
-                        <img
-                          src={img}
-                          alt=""
-                          className="object-cover w-full h-full rounded-xl"
-                        />
+                      <div key={idx} className="min-w-[90vw] h-[70vh] rounded-xl overflow-hidden bg-black shadow-lg">
+                        <img src={img} alt="" className="object-cover w-full h-full rounded-xl" />
                       </div>
                     ))}
                   </div>
