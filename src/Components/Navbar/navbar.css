@@ -136,7 +136,7 @@
 .mobile-sidebar {
   position: fixed;
   top: 0;
-  right: 0;
+  right: -100%;
   width: 82%;
   max-width: 340px;
   height: 100vh;
@@ -148,14 +148,15 @@
   flex-direction: column;
   padding: 96px 24px 40px;
 
-  transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(0.77, 0, 0.18, 1);
+  transition: right 0.4s cubic-bezier(0.77, 0, 0.18, 1);
 
   z-index: 200;
+  pointer-events: none;
 }
 
 .mobile-sidebar.open {
-  transform: translateX(0);
+  right: 0;
+  pointer-events: auto;
 }
 
 .mobile-sidebar .nav-link {
@@ -167,13 +168,21 @@
   color: #1a1a1a;
 }
 
-/* Dark-mode sidebar */
-.navbar-dark + .mobile-sidebar {
-  background: #0e0e14;
-  border-left: 1px solid rgba(255, 255, 255, 0.06);
+/* Fixed & correct dark sidebar */
+.mobile-sidebar.dark {
+  background: #0e0e14 !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.06) !important;
 }
 
-.navbar-dark + .mobile-sidebar .nav-link,
-.navbar-dark + .mobile-sidebar .lang {
-  color: white;
+.mobile-sidebar.dark .nav-link,
+.mobile-sidebar.dark .lang {
+  color: white !important;
+}
+
+/* Disable sidebar entirely on desktop */
+@media (min-width: 1025px) {
+  .mobile-sidebar,
+  .overlay {
+    display: none !important;
+  }
 }
