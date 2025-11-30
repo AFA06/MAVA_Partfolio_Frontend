@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import { Phone, Send } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import testImage from "../../assets/test.png";
+import { useTheme } from "../../context/ThemeContext";
 
 function Homepage() {
   const { t } = useTranslation();
   const [showPhoneOptions, setShowPhoneOptions] = useState(false);
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "smooth";
@@ -21,82 +24,139 @@ function Homepage() {
     setShowPhoneOptions((prev) => !prev);
   };
 
+  /* -------------------- FLOATING CONTACT BUTTONS -------------------- */
+  const FloatingContacts = () => (
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 flex flex-col gap-3 z-50">
+      {/* Phone Button */}
+      <div className="relative">
+        <button
+          onClick={togglePhoneOptions}
+          className="w-12 h-12 flex items-center justify-center rounded-full bg-emerald-500 text-white shadow-lg hover:scale-110 active:scale-95 transition-transform duration-300"
+        >
+          <Phone className="w-5 h-5" />
+        </button>
+
+        {showPhoneOptions && (
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className={`absolute bottom-14 right-0 w-52 p-3 rounded-2xl shadow-2xl animate-slideUp space-y-2
+              ${isDark ? "bg-[#050509]/95 border border-white/10" : "bg-white border border-gray-200"}`}
+          >
+            <p
+              className={`text-center text-xs font-semibold border-b pb-2
+                ${isDark ? "text-gray-100 border-white/10" : "text-gray-800 border-gray-200"}`}
+            >
+              Call Studio
+            </p>
+
+            <a
+              href="tel:+998999366556"
+              className={`block text-xs font-medium rounded-lg px-3 py-2 shadow-sm active:scale-95 transition-all
+                ${isDark ? "text-gray-100 bg-white/5 hover:text-[#f5c15d]" : "text-gray-800 bg-gray-50 hover:bg-gray-100"}`}
+            >
+              📞 +998 99 936 65 56
+            </a>
+            <a
+              href="tel:+998900141444"
+              className={`block text-xs font-medium rounded-lg px-3 py-2 shadow-sm active:scale-95 transition-all
+                ${isDark ? "text-gray-100 bg-white/5 hover:text-[#f5c15d]" : "text-gray-800 bg-gray-50 hover:bg-gray-100"}`}
+            >
+              📞 +998 90 014 14 44
+            </a>
+          </div>
+        )}
+      </div>
+
+      {/* Telegram */}
+      <a
+        href="https://t.me/MAVA_GROUP"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-12 h-12 flex items-center justify-center rounded-full bg-sky-500 text-white shadow-lg hover:scale-110 active:scale-95 transition-transform duration-300"
+      >
+        <Send className="w-5 h-5" />
+      </a>
+    </div>
+  );
+
+  /* -------------------- UNIFIED HERO SECTION (LIGHT & DARK) -------------------- */
   return (
     <section
-      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-black bg-cover bg-center"
-      style={{ backgroundImage: `url(${testImage})` }}
+      className={`relative w-full min-h-screen flex items-center justify-center px-4 sm:px-8 transition-all duration-500
+        ${isDark ? "bg-[#050509] text-gray-100" : "bg-[#f5f5f6] text-gray-900"}`}
     >
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/65"></div>
-
-      {/* Main content */}
-      <div className="relative z-10 px-4 sm:px-6 max-w-3xl mx-auto flex flex-col items-center text-center">
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold uppercase tracking-wide text-white mb-4 leading-tight">
-          MAVA GROUP
-        </h1>
-
-        <p className="max-w-2xl text-sm sm:text-lg md:text-xl text-gray-200 leading-relaxed mb-8">
-          {t("homepage.hero.desc")}
-        </p>
-
-        {/* CTA Button */}
-        <Link
-          to="/portfolio"
-          className="inline-block px-8 py-3 text-sm sm:text-lg font-semibold rounded-full
-                     bg-white/10 backdrop-blur-md border border-white/25 text-white
-                     hover:bg-white/20 transition-all duration-300 shadow-xl"
-        >
-          {t("homepage.hero.button")}
-        </Link>
-      </div>
-
-      {/* Floating contact buttons */}
-      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 flex flex-col gap-3 z-50">
-        {/* Phone Button */}
-        <div className="relative">
-          <button
-            onClick={togglePhoneOptions}
-            className="w-12 h-12 flex items-center justify-center rounded-full bg-green-600 text-white shadow-lg hover:scale-110 transition-transform duration-300 active:scale-95"
+      <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        
+        {/* LEFT — Text */}
+        <div>
+          <p
+            className={`text-xs tracking-[0.32em] uppercase mb-4
+              ${isDark ? "text-gray-400" : "text-gray-500"}`}
           >
-            <Phone className="w-6 h-6" />
-          </button>
+            Architecture Studio
+          </p>
 
-          {/* Dropdown */}
-          {showPhoneOptions && (
-            <div
-              onClick={(e) => e.stopPropagation()}
-              className="absolute bottom-14 right-0 w-48 p-3 bg-white/95 backdrop-blur-xl
-                         border border-gray-200 rounded-xl shadow-xl animate-slideUp space-y-2"
+          <h1
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-semibold leading-tight mb-4
+              ${isDark ? "text-white" : "text-gray-900"}`}
+          >
+            Building your visions,
+            <br />
+            creating reality.
+          </h1>
+
+          <p
+            className={`text-sm sm:text-base md:text-lg max-w-md mb-8
+              ${isDark ? "text-gray-300" : "text-gray-600"}`}
+          >
+            {t("homepage.hero.desc")}
+          </p>
+
+          <div className="flex flex-wrap gap-3">
+            {/* PRIMARY BUTTON */}
+            <Link
+              to="/portfolio"
+              className={`inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold transition
+                ${
+                  isDark
+                    ? "bg-white/10 text-white border border-white/20 hover:bg-white/20"
+                    : "bg-gray-900 text-white hover:bg-black"
+                }`}
             >
-              <p className="text-center text-sm font-semibold text-gray-800 border-b pb-1">
-                Call Us
-              </p>
-              <a
-                href="tel:+998999366556"
-                className="block text-sm text-gray-800 font-medium hover:text-green-600 transition px-3 py-2 rounded-lg bg-white/60 hover:bg-white"
-              >
-                📞 +998 99 936 65 56
-              </a>
-              <a
-                href="tel:+998900141444"
-                className="block text-sm text-gray-800 font-medium hover:text-green-600 transition px-3 py-2 rounded-lg bg-white/60 hover:bg-white"
-              >
-                📞 +998 90 014 14 44
-              </a>
-            </div>
-          )}
+              {t("homepage.hero.button")}
+            </Link>
+
+            {/* SECONDARY BUTTON */}
+            <Link
+              to="/about"
+              className={`inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-medium transition border
+                ${
+                  isDark
+                    ? "border-gray-500 text-gray-200 hover:border-[#f5c15d] hover:text-[#f5c15d]"
+                    : "border-gray-300 text-gray-800 hover:border-gray-900 hover:text-gray-900"
+                }`}
+            >
+              {t("homepage.hero.secondary") || "About studio"}
+            </Link>
+          </div>
         </div>
 
-        {/* Telegram */}
-        <a
-          href="https://t.me/MAVA_GROUP"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-12 h-12 flex items-center justify-center rounded-full bg-blue-600 text-white shadow-lg hover:scale-110 transition-transform duration-300 active:scale-95"
-        >
-          <Send className="w-6 h-6" />
-        </a>
+        {/* RIGHT — Image */}
+        <div className="relative w-full h-[320px] sm:h-[380px] md:h-[420px] rounded-3xl overflow-hidden shadow-xl">
+          <img
+            src={testImage}
+            alt="Architecture"
+            className="w-full h-full object-cover"
+          />
+
+          {/* subtle dark overlay to match theme */}
+          {isDark && (
+            <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
+          )}
+        </div>
       </div>
+
+      <FloatingContacts />
 
       <style>{`
         @keyframes slideUp {

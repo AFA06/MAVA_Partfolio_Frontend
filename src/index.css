@@ -1,60 +1,72 @@
-@import "tailwindcss";
+/* ------------------------------------------------------ */
+/* PREMIUM ARCHITECTURAL LIGHT THEME — GLOBAL OVERRIDES   */
+/* ------------------------------------------------------ */
 
-/* ----------------------------- */
-/* Base styles for the entire app */
-/* ----------------------------- */
-html, body, #root {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden; /* 🚀 FIX: disable horizontal scroll */
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root.theme-light {
+  /* BACKGROUNDS */
+  --bg-main: #f5f6f7;           /* soft gray paper */
+  --bg-surface: #ffffff;        /* clean white */
+
+/* TEXT */
+  --text-primary: #1a1a1a;      /* deep architecture black */
+  --text-secondary: #4a4a4a;    /* neutral gray */
+
+/* BORDERS */
+  --border-soft: rgba(0, 0, 0, 0.06);
+
+/* SHADOWS */
+  --shadow-soft: 0 2px 6px rgba(0,0,0,0.05);
+  --shadow-medium: 0 5px 18px rgba(0,0,0,0.08);
+  --shadow-strong: 0 12px 32px rgba(0,0,0,0.12);
 }
 
-/* Remove default link styles */
-a {
-  color: inherit;
-  text-decoration: none;
+/* Apply backgrounds globally */
+.theme-light body {
+  background: var(--bg-main) !important;
+  color: var(--text-primary);
 }
 
-/* Code font */
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.theme-light section,
+.theme-light .page-wrapper {
+  background: var(--bg-main);
 }
 
-/* ----------------------------- */
-/* Infinite scrolling animation for Наша команда */
-/* ----------------------------- */
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+/* Surface cards */
+.theme-light .card,
+.theme-light .surface {
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border-soft) !important;
+  box-shadow: var(--shadow-soft);
+  color: var(--text-primary) !important;
 }
 
-.animate-scroll {
-  animation: scroll 25s linear infinite;
-  display: flex;
+/* Hover elevation (premium smooth) */
+.theme-light .card:hover,
+.theme-light .surface:hover {
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px);
 }
 
-/* ----------------------------- */
-/* Timeline connector arrows: true triangles pointing from center line to cards */
-/* ----------------------------- */
-@layer utilities {
-  /* Left arrow: points from center line to left card */
-  .clip-arrow-left {
-    clip-path: polygon(100% 0, 0 50%, 100% 100%);
-  }
+/* Typography refinement */
+.theme-light h1,
+.theme-light h2,
+.theme-light h3 {
+  color: var(--text-primary) !important;
+}
 
-  /* Right arrow: points from center line to right card */
-  .clip-arrow-right {
-    clip-path: polygon(0 0, 100% 50%, 0 100%);
-  }
+.theme-light p {
+  color: var(--text-secondary);
+}
+
+/* Soft divider */
+.theme-light .divider {
+  border-color: var(--border-soft) !important;
+}
+
+/* Inputs */
+.theme-light input,
+.theme-light textarea {
+  background: #fafafa !important;
+  border: 1px solid var(--border-soft) !important;
+  color: var(--text-primary) !important;
 }

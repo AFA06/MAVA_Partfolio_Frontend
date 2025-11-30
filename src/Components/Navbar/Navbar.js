@@ -1,3 +1,4 @@
+// src/components/Navbar/Navbar.jsx
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import navLinks from "./NavLinks";
@@ -5,11 +6,17 @@ import { Menu, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import "./navbar.css";
 
-import logoWhite from "../../assets/logo.png";
+import logoWhite from "../../assets/logo.png";           // white for dark mode
+import logoBlack from "../../assets/logo-black.jpg";     // black for light mode
+
+import ThemeToggle from "../ThemeToggle";
+import { useTheme } from "../../context/ThemeContext";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { t, i18n } = useTranslation();
+  const { theme } = useTheme();
+  const isLight = theme === "light";
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -19,7 +26,6 @@ function Navbar() {
   const contactsLink = navLinks.find((link) => link.label === "contacts");
   const mainLinks = navLinks.filter((link) => link.label !== "contacts");
 
-  // Desktop link order
   const orderedLinks = [
     ...mainLinks.filter((l) => l.label === "portfolio"),
     ...mainLinks.filter((l) => l.label === "videos"),
@@ -27,7 +33,6 @@ function Navbar() {
     ...mainLinks.filter((l) => l.label === "about"),
   ].filter(Boolean);
 
-  // Mobile simplified order
   const mobileOrdered = [
     ...mainLinks.filter((l) => l.label === "videos"),
     ...mainLinks.filter((l) => l.label === "portfolio"),
@@ -36,20 +41,27 @@ function Navbar() {
   ].filter(Boolean);
 
   return (
-    <nav className="navbar">
-      
+    <nav className={`navbar ${isLight ? "navbar-light" : "navbar-dark"}`}>
       {/* Desktop Left */}
       <div className="navbar-left hidden lg:flex">
-        <NavLink to="/" className="logo-link">
-          <img src={logoWhite} alt="MAVA Logo" className="logo-img" />
-          <span className="logo-text">MAVA</span>
+        <NavLink to="/" className="logo-link flex items-center gap-3">
+          <img
+            src={isLight ? logoBlack : logoWhite}
+            alt="MAVA Logo"
+            className="logo-img"
+          />
+          <span className="logo-text">MAVA GROUP</span>
         </NavLink>
       </div>
 
       {/* Mobile Left */}
       <div className="mobile-left lg:hidden">
-        <NavLink to="/" className="logo-link">
-          <img src={logoWhite} alt="MAVA Logo" className="logo-img" />
+        <NavLink to="/" className="logo-link flex items-center gap-3">
+          <img
+            src={isLight ? logoBlack : logoWhite}
+            alt="MAVA Logo"
+            className="logo-img"
+          />
           <span className="logo-text">MAVA</span>
         </NavLink>
       </div>
@@ -69,27 +81,30 @@ function Navbar() {
         ))}
       </div>
 
-      {/* Desktop Right (languages) */}
-      <div className="navbar-right hidden lg:flex">
+      {/* Desktop Right */}
+      <div className="navbar-right hidden lg:flex items-center gap-4">
         {["ru", "en", "uz"].map((lng) => (
           <button key={lng} onClick={() => changeLanguage(lng)} className="lang">
             {lng.toUpperCase()}
           </button>
         ))}
+        <ThemeToggle />
       </div>
 
       {/* Mobile Right */}
-      <div className="mobile-right lg:hidden flex items-center gap-4">
+      <div className="mobile-right lg:hidden flex items-center gap-3">
+        <ThemeToggle />
         {contactsLink && (
           <NavLink
             to={contactsLink.href}
             className="nav-link text-sm"
+            onClick={() => setIsOpen(false)}
           >
             {t(contactsLink.label)}
           </NavLink>
         )}
         <button className="menu-btn" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+          {isOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
       </div>
 
@@ -102,7 +117,7 @@ function Navbar() {
       {/* Mobile Sidebar */}
       <div className={`mobile-sidebar ${isOpen ? "open" : ""}`}>
         <button onClick={() => setIsOpen(false)} className="close-btn">
-          <X size={28} />
+          <X size={26} />
         </button>
 
         <div className="links-container">

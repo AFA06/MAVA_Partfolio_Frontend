@@ -1,217 +1,313 @@
+// src/pages/Portfolio.jsx
 import React, { useState, useEffect, useRef } from "react";
+import { useTheme } from "../context/ThemeContext";
 
-// ---------------- SAMPLE DATA (12 demo projects) ---------------- //
-const PROJECTS = Array.from({ length: 12 }, (_, i) => ({
-  slug: `project-${i + 1}`,
-  name: `Project ${i + 1}`,
-  location: i % 2 === 0 ? "Copenhagen, Denmark" : "Berlin, Germany",
-  year: 2020 + ((i % 5) + 1),
-  client: i % 2 === 0 ? "BIG Architects" : "OMA",
-  status: i % 3 === 0 ? "Completed" : "Ongoing",
-  typology: i % 2 === 0 ? "Civic / Cultural" : "Mixed-Use",
-  area: `${(i + 1) * 1000} m²`,
-  coverImages: [
-    `https://picsum.photos/id/${1010 + i}/1200/800`,
-    `https://picsum.photos/id/${1020 + i}/1200/800`,
-    `https://picsum.photos/id/${1030 + i}/1200/800`,
-    `https://picsum.photos/id/${1040 + i}/1200/800`,
-    `https://picsum.photos/id/${1050 + i}/1200/800`,
-    `https://picsum.photos/id/${1060 + i}/1200/800`,
-  ],
-  descriptions: [
-    "Adaptive reuse of industrial space.",
-    "Landscape integration and accessibility.",
-    "Sustainable systems for ventilation.",
-    "Public accessibility and community.",
-    "Rainwater harvesting systems.",
-    "Harmony between old and new.",
-  ],
-}));
+//
+// ---------------- REAL PROJECTS ---------------- //
+//
 
+const PROJECTS = [
+  //
+  // -------------------------------------------------------------
+  // 1) CHARVAK DACHA 1
+  // -------------------------------------------------------------
+  //
+  {
+    slug: "charvak-dacha-1",
+    name: "Charvak Dacha 1",
+    location: "Charvak, Uzbekistan",
+    year: "2024",
+    client: "Private Client",
+    status: "Completed",
+    typology: "Residential",
+    area: "—",
+    coverImages: [
+      "Assets/Charvak_Dacha_1/1.png",
+      "Assets/Charvak_Dacha_1/2.png",
+      "Assets/Charvak_Dacha_1/3.png",
+      "Assets/Charvak_Dacha_1/4.png",
+      "Assets/Charvak_Dacha_1/5.png",
+      "Assets/Charvak_Dacha_1/6.png",
+      "Assets/Charvak_Dacha_1/7.png",
+      "Assets/Charvak_Dacha_1/8.png",
+      "Assets/Charvak_Dacha_1/9.png",
+    ],
+    descriptions: Array(9).fill("Project description will be added soon."),
+  },
+
+  //
+  // -------------------------------------------------------------
+  // 2) HOUSE LUNACHARSKY
+  // -------------------------------------------------------------
+  //
+  {
+    slug: "house-lunacharsky",
+    name: "House Lunacharsky",
+    location: "Tashkent, Uzbekistan",
+    year: "2024",
+    client: "Private Client",
+    status: "Completed",
+    typology: "Residential",
+    area: "—",
+    coverImages: [
+      "Assets/House_Lunacharsky/1.jpg",
+      "Assets/House_Lunacharsky/2.jpg",
+      "Assets/House_Lunacharsky/3.jpg",
+      "Assets/House_Lunacharsky/4.jpg",
+      "Assets/House_Lunacharsky/5.jpg",
+    ],
+    descriptions: Array(5).fill("Project description will be added soon."),
+  },
+
+  //
+  // -------------------------------------------------------------
+  // 3) KONGRESS HALL
+  // -------------------------------------------------------------
+  //
+  {
+    slug: "kongress-hall",
+    name: "Kongress Hall",
+    location: "Uzbekistan",
+    year: "2024",
+    client: "Government",
+    status: "Completed",
+    typology: "Civic / Cultural",
+    area: "—",
+    coverImages: [
+      "Assets/Kongress_Hall/1.png",
+      "Assets/Kongress_Hall/2.png",
+      "Assets/Kongress_Hall/3.png",
+      "Assets/Kongress_Hall/4.png",
+      "Assets/Kongress_Hall/5.png",
+      "Assets/Kongress_Hall/6.jpg",
+      "Assets/Kongress_Hall/7.jpg",
+      "Assets/Kongress_Hall/8.jpg",
+      "Assets/Kongress_Hall/9.jpg",
+    ],
+    descriptions: Array(9).fill("Project description will be added soon."),
+  },
+
+  //
+  // -------------------------------------------------------------
+  // 4) OFIS AVO (2–22)
+  // -------------------------------------------------------------
+  //
+  {
+    slug: "ofis-avo",
+    name: "AVO Office",
+    location: "Tashkent, Uzbekistan",
+    year: "2024",
+    client: "AVO",
+    status: "Completed",
+    typology: "Office",
+    area: "—",
+    coverImages: Array.from({ length: 21 }, (_, i) => `Assets/Ofis_AVO/${i + 2}.jpg`),
+    descriptions: Array(21).fill("Project description will be added soon."),
+  },
+
+  //
+  // -------------------------------------------------------------
+  // 5) SANORA LOUNGE BAR (1–24)
+  // -------------------------------------------------------------
+  //
+  {
+    slug: "sanora-lounge-bar",
+    name: "Sanora Lounge Bar",
+    location: "Tashkent, Uzbekistan",
+    year: "2024",
+    client: "Sanora",
+    status: "Completed",
+    typology: "Hospitality",
+    area: "—",
+    coverImages: Array.from({ length: 24 }, (_, i) => `Assets/Sanora_Lounge_Bar/${i + 1}.jpg`),
+    descriptions: Array(24).fill("Project description will be added soon."),
+  },
+
+  //
+  // -------------------------------------------------------------
+  // 6) TURKESTAN VILLA
+  // -------------------------------------------------------------
+  //
+  {
+    slug: "turkestan-villa",
+    name: "Turkestan Villa",
+    location: "Turkestan",
+    year: "2024",
+    client: "Private Client",
+    status: "Completed",
+    typology: "Residential",
+    area: "—",
+    coverImages: [
+      // Bedroom
+      "Assets/Turkestan_Villa/Bedroom1.jpg",
+      "Assets/Turkestan_Villa/Bedroom2.jpg",
+      "Assets/Turkestan_Villa/Bedroom3.jpg",
+      "Assets/Turkestan_Villa/Bedroom4.jpg",
+      "Assets/Turkestan_Villa/Bedroom5.jpg",
+      "Assets/Turkestan_Villa/Bedroom6.jpg",
+
+      // Boys Room
+      "Assets/Turkestan_Villa/BoysRoom1.jpg",
+      "Assets/Turkestan_Villa/BoysRoom2.jpg",
+      "Assets/Turkestan_Villa/BoysRoom3.jpg",
+      "Assets/Turkestan_Villa/BoysRoom4.jpg",
+
+      // Dining Room
+      "Assets/Turkestan_Villa/DiningRoom1.jpg",
+      "Assets/Turkestan_Villa/DiningRoom2.jpg",
+      "Assets/Turkestan_Villa/DiningRoom3.jpg",
+
+      // Girls Room
+      "Assets/Turkestan_Villa/GirlsRoom1.jpg",
+      "Assets/Turkestan_Villa/GirlsRoom2.jpg",
+      "Assets/Turkestan_Villa/GirlsRoom3.jpg",
+      "Assets/Turkestan_Villa/GirlsRoom4.jpg",
+
+      // Hall
+      "Assets/Turkestan_Villa/Hall1.jpg",
+      "Assets/Turkestan_Villa/Hall2.jpg",
+      "Assets/Turkestan_Villa/Hall3.jpg",
+      "Assets/Turkestan_Villa/Hall4.jpg",
+      "Assets/Turkestan_Villa/Hall5.jpg",
+      "Assets/Turkestan_Villa/Hall6.jpg",
+
+      // Living Room
+      "Assets/Turkestan_Villa/LivingRoom1.jpg",
+      "Assets/Turkestan_Villa/LivingRoom2.jpg",
+      "Assets/Turkestan_Villa/LivingRoom3.jpg",
+    ],
+    descriptions: Array(26).fill("Project description will be added soon."),
+  },
+];
+
+//
 // ---------------- COMPONENT ---------------- //
+//
+
 export default function Portfolio() {
   const [zoomedProject, setZoomedProject] = useState(null);
   const cardRefs = useRef([]);
   const scrollStartRef = useRef(0);
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
-  // Scroll-based zoom effect (Intersection Observer)
+  // Scroll zoom effect
   useEffect(() => {
-    const currentCards = cardRefs.current;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.style.transform = "scale(1.05)";
-            entry.target.style.transition = "transform 0.5s ease";
-          } else {
-            entry.target.style.transform = "scale(0.95)";
-            entry.target.style.transition = "transform 0.5s ease";
-          }
+    const current = cardRefs.current;
+    const obs = new IntersectionObserver(
+      entries => {
+        entries.forEach(e => {
+          e.target.style.transform = e.isIntersecting ? "scale(1.02)" : "scale(0.96)";
+          e.target.style.transition = "transform 0.4s ease";
         });
       },
       { threshold: 0.5 }
     );
-
-    currentCards.forEach((card) => {
-      if (card) observer.observe(card);
-    });
-
-    return () => {
-      currentCards.forEach((card) => {
-        if (card) observer.unobserve(card);
-      });
-    };
+    current.forEach(c => c && obs.observe(c));
+    return () => current.forEach(c => c && obs.unobserve(c));
   }, []);
 
-  // 👇 Smooth close on scroll beyond threshold
+  // Close zoom on scroll
   useEffect(() => {
     if (!zoomedProject) return;
-
-    const startY = window.scrollY;
-    scrollStartRef.current = startY;
-
-    let timeoutId = null;
-
+    scrollStartRef.current = window.scrollY;
     const handleScroll = () => {
-      const currentY = window.scrollY;
-      const distance = Math.abs(currentY - scrollStartRef.current);
-
-      // If scrolled more than 100px total → close with a smooth delay
-      if (distance > 100) {
+      if (Math.abs(window.scrollY - scrollStartRef.current) > 100) {
         window.removeEventListener("scroll", handleScroll);
-
-        // Add small timeout for smooth UX (feels like zooming out slowly)
-        timeoutId = setTimeout(() => {
-          setZoomedProject(null);
-        }, 400); // 0.4s delay
+        setTimeout(() => setZoomedProject(null), 300);
       }
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (timeoutId) clearTimeout(timeoutId);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [zoomedProject]);
 
-  const toggleZoom = (slug) => {
-    setZoomedProject((prev) => (prev === slug ? null : slug));
-  };
+  const toggleZoom = slug => setZoomedProject(prev => (prev === slug ? null : slug));
 
   return (
-    <div className="bg-neutral-50 text-neutral-900 min-h-screen">
-      <div className="max-w-screen-xl mx-auto py-12 px-4 flex flex-col items-center gap-8">
-        {PROJECTS.map((project, index) => {
-          const isZoomed = zoomedProject === project.slug;
+    <div className={`min-h-screen ${isDark ? "bg-[#050509] text-gray-100" : "bg-[#f5f5f6] text-gray-900"}`}>
+      <div className="max-w-6xl mx-auto py-14 px-4 flex flex-col items-center gap-10">
 
-          return (
-            <div
-              key={project.slug}
-              ref={(el) => (cardRefs.current[index] = el)}
-              onClick={() => toggleZoom(project.slug)}
-              className={`relative cursor-pointer transition-all duration-700 ease-in-out rounded-lg overflow-hidden shadow-xl ${
-                isZoomed
-                  ? "w-[95vw] h-[80vh] z-40 flex bg-white overflow-x-auto scale-100"
-                  : "w-[90vw] sm:w-[300px] md:w-[400px] lg:w-[500px] h-[220px] flex items-center justify-center scale-95"
-              }`}
-              style={{
-                transition: "all 0.7s ease", // ensures smooth zooming in/out
-              }}
-            >
-              {/* Card Preview (not zoomed) */}
-              {!isZoomed && (
-                <img
-                  src={project.coverImages[0]}
-                  alt={`${project.name}-preview`}
-                  className="object-cover w-full h-full rounded-lg"
-                />
-              )}
+        {/* HEADER */}
+        <div className="text-center max-w-3xl">
+          <p className={`text-xs tracking-[0.3em] uppercase mb-3 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+            Portfolio
+          </p>
+          <h1 className={`text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[0.08em] uppercase ${isDark ? "text-white" : "text-gray-900"}`}>
+            Selected Works
+          </h1>
+          <div className={`mt-4 w-16 h-[2px] mx-auto rounded-full ${isDark ? "bg-[#f5c15d]" : "bg-gray-300"}`} />
+        </div>
 
-              {/* Full card (zoomed in with horizontal scroll) */}
-              {isZoomed && (
-                <div className="flex">
-                  {/* ---------- FIRST SLIDE = PROJECT OVERVIEW INFO ---------- */}
-                  <div className="flex-shrink-0 w-[95vw] h-[80vh] flex flex-col sm:flex-row">
-                    {/* Left Info (desktop) / Top Info (mobile) */}
-                    <div className="basis-full sm:basis-[20%] min-w-[180px] p-4 space-y-2 text-left">
-                      <h2 className="text-xl font-semibold">{project.name}</h2>
-                      <p className="text-sm text-neutral-600">
-                        {project.location} – {project.year}
-                      </p>
-                      <p className="text-sm">
-                        <span className="font-medium">Typology: </span>
-                        {project.typology}
-                      </p>
-                      <p className="text-sm">
-                        <span className="font-medium">Status: </span>
-                        {project.status}
-                      </p>
-                      <p className="text-sm">
-                        <span className="font-medium">Area: </span>
-                        {project.area}
-                      </p>
-                    </div>
+        {/* PROJECT LIST */}
+        <div className="flex flex-col items-center gap-10 w-full">
+          {PROJECTS.map((project, index) => {
+            const isZoomed = zoomedProject === project.slug;
 
-                    {/* Center Image */}
-                    <div className="basis-full sm:basis-[55%] flex items-center justify-center">
-                      <img
-                        src={project.coverImages[0]}
-                        alt={`overview`}
-                        className="object-cover h-full w-full rounded-md"
-                      />
-                    </div>
+            return (
+              <div
+                key={project.slug}
+                ref={el => (cardRefs.current[index] = el)}
+                onClick={() => toggleZoom(project.slug)}
+                className={`relative cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] rounded-2xl overflow-hidden ${
+                  isZoomed
+                    ? `w-full h-[80vh] z-40 flex overflow-x-auto ${
+                        isDark ? "bg-[#060711]/95 border border-white/10" : "bg-white border border-gray-200"
+                      }`
+                    : `w-full max-w-xl h-[230px] flex items-center justify-center ${
+                        isDark ? "bg-[#060711]/95 border border-white/10" : "bg-white border border-gray-200"
+                      }`
+                }`}
+              >
 
-                    {/* Right Description */}
-                    <div className="basis-full sm:basis-[25%] min-w-[200px] p-4 text-left overflow-y-auto">
-                      <p className="text-sm text-neutral-700 leading-relaxed">
-                        {project.descriptions[0]}
-                      </p>
+                {/* CARD PREVIEW */}
+                {!isZoomed && (
+                  <div className="relative w-full h-full rounded-2xl overflow-hidden">
+                    <img src={project.coverImages[0]} alt="" className="object-cover w-full h-full" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70" />
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <h2 className="text-lg font-semibold text-white">{project.name}</h2>
                     </div>
                   </div>
+                )}
 
-                  {/* ---------- NEXT SLIDES = IMAGE + DESCRIPTION ONLY ---------- */}
-                  {project.coverImages.slice(1).map((img, idx) => (
-                    <div
-                      key={idx}
-                      className="flex-shrink-0 w-[95vw] h-[80vh] flex flex-col sm:flex-row"
-                    >
-                      {/* Center Image */}
-                      <div className="basis-full sm:basis-[70%] flex items-center justify-center">
-                        <img
-                          src={img}
-                          alt={`zoomed-${idx + 1}`}
-                          className="object-cover h-full w-full rounded-md"
-                        />
+                {/* ZOOMED VIEW */}
+                {isZoomed && (
+                  <div className="flex">
+                    {/* FIRST SLIDE */}
+                    <div className="flex-shrink-0 w-[100vw] md:w-[90vw] h-[80vh] flex flex-row">
+                      <div className="basis-full flex items-center justify-center bg-black">
+                        <img src={project.coverImages[0]} alt="" className="object-cover h-full w-full" />
                       </div>
-
-                      {/* Right Description */}
-                      <div className="basis-full sm:basis-[30%] min-w-[200px] p-4 text-left overflow-y-auto">
-                        <p className="text-sm text-neutral-700 leading-relaxed">
-                          {project.descriptions[idx + 1]}
-                        </p>
+                      <div className="basis-[30%] min-w-[220px] p-5 overflow-y-auto border-l">
+                        <p className="text-sm">{project.descriptions[0]}</p>
                       </div>
                     </div>
-                  ))}
-                </div>
-              )}
 
-              {/* Close Button */}
-              {isZoomed && (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setZoomedProject(null);
-                  }}
-                  className="absolute top-4 right-4 px-4 py-2 bg-black/80 text-white rounded shadow"
-                >
-                  Close
-                </button>
-              )}
-            </div>
-          );
-        })}
+                    {/* OTHER SLIDES */}
+                    {project.coverImages.slice(1).map((img, idx) => (
+                      <div key={idx} className="flex-shrink-0 w-[100vw] md:w-[90vw] h-[80vh] flex">
+                        <div className="basis-full flex items-center justify-center bg-black">
+                          <img src={img} alt="" className="object-cover h-full w-full" />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* CLOSE BUTTON */}
+                {isZoomed && (
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setZoomedProject(null); }}
+                    className="absolute top-4 right-4 px-4 py-2 bg-white/90 border rounded-full"
+                  >
+                    Close
+                  </button>
+                )}
+
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
