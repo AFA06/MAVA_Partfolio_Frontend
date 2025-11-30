@@ -2,10 +2,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTheme } from "../context/ThemeContext";
 
-//
-// ---------------- REAL PROJECTS ---------------- //
-//
-
 const PROJECTS = [
   {
     slug: "charvak-dacha-1",
@@ -29,6 +25,7 @@ const PROJECTS = [
     ],
     descriptions: Array(9).fill("Project description will be added soon."),
   },
+
   {
     slug: "house-lunacharsky",
     name: "House Lunacharsky",
@@ -47,6 +44,7 @@ const PROJECTS = [
     ],
     descriptions: Array(5).fill("Project description will be added soon."),
   },
+
   {
     slug: "kongress-hall",
     name: "Kongress Hall",
@@ -69,6 +67,7 @@ const PROJECTS = [
     ],
     descriptions: Array(9).fill("Project description will be added soon."),
   },
+
   {
     slug: "ofis-avo",
     name: "AVO Office",
@@ -81,6 +80,7 @@ const PROJECTS = [
     coverImages: Array.from({ length: 21 }, (_, i) => `Assets/Ofis_AVO/${i + 2}.jpg`),
     descriptions: Array(21).fill("Project description will be added soon."),
   },
+
   {
     slug: "sanora-lounge-bar",
     name: "Sanora Lounge Bar",
@@ -93,6 +93,7 @@ const PROJECTS = [
     coverImages: Array.from({ length: 24 }, (_, i) => `Assets/Sanora_Lounge_Bar/${i + 1}.jpg`),
     descriptions: Array(24).fill("Project description will be added soon."),
   },
+
   {
     slug: "turkestan-villa",
     name: "Turkestan Villa",
@@ -140,22 +141,21 @@ export default function Portfolio() {
   const { theme } = useTheme();
   const isDark = theme === "dark";
 
-  // center the card when opened
+  // Auto-center opened card
   useEffect(() => {
     if (!zoomedProject) return;
 
     setTimeout(() => {
-      const target = cardRefs.current.find(c => c?.dataset?.slug === zoomedProject);
-      if (!target) return;
+      const el = cardRefs.current.find((c) => c?.dataset.slug === zoomedProject);
+      if (!el) return;
 
-      const top =
-        target.offsetTop - window.innerHeight / 2 + target.clientHeight / 2;
-
+      const top = el.offsetTop - window.innerHeight * 0.1;
       window.scrollTo({ top, behavior: "smooth" });
-    }, 150);
+    }, 200);
   }, [zoomedProject]);
 
-  const toggleZoom = slug => {
+  // Zoom toggle with transition fix
+  const toggleZoom = (slug) => {
     if (zoomedProject === slug) {
       setZoomedProject(null);
       return;
@@ -164,7 +164,7 @@ export default function Portfolio() {
     if (zoomedProject !== null) {
       const next = slug;
       setZoomedProject(null);
-      setTimeout(() => setZoomedProject(next), 100);
+      setTimeout(() => setZoomedProject(next), 150);
     } else {
       setZoomedProject(slug);
     }
@@ -178,33 +178,36 @@ export default function Portfolio() {
     >
       <div className="max-w-6xl mx-auto py-14 px-4">
 
-        <h1 className="text-center text-5xl font-semibold uppercase mb-12">
+        {/* HEADER */}
+        <h1 className="text-center text-5xl font-semibold uppercase mb-10">
           Selected Works
         </h1>
 
+        {/* PROJECT LIST */}
         <div className="flex flex-col items-center gap-10">
-          {PROJECTS.map((project, index) => {
+          {PROJECTS.map((project, i) => {
             const isZoomed = zoomedProject === project.slug;
 
             return (
               <div
                 key={project.slug}
                 data-slug={project.slug}
-                ref={el => (cardRefs.current[index] = el)}
+                ref={(el) => (cardRefs.current[i] = el)}
                 onClick={() => toggleZoom(project.slug)}
-                className={`relative cursor-pointer rounded-2xl transition-all duration-700 overflow-hidden ${
-                  isZoomed
-                    ? "w-full z-40 flex overflow-x-auto"
-                    : "w-full max-w-xl h-[230px]"
-                }`}
+                className={`relative cursor-pointer transition-all duration-700 rounded-2xl overflow-hidden 
+                  ${
+                    isZoomed
+                      ? "w-[90vw] h-[90vh] bg-white p-6 shadow-2xl z-40"
+                      : "w-full max-w-xl h-[230px] bg-white shadow-lg"
+                  }`}
               >
-                {/* CLOSED PREVIEW */}
+                {/* PREVIEW (closed) */}
                 {!isZoomed && (
                   <div className="relative w-full h-full">
                     <img
                       src={project.coverImages[0]}
-                      alt=""
                       className="w-full h-full object-cover"
+                      alt=""
                     />
                     <div className="absolute bottom-4 left-4 text-xl text-white font-semibold">
                       {project.name}
@@ -212,29 +215,15 @@ export default function Portfolio() {
                   </div>
                 )}
 
-                {/* OPENED FULL-IMAGE, NO SCROLL INSIDE */}
+                {/* OPENED CARD */}
                 {isZoomed && (
-                  <div className="flex gap-8 p-8 max-w-full overflow-x-auto">
-
-                    {/* FIRST IMAGE */}
-                    <div className="min-w-[90vw] flex justify-center items-center">
-                      <img
-                        src={project.coverImages[0]}
-                        alt=""
-                        className="object-contain max-h-screen max-w-[90vw]"
-                      />
-                    </div>
-
-                    {/* OTHER IMAGES */}
-                    {project.coverImages.slice(1).map((img, idx) => (
-                      <div
-                        key={idx}
-                        className="min-w-[90vw] flex justify-center items-center"
-                      >
+                  <div className="flex gap-6 w-full h-full overflow-x-auto">
+                    {project.coverImages.map((img, idx) => (
+                      <div key={idx} className="min-w-[85vw] h-full flex items-center justify-center">
                         <img
                           src={img}
+                          className="max-w-full max-h-full object-contain"
                           alt=""
-                          className="object-contain max-h-screen max-w-[90vw]"
                         />
                       </div>
                     ))}
@@ -244,11 +233,11 @@ export default function Portfolio() {
                 {/* CLOSE BUTTON */}
                 {isZoomed && (
                   <button
-                    onClick={e => {
+                    onClick={(e) => {
                       e.stopPropagation();
                       setZoomedProject(null);
                     }}
-                    className="absolute top-4 right-4 px-4 py-2 bg-white/90 rounded-full shadow"
+                    className="absolute top-4 right-4 px-4 py-2 bg-black text-white rounded-full"
                   >
                     Close
                   </button>
