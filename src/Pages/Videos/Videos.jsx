@@ -1,4 +1,5 @@
 // src/Pages/Videos/Videos.jsx
+
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
@@ -40,47 +41,58 @@ export default function Videos() {
 
   return (
     <div className={`min-h-screen w-full antialiased ${bgMain}`}>
+      {/* ---------------------------------------------------------------- HERO ---------------------------------------------------------------- */}
+      <section
+        className={`relative text-center px-4 py-16 sm:py-20 ${
+          isDark ? "bg-[#07070b]" : "bg-white"
+        }`}
+      >
+        <div className="max-w-3xl mx-auto">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className={`text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight leading-tight ${titleColor}`}
+          >
+            {t("videosPage.heroTitle")}
+          </motion.h1>
 
-      {/* ----------------------------- HERO ----------------------------- */}
-      <section className={`relative text-center px-4 py-20 sm:py-24 ${isDark ? "bg-[#07070b]" : "bg-white"}`}>
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className={`text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight ${titleColor}`}
-        >
-          {t("videosPage.heroTitle")}
-        </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.15 }}
+            className={`mt-4 text-base sm:text-lg md:text-xl leading-relaxed ${subtitleColor}`}
+          >
+            {t("videosPage.heroSubtitle")}
+          </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15 }}
-          className={`max-w-2xl mx-auto mt-4 text-base sm:text-lg md:text-xl leading-relaxed ${subtitleColor}`}
-        >
-          {t("videosPage.heroSubtitle")}
-        </motion.p>
-
-        <motion.a
-          href="#"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.25 }}
-          className={`inline-flex items-center justify-center mt-8 px-8 py-3 rounded-full text-base font-medium transition capitalize
-            ${isDark ? "bg-yellow-500 text-black hover:bg-yellow-400" : "bg-gray-900 text-white hover:bg-black"}
-          `}
-        >
-          {t("videosPage.preview")}
-        </motion.a>
+          <motion.a
+            href="#"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.25 }}
+            className={`inline-flex items-center justify-center mt-8 px-8 py-3 rounded-full text-base font-medium transition capitalize
+            ${
+              isDark
+                ? "bg-yellow-500 text-black hover:bg-yellow-400"
+                : "bg-gray-900 text-white hover:bg-black"
+            }`}
+          >
+            {t("videosPage.preview")}
+          </motion.a>
+        </div>
       </section>
 
-      {/* ----------------------------- COURSES ----------------------------- */}
+      {/* ---------------------------------------------------------------- COURSES ---------------------------------------------------------------- */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-        <h2 className={`text-center text-2xl sm:text-3xl font-semibold mb-12 ${titleColor}`}>
+        <h2
+          className={`text-center text-2xl sm:text-3xl font-semibold mb-10 sm:mb-12 ${titleColor}`}
+        >
           {t("videosPage.coursesTitle")}
         </h2>
 
-        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+        {/* MOBILE-FIRST GRID */}
+        <div className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {courses.map((course, i) => (
             <motion.div
               key={course.key}
@@ -88,9 +100,9 @@ export default function Videos() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
-              className={`rounded-2xl overflow-hidden cursor-pointer transition-all ${sectionCard}`}
+              className={`group rounded-2xl overflow-hidden cursor-pointer transition-all ${sectionCard}`}
             >
-              <div className="h-56 sm:h-60 md:h-64 overflow-hidden">
+              <div className="h-48 sm:h-56 md:h-64 overflow-hidden">
                 <img
                   src={course.image}
                   alt=""
@@ -99,7 +111,9 @@ export default function Videos() {
               </div>
 
               <div className="p-5 flex flex-col h-full">
-                <h3 className={`text-lg sm:text-xl font-semibold mb-2 ${titleColor}`}>
+                <h3
+                  className={`text-lg sm:text-xl font-semibold mb-2 ${titleColor}`}
+                >
                   {t(`videosPage.${course.key}.title`)}
                 </h3>
 
@@ -109,7 +123,9 @@ export default function Videos() {
 
                 <a
                   href="#"
-                  className={`mt-4 text-sm font-medium hover:underline ${isDark ? "text-yellow-400" : "text-gray-900"}`}
+                  className={`mt-4 text-sm font-medium hover:underline ${
+                    isDark ? "text-yellow-400" : "text-gray-900"
+                  }`}
                 >
                   {t("videosPage.preview")}
                 </a>
@@ -119,20 +135,40 @@ export default function Videos() {
         </div>
       </section>
 
-      {/* ----------------------------- SUPER PREMIUM FEATURES (FIXED) ----------------------------- */}
-      <section className={`relative px-4 sm:px-6 py-28 overflow-hidden ${isDark ? "bg-[#050508]" : "bg-[#f2f2f3]"}`}>
-        
-        {/* Decorative gradients */}
+      {/* ---------------------------------------------------------------- FEATURES ---------------------------------------------------------------- */}
+      <section
+        className={`relative px-4 sm:px-6 py-20 sm:py-28 overflow-hidden ${
+          isDark ? "bg-[#050508]" : "bg-[#f2f2f3]"
+        }`}
+      >
+        {/* Background gradients */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className={`absolute -top-40 right-0 w-[600px] h-[600px] rounded-full blur-[150px] opacity-40 ${isDark ? "bg-purple-700/30" : "bg-gradient-to-br from-gray-300 via-gray-200 to-gray-300"}`} />
-          <div className={`absolute bottom-0 left-0 w-[450px] h-[450px] rounded-full blur-[170px] opacity-40 ${isDark ? "bg-blue-900/30" : "bg-gradient-to-br from-gray-200 via-white to-gray-300"}`} />
+          <div
+            className={`absolute -top-40 right-0 w-[500px] h-[500px] rounded-full blur-[150px] opacity-40 
+            ${
+              isDark
+                ? "bg-purple-700/30"
+                : "bg-gradient-to-br from-gray-300 via-gray-200 to-gray-300"
+            }`}
+          />
+          <div
+            className={`absolute -bottom-20 left-0 w-[350px] h-[350px] rounded-full blur-[170px] opacity-40
+            ${
+              isDark
+                ? "bg-blue-900/30"
+                : "bg-gradient-to-br from-gray-200 via-white to-gray-300"
+            }`}
+          />
         </div>
 
-        <h2 className={`text-center text-3xl sm:text-4xl font-semibold tracking-tight mb-20 relative z-10 ${titleColor}`}>
+        <h2
+          className={`text-center text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight mb-14 sm:mb-20 relative z-10 ${titleColor}`}
+        >
           {t("videosPage.featuresTitle")}
         </h2>
 
-        <div className="max-w-6xl mx-auto grid gap-14 sm:grid-cols-2 md:grid-cols-3 relative z-10">
+        {/* MOBILE-FIRST GRID */}
+        <div className="max-w-6xl mx-auto grid gap-10 sm:gap-14 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 relative z-10">
           {[1, 2, 3].map((num, index) => (
             <motion.div
               key={num}
@@ -140,7 +176,7 @@ export default function Videos() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: index * 0.2 }}
-              className={`relative group p-10 rounded-3xl text-center transition-all duration-500 cursor-pointer
+              className={`relative group p-8 sm:p-10 rounded-3xl text-center transition-all duration-500 cursor-pointer
               
                 ${
                   isDark
@@ -154,30 +190,26 @@ export default function Videos() {
               {/* Glow */}
               <div
                 className={`absolute inset-0 -z-10 rounded-3xl opacity-0 group-hover:opacity-40 blur-2xl transition duration-700
-                ${isDark ? "bg-purple-600/30" : "bg-gradient-to-br from-gray-400 via-gray-200 to-gray-400"}
-              `}
+                ${
+                  isDark
+                    ? "bg-purple-600/30"
+                    : "bg-gradient-to-br from-gray-400 via-gray-200 to-gray-400"
+                }`}
               />
 
-              <span className="text-6xl mb-3 block group-hover:scale-125 group-hover:rotate-3 transition-all duration-500">
+              <span className="text-5xl sm:text-6xl mb-3 block group-hover:scale-125 group-hover:rotate-3 transition-all duration-500">
                 🎬
               </span>
 
-              <h3 className={`font-semibold text-xl sm:text-2xl mb-4 tracking-tight ${titleColor}`}>
+              <h3
+                className={`font-semibold text-xl sm:text-2xl mb-4 tracking-tight ${titleColor}`}
+              >
                 {t(`videosPage.feature${num}Title`)}
               </h3>
 
               <p className={`text-sm leading-relaxed ${subtitleColor}`}>
                 {t(`videosPage.feature${num}Desc`)}
               </p>
-
-              {/* Shine */}
-              <div className="pointer-events-none absolute inset-0 rounded-3xl overflow-hidden">
-                <div
-                  className={`absolute inset-0 bg-gradient-to-t ${
-                    isDark ? "from-white/10" : "from-gray-200/20"
-                  } to-transparent opacity-0 group-hover:opacity-30 transition duration-700`}
-                />
-              </div>
             </motion.div>
           ))}
         </div>
