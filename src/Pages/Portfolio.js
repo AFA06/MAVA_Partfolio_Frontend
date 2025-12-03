@@ -140,7 +140,7 @@ const PROJECTS = [
     descriptions: Array(26).fill("Project description will be added soon.")
   },
 
-  // ⭐⭐⭐ NEW PROJECTS START HERE ⭐⭐⭐
+  // -------- NEW PROJECTS --------
 
   {
     slug: "urban-stroy-oq-saroy",
@@ -251,7 +251,7 @@ const PROJECTS = [
       "Assets/YUGNAKI_220/Детская_1.jpg",
       "Assets/YUGNAKI_220/Детская_2.jpg",
       "Assets/YUGNAKI_220/Детская_3.jpg",
-      "Assets/YUGNAKI_220/Детская_4.jpg",
+      "Assets/YUGНАKI_220/Детская_4.jpg",
       "Assets/YUGNAKI_220/Детская_5.jpg",
       "Assets/YUGNAKI_220/Детская_большая_1.jpg",
       "Assets/YUGNAKI_220/Детская_большая_2.jpg",
@@ -279,6 +279,7 @@ const PROJECTS = [
     descriptions: Array(36).fill("Project description will be added soon.")
   },
 
+  // ⭐⭐⭐ UPDATED PROJECT WITH REAL IMAGE PATHS ⭐⭐⭐
   {
     slug: "jk-bek-baraka-100",
     name: "Eshonguzar — Bek Baraka 145",
@@ -289,38 +290,46 @@ const PROJECTS = [
     typology: "Residential",
     area: "145 sq.m",
     coverImages: [
-      "Assets/ЖК_БЕК_БАРАКА_100кв/1.jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/1(2).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/1(3).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/1(4).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/1(5).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/1(6).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/2.jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/2(2).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/2(3).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/2(4).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/2(5).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/2(6).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/3.jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/3(2).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/3(3).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/3(4).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/3(5).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/3(6).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/4.jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/4(2).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/4(3).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/4(4).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/5.jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/6.jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/A.jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/A(2).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/B.jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/B(2).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/C.jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/C(2).jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/D.jpg",
-      "Assets/ЖК_БЕК_БАРАКА_100кв/D(2).jpg"
+      "Assets/JK_BEK_BARAKA_100/1.jpg",
+      "Assets/JK_BEK_BARAKA_100/1(2).jpg",
+      "Assets/JK_BEK_BARAKA_100/1(3).jpg",
+      "Assets/JK_BEK_BARAKA_100/1(4).jpg",
+      "Assets/JK_BEK_BARAKA_100/1(5).jpg",
+      "Assets/JK_BEK_BARAKA_100/1(6).jpg",
+
+      "Assets/JK_BEK_BARAKA_100/2.jpg",
+      "Assets/JK_BEK_BARAKA_100/2(2).jpg",
+      "Assets/JK_BEK_BARAKA_100/2(3).jpg",
+      "Assets/JK_BEK_BARAKA_100/2(4).jpg",
+      "Assets/JK_BEK_BARAKA_100/2(5).jpg",
+      "Assets/JK_BEK_BARAKA_100/2(6).jpg",
+
+      "Assets/JK_BEK_BARAKA_100/3.jpg",
+      "Assets/JK_BEK_BARAKA_100/3(2).jpg",
+      "Assets/JK_BEK_BARAKA_100/3(3).jpg",
+      "Assets/JK_BEK_BARAKA_100/3(4).jpg",
+      "Assets/JK_BEK_BARAKA_100/3(5).jpg",
+      "Assets/JK_BEK_BARAKA_100/3(6).jpg",
+
+      "Assets/JK_BEK_BARAKA_100/4.jpg",
+      "Assets/JK_BEK_BARAKA_100/4(2).jpg",
+      "Assets/JK_BEK_BARAKA_100/4(3).jpg",
+      "Assets/JK_BEK_BARAKA_100/4(4).jpg",
+
+      "Assets/JK_BEK_BARAKA_100/5.jpg",
+      "Assets/JK_BEK_BARAKA_100/6.jpg",
+
+      "Assets/JK_BEK_BARAKA_100/A.jpg",
+      "Assets/JK_BEK_BARAKA_100/A(2).jpg",
+
+      "Assets/JK_BEK_BARAKA_100/B.jpg",
+      "Assets/JK_BEK_BARAKA_100/B(2).jpg",
+
+      "Assets/JK_BEK_BARAKA_100/C.jpg",
+      "Assets/JK_BEK_BARAKA_100/C(2).jpg",
+
+      "Assets/JK_BEK_BARAKA_100/D.jpg",
+      "Assets/JK_BEK_BARAKA_100/D(2).jpg"
     ],
     descriptions: Array(32).fill("Project description will be added soon.")
   }
@@ -363,8 +372,10 @@ export default function Portfolio() {
         isDark ? "bg-[#050509] text-gray-100" : "bg-[#f5f5f6] text-gray-900"
       }`}
     >
-      <div className="max-w-6xl mx-auto py-14 px-4">
-        <h1 className="text-center text-5xl font-semibold uppercase mb-10">
+      <div className="max-w-6xl mx-auto py-14 px-4 sm:px-6">
+        <h1
+          className="text-center text-4xl sm:text-5xl font-semibold uppercase mb-10"
+        >
           {t("portfolioPage.title")}
         </h1>
 
@@ -381,39 +392,48 @@ export default function Portfolio() {
                 className={`relative cursor-pointer transition-all duration-700 rounded-2xl overflow-hidden
                   ${
                     isZoomed
-                      ? `${isDark ? "bg-[#060711]/95 border border-white/10" : "bg-white border border-gray-200"} 
-                         w-[90vw] h-[90vh] p-6 shadow-2xl z-40`
+                      ? `${
+                          isDark
+                            ? "bg-[#060711]/95 border border-white/10"
+                            : "bg-white border border-gray-200"
+                        }
+                         w-[90vw] h-[85vh] sm:h-[90vh] p-4 sm:p-6 shadow-2xl z-40`
                       : `${
                           isDark
                             ? "bg-[#060711]/95 border border-white/10 shadow-[0_22px_60px_rgba(0,0,0,0.7)]"
                             : "bg-white border border-gray-200 shadow-lg"
-                        } 
-                         w-full max-w-xl h-[230px]`
+                        }
+                         w-full max-w-xl h-[220px] sm:h-[230px]`
                   }`}
               >
+                {/* ----- SMALL CARD ----- */}
                 {!isZoomed && (
                   <div className="relative w-full h-full">
                     <img
                       src={project.coverImages[0]}
                       className="w-full h-full object-cover"
-                      alt=""
+                      alt={project.name}
                     />
-                    <div className="absolute bottom-4 left-4 text-xl text-white font-semibold">
+                    <div className="absolute bottom-4 left-4 text-lg sm:text-xl text-white font-semibold drop-shadow-lg">
                       {project.name}
                     </div>
                   </div>
                 )}
 
+                {/* ----- FULL SCREEN VIEW ----- */}
                 {isZoomed && (
-                  <div className="flex gap-6 w-full h-full overflow-x-auto">
+                  <div
+                    className="flex gap-4 sm:gap-6 w-full h-full overflow-x-auto pt-8 pb-6 
+                    snap-x snap-mandatory scrollbar-thin"
+                  >
                     {project.coverImages.map((img, idx) => (
                       <div
                         key={idx}
-                        className="min-w-[85vw] h-full flex items-center justify-center"
+                        className="min-w-[88vw] sm:min-w-[85vw] h-full flex items-center justify-center snap-center"
                       >
                         <img
                           src={img}
-                          className="max-w-full max-h-full object-contain"
+                          className="max-w-full max-h-full object-contain rounded-xl"
                           alt=""
                         />
                       </div>
@@ -421,13 +441,14 @@ export default function Portfolio() {
                   </div>
                 )}
 
+                {/* CLOSE BUTTON */}
                 {isZoomed && (
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       setZoomedProject(null);
                     }}
-                    className={`absolute top-4 right-4 px-4 py-2 rounded-full backdrop-blur-md border 
+                    className={`absolute top-3 right-3 px-3 py-1.5 rounded-full backdrop-blur-md border text-sm sm:text-base
                       ${
                         isDark
                           ? "bg-black/60 border-white/20 text-white"
@@ -442,6 +463,8 @@ export default function Portfolio() {
           })}
         </div>
       </div>
+
+      <div className="h-10 sm:h-0"></div>
     </div>
   );
 }
