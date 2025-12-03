@@ -29,10 +29,18 @@ export default function Footer() {
       />
 
       {/* MAIN BODY */}
-      <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
-
+      <div
+        className="
+          max-w-7xl mx-auto 
+          px-6 py-14 
+          grid grid-cols-1 
+          sm:grid-cols-2 
+          md:grid-cols-3 
+          gap-14 sm:gap-10
+        "
+      >
         {/* BRAND */}
-        <div>
+        <div className="text-center sm:text-left">
           <h2
             className={`text-2xl sm:text-3xl font-semibold tracking-tight mb-4 ${
               isDark ? "text-yellow-400" : "text-[#1a1a1a]"
@@ -42,7 +50,7 @@ export default function Footer() {
           </h2>
 
           <p
-            className={`max-w-xs text-sm leading-relaxed ${
+            className={`max-w-xs mx-auto sm:mx-0 text-sm leading-relaxed ${
               isDark ? "text-gray-400" : "text-gray-600"
             }`}
           >
@@ -55,16 +63,16 @@ export default function Footer() {
         </div>
 
         {/* NAVIGATION */}
-        <div>
+        <div className="text-center sm:text-left">
           <h3
-            className={`text-lg font-semibold uppercase tracking-wider mb-3 ${
+            className={`text-lg font-semibold uppercase tracking-wider mb-4 ${
               isDark ? "text-yellow-400" : "text-[#1a1a1a]"
             }`}
           >
             {tr("footer.navigation", "Navigation")}
           </h3>
 
-          <ul className="flex flex-col gap-2 text-sm">
+          <ul className="flex flex-col gap-3 text-sm">
             {[
               ["portfolio", "/portfolio"],
               ["videos", "/videos"],
@@ -86,16 +94,16 @@ export default function Footer() {
         </div>
 
         {/* SOCIAL */}
-        <div>
+        <div className="text-center sm:text-left">
           <h3
-            className={`text-lg font-semibold uppercase tracking-wider mb-3 ${
+            className={`text-lg font-semibold uppercase tracking-wider mb-4 ${
               isDark ? "text-yellow-400" : "text-[#1a1a1a]"
             }`}
           >
             {tr("footer.follow", "Follow Us")}
           </h3>
 
-          <div className="flex gap-4">
+          <div className="flex justify-center sm:justify-start gap-4">
             {/* Instagram */}
             <a
               href="https://www.instagram.com/mavagroup_?utm_source=ig_web_button_share_sheet"
