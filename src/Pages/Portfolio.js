@@ -1,6 +1,7 @@
 // src/pages/Portfolio.jsx
 import React, { useState, useEffect, useRef } from "react";
 import { useTheme } from "../context/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 const PROJECTS = [
   {
@@ -21,9 +22,9 @@ const PROJECTS = [
       "Assets/Charvak_Dacha_1/6.png",
       "Assets/Charvak_Dacha_1/7.png",
       "Assets/Charvak_Dacha_1/8.png",
-      "Assets/Charvak_Dacha_1/9.png",
+      "Assets/Charvak_Dacha_1/9.png"
     ],
-    descriptions: Array(9).fill("Project description will be added soon."),
+    descriptions: Array(9).fill("Project description will be added soon.")
   },
 
   {
@@ -40,9 +41,9 @@ const PROJECTS = [
       "Assets/House_Lunacharsky/2.jpg",
       "Assets/House_Lunacharsky/3.jpg",
       "Assets/House_Lunacharsky/4.jpg",
-      "Assets/House_Lunacharsky/5.jpg",
+      "Assets/House_Lunacharsky/5.jpg"
     ],
-    descriptions: Array(5).fill("Project description will be added soon."),
+    descriptions: Array(5).fill("Project description will be added soon.")
   },
 
   {
@@ -63,9 +64,9 @@ const PROJECTS = [
       "Assets/Kongress_Hall/6.jpg",
       "Assets/Kongress_Hall/7.jpg",
       "Assets/Kongress_Hall/8.jpg",
-      "Assets/Kongress_Hall/9.jpg",
+      "Assets/Kongress_Hall/9.jpg"
     ],
-    descriptions: Array(9).fill("Project description will be added soon."),
+    descriptions: Array(9).fill("Project description will be added soon.")
   },
 
   {
@@ -78,7 +79,7 @@ const PROJECTS = [
     typology: "Office",
     area: "—",
     coverImages: Array.from({ length: 21 }, (_, i) => `Assets/Ofis_AVO/${i + 2}.jpg`),
-    descriptions: Array(21).fill("Project description will be added soon."),
+    descriptions: Array(21).fill("Project description will be added soon.")
   },
 
   {
@@ -91,7 +92,7 @@ const PROJECTS = [
     typology: "Hospitality",
     area: "—",
     coverImages: Array.from({ length: 24 }, (_, i) => `Assets/Sanora_Lounge_Bar/${i + 1}.jpg`),
-    descriptions: Array(24).fill("Project description will be added soon."),
+    descriptions: Array(24).fill("Project description will be added soon.")
   },
 
   {
@@ -134,19 +135,19 @@ const PROJECTS = [
 
       "Assets/Turkestan_Villa/LivingRoom1.jpg",
       "Assets/Turkestan_Villa/LivingRoom2.jpg",
-      "Assets/Turkestan_Villa/LivingRoom3.jpg",
+      "Assets/Turkestan_Villa/LivingRoom3.jpg"
     ],
-    descriptions: Array(26).fill("Project description will be added soon."),
-  },
+    descriptions: Array(26).fill("Project description will be added soon.")
+  }
 ];
 
 export default function Portfolio() {
   const [zoomedProject, setZoomedProject] = useState(null);
   const cardRefs = useRef([]);
   const { theme } = useTheme();
+  const { t } = useTranslation();
   const isDark = theme === "dark";
 
-  // Center opened card
   useEffect(() => {
     if (!zoomedProject) return;
     setTimeout(() => {
@@ -157,7 +158,6 @@ export default function Portfolio() {
     }, 200);
   }, [zoomedProject]);
 
-  // Fix zoom-to-zoom transition
   const toggleZoom = (slug) => {
     if (zoomedProject === slug) {
       setZoomedProject(null);
@@ -180,8 +180,9 @@ export default function Portfolio() {
     >
       <div className="max-w-6xl mx-auto py-14 px-4">
 
+        {/* TRANSLATED TITLE */}
         <h1 className="text-center text-5xl font-semibold uppercase mb-10">
-          Selected Works
+          {t("portfolioPage.title")}
         </h1>
 
         <div className="flex flex-col items-center gap-10">
