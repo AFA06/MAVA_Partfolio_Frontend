@@ -6,8 +6,8 @@ import { Menu, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import "./navbar.css";
 
-import logoWhite from "../../assets/logo.png";           // white for dark mode
-import logoBlack from "../../assets/logo-black.jpg";     // black for light mode
+import logoWhite from "../../assets/logo.png";
+import logoBlack from "../../assets/logo-black.jpg";
 
 import ThemeToggle from "../ThemeToggle";
 import { useTheme } from "../../context/ThemeContext";
@@ -43,8 +43,8 @@ function Navbar() {
   return (
     <nav className={`navbar ${isLight ? "navbar-light" : "navbar-dark"}`}>
       {/* Desktop Left */}
-      <div className="navbar-left hidden lg:flex">
-        <NavLink to="/" className="logo-link flex items-center gap-3">
+      <div className="navbar-left">
+        <NavLink to="/" className="logo-link">
           <img
             src={isLight ? logoBlack : logoWhite}
             alt="MAVA Logo"
@@ -55,8 +55,8 @@ function Navbar() {
       </div>
 
       {/* Mobile Left */}
-      <div className="mobile-left lg:hidden">
-        <NavLink to="/" className="logo-link flex items-center gap-3">
+      <div className="mobile-left">
+        <NavLink to="/" className="logo-link">
           <img
             src={isLight ? logoBlack : logoWhite}
             alt="MAVA Logo"
@@ -67,7 +67,7 @@ function Navbar() {
       </div>
 
       {/* Desktop Center */}
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-center">
         {orderedLinks.map((link) => (
           <NavLink
             key={link.href}
@@ -82,7 +82,7 @@ function Navbar() {
       </div>
 
       {/* Desktop Right */}
-      <div className="navbar-right hidden lg:flex items-center gap-4">
+      <div className="navbar-right items-center gap-4">
         {["ru", "en", "uz"].map((lng) => (
           <button key={lng} onClick={() => changeLanguage(lng)} className="lang">
             {lng.toUpperCase()}
@@ -92,8 +92,9 @@ function Navbar() {
       </div>
 
       {/* Mobile Right */}
-      <div className="mobile-right lg:hidden flex items-center gap-3">
+      <div className="mobile-right items-center gap-3">
         <ThemeToggle />
+
         {contactsLink && (
           <NavLink
             to={contactsLink.href}
@@ -103,6 +104,7 @@ function Navbar() {
             {t(contactsLink.label)}
           </NavLink>
         )}
+
         <button className="menu-btn" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
@@ -115,7 +117,11 @@ function Navbar() {
       />
 
       {/* Mobile Sidebar */}
-      <div className={`mobile-sidebar ${isOpen ? "open" : ""}`}>
+      <div
+        className={`mobile-sidebar ${isOpen ? "open" : ""} ${
+          !isLight ? "dark" : ""
+        }`}
+      >
         <button onClick={() => setIsOpen(false)} className="close-btn">
           <X size={26} />
         </button>
@@ -133,9 +139,13 @@ function Navbar() {
           ))}
         </div>
 
-        <div className="languages-container">
+        <div className="languages-container mt-6 flex gap-4">
           {["ru", "en", "uz"].map((lng) => (
-            <button key={lng} onClick={() => changeLanguage(lng)} className="lang">
+            <button
+              key={lng}
+              onClick={() => changeLanguage(lng)}
+              className="lang"
+            >
               {lng.toUpperCase()}
             </button>
           ))}

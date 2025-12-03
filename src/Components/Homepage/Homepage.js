@@ -33,7 +33,7 @@ function Homepage() {
       <div className="relative">
         <button
           onClick={togglePhoneOptions}
-          className="w-12 h-12 flex items-center justify-center rounded-full bg-emerald-500 text-white shadow-lg hover:scale-110 active:scale-95 transition-transform duration-300"
+          className="w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-emerald-500 text-white shadow-lg hover:scale-110 active:scale-95 transition-transform duration-300"
         >
           <Phone className="w-5 h-5" />
         </button>
@@ -41,7 +41,7 @@ function Homepage() {
         {showPhoneOptions && (
           <div
             onClick={(e) => e.stopPropagation()}
-            className={`absolute bottom-14 right-0 w-52 p-3 rounded-2xl shadow-2xl animate-slideUp space-y-2
+            className={`absolute bottom-14 right-0 w-48 sm:w-52 p-3 rounded-xl shadow-2xl animate-slideUp space-y-2
               ${isDark ? "bg-[#050509]/95 border border-white/10" : "bg-white border border-gray-200"}`}
           >
             <p
@@ -74,49 +74,44 @@ function Homepage() {
         href="https://t.me/MAVA_GROUP"
         target="_blank"
         rel="noopener noreferrer"
-        className="w-12 h-12 flex items-center justify-center rounded-full bg-sky-500 text-white shadow-lg hover:scale-110 active:scale-95 transition-transform duration-300"
+        className="w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-sky-500 text-white shadow-lg hover:scale-110 active:scale-95 transition-transform duration-300"
       >
         <Send className="w-5 h-5" />
       </a>
     </div>
   );
 
-  /* -------------------- HERO SECTION -------------------- */
   return (
     <section
-      className={`relative w-full min-h-screen flex items-center justify-center px-4 sm:px-8 transition-all duration-500
+      className={`relative w-full min-h-screen flex items-center justify-center px-5 sm:px-8 py-24 sm:py-0 transition-all duration-500
         ${isDark ? "bg-[#050509] text-gray-100" : "bg-[#f5f5f6] text-gray-900"}`}
     >
-      <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        
+      <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+
         {/* LEFT — Text */}
-        <div>
-          {/* TRANSLATED TITLE 1 */}
+        <div className="text-center md:text-left">
           <p
-            className={`text-xs tracking-[0.32em] uppercase mb-4
+            className={`text-[10px] sm:text-xs tracking-[0.32em] uppercase mb-4
               ${isDark ? "text-gray-400" : "text-gray-500"}`}
           >
             {t("homepage.hero.studio")}
           </p>
 
-          {/* TRANSLATED TITLE 2 */}
           <h1
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-semibold leading-tight mb-4
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-semibold leading-[1.15] mb-4
               ${isDark ? "text-white" : "text-gray-900"}`}
           >
             {t("homepage.hero.title2")}
           </h1>
 
-          {/* Description */}
           <p
-            className={`text-sm sm:text-base md:text-lg max-w-md mb-8
+            className={`text-sm sm:text-base md:text-lg max-w-md mx-auto md:mx-0 mb-8
               ${isDark ? "text-gray-300" : "text-gray-600"}`}
           >
             {t("homepage.hero.desc")}
           </p>
 
-          {/* Buttons */}
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 justify-center md:justify-start">
             <Link
               to="/portfolio"
               className={`inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold transition
@@ -144,17 +139,15 @@ function Homepage() {
         </div>
 
         {/* RIGHT — Image */}
-        <div className="relative w-full h-[320px] sm:h-[380px] md:h-[420px] rounded-3xl overflow-hidden shadow-xl">
-          <img
-            src={testImage}
-            alt="Architecture"
-            className="w-full h-full object-cover"
-          />
-
-          {/* Dark overlay */}
-          {isDark && (
-            <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
-          )}
+        <div className="w-full max-w-md md:max-w-full mx-auto md:mx-0">
+          <div className="relative w-full h-[260px] sm:h-[320px] md:h-[420px] rounded-3xl overflow-hidden shadow-xl">
+            <img
+              src={testImage}
+              alt="Architecture"
+              className="w-full h-full object-cover"
+            />
+            {isDark && <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />}
+          </div>
         </div>
       </div>
 
