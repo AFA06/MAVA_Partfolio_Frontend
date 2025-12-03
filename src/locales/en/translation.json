@@ -1,170 +1,60 @@
 {
-  "nex": "NEX ARCHITECTS",
   "portfolio": "Portfolio",
-  "styles": "Styles",
-  "reviews": "Reviews",
   "about": "About Us",
-  "blog": "Blog",
-  "suppliers": "For Suppliers",
-  "vacancies": "Careers",
   "contacts": "Contacts",
   "videos": "Courses",
-  "phone": "+998 99 808-36-16",
-
-  "hero": {
-    "title": "Architecture of the Future",
-    "subtitle": "Ideas, Forms, Solutions",
-    "button": "View Projects"
-  },
 
   "footer": {
-  "rights": "All rights reserved, Made by",
-  "navigation": "Navigation",
-  "contacts": "Contacts",
-  "link9": "Portfolio",
-  "link3": "Courses",
-  "follow": "Follow Us",
-  "dev": "Made with ❤️ by"
-}
-,
-
-  "login": {
-    "subtitle": "Log in to your account",
-    "email": "Email",
-    "password": "Password",
-    "passwordPlaceholder": "Enter password",
-    "signIn": "Sign In",
-    "signUp": "Sign Up",
-    "noAccount": "Don’t have an account?",
-    "errorGeneric": "Login error"
-  },
-
-  "signup": {
-    "name": "First Name",
-    "surname": "Last Name",
-    "namePlaceholder": "Your first name",
-    "surnamePlaceholder": "Your last name",
-    "createAccount": "Create Account",
-    "email": "Email",
-    "password": "Password",
-    "confirmPassword": "Confirm Password",
-    "signUp": "Sign Up",
-    "signIn": "Sign In",
-    "haveAccount": "Already have an account?",
-    "passwordsDoNotMatch": "Passwords do not match",
-    "signupFailed": "Signup failed",
-    "generalError": "An error occurred",
-    "min8": "Minimum 8 characters",
-    "uppercase": "One uppercase letter",
-    "lowercase": "One lowercase letter",
-    "number": "One number",
-    "symbol": "One special character (!@#$...)"
+    "rights": "All rights reserved,",
+    "navigation": "Navigation",
+    "portfolio": "Portfolio",
+    "videos": "Courses",
+    "contacts": "Contacts",
+    "about": "About Us",
+    "follow": "Follow Us",
+    "dev": "Made with ❤️ by"
   },
 
   "homepage": {
-    "hero": {
-      "title": "Architecture of the Future",
-      "desc": "An architectural studio where ideas turn into stylish and functional projects. From concept to realization.",
-      "button": "View Projects",
-      "services": {
-        "interior": "Interior Design",
-        "planning": "Project Planning",
-        "modeling": "3D Modeling"
-      }
-    },
-    "about": {
-      "title": "About Us",
-      "p1": "Nex Architecture is a team of architects and engineers reshaping cities through innovation and precision.",
-      "p2": "Each project follows the principle: form follows function, but with an artistic soul."
-    },
-    "advantages": {
-      "title": "Our Advantages",
-      "projects": {
-        "title": "352 Projects",
-        "desc": "Experience that transforms ideas into reality."
-      },
-      "clients": {
-        "title": "567 Clients",
-        "desc": "Trust and long-term partnerships."
-      },
-      "revenue": {
-        "title": "656M Revenue",
-        "desc": "Solutions for sustainable growth."
-      },
-      "awards": {
-        "title": "17 Awards",
-        "desc": "Recognition for creativity."
-      }
-    },
-    "reviews": {
-      "title": "Reviews",
-      "review1": {
-        "text": "“Nex Architecture turned our vision into a masterpiece. Attention to detail at the highest level.”",
-        "author": "Jane Doe"
-      },
-      "review2": {
-        "text": "“Professional, modern, and reliable. The team exceeded our expectations.”",
-        "author": "John Smith"
-      }
-    },
-    "contact": {
-      "title": "Contact Us",
-      "desc": "Have an idea or a question? We’re open to dialogue.",
-      "name": "Name",
-      "email": "Email",
-      "message": "Message",
-      "button": "Send"
-    }
-  },
+  "hero": {
+    "studio": "Architecture Studio",
+    "title2": "Building your visions, creating reality.",
+    "desc": "An architectural studio where ideas turn into stylish and functional projects. From concept to realization.",
+    "button": "View Projects",
+    "secondary": "About studio"
+  }
+},
 
-  "reviewsPage": {
-    "title": "Our Clients’ Reviews",
-    "subtitle": "We value the trust of every client and are proud of the results.",
-    "review1": {
-      "text": "“The studio’s work exceeded all expectations. Very attentive to detail and always in touch.”",
-      "author": "Anna Ivanova"
-    },
-    "review2": {
-      "text": "“The project was completed on time and with quality. Our office now looks modern and stylish.”",
-      "author": "Sergey Petrov"
-    },
-    "review3": {
-      "text": "“Great team! They offered several creative solutions we hadn’t even thought of.”",
-      "author": "Ekaterina Smirnova"
-    },
-    "review4": {
-      "text": "“A very professional approach. I recommend them to anyone who wants quality results.”",
-      "author": "Alexander Orlov"
-    }
-  },
+"portfolioPage": {
+  "title": "Selected Works"
+},
 
-  "portfolioPage": {
-    "title": "Project Portfolio",
-    "subtitle": "The best projects that reflect our expertise and design philosophy.",
-    "philosophyTitle": "Our Philosophy",
-    "philosophyText": "We create architecture that combines aesthetics and functionality. Each project for us is a story written in space.",
-    "featuredProjects": "Featured Projects",
-    "dragHint": "Drag to explore more",
-    "projects": [
-      {
-        "id": 1,
-        "name": "Modern Apartment",
-        "description": "Minimalist design with cozy elements for everyday living.",
-        "image": "/images/portfolio/apartment.jpg"
-      },
-      {
-        "id": 2,
-        "name": "Country House",
-        "description": "A space created for comfort and inspiration away from the city.",
-        "image": "/images/portfolio/house.jpg"
-      },
-      {
-        "id": 3,
-        "name": "Office Center",
-        "description": "An innovative workspace with a focus on productivity.",
-        "image": "/images/portfolio/office.jpg"
-      }
-    ]
+  "videosPage": {
+    "heroTitle": "Learn and Master Architecture",
+    "heroSubtitle": "Professional architectural and design courses created to elevate your skills and career.",
+    "preview": "Preview",
+    "coursesTitle": "Available Courses",
+
+    "course1": {
+      "title": "Modern Interior Design",
+      "description": "Learn how to design stunning and practical interior spaces with modern techniques."
+    },
+    "course2": {
+      "title": "3D Modeling & Visualization",
+      "description": "Master 3D visualization tools and bring your architectural concepts to life."
+    },
+    "course3": {
+      "title": "Architectural Planning",
+      "description": "Understand how to plan, structure, and organize architectural projects from A to Z."
+    },
+
+    "featuresTitle": "Why Choose Our Courses?",
+    "feature1Title": "High-Quality Lessons",
+    "feature1Desc": "Each lesson is carefully crafted to provide clear, structured, and practical knowledge.",
+    "feature2Title": "Professional Instructors",
+    "feature2Desc": "Learn from experienced architects and designers with real-world expertise.",
+    "feature3Title": "Access Anytime",
+    "feature3Desc": "Study at your own pace with full access to lessons on any device."
   },
 
   "aboutPage": {
@@ -207,55 +97,20 @@
         "year": "2023 – International Collaboration",
         "text": "Expansion into foreign markets with sustainable solutions developed with international partners."
       }
-    ],
-    "teamTitle": "Our Team",
-    "team": [
-      {
-        "name": "Abdurashid Karimov",
-        "role": "Founder & Chief Architect"
-      },
-      {
-        "name": "Lailo Ismatova",
-        "role": "Creative Director"
-      },
-      {
-        "name": "Javlonbek Tursunov",
-        "role": "Sustainability Expert"
-      }
-    ],
-    "outroTitle": "Every project — a step into the future",
-    "outroText": "MaxArchitects builds a harmonious Uzbekistan where architecture connects past and future.",
-    "outroButton": "Contact Us",
-    "footer": "© {{year}} — Architecture Studio. All rights reserved."
-  },
-
-  "blogPage": {
-    "title": "Our Blog",
-    "subtitle": "Stories, notes, and inspiration from our studio.",
-    "videoTitle": "Videos from Our Life",
-    "videoSubtitle": "Short clips about our team, projects, and inspiration.",
-    "subscribeTitle": "Stay Updated",
-    "subscribeSubtitle": "Subscribe for monthly notes, useful materials, and project updates.",
-    "subscribePlaceholder": "you@company.com",
-    "subscribeButton": "Subscribe",
-    "subscribeAlert": "Subscription successful (demo)."
+    ]
   },
 
   "contactsPage": {
     "title": "Contacts",
     "subtitle": "Get in touch with us to discuss projects or request a consultation.",
-    "infoTitle": "Our Contacts",
     "address": {
-      "title": "Address",
-      "text": "Tashkent, Uzbekistan\nSamarkand Darvoza"
+      "title": "Address"
     },
     "phone": {
-      "title": "Phone",
-      "text": "+998 99 936-65-56\n+998 90 014-14-44"
+      "title": "Phone"
     },
     "email": {
-      "title": "Email",
-      "text": "mavagroup2009@gmail.com"
+      "title": "Email"
     },
     "hours": {
       "title": "Working Hours",
@@ -271,7 +126,7 @@
     "form": {
       "title": "Send us a Message",
       "subtitle": "We will answer your questions and discuss project details.",
-      "alert": "Message sent (demo).",
+      "alert": "Message sent.",
       "error": "Failed to send the message.",
       "name": "Your Name",
       "email": "Your Email",
@@ -279,33 +134,5 @@
       "button": "Send",
       "sending": "Sending..."
     }
-  },
-"videosPage": {
-    "loading": "Loading courses...",
-    "heroTitle": "Discover new knowledge with our courses",
-    "heroSubtitle": "Choose a category and start learning at your own pace.",
-    "coursesTitle": "Our Courses",
-    "course1": { "title": "Web Development Bootcamp", "description": "Learn how to build modern websites using HTML, CSS, and JavaScript." },
-    "course2": { "title": "Data Science with Python", "description": "Analyze data, build machine learning models, and create visualizations." },
-    "course3": { "title": "UI/UX Design Fundamentals", "description": "Design user-friendly and visually appealing interfaces and experiences." },
-    "visitCompany": "Visit Company",
-    "preview": "Preview",
-    "buyCourse": "Buy course",
-    "startLearning": "Start learning",
-    "instructor": "Instructor",
-    "videosCount": "Number of videos",
-    "youWillLearn": "What you will learn",
-    "close": "Close",
-    "featuresTitle": "Why Choose Us",
-    "feature1Title": "Expert Instructors",
-    "feature1Desc": "Courses are taught by practicing professionals with years of experience.",
-    "feature2Title": "Flexible Schedule",
-    "feature2Desc": "Learn at your convenience, without being tied to a timetable.",
-    "feature3Title": "Practical Projects",
-    "feature3Desc": "Gain real-world skills by completing projects close to actual practice.",
-    "outroTitle": "Start your learning journey today",
-    "outroText": "Our courses will help you gain skills valuable for work and creativity."
   }
-
-
 }

@@ -1,177 +1,68 @@
 {
-  "nex": "NEX ARCHITECTS",
   "portfolio": "Portfel",
-  "styles": "Uslublar",
-  "reviews": "Sharhlar",
   "about": "Biz haqimizda",
-  "blog": "Blog",
-  "suppliers": "Yetkazib beruvchilar uchun",
-  "vacancies": "Ish o‘rinlari",
   "contacts": "Aloqa",
   "videos": "Kurslar",
-  "phone": "+998 99 808-36-16",
 
-  "hero": {
-    "title": "Kelajak Arxitekturasi",
-    "subtitle": "G‘oyalar, Formlar, Yechimlar",
-    "button": "Loyihalarni ko‘rish"
-  },
-
-    "footer": {
-    "rights": "Barcha huquqlar himoyalangan, yaratuvchi:",
+  "footer": {
+    "rights": "Barcha huquqlar himoyalangan,",
     "navigation": "Navigatsiya",
+    "portfolio": "Portfel",
+    "videos": "Kurslar",
     "contacts": "Aloqa",
-    "link9": "Portfolio",
-    "link3": "Kurslar",
+    "about": "Biz haqimizda",
     "follow": "Bizni kuzatib boring",
-    "dev": "❤️ bilan ishlab chiqildi —"
-  },
-
-  "login": {
-    "subtitle": "Hisobingizga kiring",
-    "email": "Email",
-    "password": "Parol",
-    "passwordPlaceholder": "Parolni kiriting",
-    "signIn": "Kirish",
-    "signUp": "Ro‘yxatdan o‘tish",
-    "noAccount": "Hisobingiz yo‘qmi?",
-    "errorGeneric": "Kirishda xato"
-  },
-
-  "signup": {
-    "name": "Ism",
-    "surname": "Familiya",
-    "namePlaceholder": "Ismingiz",
-    "surnamePlaceholder": "Familiyangiz",
-    "createAccount": "Hisob yaratish",
-    "email": "Email",
-    "password": "Parol",
-    "confirmPassword": "Parolni tasdiqlang",
-    "signUp": "Ro‘yxatdan o‘tish",
-    "signIn": "Kirish",
-    "haveAccount": "Allaqachon hisobingiz bormi?",
-    "passwordsDoNotMatch": "Parollar mos emas",
-    "signupFailed": "Ro‘yxatdan o‘tishda xato",
-    "generalError": "Xatolik yuz berdi",
-    "min8": "Kamida 8 ta belgidan iborat bo‘lishi kerak",
-    "uppercase": "Bitta katta harf",
-    "lowercase": "Bitta kichik harf",
-    "number": "Bitta raqam",
-    "symbol": "Bitta maxsus belgi (!@#$...)"
+    "dev": "❤️ bilan ishlab chiqildi"
   },
 
   "homepage": {
-    "hero": {
-      "title": "Kelajak Arxitekturasi",
-      "desc": "Arxitektura studiyasi, bu yerda g‘oyalar zamonaviy va funksional loyihalarga aylanadi. Konseptdan amalga oshirishgacha.",
-      "button": "Loyihalarni ko‘rish",
-      "services": {
-        "interior": "Interyer Dizayn",
-        "planning": "Loyihalashtirish",
-        "modeling": "3D Modellashtirish"
-      }
-    },
-    "about": {
-      "title": "Biz haqimizda",
-      "p1": "Nex Architecture — innovatsiya va aniqlik orqali shaharlarni o‘zgartirayotgan me’mor va muhandislar jamoasi.",
-      "p2": "Har bir loyiha shiorga amal qiladi: forma funksiyaga bo‘ysunadi, ammo san’at ruhi bilan."
-    },
-    "advantages": {
-      "title": "Afzalliklarimiz",
-      "projects": {
-        "title": "352 loyiha",
-        "desc": "Tajriba g‘oyalarni haqiqatga aylantiradi."
-      },
-      "clients": {
-        "title": "567 mijoz",
-        "desc": "Ishonch va uzoq muddatli hamkorlik."
-      },
-      "revenue": {
-        "title": "656M daromad",
-        "desc": "Barqaror o‘sish uchun yechimlar."
-      },
-      "awards": {
-        "title": "17 ta mukofot",
-        "desc": "Ijodkorlik uchun e’tirof."
-      }
-    },
-    "reviews": {
-      "title": "Sharhlar",
-      "review1": {
-        "text": "“Nex Architecture bizning orzuyimizni asarga aylantirdi. Detallarga e’tibor juda zo‘r.”",
-        "author": "Jane Doe"
-      },
-      "review2": {
-        "text": "“Professional, zamonaviy va ishonchli. Jamoa kutganimizdan ham yaxshi ishladi.”",
-        "author": "John Smith"
-      }
-    },
-    "contact": {
-      "title": "Biz bilan bog‘laning",
-      "desc": "G‘oyangiz yoki savolingiz bormi? Biz doimo muloqotga ochiqmiz.",
-      "name": "Ism",
-      "email": "Email",
-      "message": "Xabar",
-      "button": "Yuborish"
-    }
-  },
-
-  "reviewsPage": {
-    "title": "Mijozlarimiz Sharhlari",
-    "subtitle": "Har bir mijozimizning ishonchini qadrlaymiz va natijalarimiz bilan faxrlanamiz.",
-    "review1": {
-      "text": "“Studiya ishlari barcha kutganlardan oshib ketdi. Detallarga juda e’tiborli va doim aloqada.”",
-      "author": "Anna Ivanova"
-    },
-    "review2": {
-      "text": "“Loyiha o‘z vaqtida va sifatli bajarildi. Ofisimiz zamonaviy va uslubiy ko‘rinishga ega.”",
-      "author": "Sergey Petrov"
-    },
-    "review3": {
-      "text": "“Zo‘r jamoa! Biz o‘ylamagan bir nechta ijodiy yechimlar taklif qilishdi.”",
-      "author": "Ekaterina Smirnova"
-    },
-    "review4": {
-      "text": "“Juda professional yondashuv. Sifatli natijalarni xohlovchilarga tavsiya qilaman.”",
-      "author": "Alexander Orlov"
-    }
-  },
-
+  "hero": {
+    "studio": "Arxitektura studiyasi",
+    "title2": "Tasavvurlaringizni quramiz, reallikka aylantiramiz.",
+    "desc": "Bu yerda g‘oyalar zamonaviy va funksional loyihalarga aylanuvchi arxitektura studiyasi. Konseptdan amalga oshirishgacha.",
+    "button": "Loyihalarni ko‘rish",
+    "secondary": "Studiya haqida"
+  }
+},
   "portfolioPage": {
-    "title": "Loyihalar Portfeli",
-    "subtitle": "Eng yaxshi loyihalarimiz, ular tajribamiz va dizayn falsafamizni aks ettiradi.",
-    "philosophyTitle": "Bizning Falsafamiz",
-    "philosophyText": "Biz estetik va funksionallikni uyg‘unlashtirgan arxitekturani yaratamiz. Har bir loyiha biz uchun makonda yozilgan hikoya.",
-    "featuredProjects": "Tanlangan Loyihalar",
-    "dragHint": "Ko‘proq ko‘rish uchun sudrab o‘tkazing",
-    "projects": [
-      {
-        "id": 1,
-        "name": "Zamonaviy Kvartira",
-        "description": "Har kunlik hayot uchun minimalistik va qulay elementlar bilan dizayn.",
-        "image": "/images/portfolio/apartment.jpg"
-      },
-      {
-        "id": 2,
-        "name": "Qishloq Uyi",
-        "description": "Shahar tashqarisida qulaylik va ilhom uchun yaratilgan makon.",
-        "image": "/images/portfolio/house.jpg"
-      },
-      {
-        "id": 3,
-        "name": "Ofis Markazi",
-        "description": "Ish unumdorligiga yo‘naltirilgan innovatsion ish joyi.",
-        "image": "/images/portfolio/office.jpg"
-      }
-    ]
+  "title": "Tanlangan loyihalar"
+},
+
+
+  "videosPage": {
+    "heroTitle": "Arxitektura bo‘yicha bilimlaringizni oshiring",
+    "heroSubtitle": "Malakali ustozlar tomonidan tayyorlangan professional arxitektura va dizayn kurslari.",
+    "preview": "Ko‘rish",
+    "coursesTitle": "Mavjud kurslar",
+
+    "course1": {
+      "title": "Zamonaviy interyer dizayni",
+      "description": "Zamonaviy uslublar yordamida chiroyli va qulay interyerlar yaratishni o‘rganing."
+    },
+    "course2": {
+      "title": "3D modellashtirish va vizualizatsiya",
+      "description": "3D vizualizatsiya vositalarini o‘zlashtirib, g‘oyalaringizni hayotga tatbiq eting."
+    },
+    "course3": {
+      "title": "Arxitektura rejalashtirish",
+      "description": "Loyihalarni rejalash, tuzish va boshidan oxirigacha tashkil qilishni o‘rganing."
+    },
+
+    "featuresTitle": "Nega aynan bizning kurslar?",
+    "feature1Title": "Yuqori sifatli darslar",
+    "feature1Desc": "Har bir dars aniq, tushunarli va amaliy bo‘lishi uchun e'tibor bilan tayyorlangan.",
+    "feature2Title": "Professional ustozlar",
+    "feature2Desc": "Haqiqiy tajribaga ega arxitektor va dizaynerlardan o‘rganing.",
+    "feature3Title": "Istalgan vaqtda kirish",
+    "feature3Desc": "Kurslarga istalgan vaqtda va istalgan qurilmadan kirish imkoniyati."
   },
 
   "aboutPage": {
     "title": "Mava Group haqida",
     "intro": "Biz me’morlar, dizaynerlar va muhandislarning ko‘p tarmoqli jamoasimiz, ma’noli makonlarni yaratishga bag‘ishlanganmiz.",
-    "missionTitle": "Bizning Missiyamiz",
+    "missionTitle": "Bizning missiyamiz",
     "missionText": "Foydalilik, go‘zallik va barqarorlikni uyg‘unlashtirgan muhitlarni yaratish orqali insonlarning hayoti va ishini yaxshilash.",
-    "visionTitle": "Bizning Vizyonimiz",
+    "visionTitle": "Bizning vizyonimiz",
     "visionText": "Markaziy Osiyoda innovatsiya, sifat va abadiy dizayn bilan tanilgan yetakchi arxitektura studiyasiga aylanish.",
     "valuesTitle": "Qiymatlarimiz",
     "values": [
@@ -192,7 +83,7 @@
         "text": "Eng yaxshi natijalar mijozlar va hamkorlar bilan yaqin ishlashdan kelib chiqadi deb hisoblaymiz."
       }
     ],
-    "timelineTitle": "Bizning Yo‘limiz",
+    "timelineTitle": "Bizning yo‘limiz",
     "timeline": [
       {
         "year": "2015 – Boshlanish",
@@ -203,58 +94,23 @@
         "text": "Innovatsiya va madaniy an’analarni uyg‘unlashtirgan turar-joy majmuasi amalga oshirildi."
       },
       {
-        "year": "2023 – Xalqaro Hamkorlik",
+        "year": "2023 – Xalqaro hamkorlik",
         "text": "Xorijiy bozorga chiqildi va xalqaro hamkorlar bilan barqaror yechimlar joriy etildi."
       }
-    ],
-    "teamTitle": "Bizning Jamoa",
-    "team": [
-      {
-        "name": "Abdurashid Karimov",
-        "role": "Asoschi va Bosh Me’mor"
-      },
-      {
-        "name": "Lailo Ismatova",
-        "role": "Kreativ Direktor"
-      },
-      {
-        "name": "Javlonbek Tursunov",
-        "role": "Barqarorlik Mutaxassisi"
-      }
-    ],
-    "outroTitle": "Har bir loyiha — kelajakka qadam",
-    "outroText": "MaxArchitects o‘tmish va kelajakni bog‘lovchi uyg‘un O‘zbekistonni qurmoqda.",
-    "outroButton": "Biz bilan bog‘laning",
-    "footer": "© {{year}} — Arxitektura Studiyasi. Barcha huquqlar himoyalangan."
-  },
-
-  "blogPage": {
-    "title": "Bizning Blog",
-    "subtitle": "Studiyamizdan hikoyalar, eslatmalar va ilhomlar.",
-    "videoTitle": "Hayotimizdan videolar",
-    "videoSubtitle": "Jamoamiz, loyihalarimiz va ilhomimiz haqida qisqa roliklar.",
-    "subscribeTitle": "Yangiliklardan xabardor bo‘ling",
-    "subscribeSubtitle": "Obuna bo‘ling — oylik eslatmalar, foydali materiallar va loyihalar yangiliklari.",
-    "subscribePlaceholder": "siz@kompaniya.com",
-    "subscribeButton": "Obuna bo‘lish",
-    "subscribeAlert": "Obuna muvaffaqiyatli amalga oshirildi (demo)."
+    ]
   },
 
   "contactsPage": {
     "title": "Aloqa",
     "subtitle": "Loyihalar bo‘yicha maslahat yoki hamkorlik uchun biz bilan bog‘laning.",
-    "infoTitle": "Bizning Aloqalar",
     "address": {
-      "title": "Manzil",
-      "text": "Toshkent, O‘zbekiston\nSamarqand Darvoza"
+      "title": "Manzil"
     },
     "phone": {
-      "title": "Telefon",
-      "text": "+998 99 936-65-56\n+998 90 014-14-44"
+      "title": "Telefon"
     },
     "email": {
-      "title": "Email",
-      "text": "mavagroup2009@gmail.com"
+      "title": "Email"
     },
     "hours": {
       "title": "Ish vaqti",
@@ -270,7 +126,7 @@
     "form": {
       "title": "Bizga xabar yuboring",
       "subtitle": "Savollaringizga javob beramiz va loyiha tafsilotlarini muhokama qilamiz.",
-      "alert": "Xabar yuborildi (demo).",
+      "alert": "Xabar yuborildi.",
       "error": "Xabar yuborishda xatolik yuz berdi.",
       "name": "Ismingiz",
       "email": "Emailingiz",
@@ -278,34 +134,5 @@
       "button": "Yuborish",
       "sending": "Yuborilmoqda..."
     }
-  },
-
-   "videosPage": {
-    "loading": "Kurslar yuklanmoqda...",
-    "heroTitle": "Bizning kurslarimiz",
-    "heroSubtitle": "Yo‘nalishni tanlang va o‘zingizga qulay vaqtda o‘rganishni boshlang.",
-    "coursesTitle": "Bizning Kurslar",
-    "course1": { "title": "Veb dasturlash", "description": "HTML, CSS va JavaScript yordamida zamonaviy veb-saytlar yaratishni o‘rganing." },
-    "course2": { "title": "Python bilan Data Science", "description": "Ma’lumotlarni tahlil qiling, ML modellarini yarating va natijalarni vizualizatsiya qiling." },
-    "course3": { "title": "UI/UX dizayn asoslari", "description": "Foydalanuvchiga qulay va vizual jihatdan chiroyli interfeys yarating." },
-    "visitCompany": "Kompaniya saytiga o'tish",
-    "preview": "Batafsil",
-    "buyCourse": "Kursni sotib olish",
-    "startLearning": "O‘qishni boshlash",
-    "instructor": "O‘qituvchi",
-    "videosCount": "Videolar soni",
-    "youWillLearn": "Siz nimalarni o‘rganasiz",
-    "close": "Yopish",
-    "featuresTitle": "Nima uchun bizni tanlaydilar",
-    "feature1Title": "Ekspert o‘qituvchilar",
-    "feature1Desc": "O‘qituvchilar amaliyotda faoliyat yuritayotgan ko‘p yillik tajribaga ega.",
-    "feature2Title": "Moslashuvchan jadval",
-    "feature2Desc": "O‘zingizga qulay vaqtda, jadvalga bog‘lanmasdan o‘qing.",
-    "feature3Title": "Amaliy loyihalar",
-    "feature3Desc": "Amaliyotga yaqin loyihalarni bajarish orqali haqiqiy ko‘nikmalarni oling.",
-    "outroTitle": "Bugunoq ta’lim yo‘lingizni boshlang",
-    "outroText": "Bizning kurslarimiz sizga ish va ijodda foydali bo‘ladigan ko‘nikmalarni egallashga yordam beradi."
   }
-
-
 }

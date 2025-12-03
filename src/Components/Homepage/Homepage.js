@@ -14,8 +14,10 @@ function Homepage() {
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "smooth";
     window.scrollTo(0, 0);
+
     const handleClickOutside = () => setShowPhoneOptions(false);
     document.addEventListener("click", handleClickOutside);
+
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
@@ -79,7 +81,7 @@ function Homepage() {
     </div>
   );
 
-  /* -------------------- UNIFIED HERO SECTION (LIGHT & DARK) -------------------- */
+  /* -------------------- HERO SECTION -------------------- */
   return (
     <section
       className={`relative w-full min-h-screen flex items-center justify-center px-4 sm:px-8 transition-all duration-500
@@ -89,22 +91,23 @@ function Homepage() {
         
         {/* LEFT — Text */}
         <div>
+          {/* TRANSLATED TITLE 1 */}
           <p
             className={`text-xs tracking-[0.32em] uppercase mb-4
               ${isDark ? "text-gray-400" : "text-gray-500"}`}
           >
-            Architecture Studio
+            {t("homepage.hero.studio")}
           </p>
 
+          {/* TRANSLATED TITLE 2 */}
           <h1
             className={`text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-semibold leading-tight mb-4
               ${isDark ? "text-white" : "text-gray-900"}`}
           >
-            Building your visions,
-            <br />
-            creating reality.
+            {t("homepage.hero.title2")}
           </h1>
 
+          {/* Description */}
           <p
             className={`text-sm sm:text-base md:text-lg max-w-md mb-8
               ${isDark ? "text-gray-300" : "text-gray-600"}`}
@@ -112,8 +115,8 @@ function Homepage() {
             {t("homepage.hero.desc")}
           </p>
 
+          {/* Buttons */}
           <div className="flex flex-wrap gap-3">
-            {/* PRIMARY BUTTON */}
             <Link
               to="/portfolio"
               className={`inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold transition
@@ -126,7 +129,6 @@ function Homepage() {
               {t("homepage.hero.button")}
             </Link>
 
-            {/* SECONDARY BUTTON */}
             <Link
               to="/about"
               className={`inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-medium transition border
@@ -136,7 +138,7 @@ function Homepage() {
                     : "border-gray-300 text-gray-800 hover:border-gray-900 hover:text-gray-900"
                 }`}
             >
-              {t("homepage.hero.secondary") || "About studio"}
+              {t("homepage.hero.secondary")}
             </Link>
           </div>
         </div>
@@ -149,7 +151,7 @@ function Homepage() {
             className="w-full h-full object-cover"
           />
 
-          {/* subtle dark overlay to match theme */}
+          {/* Dark overlay */}
           {isDark && (
             <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
           )}
