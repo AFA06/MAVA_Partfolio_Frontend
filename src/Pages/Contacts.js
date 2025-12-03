@@ -60,36 +60,41 @@ export default function Contacts() {
       text: (
         <div className="space-y-1.5 text-sm sm:text-base">
           {[
-            ["Понедельник", "09:00–21:00"],
-            ["Вторник", "09:00–21:00"],
-            ["Среда", "09:00–21:00"],
-            ["Четверг", "09:00–21:00"],
-            ["Пятница", "14:00–21:00"],
-            ["Суббота", "10:00–19:00"],
-            ["Воскресенье", "Закрыто"],
-          ].map(([day, time], i) => (
-            <div
-              key={i}
-              className={`flex justify-between border-b pb-0.5 last:border-none ${
-                theme === "dark"
-                  ? "border-white/10 text-gray-200"
-                  : "border-gray-200 text-gray-700"
-              }`}
-            >
-              <span className="font-medium">{day}</span>
-              <span
-                className={`${
-                  time === "Закрыто"
-                    ? "text-red-500 font-medium"
-                    : theme === "dark"
-                    ? "text-gray-300"
-                    : "text-gray-700"
+            ["monday", "09:00–21:00"],
+            ["tuesday", "09:00–21:00"],
+            ["wednesday", "09:00–21:00"],
+            ["thursday", "09:00–21:00"],
+            ["friday", "14:00–21:00"],
+            ["saturday", "10:00–19:00"],
+            ["sunday", "closed"],
+          ].map(([dayKey, time], i) => {
+            const isClosed = time === "closed";
+            return (
+              <div
+                key={i}
+                className={`flex justify-between border-b pb-0.5 last:border-none ${
+                  theme === "dark"
+                    ? "border-white/10 text-gray-200"
+                    : "border-gray-200 text-gray-700"
                 }`}
               >
-                {time}
-              </span>
-            </div>
-          ))}
+                <span className="font-medium">
+                  {t(`contactsPage.hours.${dayKey}`)}
+                </span>
+                <span
+                  className={`${
+                    isClosed
+                      ? "text-red-500 font-medium"
+                      : theme === "dark"
+                      ? "text-gray-300"
+                      : "text-gray-700"
+                  }`}
+                >
+                  {isClosed ? t("contactsPage.hours.closed") : time}
+                </span>
+              </div>
+            );
+          })}
         </div>
       ),
     },
