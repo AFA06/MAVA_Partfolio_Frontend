@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/MAVA_Partfolio_Frontend/static/css/main.cb426939.css",
-    "main.js": "/MAVA_Partfolio_Frontend/static/js/main.0628dde0.js",
+    "main.css": "/MAVA_Partfolio_Frontend/static/css/main.e306be90.css",
+    "main.js": "/MAVA_Partfolio_Frontend/static/js/main.a47c8b86.js",
     "static/js/453.670e15c7.chunk.js": "/MAVA_Partfolio_Frontend/static/js/453.670e15c7.chunk.js",
     "static/media/test.png": "/MAVA_Partfolio_Frontend/static/media/test.1b306eb9107fc7282ea9.png",
     "static/media/teem3.jpg": "/MAVA_Partfolio_Frontend/static/media/teem3.9943abd92c7ab98de818.jpg",
@@ -10,12 +10,12 @@
     "static/media/teem2.jpg": "/MAVA_Partfolio_Frontend/static/media/teem2.4acad38191018476334b.jpg",
     "static/media/logo.png": "/MAVA_Partfolio_Frontend/static/media/logo.03ee954eebd642b401df.png",
     "index.html": "/MAVA_Partfolio_Frontend/index.html",
-    "main.cb426939.css.map": "/MAVA_Partfolio_Frontend/static/css/main.cb426939.css.map",
-    "main.0628dde0.js.map": "/MAVA_Partfolio_Frontend/static/js/main.0628dde0.js.map",
+    "main.e306be90.css.map": "/MAVA_Partfolio_Frontend/static/css/main.e306be90.css.map",
+    "main.a47c8b86.js.map": "/MAVA_Partfolio_Frontend/static/js/main.a47c8b86.js.map",
     "453.670e15c7.chunk.js.map": "/MAVA_Partfolio_Frontend/static/js/453.670e15c7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cb426939.css",
-    "static/js/main.0628dde0.js"
+    "static/css/main.e306be90.css",
+    "static/js/main.a47c8b86.js"
   ]
 }
