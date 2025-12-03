@@ -1,4 +1,6 @@
-// src/pages/Contacts.jsx
+// FULL MOBILE RESPONSIVE CONTACTS PAGE (UPDATED)
+// Paste this into /src/pages/Contacts.jsx
+
 import React, { useState, useMemo } from "react";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { motion } from "framer-motion";
@@ -15,7 +17,7 @@ export default function Contacts() {
   const [success, setSuccess] = useState(null);
 
   /* ----------------------------------------------
-     PAPER TEXTURE FOR LIGHT URBAN BACKGROUND
+     PAPER TEXTURE (Light Mode)
   ---------------------------------------------- */
   const paperDataUrl = useMemo(() => {
     const canvas = document.createElement("canvas");
@@ -42,21 +44,21 @@ export default function Contacts() {
     {
       title: t("contactsPage.address.title"),
       text: "г. Ташкент, Узбекистан",
-      icon: <MapPin />,
+      icon: <MapPin size={28} />,
     },
     {
       title: t("contactsPage.phone.title"),
       text: "+998 99 936-65-56\n+998 90 014-14-44",
-      icon: <Phone />,
+      icon: <Phone size={28} />,
     },
     {
       title: t("contactsPage.email.title"),
       text: "mavagroup2009@gmail.com",
-      icon: <Mail />,
+      icon: <Mail size={28} />,
     },
     {
       title: t("contactsPage.hours.title"),
-      icon: <Clock />,
+      icon: <Clock size={28} />,
       text: (
         <div className="space-y-1.5 text-sm sm:text-base">
           {[
@@ -72,15 +74,16 @@ export default function Contacts() {
             return (
               <div
                 key={i}
-                className={`flex justify-between border-b pb-0.5 last:border-none ${
+                className={`flex justify-between border-b pb-1 last:border-none text-xs sm:text-sm ${
                   theme === "dark"
                     ? "border-white/10 text-gray-200"
-                    : "border-gray-200 text-gray-700"
+                    : "border-gray-300 text-gray-700"
                 }`}
               >
                 <span className="font-medium">
                   {t(`contactsPage.hours.${dayKey}`)}
                 </span>
+
                 <span
                   className={`${
                     isClosed
@@ -101,7 +104,7 @@ export default function Contacts() {
   ];
 
   /* ----------------------------------------------
-              FORM SUBMIT HANDLER
+        Submit Handler
   ---------------------------------------------- */
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -122,7 +125,7 @@ export default function Contacts() {
   };
 
   /* ----------------------------------------------
-           THEME CLASSES (Urban Light vs Dark)
+        Theme classes
   ---------------------------------------------- */
   const bgMain =
     theme === "dark"
@@ -132,7 +135,7 @@ export default function Contacts() {
   const card =
     theme === "dark"
       ? "bg-white/5 border border-white/10 hover:bg-white/10"
-      : "bg-white border border-gray-200 shadow-lg hover:shadow-xl hover:-translate-y-1";
+      : "bg-white border border-gray-200 shadow-md hover:shadow-lg";
 
   const formCard =
     theme === "dark"
@@ -145,8 +148,8 @@ export default function Contacts() {
       : "bg-gray-50 border-gray-300 text-gray-800";
 
   return (
-    <div className={`relative min-h-screen w-full antialiased ${bgMain}`}>
-      {/* LIGHT THEME PAPER EFFECT */}
+    <div className={`relative min-h-screen w-full ${bgMain}`}>
+      {/* BG Texture */}
       {theme === "light" && (
         <div
           aria-hidden
@@ -161,47 +164,40 @@ export default function Contacts() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="mx-auto max-w-4xl px-4 sm:px-6 pt-20 sm:pt-24 pb-12 sm:pb-16 text-center"
+          className="max-w-4xl mx-auto px-4 pt-20 sm:pt-24 pb-10 text-center"
         >
-          <h1
-            className={`text-[clamp(2.4rem,6vw,3.5rem)] font-semibold tracking-tight 
-            ${theme === "dark" ? "text-white" : "text-gray-900"}`}
-          >
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold">
             {t("contactsPage.title")}
           </h1>
 
           <div
-            className={`mt-5 h-[3px] w-32 mx-auto rounded-full 
-            ${
+            className={`mt-5 h-[3px] w-24 mx-auto rounded-full ${
               theme === "dark"
                 ? "bg-gradient-to-r from-yellow-500 to-yellow-400"
                 : "bg-gray-300"
             }`}
           />
 
-          <p
-            className={`mt-6 max-w-2xl mx-auto text-base md:text-lg leading-relaxed
-            ${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}
-          >
+          <p className="mt-5 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
             {t("contactsPage.subtitle")}
           </p>
         </motion.div>
       </header>
 
       {/* -------------------------------- INFO CARDS -------------------------------- */}
-      <section className="px-4 sm:px-6 py-12 sm:py-16">
-        <div className="mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <section className="px-4 sm:px-6 py-10 sm:py-14">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {contactItems.map((item, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
-              className={`group rounded-2xl p-6 transition-all ${card}`}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              className={`rounded-2xl p-5 sm:p-6 ${card} transition`}
             >
               <div
-                className={`flex items-center justify-center w-14 h-14 rounded-full mb-4 
+                className={`flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full mb-4
                 ${
                   theme === "dark"
                     ? "bg-yellow-500/20 text-yellow-400"
@@ -211,17 +207,11 @@ export default function Contacts() {
                 {item.icon}
               </div>
 
-              <h3
-                className={`font-semibold text-lg mb-2
-                ${theme === "dark" ? "text-white" : "text-gray-900"}`}
-              >
+              <h3 className="font-semibold text-base sm:text-lg mb-1.5">
                 {item.title}
               </h3>
 
-              <div
-                className={`whitespace-pre-line text-sm leading-relaxed
-                ${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}
-              >
+              <div className="whitespace-pre-line text-sm leading-relaxed">
                 {item.text}
               </div>
             </motion.div>
@@ -230,30 +220,22 @@ export default function Contacts() {
       </section>
 
       {/* -------------------------------- CONTACT FORM -------------------------------- */}
-      <section className="relative px-4 sm:px-6 py-12 sm:py-20">
+      <section className="px-4 sm:px-6 py-12">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.97 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className={`mx-auto max-w-xl sm:max-w-2xl rounded-3xl p-8 sm:p-12 backdrop-blur-xl
-          ${formCard}`}
+          transition={{ duration: 0.6 }}
+          className={`max-w-xl sm:max-w-2xl mx-auto rounded-3xl p-8 sm:p-12 ${formCard}`}
         >
-          <h4
-            className={`text-2xl sm:text-3xl font-semibold mb-2 
-            ${theme === "dark" ? "text-white" : "text-gray-900"}`}
-          >
+          <h4 className="text-xl sm:text-2xl font-semibold mb-2">
             {t("contactsPage.form.title")}
           </h4>
 
-          <p
-            className={`mt-2 text-sm sm:text-base 
-            ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}
-          >
+          <p className="text-sm sm:text-base text-gray-400 mb-6">
             {t("contactsPage.form.subtitle")}
           </p>
 
-          <form onSubmit={handleSubmit} className="mt-6 space-y-5 text-left">
+          <form onSubmit={handleSubmit} className="space-y-5">
             {/* NAME */}
             <div>
               <label className="block text-sm font-medium mb-1">
@@ -288,7 +270,7 @@ export default function Contacts() {
                 {t("contactsPage.form.message")}
               </label>
               <textarea
-                rows="5"
+                rows="4"
                 required
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
@@ -300,7 +282,7 @@ export default function Contacts() {
             <button
               type="submit"
               disabled={loading}
-              className={`mt-4 w-full px-6 py-3 rounded-xl font-semibold transition shadow-md
+              className={`w-full mt-3 px-6 py-3 rounded-xl text-base font-semibold transition
               ${
                 theme === "dark"
                   ? "bg-yellow-500 text-black hover:bg-yellow-400"
@@ -312,14 +294,13 @@ export default function Contacts() {
                 : t("contactsPage.form.button")}
             </button>
 
-            {/* ALERTS */}
             {success === true && (
-              <p className="mt-2 text-green-600">
+              <p className="mt-2 text-green-600 text-sm">
                 {t("contactsPage.form.alert")}
               </p>
             )}
             {success === false && (
-              <p className="mt-2 text-red-600">
+              <p className="mt-2 text-red-600 text-sm">
                 {t("contactsPage.form.error")}
               </p>
             )}
@@ -327,19 +308,19 @@ export default function Contacts() {
         </motion.div>
       </section>
 
-      {/* -------------------------------- GOOGLE MAPS -------------------------------- */}
-      <section className="relative w-full h-[400px] sm:h-[500px] mt-12">
-        <iframe
-          title="Office Location"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.73372759458!2d69.2877!3d41.3108!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8ad6b25b6b3b%3A0x7f79a0f7b6c8b9c!2sHamid%20Olimjon%20Metro%20Station!5e0!3m2!1sen!2suz!4v1693501234567!5m2!1sen!2suz"
-          width="100%"
-          height="100%"
-          loading="lazy"
-          style={{ border: 0 }}
-          className={`rounded-t-3xl shadow-xl 
-            ${theme === "dark" ? "brightness-75" : ""}
-          `}
-        ></iframe>
+      {/* -------------------------------- GOOGLE MAP -------------------------------- */}
+      <section className="w-full mt-10">
+        <div className="w-full h-[330px] sm:h-[420px] md:h-[500px] rounded-t-3xl overflow-hidden shadow-xl">
+          <iframe
+            title="Office Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.73372759458!2d69.2877!3d41.3108!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8ad6b25b6b3b%3A0x7f79a0f7b6c8b9c!2sHamid%20Olimjon%20Metro%20Station!5e0!3m2!1sen!2suz!4v1693501234567!5m2!1sen!2suz"
+            width="100%"
+            height="100%"
+            loading="lazy"
+            style={{ border: 0 }}
+            className={`${theme === "dark" ? "brightness-75" : ""}`}
+          ></iframe>
+        </div>
       </section>
     </div>
   );
