@@ -105,8 +105,13 @@ function Navbar() {
           </NavLink>
         )}
 
-        <button className="menu-btn" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={26} /> : <Menu size={26} />}
+        {/* FIXED ICON COLOR */}
+        <button
+          className="menu-btn"
+          onClick={() => setIsOpen(!isOpen)}
+          style={{ color: isLight ? "#1a1a1a" : "#ffffff" }}
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
@@ -122,8 +127,13 @@ function Navbar() {
           !isLight ? "dark" : ""
         }`}
       >
-        <button onClick={() => setIsOpen(false)} className="close-btn">
-          <X size={26} />
+        {/* PERFECT CLOSE BUTTON */}
+        <button
+          onClick={() => setIsOpen(false)}
+          className="close-btn"
+          style={{ color: isLight ? "#1a1a1a" : "white" }}
+        >
+          <X size={28} />
         </button>
 
         <div className="links-container">
@@ -131,7 +141,7 @@ function Navbar() {
             <NavLink
               key={link.href}
               to={link.href}
-              className="nav-link"
+              className="nav-link mobile-nav-link"
               onClick={() => setIsOpen(false)}
             >
               {t(link.label)}
@@ -144,7 +154,7 @@ function Navbar() {
             <button
               key={lng}
               onClick={() => changeLanguage(lng)}
-              className="lang"
+              className="lang mobile-lang"
             >
               {lng.toUpperCase()}
             </button>

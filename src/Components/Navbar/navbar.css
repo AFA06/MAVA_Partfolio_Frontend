@@ -169,16 +169,42 @@
   pointer-events: auto;
 }
 
+/* Default mobile link style */
 .mobile-sidebar .nav-link {
   color: #1a1a1a;
   font-size: 1.15rem;
   padding: 14px 0;
+  font-weight: 600;
+  letter-spacing: 0.14em;
 }
 
-.mobile-sidebar .languages-container button {
+/* Updated larger mobile link */
+.mobile-nav-link {
+  font-size: 1.25rem !important;
+  padding: 16px 0 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+}
+
+/* Language buttons */
+.mobile-sidebar .languages-container button,
+.mobile-lang {
   color: #1a1a1a;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
   margin-right: 16px;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 24px;
+  right: 22px;
+  z-index: 300;
+
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 /* Dark mode mobile sidebar */
@@ -188,7 +214,9 @@
 }
 
 .mobile-sidebar.dark .nav-link,
-.mobile-sidebar.dark .lang {
+.mobile-sidebar.dark .lang,
+.mobile-sidebar.dark .mobile-nav-link,
+.mobile-sidebar.dark .mobile-lang {
   color: white !important;
 }
 
