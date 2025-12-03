@@ -58,6 +58,16 @@
   },
 
   "aboutPage": {
+    "headerSubtitle": "ARXITEKTURA • INTERYER • VIZUALIZATSIYA",
+    "teamTitle": "Bizning jamoa",
+  "roles": {
+    "leadArchitect": "Bosh me'mor",
+    "interiorDesigner": "Interyer dizayneri",
+    "projectManager": "Loyiha boshqaruvchisi",
+    "designer3d": "3D dizayner",
+    "engineer": "Muhandis",
+    "assistantArchitect": "Assistent me'mor"
+  },
     "title": "Mava Group haqida",
     "intro": "Biz me’morlar, dizaynerlar va muhandislarning ko‘p tarmoqli jamoasimiz, ma’noli makonlarni yaratishga bag‘ishlanganmiz.",
     "missionTitle": "Bizning missiyamiz",

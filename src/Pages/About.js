@@ -19,23 +19,19 @@ export default function About() {
   const timeline = t("aboutPage.timeline", { returnObjects: true }) || [];
   const values = t("aboutPage.values", { returnObjects: true }) || [];
 
+  // TEAM WITH TRANSLATION KEYS
   const team = [
-    { name: "Mava Group", role: "Lead Architect", photo: team1 },
-    { name: "Jane Smith", role: "Interior Designer", photo: team2 },
-    { name: "Michael Lee", role: "Project Manager", photo: team3 },
-    { name: "Sophia Kim", role: "3D Designer", photo: team1 },
-    { name: "David Brown", role: "Engineer", photo: team2 },
-    { name: "Emma Wilson", role: "Assistant Architect", photo: team3 },
+    { name: "Mava Group", role: t("aboutPage.roles.leadArchitect"), photo: team1 },
+    { name: "Jane Smith", role: t("aboutPage.roles.interiorDesigner"), photo: team2 },
+    { name: "Michael Lee", role: t("aboutPage.roles.projectManager"), photo: team3 },
+    { name: "Sophia Kim", role: t("aboutPage.roles.designer3d"), photo: team1 },
+    { name: "David Brown", role: t("aboutPage.roles.engineer"), photo: team2 },
+    { name: "Emma Wilson", role: t("aboutPage.roles.assistantArchitect"), photo: team3 },
   ];
 
-  // ------------------------- THEME STYLES -------------------------
-
-  // Warm stone background for light; cinematic for dark
   const bgMain = isDark
     ? "bg-[#050509] text-gray-100"
     : "bg-[#f3f0eb] text-[#171717]";
-
-  const accent = isDark ? "#f5c15d" : "#d08a3f";
 
   const cardBaseLight =
     "bg-[#fdfbf8] border border-[#e3d8c9] shadow-[0_10px_30px_rgba(0,0,0,0.08)] backdrop-blur-[2px]";
@@ -61,19 +57,14 @@ export default function About() {
         className="relative h-[55vh] sm:h-[65vh] flex items-center justify-center bg-cover bg-center"
         style={{ backgroundImage: `url(${aboutImage})` }}
       >
-        {/* Dark overlay */}
         {isDark && (
           <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/60 to-[#050509]" />
         )}
 
-        {/* Warm Scandinavian light overlay */}
         {!isDark && (
           <>
-            {/* Base soft warm blur */}
             <div className="absolute inset-0 bg-[#f5eee4]/45 backdrop-blur-[4px]" />
-            {/* Gentle vignette from top & sides */}
             <div className="absolute inset-0 bg-gradient-to-b from-[#e7ded0]/80 via-transparent to-[#f3f0eb]" />
-            {/* subtle warm highlight from right to emulate sunset light */}
             <div className="absolute inset-0 bg-gradient-to-l from-[#f4c28a]/20 via-transparent to-transparent pointer-events-none" />
           </>
         )}
@@ -89,7 +80,7 @@ export default function About() {
               isDark ? "text-gray-300" : "text-[#7a756c]"
             }`}
           >
-            ARCHITECTURE • INTERIORS • VISUALIZATION
+            {t("aboutPage.headerSubtitle")}
           </p>
 
           <h1
@@ -193,7 +184,6 @@ export default function About() {
         className="relative px-4 sm:px-6 py-20 bg-center bg-cover"
         style={{ backgroundImage: `url(${aboutImage})` }}
       >
-        {/* Overlays */}
         {isDark ? (
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/75 to-[#050509]" />
         ) : (
@@ -213,7 +203,6 @@ export default function About() {
           </h2>
 
           <div className="relative">
-            {/* Center spine */}
             <div
               className={`hidden md:block absolute left-1/2 top-0 h-full w-[2px] ${
                 isDark ? "bg-white/20" : "bg-[#d3c6b6]"
@@ -235,14 +224,12 @@ export default function About() {
                         : "md:pl-10 md:ml-auto text-left"
                     }`}
                   >
-                    {/* Connector */}
                     <div
                       className={`hidden md:block absolute top-1/2 w-10 h-[2px] ${
                         isDark ? "bg-white/20" : "bg-[#d3c6b6]"
                       } ${left ? "-right-10" : "-left-10"}`}
                     />
 
-                    {/* Glass card */}
                     <div
                       className={`rounded-xl p-6 ${
                         isDark ? glassDark : glassLight

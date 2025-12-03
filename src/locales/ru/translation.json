@@ -58,6 +58,16 @@
   },
 
   "aboutPage": {
+    "headerSubtitle": "АРХИТЕКТУРА • ИНТЕРЬЕРЫ • ВИЗУАЛИЗАЦИЯ",
+    "teamTitle": "Наша команда",
+  "roles": {
+    "leadArchitect": "Главный архитектор",
+    "interiorDesigner": "Дизайнер интерьеров",
+    "projectManager": "Руководитель проекта",
+    "designer3d": "3D дизайнер",
+    "engineer": "Инженер",
+    "assistantArchitect": "Ассистент архитектора"
+  },
     "title": "О Mava Group",
     "intro": "Мы — междисциплинарная команда архитекторов, дизайнеров и инженеров, создающих значимые пространства.",
     "missionTitle": "Наша миссия",

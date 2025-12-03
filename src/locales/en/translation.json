@@ -58,6 +58,16 @@
   },
 
   "aboutPage": {
+    "headerSubtitle": "ARCHITECTURE • INTERIORS • VISUALIZATION",
+    "teamTitle": "Our Team",
+  "roles": {
+    "leadArchitect": "Lead Architect",
+    "interiorDesigner": "Interior Designer",
+    "projectManager": "Project Manager",
+    "designer3d": "3D Designer",
+    "engineer": "Engineer",
+    "assistantArchitect": "Assistant Architect"
+  },
     "title": "About Mava Group",
     "intro": "We are a multidisciplinary team of architects, designers, and engineers dedicated to creating meaningful spaces.",
     "missionTitle": "Our Mission",
@@ -98,6 +108,7 @@
         "text": "Expansion into foreign markets with sustainable solutions developed with international partners."
       }
     ]
+    
   },
 
   "contactsPage": {
