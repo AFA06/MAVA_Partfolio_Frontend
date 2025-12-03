@@ -138,6 +138,191 @@ const PROJECTS = [
       "Assets/Turkestan_Villa/LivingRoom3.jpg"
     ],
     descriptions: Array(26).fill("Project description will be added soon.")
+  },
+
+  // ⭐⭐⭐ NEW PROJECTS START HERE ⭐⭐⭐
+
+  {
+    slug: "urban-stroy-oq-saroy",
+    name: "Urban Stroy Oq Saroy",
+    location: "Tashkent, Uzbekistan",
+    year: "2022",
+    client: "Private Client",
+    status: "Completed",
+    typology: "Residential",
+    area: "110 sq.m",
+    coverImages: [
+      "Assets/Urban_Stroy_Oq_Saroy/Badroom1.jpg",
+      "Assets/Urban_Stroy_Oq_Saroy/Badroom2.jpg",
+      "Assets/Urban_Stroy_Oq_Saroy/Badroom3.jpg",
+      "Assets/Urban_Stroy_Oq_Saroy/Corridor1.jpg",
+      "Assets/Urban_Stroy_Oq_Saroy/Corridor2.jpg",
+      "Assets/Urban_Stroy_Oq_Saroy/Corridor3.jpg",
+      "Assets/Urban_Stroy_Oq_Saroy/Corridor4.jpg",
+      "Assets/Urban_Stroy_Oq_Saroy/K1.jpg",
+      "Assets/Urban_Stroy_Oq_Saroy/K2.jpg",
+      "Assets/Urban_Stroy_Oq_Saroy/K3.jpg",
+      "Assets/Urban_Stroy_Oq_Saroy/K4.jpg",
+      "Assets/Urban_Stroy_Oq_Saroy/Kitchen.jpg",
+      "Assets/Urban_Stroy_Oq_Saroy/Kitchen_night.jpg",
+      "Assets/Urban_Stroy_Oq_Saroy/LivingRoom3.jpg",
+      "Assets/Urban_Stroy_Oq_Saroy/LivingRoom4.jpg",
+      "Assets/Urban_Stroy_Oq_Saroy/LivingRoom5_Interactive_LightMix.jpg",
+      "Assets/Urban_Stroy_Oq_Saroy/LivingRoom6.jpg",
+      "Assets/Urban_Stroy_Oq_Saroy/LivingRoom7.jpg"
+    ],
+    descriptions: Array(19).fill("Project description will be added soon.")
+  },
+
+  {
+    slug: "villa-mansard",
+    name: "Villa Mansard",
+    location: "Uzbekistan",
+    year: "—",
+    client: "Private Client",
+    status: "Completed",
+    typology: "Residential",
+    area: "—",
+    coverImages: [
+      "Assets/Villa_Mansard/AA.jpg",
+      "Assets/Villa_Mansard/BB.jpg",
+      "Assets/Villa_Mansard/DD.jpg",
+      "Assets/Villa_Mansard/EE.jpg",
+      "Assets/Villa_Mansard/GE.jpg",
+      "Assets/Villa_Mansard/GG.jpg",
+      "Assets/Villa_Mansard/RR.jpg",
+      "Assets/Villa_Mansard/VV.jpg",
+      "Assets/Villa_Mansard/XX.jpg",
+      "Assets/Villa_Mansard/ZZ.jpg"
+    ],
+    descriptions: Array(10).fill("Project description will be added soon.")
+  },
+
+  {
+    slug: "villa-namangan",
+    name: "Villa Namangan",
+    location: "Namangan, Uzbekistan",
+    year: "2021",
+    client: "Private Client",
+    status: "Completed",
+    typology: "Residential",
+    area: "800 sq.m",
+    coverImages: [
+      "Assets/Villa_Namangan/1.jpg",
+      "Assets/Villa_Namangan/2.jpg",
+      "Assets/Villa_Namangan/3.jpg",
+      "Assets/Villa_Namangan/4.jpg",
+      "Assets/Villa_Namangan/5.jpg",
+      "Assets/Villa_Namangan/6.jpg",
+      "Assets/Villa_Namangan/7(2).jpg",
+      "Assets/Villa_Namangan/7A.jpg",
+      "Assets/Villa_Namangan/8.jpg",
+      "Assets/Villa_Namangan/9.jpg",
+      "Assets/Villa_Namangan/10.jpg",
+      "Assets/Villa_Namangan/11.jpg",
+      "Assets/Villa_Namangan/12.jpg",
+      "Assets/Villa_Namangan/13.jpg",
+      "Assets/Villa_Namangan/14.jpg",
+      "Assets/Villa_Namangan/15.jpg",
+      "Assets/Villa_Namangan/16.jpg"
+    ],
+    descriptions: Array(16).fill("Project description will be added soon.")
+  },
+
+  {
+    slug: "yugnaki-220",
+    name: "YUGNAKI 220",
+    location: "Uzbekistan",
+    year: "2020",
+    client: "Private Client",
+    status: "Completed",
+    typology: "Residential",
+    area: "220 sq.m",
+    coverImages: [
+      "Assets/YUGNAKI_220/3.jpg",
+      "Assets/YUGNAKI_220/2.jpg",
+      "Assets/YUGNAKI_220/11.jpg",
+      "Assets/YUGNAKI_220/44.jpg",
+      "Assets/YUGNAKI_220/55.jpg",
+      "Assets/YUGNAKI_220/Гардероб_2_этаж(1).jpg",
+      "Assets/YUGNAKI_220/Гардероб_2_этаж(2).jpg",
+      "Assets/YUGNAKI_220/Гардероб_2_этаж(3).jpg",
+      "Assets/YUGNAKI_220/Детская большая 4.jpg",
+      "Assets/YUGNAKI_220/Детская_1.jpg",
+      "Assets/YUGNAKI_220/Детская_2.jpg",
+      "Assets/YUGNAKI_220/Детская_3.jpg",
+      "Assets/YUGNAKI_220/Детская_4.jpg",
+      "Assets/YUGNAKI_220/Детская_5.jpg",
+      "Assets/YUGNAKI_220/Детская_большая_1.jpg",
+      "Assets/YUGNAKI_220/Детская_большая_2.jpg",
+      "Assets/YUGNAKI_220/Детская_большая_3.jpg",
+      "Assets/YUGNAKI_220/Детская_большая_5.jpg",
+      "Assets/YUGNAKI_220/Зал_1_этаж_2.jpg",
+      "Assets/YUGNAKI_220/Зал_1_этаж_3.jpg",
+      "Assets/YUGNAKI_220/Зал_1_этаж.jpg",
+      "Assets/YUGNAKI_220/Зал_2_этаж_(1).jpg",
+      "Assets/YUGNAKI_220/Зал_2_этаж_(2).jpg",
+      "Assets/YUGNAKI_220/Кухня_1.jpg",
+      "Assets/YUGNAKI_220/Кухня_2.jpg",
+      "Assets/YUGNAKI_220/Кухня_3.jpg",
+      "Assets/YUGNAKI_220/Кухня_4.jpg",
+      "Assets/YUGNAKI_220/Спальня_2_этаж_(3).jpg",
+      "Assets/YUGNAKI_220/Спальня_2_этаж_(2).jpg",
+      "Assets/YUGNAKI_220/Спальня_2_этаж_(1).jpg",
+      "Assets/YUGNAKI_220/Спальня_1_этаж.jpg",
+      "Assets/YUGNAKI_220/Спальня_1_этаж_2.jpg",
+      "Assets/YUGNAKI_220/Спальня_1_этаж_3.jpg",
+      "Assets/YUGNAKI_220/Офис_подвал_(2).jpg",
+      "Assets/YUGNAKI_220/Офис_подвал_(1).jpg",
+      "Assets/YUGNAKI_220/Офис подвал (3).jpg"
+    ],
+    descriptions: Array(36).fill("Project description will be added soon.")
+  },
+
+  {
+    slug: "jk-bek-baraka-100",
+    name: "Eshonguzar — Bek Baraka 145",
+    location: "Tashkent, Uzbekistan",
+    year: "—",
+    client: "Private Client",
+    status: "Completed",
+    typology: "Residential",
+    area: "145 sq.m",
+    coverImages: [
+      "Assets/ЖК_БЕК_БАРАКА_100кв/1.jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/1(2).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/1(3).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/1(4).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/1(5).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/1(6).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/2.jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/2(2).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/2(3).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/2(4).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/2(5).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/2(6).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/3.jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/3(2).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/3(3).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/3(4).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/3(5).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/3(6).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/4.jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/4(2).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/4(3).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/4(4).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/5.jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/6.jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/A.jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/A(2).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/B.jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/B(2).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/C.jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/C(2).jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/D.jpg",
+      "Assets/ЖК_БЕК_БАРАКА_100кв/D(2).jpg"
+    ],
+    descriptions: Array(32).fill("Project description will be added soon.")
   }
 ];
 
@@ -179,8 +364,6 @@ export default function Portfolio() {
       }`}
     >
       <div className="max-w-6xl mx-auto py-14 px-4">
-
-        {/* TRANSLATED TITLE */}
         <h1 className="text-center text-5xl font-semibold uppercase mb-10">
           {t("portfolioPage.title")}
         </h1>
@@ -208,7 +391,6 @@ export default function Portfolio() {
                          w-full max-w-xl h-[230px]`
                   }`}
               >
-                {/* CLOSED PREVIEW */}
                 {!isZoomed && (
                   <div className="relative w-full h-full">
                     <img
@@ -222,7 +404,6 @@ export default function Portfolio() {
                   </div>
                 )}
 
-                {/* OPENED CARD GALLERY */}
                 {isZoomed && (
                   <div className="flex gap-6 w-full h-full overflow-x-auto">
                     {project.coverImages.map((img, idx) => (
@@ -240,7 +421,6 @@ export default function Portfolio() {
                   </div>
                 )}
 
-                {/* CLOSE BUTTON */}
                 {isZoomed && (
                   <button
                     onClick={(e) => {
@@ -261,7 +441,6 @@ export default function Portfolio() {
             );
           })}
         </div>
-
       </div>
     </div>
   );
