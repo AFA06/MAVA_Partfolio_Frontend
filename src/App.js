@@ -5,7 +5,6 @@ import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
 import Homepage from "./Components/Homepage/Homepage";
 import Portfolio from "./Pages/Portfolio";
-import Blog from "./Pages/Blog";
 import Videos from "./Pages/Videos/Videos";
 import CategoryVideos from "./Pages/Videos/CategoryVideos";
 import About from "./Pages/About";
@@ -28,7 +27,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/blog" element={<Blog />} />
           <Route path="/videos" element={<Videos />} />
           <Route path="/videos/:category" element={<CategoryVideos />} />
           <Route path="/about" element={<About />} />

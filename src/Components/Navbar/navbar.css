@@ -169,33 +169,43 @@
   pointer-events: auto;
 }
 
-/* Default mobile link style */
-.mobile-sidebar .nav-link {
+/* ---------------------------------------- */
+/* MOBILE LINKS — FIXED SPACING (ONE PER ROW) */
+/* ---------------------------------------- */
+.mobile-sidebar .nav-link,
+.mobile-nav-link {
+  display: block !important;      /* Each link on its own row */
+  width: 100%;
+  text-align: left;
+
+  margin: 14px 0 !important;      /* Spacing between rows */
+  padding: 6px 0 !important;
+
   color: #1a1a1a;
-  font-size: 1.15rem;
-  padding: 14px 0;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 700;
   letter-spacing: 0.14em;
 }
 
-/* Updated larger mobile link */
-.mobile-nav-link {
-  font-size: 1.25rem !important;
-  padding: 16px 0 !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.12em !important;
+/* ---------------------------------------- */
+/* LANGUAGE BUTTONS */
+/* ---------------------------------------- */
+.languages-container {
+  margin-top: 32px;
+  display: flex;
+  gap: 20px;                      /* Equal spacing */
 }
 
-/* Language buttons */
-.mobile-sidebar .languages-container button,
-.mobile-lang {
-  color: #1a1a1a;
-  font-size: 1.1rem;
+.mobile-lang,
+.mobile-sidebar .languages-container button {
+  font-size: 1.15rem;
   font-weight: 700;
-  margin-right: 16px;
+  color: #1a1a1a;
 }
 
-/* Close button */
+/* ---------------------------------------- */
+/* CLOSE BUTTON */
+/* ---------------------------------------- */
 .close-btn {
   position: absolute;
   top: 24px;
@@ -207,24 +217,24 @@
   cursor: pointer;
 }
 
-/* Dark mode mobile sidebar */
+/* ---------------------------------------- */
+/* DARK MODE SIDEBAR */
+/* ---------------------------------------- */
 .mobile-sidebar.dark {
   background: #0e0e14 !important;
   border-left: 1px solid rgba(255, 255, 255, 0.06) !important;
 }
 
 .mobile-sidebar.dark .nav-link,
-.mobile-sidebar.dark .lang,
 .mobile-sidebar.dark .mobile-nav-link,
-.mobile-sidebar.dark .mobile-lang {
+.mobile-sidebar.dark .mobile-lang,
+.mobile-sidebar.dark .languages-container button {
   color: white !important;
 }
 
 /* ---------------------------------------- */
 /* RESPONSIVE BREAKPOINT BEHAVIOR */
 /* ---------------------------------------- */
-
-/* Hide desktop nav on mobile */
 @media (max-width: 1024px) {
   .navbar-left,
   .navbar-right,
@@ -233,7 +243,6 @@
   }
 }
 
-/* Hide mobile nav on desktop */
 @media (min-width: 1025px) {
   .mobile-left,
   .mobile-right,
