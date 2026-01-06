@@ -1,9 +1,11 @@
 {
   "files": {
     "main.css": "/MAVA_Partfolio_Frontend/static/css/main.e306be90.css",
-    "main.js": "/MAVA_Partfolio_Frontend/static/js/main.a47c8b86.js",
+    "main.js": "/MAVA_Partfolio_Frontend/static/js/main.ad97c6f0.js",
     "static/js/453.670e15c7.chunk.js": "/MAVA_Partfolio_Frontend/static/js/453.670e15c7.chunk.js",
-    "static/media/test.png": "/MAVA_Partfolio_Frontend/static/media/test.1b306eb9107fc7282ea9.png",
+    "static/media/1.png": "/MAVA_Partfolio_Frontend/static/media/1.e79225572e56c7b3eaa3.png",
+    "static/media/3.png": "/MAVA_Partfolio_Frontend/static/media/3.4f60efee5f4a3a2a1906.png",
+    "static/media/2.png": "/MAVA_Partfolio_Frontend/static/media/2.60bfa749a29beb1909f7.png",
     "static/media/teem3.jpg": "/MAVA_Partfolio_Frontend/static/media/teem3.9943abd92c7ab98de818.jpg",
     "static/media/teem1.jpg": "/MAVA_Partfolio_Frontend/static/media/teem1.3bc48db01887ebfabf0e.jpg",
     "static/media/about.jpg": "/MAVA_Partfolio_Frontend/static/media/about.0274b78969f150541137.jpg",
@@ -11,11 +13,11 @@
     "static/media/logo.png": "/MAVA_Partfolio_Frontend/static/media/logo.03ee954eebd642b401df.png",
     "index.html": "/MAVA_Partfolio_Frontend/index.html",
     "main.e306be90.css.map": "/MAVA_Partfolio_Frontend/static/css/main.e306be90.css.map",
-    "main.a47c8b86.js.map": "/MAVA_Partfolio_Frontend/static/js/main.a47c8b86.js.map",
+    "main.ad97c6f0.js.map": "/MAVA_Partfolio_Frontend/static/js/main.ad97c6f0.js.map",
     "453.670e15c7.chunk.js.map": "/MAVA_Partfolio_Frontend/static/js/453.670e15c7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e306be90.css",
-    "static/js/main.a47c8b86.js"
+    "static/js/main.ad97c6f0.js"
   ]
 }
