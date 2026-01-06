@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Phone, Send } from "lucide-react";
+import { Phone, Send, ChevronLeft, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import testImage from "../../assets/test.png";
+
+// ✅ Replace these with real portfolio images
+import hero1 from "../../assets/1.png";
+import hero2 from "../../assets/2.png";
+import hero3 from "../../assets/3.png";
+
+
 import { useTheme } from "../../context/ThemeContext";
 
 function Homepage() {
@@ -11,6 +17,51 @@ function Homepage() {
   const { theme } = useTheme();
   const isDark = theme === "dark";
 
+  // -------------------- HERO SLIDES --------------------
+  const heroImages = useMemo(
+  () => [
+    { src: hero1, alt: "Modern architecture project" },
+    { src: hero2, alt: "Residential architecture design" },
+    { src: hero3, alt: "Commercial building concept" },
+  ],
+  []
+);
+
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const intervalRef = useRef(null);
+
+  const goNext = () => {
+    setActiveIndex((prev) => (prev + 1) % heroImages.length);
+  };
+
+  const goPrev = () => {
+    setActiveIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+  };
+
+  // Preload images to avoid flicker
+  useEffect(() => {
+    heroImages.forEach((img) => {
+      const i = new Image();
+      i.src = img.src;
+    });
+  }, [heroImages]);
+
+  // Auto-rotate
+  useEffect(() => {
+    if (isPaused) return;
+
+    intervalRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % heroImages.length);
+    }, 4000);
+
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [heroImages.length, isPaused]);
+
+  // -------------------- BASIC PAGE EFFECTS --------------------
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "smooth";
     window.scrollTo(0, 0);
@@ -87,7 +138,6 @@ function Homepage() {
         ${isDark ? "bg-[#050509] text-gray-100" : "bg-[#f5f5f6] text-gray-900"}`}
     >
       <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
-
         {/* LEFT — Text */}
         <div className="text-center md:text-left">
           <p
@@ -138,16 +188,85 @@ function Homepage() {
           </div>
         </div>
 
-        {/* RIGHT — Image */}
+        {/* RIGHT — Slideshow */}
         <div className="w-full max-w-md md:max-w-full mx-auto md:mx-0">
-          <div className="relative w-full h-[260px] sm:h-[320px] md:h-[420px] rounded-3xl overflow-hidden shadow-xl">
-            <img
-              src={testImage}
-              alt="Architecture"
-              className="w-full h-full object-cover"
-            />
-            {isDark && <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />}
+          <div
+            className="relative w-full h-[260px] sm:h-[320px] md:h-[420px] rounded-3xl overflow-hidden shadow-xl"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+            {/* Cross-fade layers */}
+            {heroImages.map((img, idx) => (
+              <img
+                key={idx}
+                src={img.src}
+                alt={img.alt}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-out
+                  ${idx === activeIndex ? "opacity-100" : "opacity-0"}`}
+                style={{
+                  transform: idx === activeIndex ? "scale(1.03)" : "scale(1.0)",
+                  transitionProperty: "opacity, transform",
+                }}
+              />
+            ))}
+
+            {/* Dark overlay (same as you had, but applies to slideshow) */}
+            {isDark && (
+              <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
+            )}
+
+            {/* Controls */}
+            <div className="absolute inset-x-0 bottom-0 p-4 flex items-center justify-between gap-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsPaused(true);
+                  goPrev();
+                }}
+                className={`w-10 h-10 rounded-full flex items-center justify-center transition active:scale-95
+                  ${isDark ? "bg-white/10 hover:bg-white/20 text-white" : "bg-black/10 hover:bg-black/20 text-gray-900"}`}
+                aria-label="Previous image"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+
+              {/* Dots */}
+              <div className="flex items-center gap-2">
+                {heroImages.map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => {
+                      setIsPaused(true);
+                      setActiveIndex(i);
+                    }}
+                    className={`h-2 rounded-full transition-all
+                      ${i === activeIndex ? "w-7" : "w-2"}
+                      ${isDark ? "bg-white/80" : "bg-black/50"}`}
+                    aria-label={`Go to image ${i + 1}`}
+                  />
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setIsPaused(true);
+                  goNext();
+                }}
+                className={`w-10 h-10 rounded-full flex items-center justify-center transition active:scale-95
+                  ${isDark ? "bg-white/10 hover:bg-white/20 text-white" : "bg-black/10 hover:bg-black/20 text-gray-900"}`}
+                aria-label="Next image"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
           </div>
+
+          {/* Optional tiny caption under image (adds premium “editorial” feel) */}
+          <p className={`mt-3 text-xs ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+            {t("homepage.hero.imageHint", { defaultValue: "Selected works preview" })}
+          </p>
         </div>
       </div>
 
