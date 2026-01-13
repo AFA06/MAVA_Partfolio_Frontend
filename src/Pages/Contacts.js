@@ -1,5 +1,6 @@
-// FULL MOBILE RESPONSIVE CONTACTS PAGE (UPDATED)
-// Paste this into /src/pages/Contacts.jsx
+// /src/pages/Contacts.jsx
+// FULL MOBILE RESPONSIVE CONTACTS PAGE (Formspree ready)
+// Sends to: https://formspree.io/f/xaqqwkqr  (configure this form in Formspree to deliver to fattokhovabdurashid@gmail.com)
 
 import React, { useState, useMemo } from "react";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
@@ -7,6 +8,8 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../context/ThemeContext";
+
+const FORMSPREE_URL = "https://formspree.io/f/xaqqwkqr";
 
 export default function Contacts() {
   const { t } = useTranslation();
@@ -104,7 +107,7 @@ export default function Contacts() {
   ];
 
   /* ----------------------------------------------
-        Submit Handler
+        Submit Handler (Formspree)
   ---------------------------------------------- */
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -112,11 +115,21 @@ export default function Contacts() {
     setSuccess(null);
 
     try {
-      const res = await axios.post("http://localhost:5050/api/contact", form);
-      if (res.data.success) {
+      // Formspree accepts JSON; "Accept: application/json" ensures JSON response
+      const res = await axios.post(FORMSPREE_URL, form, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+
+      // If request succeeded (2xx), treat as success
+      if (res.status >= 200 && res.status < 300) {
         setSuccess(true);
         setForm({ name: "", email: "", message: "" });
-      } else setSuccess(false);
+      } else {
+        setSuccess(false);
+      }
     } catch (err) {
       setSuccess(false);
     } finally {
@@ -154,7 +167,10 @@ export default function Contacts() {
         <div
           aria-hidden
           className="pointer-events-none fixed inset-0 opacity-[0.15]"
-          style={{ backgroundImage: `url(${paperDataUrl})`, mixBlendMode: "multiply" }}
+          style={{
+            backgroundImage: `url(${paperDataUrl})`,
+            mixBlendMode: "multiply",
+          }}
         />
       )}
 
@@ -197,8 +213,7 @@ export default function Contacts() {
               className={`rounded-2xl p-5 sm:p-6 ${card} transition`}
             >
               <div
-                className={`flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full mb-4
-                ${
+                className={`flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full mb-4 ${
                   theme === "dark"
                     ? "bg-yellow-500/20 text-yellow-400"
                     : "bg-gray-900 text-white"
@@ -243,6 +258,7 @@ export default function Contacts() {
               </label>
               <input
                 type="text"
+                name="name"
                 required
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -257,6 +273,7 @@ export default function Contacts() {
               </label>
               <input
                 type="email"
+                name="email"
                 required
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -271,6 +288,7 @@ export default function Contacts() {
               </label>
               <textarea
                 rows="4"
+                name="message"
                 required
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
@@ -282,12 +300,11 @@ export default function Contacts() {
             <button
               type="submit"
               disabled={loading}
-              className={`w-full mt-3 px-6 py-3 rounded-xl text-base font-semibold transition
-              ${
+              className={`w-full mt-3 px-6 py-3 rounded-xl text-base font-semibold transition ${
                 theme === "dark"
                   ? "bg-yellow-500 text-black hover:bg-yellow-400"
                   : "bg-gray-900 text-white hover:bg-black"
-              }`}
+              } ${loading ? "opacity-70 cursor-not-allowed" : ""}`}
             >
               {loading
                 ? t("contactsPage.form.sending")
