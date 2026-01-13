@@ -39,6 +39,13 @@ export default function Videos() {
   const titleColor = isDark ? "text-white" : "text-gray-900";
   const subtitleColor = isDark ? "text-gray-300" : "text-gray-700";
 
+  // Temporary handler until you add real links later
+  const handlePreviewClick = (e) => {
+    e.preventDefault();
+    // Later you can replace this with real link navigation
+    console.log("Preview link coming soon");
+  };
+
   return (
     <div className={`min-h-screen w-full antialiased ${bgMain}`}>
       {/* ---------------------------------------------------------------- HERO ---------------------------------------------------------------- */}
@@ -66,20 +73,22 @@ export default function Videos() {
             {t("videosPage.heroSubtitle")}
           </motion.p>
 
-          <motion.a
-            href="#"
+          {/* ✅ Use button (no href warning, accessible, easy to replace later) */}
+          <motion.button
+            type="button"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.25 }}
+            onClick={handlePreviewClick}
             className={`inline-flex items-center justify-center mt-8 px-8 py-3 rounded-full text-base font-medium transition capitalize
-            ${
-              isDark
-                ? "bg-yellow-500 text-black hover:bg-yellow-400"
-                : "bg-gray-900 text-white hover:bg-black"
-            }`}
+              ${
+                isDark
+                  ? "bg-yellow-500 text-black hover:bg-yellow-400"
+                  : "bg-gray-900 text-white hover:bg-black"
+              }`}
           >
             {t("videosPage.preview")}
-          </motion.a>
+          </motion.button>
         </div>
       </section>
 
@@ -105,7 +114,7 @@ export default function Videos() {
               <div className="h-48 sm:h-56 md:h-64 overflow-hidden">
                 <img
                   src={course.image}
-                  alt=""
+                  alt={t(`videosPage.${course.key}.title`, { defaultValue: "" })}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
@@ -121,14 +130,16 @@ export default function Videos() {
                   {t(`videosPage.${course.key}.description`)}
                 </p>
 
-                <a
-                  href="#"
-                  className={`mt-4 text-sm font-medium hover:underline ${
+                {/* ✅ Use button (no href warning) */}
+                <button
+                  type="button"
+                  onClick={handlePreviewClick}
+                  className={`mt-4 text-sm font-medium hover:underline text-left ${
                     isDark ? "text-yellow-400" : "text-gray-900"
                   }`}
                 >
                   {t("videosPage.preview")}
-                </a>
+                </button>
               </div>
             </motion.div>
           ))}
@@ -145,19 +156,19 @@ export default function Videos() {
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div
             className={`absolute -top-40 right-0 w-[500px] h-[500px] rounded-full blur-[150px] opacity-40 
-            ${
-              isDark
-                ? "bg-purple-700/30"
-                : "bg-gradient-to-br from-gray-300 via-gray-200 to-gray-300"
-            }`}
+              ${
+                isDark
+                  ? "bg-purple-700/30"
+                  : "bg-gradient-to-br from-gray-300 via-gray-200 to-gray-300"
+              }`}
           />
           <div
             className={`absolute -bottom-20 left-0 w-[350px] h-[350px] rounded-full blur-[170px] opacity-40
-            ${
-              isDark
-                ? "bg-blue-900/30"
-                : "bg-gradient-to-br from-gray-200 via-white to-gray-300"
-            }`}
+              ${
+                isDark
+                  ? "bg-blue-900/30"
+                  : "bg-gradient-to-br from-gray-200 via-white to-gray-300"
+              }`}
           />
         </div>
 
@@ -177,24 +188,22 @@ export default function Videos() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: index * 0.2 }}
               className={`relative group p-8 sm:p-10 rounded-3xl text-center transition-all duration-500 cursor-pointer
-              
                 ${
                   isDark
                     ? "bg-white/5 border border-white/10 backdrop-blur-xl shadow-xl hover:bg-white/10 hover:shadow-purple-500/20"
                     : "bg-white border border-gray-200 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] hover:bg-gray-50"
                 }
-
                 hover:-translate-y-3 hover:scale-[1.03]
               `}
             >
               {/* Glow */}
               <div
                 className={`absolute inset-0 -z-10 rounded-3xl opacity-0 group-hover:opacity-40 blur-2xl transition duration-700
-                ${
-                  isDark
-                    ? "bg-purple-600/30"
-                    : "bg-gradient-to-br from-gray-400 via-gray-200 to-gray-400"
-                }`}
+                  ${
+                    isDark
+                      ? "bg-purple-600/30"
+                      : "bg-gradient-to-br from-gray-400 via-gray-200 to-gray-400"
+                  }`}
               />
 
               <span className="text-5xl sm:text-6xl mb-3 block group-hover:scale-125 group-hover:rotate-3 transition-all duration-500">

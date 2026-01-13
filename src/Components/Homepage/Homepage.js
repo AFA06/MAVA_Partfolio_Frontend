@@ -1,4 +1,10 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Link } from "react-router-dom";
 import { Phone, Send, ChevronLeft, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -30,9 +36,14 @@ function Homepage() {
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef(null);
 
-  const goNext = () => setActiveIndex((p) => (p + 1) % heroImages.length);
-  const goPrev = () =>
+  // ✅ Memoized to satisfy eslint react-hooks/exhaustive-deps
+  const goNext = useCallback(() => {
+    setActiveIndex((p) => (p + 1) % heroImages.length);
+  }, [heroImages.length]);
+
+  const goPrev = useCallback(() => {
     setActiveIndex((p) => (p - 1 + heroImages.length) % heroImages.length);
+  }, [heroImages.length]);
 
   // Preload
   useEffect(() => {
@@ -42,12 +53,12 @@ function Homepage() {
     });
   }, [heroImages]);
 
-  // Auto rotate
+  // Auto rotate ✅ (now includes goNext)
   useEffect(() => {
     if (isPaused) return;
     intervalRef.current = setInterval(goNext, 4500);
     return () => clearInterval(intervalRef.current);
-  }, [isPaused]);
+  }, [isPaused, goNext]);
 
   // Page effects
   useEffect(() => {
@@ -80,11 +91,19 @@ function Homepage() {
           <div
             onClick={(e) => e.stopPropagation()}
             className={`absolute bottom-14 right-0 w-48 sm:w-52 p-3 rounded-xl shadow-2xl animate-slideUp space-y-2
-              ${isDark ? "bg-[#050509]/95 border border-white/10" : "bg-white border border-gray-200"}`}
+              ${
+                isDark
+                  ? "bg-[#050509]/95 border border-white/10"
+                  : "bg-white border border-gray-200"
+              }`}
           >
             <p
               className={`text-center text-xs font-semibold border-b pb-2
-                ${isDark ? "text-gray-100 border-white/10" : "text-gray-800 border-gray-200"}`}
+                ${
+                  isDark
+                    ? "text-gray-100 border-white/10"
+                    : "text-gray-800 border-gray-200"
+                }`}
             >
               Call Studio
             </p>
@@ -92,7 +111,11 @@ function Homepage() {
             <a
               href="tel:+998999366556"
               className={`block text-xs font-medium rounded-lg px-3 py-2 shadow-sm active:scale-95 transition-all
-                ${isDark ? "text-gray-100 bg-white/5 hover:text-[#f5c15d]" : "text-gray-800 bg-gray-50 hover:bg-gray-100"}`}
+                ${
+                  isDark
+                    ? "text-gray-100 bg-white/5 hover:text-[#f5c15d]"
+                    : "text-gray-800 bg-gray-50 hover:bg-gray-100"
+                }`}
             >
               📞 +998 99 936 65 56
             </a>
@@ -100,7 +123,11 @@ function Homepage() {
             <a
               href="tel:+998900141444"
               className={`block text-xs font-medium rounded-lg px-3 py-2 shadow-sm active:scale-95 transition-all
-                ${isDark ? "text-gray-100 bg-white/5 hover:text-[#f5c15d]" : "text-gray-800 bg-gray-50 hover:bg-gray-100"}`}
+                ${
+                  isDark
+                    ? "text-gray-100 bg-white/5 hover:text-[#f5c15d]"
+                    : "text-gray-800 bg-gray-50 hover:bg-gray-100"
+                }`}
             >
               📞 +998 90 014 14 44
             </a>
@@ -184,7 +211,7 @@ function Homepage() {
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
-            {/* Images (smooth professional transition) */}
+            {/* Images */}
             {heroImages.map((img, idx) => {
               const isActive = idx === activeIndex;
               return (
@@ -206,18 +233,20 @@ function Homepage() {
               );
             })}
 
-            {/* ✅ SMART OVERLAY (keeps image visible + controls readable) */}
+            {/* Overlay */}
             <div className="absolute inset-0 pointer-events-none">
-              {/* light full overlay in dark mode only */}
               {isDark && <div className="absolute inset-0 bg-black/10" />}
-              {/* bottom gradient for dots/feel */}
               <div
                 className={`absolute inset-x-0 bottom-0 h-40
-                  ${isDark ? "bg-gradient-to-t from-black/55 to-transparent" : "bg-gradient-to-t from-black/20 to-transparent"}`}
+                  ${
+                    isDark
+                      ? "bg-gradient-to-t from-black/55 to-transparent"
+                      : "bg-gradient-to-t from-black/20 to-transparent"
+                  }`}
               />
             </div>
 
-            {/* ✅ ARROWS (centered + visible both modes) */}
+            {/* Arrows */}
             <button
               type="button"
               onClick={() => {
@@ -256,7 +285,11 @@ function Homepage() {
                   }}
                   className={`h-2 rounded-full transition-all duration-300
                     ${i === activeIndex ? "w-8" : "w-2"}
-                    ${isDark ? "bg-white/85" : "bg-white/90 border border-black/10"}`}
+                    ${
+                      isDark
+                        ? "bg-white/85"
+                        : "bg-white/90 border border-black/10"
+                    }`}
                   aria-label={`Go to image ${i + 1}`}
                 />
               ))}
@@ -264,7 +297,9 @@ function Homepage() {
           </div>
 
           <p className={`mt-3 text-xs ${isDark ? "text-gray-400" : "text-gray-500"}`}>
-            {t("homepage.hero.imageHint", { defaultValue: "Selected works preview" })}
+            {t("homepage.hero.imageHint", {
+              defaultValue: "Selected works preview",
+            })}
           </p>
         </div>
       </div>
