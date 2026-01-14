@@ -19,6 +19,15 @@ export default function Footer() {
     ["about", "/about"],
   ];
 
+  // ✅ Scroll to top when footer navigation is clicked
+  const handleNavClick = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "auto", // use "smooth" if you prefer animation
+    });
+  };
+
   return (
     <footer
       className={`mt-20 pt-16 ${
@@ -37,11 +46,11 @@ export default function Footer() {
       {/* MAIN BODY */}
       <div
         className="
-          max-w-7xl mx-auto 
-          px-6 py-14 
-          grid grid-cols-1 
-          sm:grid-cols-2 
-          md:grid-cols-3 
+          max-w-7xl mx-auto
+          px-6 py-14
+          grid grid-cols-1
+          sm:grid-cols-2
+          md:grid-cols-3
           gap-14 sm:gap-10
         "
       >
@@ -83,8 +92,11 @@ export default function Footer() {
               <li key={key}>
                 <Link
                   to={link}
+                  onClick={handleNavClick}
                   className={`transition hover:underline ${
-                    isDark ? "hover:text-yellow-300" : "hover:text-[#111827]"
+                    isDark
+                      ? "hover:text-yellow-300"
+                      : "hover:text-[#111827]"
                   }`}
                 >
                   {tr(
