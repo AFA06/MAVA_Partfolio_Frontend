@@ -15,13 +15,15 @@
     "dev": "❤️ bilan ishlab chiqildi"
   },
 
-  "homepage": {
+
+"homepage": {
   "hero": {
     "studio": "Arxitektura studiyasi",
     "title2": "Tasavvurlaringizni quramiz, reallikka aylantiramiz.",
     "desc": "Bu yerda g‘oyalar zamonaviy va funksional loyihalarga aylanuvchi arxitektura studiyasi. Konseptdan amalga oshirishgacha.",
     "button": "Loyihalarni ko‘rish",
-    "secondary": "Studiya haqida"
+    "secondary": "Studiya haqida",
+    "imageHint": "Tanlangan ishlar ko‘rinishi"
   }
 },
   "portfolioPage": {
@@ -140,6 +142,8 @@
       "error": "Xabar yuborishda xatolik yuz berdi.",
       "name": "Ismingiz",
       "email": "Emailingiz",
+      "phone": "Telefon",
+      "phonePlaceholder": "99 123 45 67",
       "message": "Xabaringiz",
       "button": "Yuborish",
       "sending": "Yuborilmoqda..."

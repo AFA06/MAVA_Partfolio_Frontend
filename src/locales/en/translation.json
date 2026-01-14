@@ -15,13 +15,15 @@
     "dev": "Made with ❤️ by"
   },
 
-  "homepage": {
+  
+"homepage": {
   "hero": {
     "studio": "Architecture Studio",
     "title2": "Building your visions, creating reality.",
     "desc": "An architectural studio where ideas turn into stylish and functional projects. From concept to realization.",
     "button": "View Projects",
-    "secondary": "About studio"
+    "secondary": "About studio",
+    "imageHint": "Selected works preview"
   }
 },
 
@@ -142,6 +144,8 @@
       "name": "Your Name",
       "email": "Your Email",
       "message": "Your Message",
+      "phone": "Phone",
+      "phonePlaceholder": "99 123 45 67",
       "button": "Send",
       "sending": "Sending..."
     }
