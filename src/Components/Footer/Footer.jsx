@@ -3,6 +3,7 @@ import React from "react";
 import { FaInstagram, FaTelegramPlane } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../context/ThemeContext";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -11,12 +12,17 @@ export default function Footer() {
 
   const tr = (key, fallback) => (t(key) !== key ? t(key) : fallback);
 
+  const navLinks = [
+    ["portfolio", "/portfolio"],
+    ["videos", "/videos"],
+    ["contacts", "/contacts"],
+    ["about", "/about"],
+  ];
+
   return (
     <footer
       className={`mt-20 pt-16 ${
-        isDark
-          ? "bg-[#050509] text-gray-300"
-          : "bg-[#f5f6f7] text-[#1a1a1a]"
+        isDark ? "bg-[#050509] text-gray-300" : "bg-[#f5f6f7] text-[#1a1a1a]"
       }`}
     >
       {/* TOP LINE */}
@@ -73,21 +79,19 @@ export default function Footer() {
           </h3>
 
           <ul className="flex flex-col gap-3 text-sm">
-            {[
-              ["portfolio", "/portfolio"],
-              ["videos", "/videos"],
-              ["contacts", "/contacts"],
-              ["about", "/about"],
-            ].map(([key, link]) => (
+            {navLinks.map(([key, link]) => (
               <li key={key}>
-                <a
-                  href={link}
+                <Link
+                  to={link}
                   className={`transition hover:underline ${
                     isDark ? "hover:text-yellow-300" : "hover:text-[#111827]"
                   }`}
                 >
-                  {tr(`footer.${key}`, key.charAt(0).toUpperCase() + key.slice(1))}
-                </a>
+                  {tr(
+                    `footer.${key}`,
+                    key.charAt(0).toUpperCase() + key.slice(1)
+                  )}
+                </Link>
               </li>
             ))}
           </ul>
@@ -104,7 +108,6 @@ export default function Footer() {
           </h3>
 
           <div className="flex justify-center sm:justify-start gap-4">
-            {/* Instagram */}
             <a
               href="https://www.instagram.com/mavagroup_?utm_source=ig_web_button_share_sheet"
               target="_blank"
@@ -119,7 +122,6 @@ export default function Footer() {
               <FaInstagram className="text-lg" />
             </a>
 
-            {/* Telegram */}
             <a
               href="https://t.me/MAVA_GROUP"
               target="_blank"

@@ -1,23 +1,59 @@
 // /src/pages/Contacts.jsx
-// FULL MOBILE RESPONSIVE CONTACTS PAGE (Formspree ready)
-// Sends to: https://formspree.io/f/xaqqwkqr  (configure this form in Formspree to deliver to fattokhovabdurashid@gmail.com)
+// FULL MOBILE RESPONSIVE CONTACTS PAGE (Formspree ready + phone with flag+code only + required fields + 1000 char limit + popup status)
+// Sends to: https://formspree.io/f/xaqqwkqr
 
-import React, { useState, useMemo } from "react";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
-import { motion } from "framer-motion";
+import React, { useMemo, useState } from "react";
+import { MapPin, Phone, Mail, Clock, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../context/ThemeContext";
 
 const FORMSPREE_URL = "https://formspree.io/f/xaqqwkqr";
+const MAX_MESSAGE_LEN = 1000;
+
+// ✅ Only flag + code (no country names)
+const COUNTRY_CODES = [
+  { code: "+998", flag: "🇺🇿" },
+  { code: "+7", flag: "🇰🇿" },
+  { code: "+996", flag: "🇰🇬" },
+  { code: "+992", flag: "🇹🇯" },
+  { code: "+993", flag: "🇹🇲" },
+  { code: "+90", flag: "🇹🇷" },
+  { code: "+971", flag: "🇦🇪" },
+  { code: "+1", flag: "🇺🇸" },
+  { code: "+44", flag: "🇬🇧" },
+  { code: "+49", flag: "🇩🇪" },
+];
 
 export default function Contacts() {
   const { t } = useTranslation();
   const { theme } = useTheme();
+  const isDark = theme === "dark";
 
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    countryCode: "+998", // ✅ default Uzbekistan
+    phone: "",
+    message: "",
+  });
+
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(null);
+
+  // Popup / toast state
+  const [popup, setPopup] = useState({
+    open: false,
+    type: "success", // "success" | "error" | "info"
+    title: "",
+    message: "",
+  });
+
+  const openPopup = (type, title, message) => {
+    setPopup({ open: true, type, title, message });
+  };
+
+  const closePopup = () => setPopup((p) => ({ ...p, open: false }));
 
   /* ----------------------------------------------
      PAPER TEXTURE (Light Mode)
@@ -78,7 +114,7 @@ export default function Contacts() {
               <div
                 key={i}
                 className={`flex justify-between border-b pb-1 last:border-none text-xs sm:text-sm ${
-                  theme === "dark"
+                  isDark
                     ? "border-white/10 text-gray-200"
                     : "border-gray-300 text-gray-700"
                 }`}
@@ -91,7 +127,7 @@ export default function Contacts() {
                   className={`${
                     isClosed
                       ? "text-red-500 font-medium"
-                      : theme === "dark"
+                      : isDark
                       ? "text-gray-300"
                       : "text-gray-700"
                   }`}
@@ -107,31 +143,83 @@ export default function Contacts() {
   ];
 
   /* ----------------------------------------------
+        Validation helpers
+  ---------------------------------------------- */
+  const normalizePhoneDigits = (value) => value.replace(/[^\d]/g, "");
+
+  const isFormValid = () => {
+    const nameOk = form.name.trim().length > 0;
+    const emailOk = form.email.trim().length > 0;
+    const phoneOk = normalizePhoneDigits(form.phone).length >= 7; // basic minimum
+    const msgOk =
+      form.message.trim().length > 0 && form.message.length <= MAX_MESSAGE_LEN;
+    const codeOk = form.countryCode && form.countryCode.startsWith("+");
+    return nameOk && emailOk && phoneOk && msgOk && codeOk;
+  };
+
+  /* ----------------------------------------------
         Submit Handler (Formspree)
   ---------------------------------------------- */
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (form.message.length > MAX_MESSAGE_LEN) {
+      openPopup(
+        "error",
+        t("contactsPage.form.error", { defaultValue: "Error" }),
+        `Message is too long. Max ${MAX_MESSAGE_LEN} characters.`
+      );
+      return;
+    }
+
+    if (!isFormValid()) {
+      openPopup(
+        "info",
+        "Incomplete form",
+        "Please fill in all required fields before sending."
+      );
+      return;
+    }
+
     setLoading(true);
-    setSuccess(null);
 
     try {
-      // Formspree accepts JSON; "Accept: application/json" ensures JSON response
-      const res = await axios.post(FORMSPREE_URL, form, {
+      const payload = {
+        name: form.name.trim(),
+        email: form.email.trim(),
+        phone: `${form.countryCode} ${normalizePhoneDigits(form.phone)}`,
+        message: form.message,
+      };
+
+      const res = await axios.post(FORMSPREE_URL, payload, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
       });
 
-      // If request succeeded (2xx), treat as success
       if (res.status >= 200 && res.status < 300) {
-        setSuccess(true);
-        setForm({ name: "", email: "", message: "" });
+        setForm({
+          name: "",
+          email: "",
+          countryCode: "+998",
+          phone: "",
+          message: "",
+        });
+        openPopup(
+          "success",
+          "Sent!",
+          "Your message was sent successfully. We will contact you soon."
+        );
       } else {
-        setSuccess(false);
+        openPopup("error", "Not sent", "Something went wrong. Please try again.");
       }
     } catch (err) {
-      setSuccess(false);
+      openPopup(
+        "error",
+        "Not sent",
+        "Could not send your message. Please try again later."
+      );
     } finally {
       setLoading(false);
     }
@@ -140,25 +228,39 @@ export default function Contacts() {
   /* ----------------------------------------------
         Theme classes
   ---------------------------------------------- */
-  const bgMain =
-    theme === "dark"
-      ? "bg-[#050509] text-gray-100"
-      : "bg-[#f5f5f6] text-gray-900";
+  const bgMain = isDark
+    ? "bg-[#050509] text-gray-100"
+    : "bg-[#f5f5f6] text-gray-900";
 
-  const card =
-    theme === "dark"
-      ? "bg-white/5 border border-white/10 hover:bg-white/10"
-      : "bg-white border border-gray-200 shadow-md hover:shadow-lg";
+  const card = isDark
+    ? "bg-white/5 border border-white/10 hover:bg-white/10"
+    : "bg-white border border-gray-200 shadow-md hover:shadow-lg";
 
-  const formCard =
-    theme === "dark"
-      ? "bg-white/5 border border-white/10"
-      : "bg-white border border-gray-200 shadow-xl";
+  const formCard = isDark
+    ? "bg-white/5 border border-white/10"
+    : "bg-white border border-gray-200 shadow-xl";
 
-  const inputStyle =
-    theme === "dark"
-      ? "bg-white/5 border-white/20 text-gray-100 placeholder-gray-400"
-      : "bg-gray-50 border-gray-300 text-gray-800";
+  const inputStyle = isDark
+    ? "bg-white/5 border-white/20 text-gray-100 placeholder-gray-400"
+    : "bg-gray-50 border-gray-300 text-gray-800";
+
+  const focusRing = isDark
+    ? "focus:ring-yellow-500/40"
+    : "focus:ring-gray-900/20";
+
+  // Popup colors
+  const popupStyles =
+    popup.type === "success"
+      ? isDark
+        ? "bg-emerald-500/15 border-emerald-400/30 text-emerald-100"
+        : "bg-emerald-50 border-emerald-200 text-emerald-900"
+      : popup.type === "error"
+      ? isDark
+        ? "bg-red-500/15 border-red-400/30 text-red-100"
+        : "bg-red-50 border-red-200 text-red-900"
+      : isDark
+      ? "bg-white/10 border-white/15 text-gray-100"
+      : "bg-white border-gray-200 text-gray-900";
 
   return (
     <div className={`relative min-h-screen w-full ${bgMain}`}>
@@ -174,6 +276,68 @@ export default function Contacts() {
         />
       )}
 
+      {/* -------------------------------- POPUP (Modal/Toast) -------------------------------- */}
+      <AnimatePresence>
+        {popup.open && (
+          <motion.div
+            className="fixed inset-0 z-[999] flex items-end sm:items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closePopup}
+          >
+            {/* Backdrop */}
+            <div className="absolute inset-0 bg-black/50" />
+
+            {/* Card */}
+            <motion.div
+              initial={{ y: 30, opacity: 0, scale: 0.98 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 30, opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+              className={`relative w-full max-w-md rounded-2xl border p-5 shadow-2xl ${popupStyles}`}
+            >
+              <button
+                type="button"
+                onClick={closePopup}
+                className={`absolute right-3 top-3 rounded-lg p-2 transition ${
+                  isDark ? "hover:bg-white/10" : "hover:bg-black/5"
+                }`}
+                aria-label="Close popup"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="pr-10">
+                <h3 className="text-lg font-semibold">{popup.title}</h3>
+                <p
+                  className={`mt-2 text-sm ${
+                    isDark ? "text-gray-200" : "text-gray-700"
+                  }`}
+                >
+                  {popup.message}
+                </p>
+              </div>
+
+              <div className="mt-4 flex justify-end">
+                <button
+                  type="button"
+                  onClick={closePopup}
+                  className={`px-4 py-2 rounded-xl text-sm font-semibold transition ${
+                    isDark
+                      ? "bg-white/10 hover:bg-white/15 border border-white/15"
+                      : "bg-gray-900 text-white hover:bg-black"
+                  }`}
+                >
+                  OK
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* -------------------------------- HEADER -------------------------------- */}
       <header className="relative overflow-hidden">
         <motion.div
@@ -188,7 +352,7 @@ export default function Contacts() {
 
           <div
             className={`mt-5 h-[3px] w-24 mx-auto rounded-full ${
-              theme === "dark"
+              isDark
                 ? "bg-gradient-to-r from-yellow-500 to-yellow-400"
                 : "bg-gray-300"
             }`}
@@ -214,7 +378,7 @@ export default function Contacts() {
             >
               <div
                 className={`flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full mb-4 ${
-                  theme === "dark"
+                  isDark
                     ? "bg-yellow-500/20 text-yellow-400"
                     : "bg-gray-900 text-white"
                 }`}
@@ -246,7 +410,11 @@ export default function Contacts() {
             {t("contactsPage.form.title")}
           </h4>
 
-          <p className="text-sm sm:text-base text-gray-400 mb-6">
+          <p
+            className={`text-sm sm:text-base mb-6 ${
+              isDark ? "text-gray-400" : "text-gray-600"
+            }`}
+          >
             {t("contactsPage.form.subtitle")}
           </p>
 
@@ -254,7 +422,7 @@ export default function Contacts() {
             {/* NAME */}
             <div>
               <label className="block text-sm font-medium mb-1">
-                {t("contactsPage.form.name")}
+                {t("contactsPage.form.name")} *
               </label>
               <input
                 type="text"
@@ -262,14 +430,14 @@ export default function Contacts() {
                 required
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className={`w-full p-3 rounded-xl border focus:ring-2 transition ${inputStyle}`}
+                className={`w-full p-3 rounded-xl border focus:ring-2 ${focusRing} transition ${inputStyle}`}
               />
             </div>
 
             {/* EMAIL */}
             <div>
               <label className="block text-sm font-medium mb-1">
-                {t("contactsPage.form.email")}
+                {t("contactsPage.form.email")} *
               </label>
               <input
                 type="email"
@@ -277,50 +445,90 @@ export default function Contacts() {
                 required
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className={`w-full p-3 rounded-xl border focus:ring-2 transition ${inputStyle}`}
+                className={`w-full p-3 rounded-xl border focus:ring-2 ${focusRing} transition ${inputStyle}`}
               />
+            </div>
+
+            {/* PHONE (flag + code only, no names) */}
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                {t("contactsPage.form.phone", { defaultValue: "Phone" })} *
+              </label>
+
+              <div className="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-3">
+                <select
+                  name="countryCode"
+                  required
+                  value={form.countryCode}
+                  onChange={(e) =>
+                    setForm({ ...form, countryCode: e.target.value })
+                  }
+                  className={`w-full p-3 rounded-xl border focus:ring-2 ${focusRing} transition ${inputStyle}`}
+                  aria-label="Country code"
+                >
+                  {COUNTRY_CODES.map((c) => (
+                    <option key={c.code} value={c.code}>
+                      {c.flag} {c.code}
+                    </option>
+                  ))}
+                </select>
+
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  inputMode="tel"
+                  placeholder={t("contactsPage.form.phonePlaceholder", {
+                    defaultValue: "99 123 45 67",
+                  })}
+                  value={form.phone}
+                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                  className={`w-full p-3 rounded-xl border focus:ring-2 ${focusRing} transition ${inputStyle}`}
+                />
+              </div>
             </div>
 
             {/* MESSAGE */}
             <div>
               <label className="block text-sm font-medium mb-1">
-                {t("contactsPage.form.message")}
+                {t("contactsPage.form.message")} *{" "}
+                <span
+                  className={`text-xs font-normal ${
+                    isDark ? "text-gray-400" : "text-gray-500"
+                  }`}
+                >
+                  ({form.message.length}/{MAX_MESSAGE_LEN})
+                </span>
               </label>
+
               <textarea
-                rows="4"
+                rows="5"
                 name="message"
                 required
+                maxLength={MAX_MESSAGE_LEN}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className={`w-full p-3 rounded-xl border focus:ring-2 transition ${inputStyle}`}
+                className={`w-full p-3 rounded-xl border focus:ring-2 ${focusRing} transition ${inputStyle}`}
               />
             </div>
 
             {/* BUTTON */}
             <button
               type="submit"
-              disabled={loading}
-              className={`w-full mt-3 px-6 py-3 rounded-xl text-base font-semibold transition ${
-                theme === "dark"
-                  ? "bg-yellow-500 text-black hover:bg-yellow-400"
-                  : "bg-gray-900 text-white hover:bg-black"
-              } ${loading ? "opacity-70 cursor-not-allowed" : ""}`}
+              disabled={loading || !isFormValid()}
+              className={`w-full mt-3 px-6 py-3 rounded-xl text-base font-semibold transition
+                ${
+                  isDark
+                    ? "bg-yellow-500 text-black hover:bg-yellow-400"
+                    : "bg-gray-900 text-white hover:bg-black"
+                }
+                ${loading || !isFormValid() ? "opacity-70 cursor-not-allowed" : ""}
+              `}
             >
               {loading
-                ? t("contactsPage.form.sending")
-                : t("contactsPage.form.button")}
+                ? t("contactsPage.form.sending", { defaultValue: "Sending..." })
+                : t("contactsPage.form.button", { defaultValue: "Send message" })}
             </button>
-
-            {success === true && (
-              <p className="mt-2 text-green-600 text-sm">
-                {t("contactsPage.form.alert")}
-              </p>
-            )}
-            {success === false && (
-              <p className="mt-2 text-red-600 text-sm">
-                {t("contactsPage.form.error")}
-              </p>
-            )}
           </form>
         </motion.div>
       </section>
@@ -335,8 +543,8 @@ export default function Contacts() {
             height="100%"
             loading="lazy"
             style={{ border: 0 }}
-            className={`${theme === "dark" ? "brightness-75" : ""}`}
-          ></iframe>
+            className={`${isDark ? "brightness-75" : ""}`}
+          />
         </div>
       </section>
     </div>
